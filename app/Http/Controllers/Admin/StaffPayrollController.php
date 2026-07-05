@@ -375,6 +375,9 @@ class StaffPayrollController extends Controller
         $profile = StaffProfile::where('user_id', $id)->firstOrFail();
         $profile->update(['status' => 'suspended']);
 
+        $user = User::findOrFail($id);
+        $user->update(['status' => 'suspended']);
+
         return redirect()->back()->with('success', 'Staff member suspended.');
     }
 
@@ -394,6 +397,9 @@ class StaffPayrollController extends Controller
             'termination_reason'  => $request->termination_reason,
         ]);
 
+        $user = User::findOrFail($id);
+        $user->update(['status' => 'suspended']); // Suspend user account on termination to block logins
+
         return redirect()->back()->with('success', 'Staff member terminated.');
     }
 
@@ -408,6 +414,9 @@ class StaffPayrollController extends Controller
             'termination_date'    => null,
             'termination_reason'  => null,
         ]);
+
+        $user = User::findOrFail($id);
+        $user->update(['status' => 'active']);
 
         return redirect()->back()->with('success', 'Staff member reactivated.');
     }
