@@ -166,7 +166,7 @@
                         <input type="email" id="email" name="email" value="{{ old('email') }}" required placeholder="Enter your email"
                                class="w-full p-3.5 border @error('email') border-red-500 @else border-zinc-200 @enderror rounded-[0.45rem] text-sm focus:ring-2 focus:ring-[#fdd835] focus:border-[#fdd835] focus:outline-none bg-white placeholder-zinc-400 font-medium transition-all">
                         @error('email')
-                            <p class="text-xs text-red-650 font-bold mt-1">{{ $message }}</p>
+                            <p class="text-xs text-red-600 font-bold mt-1">{{ $message }}</p>
                         @enderror
                     </div>
 
@@ -187,7 +187,7 @@
                             </button>
                         </div>
                         @error('password')
-                            <p class="text-xs text-red-650 font-bold mt-1">{{ $message }}</p>
+                            <p class="text-xs text-red-600 font-bold mt-1">{{ $message }}</p>
                         @enderror
                     </div>
 
