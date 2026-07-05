@@ -259,6 +259,8 @@ class UserAuthController extends Controller
             return redirect()->route('login')->withErrors(['social' => 'Invalid social provider request.']);
         }
 
+        session(['social_auth_action' => request()->query('action', 'login')]);
+
         // Check if provider is enabled in config/.env or DB SiteSetting
         $enabled = config("services.{$provider}.client_id") || SiteSetting::getVal("{$provider}_login_enabled", false);
         if (!$enabled) {
@@ -358,10 +360,16 @@ class UserAuthController extends Controller
             return redirect()->route('dashboard.settings.account')->with('success', ucfirst($provider) . ' account linked successfully.');
         }
 
+        $action = session()->pull('social_auth_action', 'login');
+
         // Find user
         $user = User::where('email', $socialUser->email)->first();
 
-        if (!$user) {
+        if ($action === 'register') {
+            if ($user) {
+                return redirect()->route('register')->withErrors(['social' => 'This email is already registered. Please log in instead.']);
+            }
+
             $user = User::create([
                 'name' => $socialUser->name ?? explode('@', $socialUser->email)[0],
                 'email' => $socialUser->email,
@@ -371,6 +379,11 @@ class UserAuthController extends Controller
                 'is_email_verified' => true,
                 'email_verified_at' => now(),
             ]);
+        } else {
+            // Login flow
+            if (!$user) {
+                return redirect()->route('login')->withErrors(['social' => 'No account found with this email. Please register first.']);
+            }
         }
 
         if ($user->status === 'suspended' || $user->status === 'banned') {

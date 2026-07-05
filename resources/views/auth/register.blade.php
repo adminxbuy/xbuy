@@ -101,7 +101,7 @@
                 <!-- Dynamic Social Logins Area -->
                 <div class="space-y-3">
                     @if(\App\Models\SiteSetting::getVal('google_login_enabled'))
-                        <a href="{{ route('social.redirect', 'google') }}" 
+                        <a href="{{ route('social.redirect', ['provider' => 'google', 'action' => 'register']) }}" 
                            class="w-full py-3 px-4 border border-zinc-200 hover:bg-zinc-50 rounded-[0.45rem] text-sm font-semibold flex items-center justify-center space-x-2.5 transition-all text-zinc-700">
                             <!-- Google G SVG Logo -->
                             <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
@@ -115,7 +115,7 @@
                     @endif
 
                     @if(\App\Models\SiteSetting::getVal('facebook_login_enabled'))
-                        <a href="{{ route('social.redirect', 'facebook') }}" 
+                        <a href="{{ route('social.redirect', ['provider' => 'facebook', 'action' => 'register']) }}" 
                            class="w-full py-3 px-4 bg-[#1877f2] hover:bg-[#166fe5] text-white rounded-[0.45rem] text-sm font-semibold flex items-center justify-center space-x-2.5 transition-all">
                             <!-- Facebook SVG Logo -->
                             <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -126,7 +126,7 @@
                     @endif
 
                     @if(\App\Models\SiteSetting::getVal('apple_login_enabled'))
-                        <a href="{{ route('social.redirect', 'apple') }}" 
+                        <a href="{{ route('social.redirect', ['provider' => 'apple', 'action' => 'register']) }}" 
                            class="w-full py-3 px-4 bg-black hover:bg-zinc-900 text-white rounded-[0.45rem] text-sm font-semibold flex items-center justify-center space-x-2.5 transition-all">
                             <!-- Apple SVG Logo -->
                             <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
