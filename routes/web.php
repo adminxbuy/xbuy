@@ -229,6 +229,7 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
         Route::get('/audit-logs', [DashboardController::class, 'auditLogs'])->name('admin.audit-logs');
 
         // Admin Account Management
+        Route::get('/admin-accounts/check-email', [\App\Http\Controllers\Admin\AdminAccountController::class, 'checkEmail'])->name('admin.accounts.check-email');
         Route::get('/admin-accounts', [\App\Http\Controllers\Admin\AdminAccountController::class, 'index'])->name('admin.accounts.index');
         Route::get('/admin-accounts/create', [\App\Http\Controllers\Admin\AdminAccountController::class, 'create'])->name('admin.accounts.create');
         Route::post('/admin-accounts', [\App\Http\Controllers\Admin\AdminAccountController::class, 'store'])->name('admin.accounts.store');

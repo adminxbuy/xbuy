@@ -41,12 +41,13 @@
             {{-- Name --}}
             <div class="space-y-1.5">
                 <label class="text-xs font-bold text-zinc-700 flex items-center gap-1">
-                    Full Name <span class="text-rose-500">*</span>
+                    Full Name <span class="text-rose-500" x-show="!userExists">*</span>
                 </label>
                 <div class="relative">
                     <i data-lucide="user" class="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-400"></i>
-                    <input type="text" name="name" required value="{{ old('name') }}" placeholder="e.g. Rahul Sharma"
-                           class="w-full pl-10 pr-4 py-3 text-xs border border-zinc-200 rounded-xl bg-zinc-50 focus:bg-white focus:ring-1 focus:ring-zinc-950 focus:border-zinc-950 focus:ring-4 focus:ring-yellow-100 focus:outline-none transition-all">
+                    <input type="text" name="name" :required="!userExists" :readonly="userExists" x-model="name" value="{{ old('name') }}" placeholder="e.g. Rahul Sharma"
+                           class="w-full pl-10 pr-4 py-3 text-xs border border-zinc-200 rounded-xl bg-zinc-50 focus:bg-white focus:ring-1 focus:ring-zinc-950 focus:border-zinc-950 focus:ring-4 focus:ring-yellow-100 focus:outline-none transition-all"
+                           :class="userExists ? 'opacity-80 cursor-not-allowed bg-zinc-100' : ''">
                 </div>
             </div>
 
@@ -57,8 +58,12 @@
                 </label>
                 <div class="relative">
                     <i data-lucide="mail" class="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-400"></i>
-                    <input type="email" name="email" required value="{{ old('email') }}" placeholder="username@xbuy.in"
+                    <input type="email" name="email" required x-model="email" @input.debounce.300ms="checkEmailExist()" value="{{ old('email') }}" placeholder="username@xbuy.in"
                            class="w-full pl-10 pr-4 py-3 text-xs border border-zinc-200 rounded-xl bg-zinc-50 focus:bg-white focus:ring-1 focus:ring-zinc-950 focus:border-zinc-950 focus:ring-4 focus:ring-yellow-100 focus:outline-none transition-all">
+                </div>
+                <div x-show="userExists" x-cloak class="mt-2 p-3 bg-emerald-50 text-emerald-800 border border-emerald-200 rounded-xl text-xs flex items-start gap-2 shadow-sm">
+                    <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-600 shrink-0 mt-0.5"></i>
+                    <span>Existing user account found for <strong x-text="existingUserName"></strong>. Promoting this user will keep their current password and profile details.</span>
                 </div>
             </div>
         </div>
@@ -211,7 +216,7 @@
         </div>
 
         {{-- Passwords --}}
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 border-t border-zinc-150 pt-5">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 border-t border-zinc-150 pt-5" x-show="!userExists" x-cloak>
             {{-- Password --}}
             <div class="space-y-1.5" x-data="{ show: false }">
                 <label class="text-xs font-bold text-zinc-700 flex items-center gap-1">
@@ -219,7 +224,7 @@
                 </label>
                 <div class="relative">
                     <i data-lucide="lock" class="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-400"></i>
-                    <input :type="show ? 'text' : 'password'" name="password" required placeholder="Min. 8 characters"
+                    <input :type="show ? 'text' : 'password'" name="password" :required="!userExists" placeholder="Min. 8 characters"
                            class="w-full pl-10 pr-10 py-3 text-xs border border-zinc-200 rounded-xl bg-zinc-50 focus:bg-white focus:ring-1 focus:ring-zinc-950 focus:border-zinc-950 focus:ring-4 focus:ring-yellow-100 focus:outline-none transition-all">
                     <button type="button" @click="show = !show" class="absolute right-3 top-1/2 -translate-y-1/2 text-zinc-400 hover:text-zinc-700">
                         <i :data-lucide="show ? 'eye-off' : 'eye'" class="w-4 h-4"></i>
@@ -229,12 +234,12 @@
 
             {{-- Password Confirm --}}
             <div class="space-y-1.5" x-data="{ show: false }">
-                <label class="text-xs font-bold text-zinc-700 flex items-center gap-1">
+                <label class="text-xs font-bold text-zinc-750 flex items-center gap-1">
                     Confirm Password <span class="text-rose-500">*</span>
                 </label>
                 <div class="relative">
                     <i data-lucide="lock" class="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-400"></i>
-                    <input :type="show ? 'text' : 'password'" name="password_confirmation" required placeholder="Repeat password"
+                    <input :type="show ? 'text' : 'password'" name="password_confirmation" :required="!userExists" placeholder="Repeat password"
                            class="w-full pl-10 pr-10 py-3 text-xs border border-zinc-200 rounded-xl bg-zinc-50 focus:bg-white focus:ring-1 focus:ring-zinc-950 focus:border-zinc-950 focus:ring-4 focus:ring-yellow-100 focus:outline-none transition-all">
                     <button type="button" @click="show = !show" class="absolute right-3 top-1/2 -translate-y-1/2 text-zinc-400 hover:text-zinc-700">
                         <i :data-lucide="show ? 'eye-off' : 'eye'" class="w-4 h-4"></i>
@@ -263,6 +268,10 @@
 <script>
 function createStaffPage() {
     return {
+        email: '',
+        name: '',
+        userExists: false,
+        existingUserName: '',
         selectedRole: 'operations',
         customRoleTitle: '',
         accessTypes: ['none', 'view', 'edit', 'delete', 'all'],
@@ -360,6 +369,26 @@ function createStaffPage() {
         },
         customPerms: {},
         
+        async checkEmailExist() {
+            if (!this.email.includes('@')) {
+                this.userExists = false;
+                this.existingUserName = '';
+                return;
+            }
+            try {
+                let response = await fetch(`/admin/admin-accounts/check-email?email=${encodeURIComponent(this.email)}`);
+                let res = await response.json();
+                this.userExists = res.exists;
+                this.existingUserName = res.name || '';
+                if (this.userExists) {
+                    this.name = this.existingUserName;
+                }
+            } catch (e) {
+                this.userExists = false;
+                this.existingUserName = '';
+            }
+        },
+
         onRoleChange(roleKey) {
             const presets = this.roles[roleKey]?.presets || {};
             Object.keys(this.sections).forEach(key => {

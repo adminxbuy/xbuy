@@ -86,39 +86,95 @@ class AdminAccountController extends Controller
     }
 
     /**
-     * Create a new admin account.
+     * Check if email exists for dynamic form UI feedback.
+     */
+    public function checkEmail(Request $request)
+    {
+        $email = $request->input('email');
+        $user = User::where('email', $email)->first();
+        return response()->json([
+            'exists' => $user !== null,
+            'name'   => $user ? $user->name : null
+        ]);
+    }
+
+    /**
+     * Create a new admin account or promote an existing user.
      */
     public function store(Request $request)
     {
-        $validated = $request->validate([
-            'name'       => 'required|string|max:100',
-            'email'      => 'required|email|unique:users,email',
-            'password'   => 'required|string|min:8|confirmed',
-            'admin_role' => 'required|string|max:50',
-            'permissions'=> 'nullable|array',
-        ]);
+        $email = $request->input('email');
+        $user = User::where('email', $email)->first();
 
-        $adminRole = $validated['admin_role'];
+        $adminRole = $request->input('admin_role');
         $presets = ['super_admin', 'operations', 'support', 'finance', 'content', 'moderator'];
         if ($adminRole === 'custom') {
             $adminRole = $request->input('custom_role_title') ?: 'custom';
         }
 
-        $user = User::create([
-            'name'       => $validated['name'],
-            'email'      => $validated['email'],
-            'phone'      => '98765' . rand(10000, 99999),
-            'password'   => Hash::make($validated['password']),
-            'role'       => 'admin',
-            'admin_role' => $adminRole,
-            'permissions'=> !in_array($adminRole, $presets) ? ($request->input('permissions') ?? []) : null,
-            'status'     => 'active',
-        ]);
+        if ($user) {
+            // Existing user promotion
+            $request->validate([
+                'email'      => 'required|email',
+                'admin_role' => 'required|string|max:50',
+            ]);
 
-        $this->logAction('admin_account_create', "Created admin account: {$user->email} with role: {$adminRole}");
+            // Promote user to admin
+            $user->role = 'admin';
+            $user->admin_role = $adminRole;
+            $user->permissions = !in_array($adminRole, $presets) ? ($request->input('permissions') ?? []) : null;
+            $user->save();
 
-        return redirect()->route('admin.accounts.index')
-            ->with('success', "Admin account '{$user->name}' created with role: " . ucfirst(str_replace('_', ' ', $adminRole)));
+            // Ensure StaffProfile exists and is active
+            $profile = \App\Models\StaffProfile::firstOrNew(['user_id' => $user->id]);
+            $profile->designation = $adminRole === 'super_admin' ? 'Superadmin Executive' : ucfirst(str_replace('_', ' ', $adminRole));
+            $profile->status = 'active';
+            if (!$profile->exists) {
+                $profile->appointment_date = now()->toDateString();
+                $profile->appointment_letter_ref = 'XBUY/APT/' . now()->year . '/' . sprintf('%03d', $user->id);
+            }
+            $profile->save();
+
+            $this->logAction('admin_account_promote', "Promoted user to admin: {$user->email} with role: {$adminRole}");
+
+            return redirect()->route('admin.accounts.index')
+                ->with('success', "Existing user '{$user->name}' promoted to admin with role: " . ucfirst(str_replace('_', ' ', $adminRole)));
+        } else {
+            // New staff account direct creation
+            $validated = $request->validate([
+                'name'       => 'required|string|max:100',
+                'email'      => 'required|email|unique:users,email',
+                'password'   => 'required|string|min:8|confirmed',
+                'admin_role' => 'required|string|max:50',
+                'permissions'=> 'nullable|array',
+            ]);
+
+            $user = User::create([
+                'name'       => $validated['name'],
+                'email'      => $validated['email'],
+                'phone'      => '98765' . rand(10000, 99999),
+                'password'   => Hash::make($validated['password']),
+                'role'       => 'admin',
+                'admin_role' => $adminRole,
+                'permissions'=> !in_array($adminRole, $presets) ? ($request->input('permissions') ?? []) : null,
+                'status'     => 'active',
+            ]);
+
+            // Ensure StaffProfile exists and is active
+            $profile = \App\Models\StaffProfile::firstOrNew(['user_id' => $user->id]);
+            $profile->designation = $adminRole === 'super_admin' ? 'Superadmin Executive' : ucfirst(str_replace('_', ' ', $adminRole));
+            $profile->status = 'active';
+            if (!$profile->exists) {
+                $profile->appointment_date = now()->toDateString();
+                $profile->appointment_letter_ref = 'XBUY/APT/' . now()->year . '/' . sprintf('%03d', $user->id);
+            }
+            $profile->save();
+
+            $this->logAction('admin_account_create', "Created admin account: {$user->email} with role: {$adminRole}");
+
+            return redirect()->route('admin.accounts.index')
+                ->with('success', "Admin account '{$user->name}' created with role: " . ucfirst(str_replace('_', ' ', $adminRole)));
+        }
     }
 
     /**
