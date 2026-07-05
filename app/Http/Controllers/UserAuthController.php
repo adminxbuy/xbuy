@@ -362,7 +362,15 @@ class UserAuthController extends Controller
         $user = User::where('email', $socialUser->email)->first();
 
         if (!$user) {
-            return redirect()->route('login')->withErrors(['social' => 'No account found with this email. Please register first.']);
+            $user = User::create([
+                'name' => $socialUser->name ?? explode('@', $socialUser->email)[0],
+                'email' => $socialUser->email,
+                'password' => Hash::make(Str::random(24)),
+                'role' => 'buyer',
+                'status' => 'active',
+                'is_email_verified' => true,
+                'email_verified_at' => now(),
+            ]);
         }
 
         if ($user->status === 'suspended' || $user->status === 'banned') {
