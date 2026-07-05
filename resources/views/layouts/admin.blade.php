@@ -422,13 +422,13 @@
         <nav class="sidebar-nav flex-1 px-3 py-4 space-y-0.5 overflow-y-auto">
             <p class="text-[10px] font-medium text-zinc-400 uppercase tracking-widest px-3 mb-1.5 mt-1">Commerce</p>
             
-            <a href="{{ route('admin.dashboard') }}" class="flex items-center space-x-3 px-3 py-2 rounded-lg text-sm font-medium transition-all {{ request()->routeIs('admin.dashboard') ? 'sidebar-active' : 'text-zinc-600 hover:bg-zinc-100 hover:text-zinc-900' }}">
+            <a href="{{ route('admin.dashboard') }}" class="flex items-center space-x-3 px-3 py-2 rounded-lg text-sm font-medium transition-colors {{ request()->routeIs('admin.dashboard') ? 'sidebar-active' : 'text-zinc-600 hover:bg-zinc-100 hover:text-zinc-900' }}">
                 <i data-lucide="layout-dashboard" class="w-4 h-4"></i>
                 <span>Dashboard</span>
             </a>
 
             @if(Auth::user()->canAccess('sellers'))
-            <a href="{{ route('admin.sellers') }}" class="flex items-center space-x-3 px-3 py-2 rounded-lg text-sm font-medium transition-all {{ request()->routeIs('admin.sellers*') ? 'sidebar-active' : 'text-zinc-600 hover:bg-zinc-100 hover:text-zinc-900' }}">
+            <a href="{{ route('admin.sellers') }}" class="flex items-center space-x-3 px-3 py-2 rounded-lg text-sm font-medium transition-colors {{ request()->routeIs('admin.sellers*') ? 'sidebar-active' : 'text-zinc-600 hover:bg-zinc-100 hover:text-zinc-900' }}">
                 <i data-lucide="users" class="w-4 h-4"></i>
                 <span>Sellers</span>
                 @php $pendingKyc = \App\Models\SellerProfile::where('kyc_status', 'pending')->count(); @endphp
@@ -439,7 +439,7 @@
             @endif
 
             @if(Auth::user()->canAccess('listings'))
-            <a href="{{ route('admin.listings') }}" class="flex items-center space-x-3 px-3 py-2 rounded-lg text-sm font-medium transition-all {{ request()->routeIs('admin.listings*') ? 'sidebar-active' : 'text-zinc-600 hover:bg-zinc-100 hover:text-zinc-900' }}">
+            <a href="{{ route('admin.listings') }}" class="flex items-center space-x-3 px-3 py-2 rounded-lg text-sm font-medium transition-colors {{ request()->routeIs('admin.listings*') ? 'sidebar-active' : 'text-zinc-600 hover:bg-zinc-100 hover:text-zinc-900' }}">
                 <i data-lucide="package" class="w-4 h-4"></i>
                 <span>Listings</span>
                 @php $pendingListings = \App\Models\Listing::where('listing_status', 'pending_approval')->count(); @endphp
@@ -450,31 +450,31 @@
             @endif
 
             @if(Auth::user()->canAccess('categories'))
-            <a href="{{ route('admin.categories') }}" class="flex items-center space-x-3 px-3 py-2 rounded-lg text-sm font-medium transition-all {{ request()->routeIs('admin.categories*') ? 'sidebar-active' : 'text-zinc-600 hover:bg-zinc-100 hover:text-zinc-900' }}">
+            <a href="{{ route('admin.categories') }}" class="flex items-center space-x-3 px-3 py-2 rounded-lg text-sm font-medium transition-colors {{ request()->routeIs('admin.categories*') ? 'sidebar-active' : 'text-zinc-600 hover:bg-zinc-100 hover:text-zinc-900' }}">
                 <i data-lucide="folder-tree" class="w-4 h-4"></i>
                 <span>Categories</span>
             </a>
 
-            <a href="{{ route('admin.spec-templates') }}" class="flex items-center space-x-3 px-3 py-2 rounded-lg text-sm font-medium transition-all {{ request()->routeIs('admin.spec-templates*') ? 'sidebar-active' : 'text-zinc-600 hover:bg-zinc-100 hover:text-zinc-900' }}">
+            <a href="{{ route('admin.spec-templates') }}" class="flex items-center space-x-3 px-3 py-2 rounded-lg text-sm font-medium transition-colors {{ request()->routeIs('admin.spec-templates*') ? 'sidebar-active' : 'text-zinc-600 hover:bg-zinc-100 hover:text-zinc-900' }}">
                 <i data-lucide="sliders" class="w-4 h-4"></i>
                 <span>Spec Templates</span>
             </a>
 
-            <a href="{{ route('admin.pages.index') }}" class="flex items-center space-x-3 px-3 py-2 rounded-lg text-sm font-medium transition-all {{ request()->routeIs('admin.pages*') ? 'sidebar-active' : 'text-zinc-600 hover:bg-zinc-100 hover:text-zinc-900' }}">
+            <a href="{{ route('admin.pages.index') }}" class="flex items-center space-x-3 px-3 py-2 rounded-lg text-sm font-medium transition-colors {{ request()->routeIs('admin.pages*') ? 'sidebar-active' : 'text-zinc-600 hover:bg-zinc-100 hover:text-zinc-900' }}">
                 <i data-lucide="file-text" class="w-4 h-4"></i>
                 <span>Policy Pages</span>
             </a>
             @endif
 
             @if(Auth::user()->canAccess('orders'))
-            <a href="{{ route('admin.orders') }}" class="flex items-center space-x-3 px-3 py-2 rounded-lg text-sm font-medium transition-all {{ request()->routeIs('admin.orders*') ? 'sidebar-active' : 'text-zinc-600 hover:bg-zinc-100 hover:text-zinc-900' }}">
+            <a href="{{ route('admin.orders') }}" class="flex items-center space-x-3 px-3 py-2 rounded-lg text-sm font-medium transition-colors {{ request()->routeIs('admin.orders*') ? 'sidebar-active' : 'text-zinc-600 hover:bg-zinc-100 hover:text-zinc-900' }}">
                 <i data-lucide="shopping-cart" class="w-4 h-4"></i>
                 <span>Orders</span>
             </a>
             @endif
             
             @if(Auth::user()->canAccess('disputes'))
-            <a href="{{ route('admin.disputes') }}" class="flex items-center space-x-3 px-3 py-2 rounded-lg text-sm font-medium transition-all {{ request()->routeIs('admin.disputes*') ? 'sidebar-active' : 'text-zinc-600 hover:bg-zinc-100 hover:text-zinc-900' }}">
+            <a href="{{ route('admin.disputes') }}" class="flex items-center space-x-3 px-3 py-2 rounded-lg text-sm font-medium transition-colors {{ request()->routeIs('admin.disputes*') ? 'sidebar-active' : 'text-zinc-600 hover:bg-zinc-100 hover:text-zinc-900' }}">
                 <i data-lucide="alert-triangle" class="w-4 h-4"></i>
                 <span>Disputes</span>
                 @php $openDisputes = \App\Models\Dispute::whereIn('status', ['open', 'seller_responded', 'under_review'])->count(); @endphp
@@ -485,7 +485,7 @@
             @endif
 
             @if(Auth::user()->canAccess('escrow'))
-            <a href="{{ route('admin.escrow') }}" class="flex items-center space-x-3 px-3 py-2 rounded-lg text-sm font-medium transition-all {{ request()->routeIs('admin.escrow*') ? 'sidebar-active' : 'text-zinc-600 hover:bg-zinc-100 hover:text-zinc-900' }}">
+            <a href="{{ route('admin.escrow') }}" class="flex items-center space-x-3 px-3 py-2 rounded-lg text-sm font-medium transition-colors {{ request()->routeIs('admin.escrow*') ? 'sidebar-active' : 'text-zinc-600 hover:bg-zinc-100 hover:text-zinc-900' }}">
                 <i data-lucide="shield" class="w-4 h-4"></i>
                 <span>Escrow</span>
                 @php $heldCount = \App\Models\Escrow::where('status','held')->count(); @endphp
@@ -496,14 +496,14 @@
             @endif
 
             @if(Auth::user()->canAccess('payouts'))
-            <a href="{{ route('admin.payouts') }}" class="flex items-center space-x-3 px-3 py-2 rounded-lg text-sm font-medium transition-all {{ request()->routeIs('admin.payouts*') ? 'sidebar-active' : 'text-zinc-600 hover:bg-zinc-100 hover:text-zinc-900' }}">
+            <a href="{{ route('admin.payouts') }}" class="flex items-center space-x-3 px-3 py-2 rounded-lg text-sm font-medium transition-colors {{ request()->routeIs('admin.payouts*') ? 'sidebar-active' : 'text-zinc-600 hover:bg-zinc-100 hover:text-zinc-900' }}">
                 <i data-lucide="wallet" class="w-4 h-4"></i>
                 <span>Payouts</span>
             </a>
             @endif
 
             @if(Auth::user()->canAccess('tickets'))
-            <a href="{{ route('admin.tickets') }}" class="flex items-center space-x-3 px-3 py-2 rounded-lg text-sm font-medium transition-all {{ request()->routeIs('admin.tickets*') ? 'sidebar-active' : 'text-zinc-600 hover:bg-zinc-100 hover:text-zinc-900' }}">
+            <a href="{{ route('admin.tickets') }}" class="flex items-center space-x-3 px-3 py-2 rounded-lg text-sm font-medium transition-colors {{ request()->routeIs('admin.tickets*') ? 'sidebar-active' : 'text-zinc-600 hover:bg-zinc-100 hover:text-zinc-900' }}">
                 <i data-lucide="help-circle" class="w-4 h-4"></i>
                 <span>Support Tickets</span>
                 @php $openTickets = \App\Models\SupportTicket::whereIn('status', ['open', 'in_progress'])->count(); @endphp
@@ -516,70 +516,70 @@
             <p class="text-[10px] font-medium text-zinc-400 uppercase tracking-widest px-3 pt-5 mb-1.5">Management</p>
 
             @if(Auth::user()->canAccess('articles'))
-            <a href="{{ route('admin.articles.index') }}" class="flex items-center space-x-3 px-3 py-2 rounded-lg text-sm font-medium transition-all {{ request()->routeIs('admin.articles*') ? 'sidebar-active' : 'text-zinc-600 hover:bg-zinc-100 hover:text-zinc-900' }}">
+            <a href="{{ route('admin.articles.index') }}" class="flex items-center space-x-3 px-3 py-2 rounded-lg text-sm font-medium transition-colors {{ request()->routeIs('admin.articles*') ? 'sidebar-active' : 'text-zinc-600 hover:bg-zinc-100 hover:text-zinc-900' }}">
                 <i data-lucide="book-open" class="w-4 h-4"></i>
                 <span>Articles / Blog</span>
             </a>
 
-            <a href="{{ route('admin.mails.index') }}" class="flex items-center space-x-3 px-3 py-2 rounded-lg text-sm font-medium transition-all {{ request()->routeIs('admin.mails*') ? 'sidebar-active' : 'text-zinc-600 hover:bg-zinc-100 hover:text-zinc-900' }}">
+            <a href="{{ route('admin.mails.index') }}" class="flex items-center space-x-3 px-3 py-2 rounded-lg text-sm font-medium transition-colors {{ request()->routeIs('admin.mails*') ? 'sidebar-active' : 'text-zinc-600 hover:bg-zinc-100 hover:text-zinc-900' }}">
                 <i data-lucide="mail" class="w-4 h-4"></i>
                 <span>Mail Management</span>
             </a>
             @endif
 
             @if(Auth::user()->canAccess('analytics'))
-            <a href="{{ route('admin.analytics') }}" class="flex items-center space-x-3 px-3 py-2 rounded-lg text-sm font-medium transition-all {{ request()->routeIs('admin.analytics*') ? 'sidebar-active' : 'text-zinc-600 hover:bg-zinc-100 hover:text-zinc-900' }}">
+            <a href="{{ route('admin.analytics') }}" class="flex items-center space-x-3 px-3 py-2 rounded-lg text-sm font-medium transition-colors {{ request()->routeIs('admin.analytics*') ? 'sidebar-active' : 'text-zinc-600 hover:bg-zinc-100 hover:text-zinc-900' }}">
                 <i data-lucide="bar-chart-2" class="w-4 h-4"></i>
                 <span>Analytics</span>
             </a>
             @endif
 
             @if(Auth::user()->canAccess('users'))
-            <a href="{{ route('admin.users') }}" class="flex items-center space-x-3 px-3 py-2 rounded-lg text-sm font-medium transition-all {{ request()->routeIs('admin.users*') ? 'sidebar-active' : 'text-zinc-600 hover:bg-zinc-100 hover:text-zinc-900' }}">
+            <a href="{{ route('admin.users') }}" class="flex items-center space-x-3 px-3 py-2 rounded-lg text-sm font-medium transition-colors {{ request()->routeIs('admin.users*') ? 'sidebar-active' : 'text-zinc-600 hover:bg-zinc-100 hover:text-zinc-900' }}">
                 <i data-lucide="users" class="w-4 h-4"></i>
                 <span>Users</span>
             </a>
             @endif
 
-            <a href="{{ route('admin.my-earnings') }}" class="flex items-center space-x-3 px-3 py-2 rounded-lg text-sm font-medium transition-all {{ request()->routeIs('admin.my-earnings*') ? 'sidebar-active' : 'text-zinc-600 hover:bg-zinc-100 hover:text-zinc-900' }}">
+            <a href="{{ route('admin.my-earnings') }}" class="flex items-center space-x-3 px-3 py-2 rounded-lg text-sm font-medium transition-colors {{ request()->routeIs('admin.my-earnings*') ? 'sidebar-active' : 'text-zinc-600 hover:bg-zinc-100 hover:text-zinc-900' }}">
                 <i data-lucide="wallet" class="w-4 h-4"></i>
                 <span>My Earnings</span>
             </a>
 
             @if(Auth::user()->isSuperAdmin())
-            <a href="{{ route('admin.content') }}" class="flex items-center space-x-3 px-3 py-2 rounded-lg text-sm font-medium transition-all {{ request()->routeIs('admin.content*') ? 'sidebar-active' : 'text-zinc-600 hover:bg-zinc-100 hover:text-zinc-900' }}">
+            <a href="{{ route('admin.content') }}" class="flex items-center space-x-3 px-3 py-2 rounded-lg text-sm font-medium transition-colors {{ request()->routeIs('admin.content*') ? 'sidebar-active' : 'text-zinc-600 hover:bg-zinc-100 hover:text-zinc-900' }}">
                 <i data-lucide="folder-open" class="w-4 h-4"></i>
                 <span>Content Manager</span>
             </a>
 
-            <a href="{{ route('admin.settings') }}" class="flex items-center space-x-3 px-3 py-2 rounded-lg text-sm font-medium transition-all {{ request()->routeIs('admin.settings*') ? 'sidebar-active' : 'text-zinc-600 hover:bg-zinc-100 hover:text-zinc-900' }}">
+            <a href="{{ route('admin.settings') }}" class="flex items-center space-x-3 px-3 py-2 rounded-lg text-sm font-medium transition-colors {{ request()->routeIs('admin.settings*') ? 'sidebar-active' : 'text-zinc-600 hover:bg-zinc-100 hover:text-zinc-900' }}">
                 <i data-lucide="settings" class="w-4 h-4"></i>
                 <span>Settings</span>
             </a>
 
-            <a href="{{ route('admin.accounts.index') }}" class="flex items-center space-x-3 px-3 py-2 rounded-lg text-sm font-medium transition-all {{ request()->routeIs('admin.accounts*') ? 'sidebar-active' : 'text-zinc-600 hover:bg-zinc-100 hover:text-zinc-900' }}">
+            <a href="{{ route('admin.accounts.index') }}" class="flex items-center space-x-3 px-3 py-2 rounded-lg text-sm font-medium transition-colors {{ request()->routeIs('admin.accounts*') ? 'sidebar-active' : 'text-zinc-600 hover:bg-zinc-100 hover:text-zinc-900' }}">
                 <i data-lucide="shield" class="w-4 h-4"></i>
                 <span>Staff Management</span>
             </a>
 
-            <a href="{{ route('admin.staff.directory') }}" class="flex items-center space-x-3 px-3 py-2 rounded-lg text-sm font-medium transition-all {{ request()->routeIs('admin.staff.*') ? 'sidebar-active' : 'text-zinc-600 hover:bg-zinc-100 hover:text-zinc-900' }}">
+            <a href="{{ route('admin.staff.directory') }}" class="flex items-center space-x-3 px-3 py-2 rounded-lg text-sm font-medium transition-colors {{ request()->routeIs('admin.staff.*') ? 'sidebar-active' : 'text-zinc-600 hover:bg-zinc-100 hover:text-zinc-900' }}">
                 <i data-lucide="users" class="w-4 h-4"></i>
                 <span>Staff Directory</span>
             </a>
 
-            <a href="{{ route('admin.payroll') }}" class="flex items-center space-x-3 px-3 py-2 rounded-lg text-sm font-medium transition-all {{ request()->routeIs('admin.payroll*') ? 'sidebar-active' : 'text-zinc-600 hover:bg-zinc-100 hover:text-zinc-900' }}">
+            <a href="{{ route('admin.payroll') }}" class="flex items-center space-x-3 px-3 py-2 rounded-lg text-sm font-medium transition-colors {{ request()->routeIs('admin.payroll*') ? 'sidebar-active' : 'text-zinc-600 hover:bg-zinc-100 hover:text-zinc-900' }}">
                 <i data-lucide="banknote" class="w-4 h-4"></i>
                 <span>Payroll Overview</span>
             </a>
 
-            <a href="{{ route('admin.audit-logs') }}" class="flex items-center space-x-3 px-3 py-2 rounded-lg text-sm font-medium transition-all {{ request()->routeIs('admin.audit-logs*') ? 'sidebar-active' : 'text-zinc-600 hover:bg-zinc-100 hover:text-zinc-900' }}">
+            <a href="{{ route('admin.audit-logs') }}" class="flex items-center space-x-3 px-3 py-2 rounded-lg text-sm font-medium transition-colors {{ request()->routeIs('admin.audit-logs*') ? 'sidebar-active' : 'text-zinc-600 hover:bg-zinc-100 hover:text-zinc-900' }}">
                 <i data-lucide="file-text" class="w-4 h-4"></i>
                 <span>Audit Logs</span>
             </a>
             @endif
 
             @if(Auth::user()->canAccess('ratings'))
-            <a href="{{ route('admin.ratings') }}" class="flex items-center space-x-3 px-3 py-2 rounded-lg text-sm font-medium transition-all {{ request()->routeIs('admin.ratings*') ? 'sidebar-active' : 'text-zinc-600 hover:bg-zinc-100 hover:text-zinc-900' }}">
+            <a href="{{ route('admin.ratings') }}" class="flex items-center space-x-3 px-3 py-2 rounded-lg text-sm font-medium transition-colors {{ request()->routeIs('admin.ratings*') ? 'sidebar-active' : 'text-zinc-600 hover:bg-zinc-100 hover:text-zinc-900' }}">
                 <i data-lucide="star" class="w-4 h-4"></i>
                 <span>Ratings</span>
             </a>
@@ -592,7 +592,7 @@
                         $q->whereNull('user_id')->orWhere('user_id', Auth::id());
                     })->count(); 
             @endphp
-            <a href="{{ route('admin.alerts') }}" class="flex items-center space-x-3 px-3 py-2 rounded-lg text-sm font-medium transition-all {{ request()->routeIs('admin.alerts*') ? 'sidebar-active' : 'text-zinc-600 hover:bg-zinc-100 hover:text-zinc-900' }}">
+            <a href="{{ route('admin.alerts') }}" class="flex items-center space-x-3 px-3 py-2 rounded-lg text-sm font-medium transition-colors {{ request()->routeIs('admin.alerts*') ? 'sidebar-active' : 'text-zinc-600 hover:bg-zinc-100 hover:text-zinc-900' }}">
                 <i data-lucide="bell" class="w-4 h-4"></i>
                 <span>Alerts</span>
                 @if($unreadAlertsCount > 0)
@@ -603,7 +603,7 @@
 
             @if(Auth::user()->canAccess('fraud_flags'))
             @php $pendingFraudCount = \App\Models\FraudFlag::where('status', 'pending')->count(); @endphp
-            <a href="{{ route('admin.fraud-flags.index') }}" class="flex items-center space-x-3 px-3 py-2 rounded-lg text-sm font-medium transition-all {{ request()->routeIs('admin.fraud-flags*') ? 'sidebar-active' : 'text-zinc-600 hover:bg-zinc-100 hover:text-zinc-900' }}">
+            <a href="{{ route('admin.fraud-flags.index') }}" class="flex items-center space-x-3 px-3 py-2 rounded-lg text-sm font-medium transition-colors {{ request()->routeIs('admin.fraud-flags*') ? 'sidebar-active' : 'text-zinc-600 hover:bg-zinc-100 hover:text-zinc-900' }}">
                 <i data-lucide="shield-alert" class="w-4 h-4"></i>
                 <span>Fraud Flags</span>
                 @if($pendingFraudCount > 0)
