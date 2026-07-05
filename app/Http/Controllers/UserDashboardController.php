@@ -328,14 +328,17 @@ class UserDashboardController extends Controller
      */
     public function deleteAccount(Request $request)
     {
-        $request->validate([
-            'delete_password' => ['required', 'string'],
-        ]);
-
         $user = Auth::user();
+        $isSocialUser = $user->google_linked || $user->facebook_linked || $user->apple_linked;
 
-        if (!Hash::check($request->delete_password, $user->password)) {
-            return back()->withErrors(['delete_password' => 'The provided password does not match our records.']);
+        if (!$isSocialUser) {
+            $request->validate([
+                'delete_password' => ['required', 'string'],
+            ]);
+
+            if (!Hash::check($request->delete_password, $user->password)) {
+                return back()->withErrors(['delete_password' => 'The provided password does not match our records.']);
+            }
         }
 
         // Soft delete user

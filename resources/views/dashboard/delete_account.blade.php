@@ -43,6 +43,7 @@
                         </div>
 
                         <!-- Confirm password -->
+                        @if(!auth()->user()->google_linked && !auth()->user()->facebook_linked && !auth()->user()->apple_linked)
                         <div class="flex flex-col md:flex-row md:items-center justify-between py-4 border-b border-zinc-100 gap-4">
                             <div class="md:w-1/3 shrink-0">
                                 <h4 class="text-sm font-bold text-zinc-800">Confirm password</h4>
@@ -51,6 +52,7 @@
                                 <input type="password" name="delete_password" required placeholder="Enter your current password" class="w-full text-sm text-zinc-700 bg-transparent border-b border-zinc-200 focus:border-rose-500 focus:ring-0 outline-none placeholder-zinc-400 pb-2">
                             </div>
                         </div>
+                        @endif
 
                         <!-- I confirm that all my orders are completed -->
                         <div class="space-y-6 pt-4">
