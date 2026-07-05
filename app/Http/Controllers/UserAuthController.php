@@ -260,13 +260,13 @@ class UserAuthController extends Controller
         }
 
         // Check if provider is enabled in config/.env or DB SiteSetting
-        $enabled = env(strtoupper($provider) . '_CLIENT_ID') || SiteSetting::getVal("{$provider}_login_enabled", false);
+        $enabled = config("services.{$provider}.client_id") || SiteSetting::getVal("{$provider}_login_enabled", false);
         if (!$enabled) {
             return redirect()->route('login')->withErrors(['social' => ucfirst($provider) . ' login is currently disabled. Please configure your .env keys or admin settings.']);
         }
 
-        $clientId = env(strtoupper($provider) . '_CLIENT_ID') ?: SiteSetting::getVal("{$provider}_client_id");
-        $clientSecret = env(strtoupper($provider) . '_CLIENT_SECRET') ?: SiteSetting::getVal("{$provider}_client_secret");
+        $clientId = config("services.{$provider}.client_id") ?: SiteSetting::getVal("{$provider}_client_id");
+        $clientSecret = config("services.{$provider}.client_secret") ?: SiteSetting::getVal("{$provider}_client_secret");
 
         // Check if Laravel Socialite exists
         if (class_exists('Laravel\Socialite\Facades\Socialite')) {
@@ -307,13 +307,13 @@ class UserAuthController extends Controller
             return redirect()->route('login')->withErrors(['social' => 'Invalid social provider callback.']);
         }
 
-        $enabled = env(strtoupper($provider) . '_CLIENT_ID') || SiteSetting::getVal("{$provider}_login_enabled", false);
+        $enabled = config("services.{$provider}.client_id") || SiteSetting::getVal("{$provider}_login_enabled", false);
         if (!$enabled) {
             return redirect()->route('login')->withErrors(['social' => ucfirst($provider) . ' login is currently disabled.']);
         }
 
-        $clientId = env(strtoupper($provider) . '_CLIENT_ID') ?: SiteSetting::getVal("{$provider}_client_id");
-        $clientSecret = env(strtoupper($provider) . '_CLIENT_SECRET') ?: SiteSetting::getVal("{$provider}_client_secret");
+        $clientId = config("services.{$provider}.client_id") ?: SiteSetting::getVal("{$provider}_client_id");
+        $clientSecret = config("services.{$provider}.client_secret") ?: SiteSetting::getVal("{$provider}_client_secret");
 
         $socialUser = null;
 
