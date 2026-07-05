@@ -8,20 +8,24 @@
     <!-- Badge Filter Quick Navigation -->
     <div class="flex flex-wrap gap-2.5">
         <a href="{{ route('admin.users') }}"
-           class="text-xs font-semibold px-4 py-2.5 rounded-xl border transition-all {{ !request('badge') ? 'bg-zinc-900 text-white border-zinc-900 shadow-sm' : 'bg-white border-zinc-200 text-zinc-650 hover:bg-zinc-50' }}">
+           class="text-xs font-semibold px-4 py-2.5 rounded-xl border transition-all {{ !request('badge') && request('tab') !== 'deleted' ? 'bg-zinc-900 text-white border-zinc-900 shadow-sm' : 'bg-white border-zinc-200 text-zinc-650 hover:bg-zinc-50' }}">
             All Buyers
         </a>
         <a href="{{ route('admin.users', ['badge' => 'new_buyer']) }}"
-           class="text-xs font-semibold px-4 py-2.5 rounded-xl border transition-all {{ request('badge') === 'new_buyer' ? 'bg-zinc-900 text-white border-zinc-900 shadow-sm' : 'bg-white border-zinc-200 text-zinc-650 hover:bg-zinc-50' }}">
+           class="text-xs font-semibold px-4 py-2.5 rounded-xl border transition-all {{ request('badge') === 'new_buyer' && request('tab') !== 'deleted' ? 'bg-zinc-900 text-white border-zinc-900 shadow-sm' : 'bg-white border-zinc-200 text-zinc-650 hover:bg-zinc-50' }}">
             🆕 New Buyer ({{ $badgeCounts['new_buyer'] }})
         </a>
         <a href="{{ route('admin.users', ['badge' => 'verified_buyer']) }}"
-           class="text-xs font-semibold px-4 py-2.5 rounded-xl border transition-all {{ request('badge') === 'verified_buyer' ? 'bg-zinc-900 text-white border-zinc-900 shadow-sm' : 'bg-white border-zinc-200 text-zinc-650 hover:bg-zinc-50' }}">
+           class="text-xs font-semibold px-4 py-2.5 rounded-xl border transition-all {{ request('badge') === 'verified_buyer' && request('tab') !== 'deleted' ? 'bg-zinc-900 text-white border-zinc-900 shadow-sm' : 'bg-white border-zinc-200 text-zinc-650 hover:bg-zinc-50' }}">
             🔵 Verified Buyer ({{ $badgeCounts['verified_buyer'] }})
         </a>
         <a href="{{ route('admin.users', ['badge' => 'trusted_buyer']) }}"
-           class="text-xs font-semibold px-4 py-2.5 rounded-xl border transition-all {{ request('badge') === 'trusted_buyer' ? 'bg-zinc-900 text-white border-zinc-900 shadow-sm' : 'bg-white border-zinc-200 text-zinc-650 hover:bg-zinc-50' }}">
+           class="text-xs font-semibold px-4 py-2.5 rounded-xl border transition-all {{ request('badge') === 'trusted_buyer' && request('tab') !== 'deleted' ? 'bg-zinc-900 text-white border-zinc-900 shadow-sm' : 'bg-white border-zinc-200 text-zinc-650 hover:bg-zinc-50' }}">
             🟢 Trusted Buyer ({{ $badgeCounts['trusted_buyer'] }})
+        </a>
+        <a href="{{ route('admin.users', ['tab' => 'deleted']) }}"
+           class="text-xs font-semibold px-4 py-2.5 rounded-xl border transition-all {{ request('tab') === 'deleted' ? 'bg-zinc-900 text-white border-zinc-900 shadow-sm' : 'bg-white border-zinc-200 text-zinc-650 hover:bg-zinc-50' }}">
+            🗑️ Deleted Accounts ({{ $badgeCounts['deleted_buyer'] }})
         </a>
     </div>
 
@@ -179,13 +183,33 @@
                             <td class="p-4 text-xs text-zinc-450">{{ $user->created_at->format('d M Y') }}</td>
                             <!-- Status -->
                             <td class="p-4 text-center">
-                                <span class="px-2 py-0.5 text-[9px] font-bold uppercase tracking-wider rounded-full
-                                    @if($user->status === 'active') bg-emerald-50 text-emerald-705 border border-emerald-200/60
-                                    @elseif($user->status === 'suspended') bg-amber-100 text-amber-800
-                                    @elseif($user->status === 'banned') bg-rose-50 text-rose-705 border border-rose-200/60
-                                    @else bg-zinc-100 text-zinc-700 @endif">
-                                    {{ $user->status }}
-                                </span>
+                                @if($user->trashed())
+                                    <span class="px-2 py-0.5 text-[9px] font-bold uppercase tracking-wider rounded-full bg-rose-50 text-rose-705 border border-rose-200/60">
+                                        Deleted
+                                    </span>
+                                @elseif($user->status === 'active')
+                                    @if($user->is_logged_in)
+                                        <span class="px-2 py-0.5 text-[9px] font-bold uppercase tracking-wider rounded-full bg-emerald-50 text-emerald-705 border border-emerald-200/60">
+                                            Active
+                                        </span>
+                                    @else
+                                        <span class="px-2 py-0.5 text-[9px] font-bold uppercase tracking-wider rounded-full bg-zinc-100 text-zinc-650 border border-zinc-200">
+                                            Inactive
+                                        </span>
+                                    @endif
+                                @elseif($user->status === 'suspended')
+                                    <span class="px-2 py-0.5 text-[9px] font-bold uppercase tracking-wider rounded-full bg-amber-100 text-amber-800">
+                                        Suspended
+                                    </span>
+                                @elseif($user->status === 'banned')
+                                    <span class="px-2 py-0.5 text-[9px] font-bold uppercase tracking-wider rounded-full bg-rose-50 text-rose-705 border border-rose-200/60">
+                                        Banned
+                                    </span>
+                                @else
+                                    <span class="px-2 py-0.5 text-[9px] font-bold uppercase tracking-wider rounded-full bg-zinc-100 text-zinc-700">
+                                        {{ $user->status }}
+                                    </span>
+                                @endif
                             </td>
                              <!-- Actions -->
                              <td class="p-4 pr-6 text-right space-x-1.5 whitespace-nowrap">
@@ -195,7 +219,9 @@
                                  <a href="/admin/orders?buyer_id={{ $user->id }}" class="text-[10px] bg-zinc-100 text-zinc-700 hover:bg-zinc-200 border border-zinc-200 px-2 py-1.5 rounded-lg transition-all font-semibold" title="View Orders">
                                      Orders
                                  </a>
-                                 @if($user->status === 'active')
+                                 @if($user->trashed())
+                                     <span class="text-xs text-zinc-400 font-semibold italic" title="Data preserved under IT Act regulations">Data Preserved (IT Act)</span>
+                                 @elseif($user->status === 'active')
                                      <button @click="openActionModal('suspend', {{ json_encode($user) }})" class="text-[10px] bg-amber-50 text-amber-700 hover:bg-amber-100 border border-amber-250/30 px-2 py-1.5 rounded-lg transition-all font-bold">
                                          Suspend
                                      </button>

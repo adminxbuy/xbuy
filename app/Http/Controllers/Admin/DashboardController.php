@@ -783,12 +783,15 @@ class DashboardController extends Controller
         ));
     }
 
-    /**
-     * Users (buyers) list page.
-     */
     public function users(Request $request)
     {
-        $query = User::whereIn('role', ['buyer', 'hybrid']);
+        $tab = $request->input('tab');
+
+        if ($tab === 'deleted') {
+            $query = User::onlyTrashed()->whereIn('role', ['buyer', 'hybrid']);
+        } else {
+            $query = User::whereIn('role', ['buyer', 'hybrid']);
+        }
 
         if ($request->filled('search')) {
             $s = $request->input('search');
@@ -816,10 +819,17 @@ class DashboardController extends Controller
             ->with('wallet')
             ->latest()->paginate(20);
 
+        // Map active login session status
+        $users->getCollection()->transform(function($user) {
+            $user->is_logged_in = \DB::table('sessions')->where('user_id', $user->id)->exists();
+            return $user;
+        });
+
         $badgeCounts = [
             'new_buyer'      => User::whereIn('role', ['buyer', 'hybrid'])->where('buyer_badge','new_buyer')->count(),
             'verified_buyer' => User::whereIn('role', ['buyer', 'hybrid'])->where('buyer_badge','verified_buyer')->count(),
             'trusted_buyer'  => User::whereIn('role', ['buyer', 'hybrid'])->where('buyer_badge','trusted_buyer')->count(),
+            'deleted_buyer'  => User::onlyTrashed()->whereIn('role', ['buyer', 'hybrid'])->count(),
         ];
 
         return view('admin.users', compact('users', 'badgeCounts'));
