@@ -77,83 +77,115 @@
     @php
         function pctBadge(float $pct): string {
             $up = $pct >= 0;
-            $color = $up ? 'text-emerald-600' : 'text-rose-600';
             $symbol = $up ? '+' : '';
-            return "<span class='text-xs font-semibold {$color}'>{$symbol}{$pct}%</span>";
+            $arrow = $up 
+                ? '<svg class="w-3 h-3 text-zinc-50 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7h8m0 0v8m0-8L6 21" /></svg>'
+                : '<svg class="w-3 h-3 text-zinc-50 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M13 17h8m0 0v-8m0 8L6 3" /></svg>';
+            return "<span class='inline-flex items-center gap-1 bg-zinc-950 text-white text-[11px] font-semibold px-2 py-0.5 rounded-full'>{$arrow}{$symbol}{$pct}%</span>";
         }
     @endphp
 
     {{-- ── 1. 6-Card Stats Summary Grid (Shadcn Card layout) ──────────────── --}}
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4">
         {{-- Total Sales --}}
-        <div class="rounded-xl border border-zinc-200 bg-white text-zinc-950 flex flex-col justify-between p-6 min-h-[120px]">
-            <div class="flex flex-row items-center justify-between space-y-0">
-                <h3 class="text-xs font-medium uppercase tracking-wider text-zinc-500">Total Sales</h3>
-                {!! pctBadge($stats['total_sales_pct']) !!}
-            </div>
-            <div class="mt-2">
-                <div class="text-2xl font-bold tracking-tight">₹{{ number_format($stats['total_sales'], 0) }}</div>
-                <p class="text-[10px] text-zinc-400 mt-0.5">from last period</p>
+        <div class="rounded-xl border border-zinc-200 bg-white text-zinc-950 flex flex-col justify-between p-6">
+            <div class="flex flex-col gap-3">
+                <div class="w-10 h-10 rounded-xl bg-zinc-50 border border-zinc-150 flex items-center justify-center text-zinc-600">
+                    <i data-lucide="shopping-bag" class="w-5 h-5"></i>
+                </div>
+                <div class="space-y-1">
+                    <h3 class="text-sm font-medium text-zinc-500">Total Sales</h3>
+                    <div class="flex items-center gap-2">
+                        <span class="text-2xl font-bold tracking-tight text-zinc-950">₹{{ number_format($stats['total_sales'], 0) }}</span>
+                        {!! pctBadge($stats['total_sales_pct']) !!}
+                    </div>
+                    <p class="text-xs text-zinc-400">from last period</p>
+                </div>
             </div>
         </div>
 
         {{-- Escrow Held --}}
-        <div class="rounded-xl border border-zinc-200 bg-white text-zinc-950 flex flex-col justify-between p-6 min-h-[120px]">
-            <div class="flex flex-row items-center justify-between space-y-0">
-                <h3 class="text-xs font-medium uppercase tracking-wider text-zinc-500">Escrow Held</h3>
-                {!! pctBadge($stats['escrow_held_pct']) !!}
-            </div>
-            <div class="mt-2">
-                <div class="text-2xl font-bold tracking-tight">₹{{ number_format($stats['escrow_held'], 0) }}</div>
-                <p class="text-[10px] text-zinc-400 mt-0.5">held in trust</p>
+        <div class="rounded-xl border border-zinc-200 bg-white text-zinc-950 flex flex-col justify-between p-6">
+            <div class="flex flex-col gap-3">
+                <div class="w-10 h-10 rounded-xl bg-zinc-50 border border-zinc-150 flex items-center justify-center text-zinc-600">
+                    <i data-lucide="shield-check" class="w-5 h-5"></i>
+                </div>
+                <div class="space-y-1">
+                    <h3 class="text-sm font-medium text-zinc-500">Escrow Held</h3>
+                    <div class="flex items-center gap-2">
+                        <span class="text-2xl font-bold tracking-tight text-zinc-950">₹{{ number_format($stats['escrow_held'], 0) }}</span>
+                        {!! pctBadge($stats['escrow_held_pct']) !!}
+                    </div>
+                    <p class="text-xs text-zinc-400">held in trust</p>
+                </div>
             </div>
         </div>
 
         {{-- Pending Listings --}}
-        <div class="rounded-xl border border-zinc-200 bg-white text-zinc-950 flex flex-col justify-between p-6 min-h-[120px]">
-            <div class="flex flex-row items-center justify-between space-y-0">
-                <h3 class="text-xs font-medium uppercase tracking-wider text-zinc-500">Pending Listings</h3>
-                {!! pctBadge($stats['pending_list_pct']) !!}
-            </div>
-            <div class="mt-2">
-                <div class="text-2xl font-bold tracking-tight">{{ $stats['pending_listings'] }}</div>
-                <p class="text-[10px] text-zinc-400 mt-0.5">awaiting approval</p>
+        <div class="rounded-xl border border-zinc-200 bg-white text-zinc-950 flex flex-col justify-between p-6">
+            <div class="flex flex-col gap-3">
+                <div class="w-10 h-10 rounded-xl bg-zinc-50 border border-zinc-150 flex items-center justify-center text-zinc-600">
+                    <i data-lucide="clock" class="w-5 h-5"></i>
+                </div>
+                <div class="space-y-1">
+                    <h3 class="text-sm font-medium text-zinc-500">Pending Listings</h3>
+                    <div class="flex items-center gap-2">
+                        <span class="text-2xl font-bold tracking-tight text-zinc-950">{{ $stats['pending_listings'] }}</span>
+                        {!! pctBadge($stats['pending_list_pct']) !!}
+                    </div>
+                    <p class="text-xs text-zinc-400">awaiting approval</p>
+                </div>
             </div>
         </div>
 
         {{-- Open Disputes --}}
-        <div class="rounded-xl border border-zinc-200 bg-white text-zinc-950 flex flex-col justify-between p-6 min-h-[120px]">
-            <div class="flex flex-row items-center justify-between space-y-0">
-                <h3 class="text-xs font-medium uppercase tracking-wider text-zinc-500">Open Disputes</h3>
-                {!! pctBadge($stats['open_disp_pct']) !!}
-            </div>
-            <div class="mt-2">
-                <div class="text-2xl font-bold tracking-tight">{{ $stats['open_disputes'] }}</div>
-                <p class="text-[10px] text-zinc-400 mt-0.5">active escalations</p>
+        <div class="rounded-xl border border-zinc-200 bg-white text-zinc-950 flex flex-col justify-between p-6">
+            <div class="flex flex-col gap-3">
+                <div class="w-10 h-10 rounded-xl bg-zinc-50 border border-zinc-150 flex items-center justify-center text-zinc-600">
+                    <i data-lucide="alert-triangle" class="w-5 h-5"></i>
+                </div>
+                <div class="space-y-1">
+                    <h3 class="text-sm font-medium text-zinc-500">Open Disputes</h3>
+                    <div class="flex items-center gap-2">
+                        <span class="text-2xl font-bold tracking-tight text-zinc-950">{{ $stats['open_disputes'] }}</span>
+                        {!! pctBadge($stats['open_disp_pct']) !!}
+                    </div>
+                    <p class="text-xs text-zinc-400">active escalations</p>
+                </div>
             </div>
         </div>
 
         {{-- Monthly Revenue --}}
-        <div class="rounded-xl border border-zinc-200 bg-white text-zinc-950 flex flex-col justify-between p-6 min-h-[120px] ring-1 ring-zinc-950">
-            <div class="flex flex-row items-center justify-between space-y-0">
-                <h3 class="text-xs font-medium uppercase tracking-wider text-zinc-900 font-semibold">Monthly Revenue</h3>
-                {!! pctBadge($stats['monthly_rev_pct']) !!}
-            </div>
-            <div class="mt-2">
-                <div class="text-2xl font-bold tracking-tight">₹{{ number_format($stats['monthly_revenue'], 0) }}</div>
-                <p class="text-[10px] text-zinc-500 font-semibold mt-0.5">commission earned</p>
+        <div class="rounded-xl border border-zinc-250 bg-white text-zinc-950 flex flex-col justify-between p-6 ring-1 ring-zinc-950">
+            <div class="flex flex-col gap-3">
+                <div class="w-10 h-10 rounded-xl bg-zinc-50 border border-zinc-150 flex items-center justify-center text-zinc-600">
+                    <i data-lucide="credit-card" class="w-5 h-5"></i>
+                </div>
+                <div class="space-y-1">
+                    <h3 class="text-sm font-semibold text-zinc-900">Monthly Revenue</h3>
+                    <div class="flex items-center gap-2">
+                        <span class="text-2xl font-bold tracking-tight text-zinc-950">₹{{ number_format($stats['monthly_revenue'], 0) }}</span>
+                        {!! pctBadge($stats['monthly_rev_pct']) !!}
+                    </div>
+                    <p class="text-xs text-zinc-500 font-semibold">commission earned</p>
+                </div>
             </div>
         </div>
 
         {{-- Total Users --}}
-        <div class="rounded-xl border border-zinc-200 bg-white text-zinc-950 flex flex-col justify-between p-6 min-h-[120px]">
-            <div class="flex flex-row items-center justify-between space-y-0">
-                <h3 class="text-xs font-medium uppercase tracking-wider text-zinc-500">Total Users</h3>
-                {!! pctBadge($stats['total_users_pct']) !!}
-            </div>
-            <div class="mt-2">
-                <div class="text-2xl font-bold tracking-tight">{{ number_format($stats['total_users']) }}</div>
-                <p class="text-[10px] text-zinc-400 mt-0.5">registered members</p>
+        <div class="rounded-xl border border-zinc-200 bg-white text-zinc-950 flex flex-col justify-between p-6">
+            <div class="flex flex-col gap-3">
+                <div class="w-10 h-10 rounded-xl bg-zinc-50 border border-zinc-150 flex items-center justify-center text-zinc-600">
+                    <i data-lucide="users" class="w-5 h-5"></i>
+                </div>
+                <div class="space-y-1">
+                    <h3 class="text-sm font-medium text-zinc-500">Total Users</h3>
+                    <div class="flex items-center gap-2">
+                        <span class="text-2xl font-bold tracking-tight text-zinc-950">{{ number_format($stats['total_users']) }}</span>
+                        {!! pctBadge($stats['total_users_pct']) !!}
+                    </div>
+                    <p class="text-xs text-zinc-400">registered members</p>
+                </div>
             </div>
         </div>
     </div>
