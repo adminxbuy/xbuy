@@ -266,9 +266,9 @@
                 </div>
 
                 {{-- View Report button --}}
-                <button type="button" class="inline-flex items-center justify-center h-9 border border-zinc-200 hover:bg-zinc-50 text-zinc-950 font-semibold px-4 rounded-lg text-xs transition-all">
+                <a href="{{ route('admin.analytics') }}" class="inline-flex items-center justify-center h-9 border border-zinc-200 hover:bg-zinc-50 text-zinc-950 font-semibold px-4 rounded-lg text-xs transition-all">
                     <span>View report</span>
-                </button>
+                </a>
             </div>
         </div>
 
