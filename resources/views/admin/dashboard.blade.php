@@ -1058,11 +1058,10 @@ window.customerActivityChart = function() {
             });
         },
         updateChart() {
-            if (!this.chartInstance) return;
-            const datasetsData = this.generateData();
-            this.chartInstance.data.labels = datasetsData.labels;
-            this.chartInstance.data.datasets = datasetsData.datasets;
-            this.chartInstance.update();
+            if (this.chartInstance) {
+                this.chartInstance.destroy();
+            }
+            this.initChart();
         },
         generateData() {
             let originalLabels = [];
