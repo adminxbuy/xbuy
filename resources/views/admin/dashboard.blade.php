@@ -272,7 +272,21 @@
             </div>
         </div>
 
-
+        {{-- Custom Legend --}}
+        <div class="flex flex-wrap justify-end items-center text-[11px] font-semibold text-zinc-650 gap-4 mt-2">
+            <div class="flex items-center gap-1.5" x-show="segment === 'all' || segment === 'active'">
+                <span class="w-2.5 h-2.5 rounded-sm bg-[#71717a] inline-block"></span>
+                <span>Active Accounts</span>
+            </div>
+            <div class="flex items-center gap-1.5" x-show="segment === 'all' || segment === 'new'">
+                <span class="w-2.5 h-2.5 rounded-sm bg-[#d4d4d8] inline-block"></span>
+                <span>New Customers</span>
+            </div>
+            <div class="flex items-center gap-1.5" x-show="segment === 'all' || segment === 'returning'">
+                <span class="w-2.5 h-2.5 rounded-sm bg-[#18181b] inline-block"></span>
+                <span>Returning Users</span>
+            </div>
+        </div>
 
         <div class="h-80 w-full mt-4">
             <canvas id="customerActivityChartCanvas"></canvas>
@@ -1051,21 +1065,31 @@ window.customerActivityChart = function() {
             this.chartInstance.update();
         },
         generateData() {
-            let labels = [];
+            let originalLabels = [];
             let multiplier = 1.0;
-            let shift = 0.8;
+            let gap = 7;
             if (this.timeframe === '3_months') {
-                labels = ['Apr 9', 'Apr 16', 'Apr 22', 'Apr 29', 'May 6', 'May 12', 'May 19', 'May 26', 'Jun 2', 'Jun 8', 'Jun 15', 'Jun 22', 'Jun 29', 'Jul 6'];
+                originalLabels = ['Apr 9', 'Apr 16', 'Apr 22', 'Apr 29', 'May 6', 'May 12', 'May 19', 'May 26', 'Jun 2', 'Jun 8', 'Jun 15', 'Jun 22', 'Jun 29', 'Jul 6'];
                 multiplier = 1.0;
-                shift = 0.8;
+                gap = 7;
             } else if (this.timeframe === '6_months') {
-                labels = ['Jan 9', 'Jan 23', 'Feb 6', 'Feb 20', 'Mar 6', 'Mar 20', 'Apr 6', 'Apr 20', 'May 6', 'May 20', 'Jun 6', 'Jun 20', 'Jul 6'];
+                originalLabels = ['Jan 9', 'Jan 23', 'Feb 6', 'Feb 20', 'Mar 6', 'Mar 20', 'Apr 6', 'Apr 20', 'May 6', 'May 20', 'Jun 6', 'Jun 20', 'Jul 6'];
                 multiplier = 1.8;
-                shift = 1.3;
+                gap = 6;
             } else {
-                labels = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+                originalLabels = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
                 multiplier = 3.5;
-                shift = 2.1;
+                gap = 9;
+            }
+
+            let labels = [];
+            for (let i = 0; i < originalLabels.length; i++) {
+                labels.push(originalLabels[i]);
+                if (i < originalLabels.length - 1) {
+                    for (let g = 0; g < gap; g++) {
+                        labels.push('');
+                    }
+                }
             }
 
             const length = labels.length;
@@ -1074,12 +1098,18 @@ window.customerActivityChart = function() {
             let returningData = [];
 
             for (let i = 0; i < length; i++) {
-                let factor = (i % 3 === 0) ? 2.5 : 1.2;
-                if (i % 5 === 0) factor = 4.0;
-                
-                activeData.push(Math.round((40 + Math.sin(i * shift) * 15 + factor * 8) * multiplier));
-                newData.push(Math.round((25 + Math.sin(i * (shift * 0.7)) * 8 + (i % 2) * 4) * multiplier));
-                returningData.push(Math.round((15 + Math.cos(i * (shift * 0.8)) * 5 + (i % 3) * 2) * multiplier));
+                // Top curve (New Customers): High frequency spikes + base noise
+                let base = 25 + Math.sin(i * 0.1) * 3;
+                let spike = (i % 11 === 4) ? 45 : (i % 17 === 8) ? 35 : (i % 7 === 2) ? 15 : 0;
+                let noise = Math.sin(i * 0.95) * 3;
+                newData.push(Math.round((base + spike + noise) * multiplier));
+
+                // Bottom curves (Active Accounts & Returning Users): very flat, tight rippling waves
+                let activeVal = 14 + Math.sin(i * 0.9) * 0.9 + Math.cos(i * 0.4) * 0.4;
+                activeData.push(Math.round(activeVal * multiplier));
+
+                let returningVal = 10 + Math.cos(i * 1.15) * 0.8 + Math.sin(i * 0.5) * 0.3;
+                returningData.push(Math.round(returningVal * multiplier));
             }
 
             const canvas = document.getElementById('customerActivityChartCanvas');
@@ -1089,20 +1119,10 @@ window.customerActivityChart = function() {
             let returningBg = 'transparent';
 
             if (ctx) {
-                const activeGrad = ctx.createLinearGradient(0, 0, 0, 300);
-                activeGrad.addColorStop(0, 'rgba(113, 113, 122, 0.08)');
-                activeGrad.addColorStop(1, 'rgba(113, 113, 122, 0.00)');
-                activeBg = activeGrad;
-
                 const newGrad = ctx.createLinearGradient(0, 0, 0, 300);
-                newGrad.addColorStop(0, 'rgba(212, 212, 216, 0.08)');
+                newGrad.addColorStop(0, 'rgba(212, 212, 216, 0.22)');
                 newGrad.addColorStop(1, 'rgba(212, 212, 216, 0.00)');
                 newBg = newGrad;
-
-                const returningGrad = ctx.createLinearGradient(0, 0, 0, 300);
-                returningGrad.addColorStop(0, 'rgba(24, 24, 27, 0.08)');
-                returningGrad.addColorStop(1, 'rgba(24, 24, 27, 0.00)');
-                returningBg = returningGrad;
             }
 
             let allDatasets = [
@@ -1110,10 +1130,10 @@ window.customerActivityChart = function() {
                     label: 'Active Accounts',
                     data: activeData,
                     borderColor: '#71717a',
-                    backgroundColor: activeBg,
-                    borderWidth: 2.5,
-                    fill: true,
-                    tension: 0.4,
+                    backgroundColor: 'transparent',
+                    borderWidth: 1.2,
+                    fill: false,
+                    tension: 0.35,
                     id: 'active'
                 },
                 {
@@ -1121,19 +1141,19 @@ window.customerActivityChart = function() {
                     data: newData,
                     borderColor: '#d4d4d8',
                     backgroundColor: newBg,
-                    borderWidth: 2.5,
+                    borderWidth: 1.2,
                     fill: true,
-                    tension: 0.4,
+                    tension: 0.35,
                     id: 'new'
                 },
                 {
                     label: 'Returning Users',
                     data: returningData,
                     borderColor: '#18181b',
-                    backgroundColor: returningBg,
-                    borderWidth: 2.5,
-                    fill: true,
-                    tension: 0.4,
+                    backgroundColor: 'transparent',
+                    borderWidth: 1.2,
+                    fill: false,
+                    tension: 0.35,
                     id: 'returning'
                 }
             ];
