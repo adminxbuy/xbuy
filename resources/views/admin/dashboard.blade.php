@@ -157,7 +157,8 @@
     </div>
 
     {{-- ── 2. Category Chart, Quick Approvals & Store Visits ──────── --}}
-    <div class="grid grid-cols-1 lg:grid-cols-4 gap-6">
+    {{-- ── 2. Category Chart & Quick Approvals ──────── --}}
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {{-- Listings by Category --}}
         <div class="rounded-xl border border-zinc-200 bg-white text-zinc-950 lg:col-span-2 flex flex-col justify-between">
             <div class="flex items-center justify-between p-6 pb-2">
@@ -234,53 +235,23 @@
                 <span class="font-bold text-zinc-700">{{ now()->format('d M, H:i') }}</span>
             </div>
         </div>
+    </div>
 
-        {{-- Store Visits by Source --}}
-        <div class="rounded-xl border border-zinc-200 bg-white text-zinc-950 flex flex-col justify-between p-6">
+    {{-- ── 3. Revenue Trend Chart (Full Width) ──────────────────── --}}
+    <div class="rounded-xl border border-zinc-200 bg-white text-zinc-950 flex flex-col justify-between p-6">
+        <div class="pb-4">
             <div class="space-y-1">
-                <h3 class="text-lg font-semibold leading-none tracking-tight">Store Visits</h3>
-                <p class="text-xs text-zinc-500">Traffic by channel.</p>
+                <h3 class="text-lg font-semibold tracking-tight text-zinc-900">Monthly Revenue</h3>
+                <p class="text-xs text-zinc-500">Last 12 months</p>
             </div>
-            
-            {{-- Doughnut Container with Center Text --}}
-            <div class="relative flex items-center justify-center h-32 my-2">
-                <canvas id="visitsChart" class="max-h-full"></canvas>
-                <div class="absolute inset-0 flex flex-col items-center justify-center pointer-events-none mt-1.5">
-                    <span class="text-xl font-bold tracking-tight text-zinc-950">10.2K</span>
-                    <span class="text-[9px] font-medium text-zinc-400">Visitors</span>
-                </div>
-            </div>
-            
-            {{-- Custom Legend --}}
-            <div class="text-[9px] font-bold text-zinc-700 flex flex-col items-center gap-1.5 pt-2 border-t border-zinc-100">
-                <div class="flex items-center gap-2">
-                    <span class="inline-flex items-center gap-1"><span class="w-2 h-2 rounded-sm bg-[#09090b]"></span> Direct</span>
-                    <span class="inline-flex items-center gap-1"><span class="w-2 h-2 rounded-sm bg-[#27272a]"></span> Social</span>
-                    <span class="inline-flex items-center gap-1"><span class="w-2 h-2 rounded-sm bg-[#52525b]"></span> Email</span>
-                </div>
-                <div class="flex items-center gap-2">
-                    <span class="inline-flex items-center gap-1"><span class="w-2 h-2 rounded-sm bg-[#a1a1aa]"></span> Referrals</span>
-                    <span class="inline-flex items-center gap-1"><span class="w-2 h-2 rounded-sm bg-[#e4e4e7]"></span> Other</span>
-                </div>
-            </div>
+        </div>
+        <div class="h-80 w-full mt-2">
+            <canvas id="revenueChart"></canvas>
         </div>
     </div>
 
-    {{-- ── 3. Revenue Trend Chart & Customer Reviews ──────────────────── --}}
-    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        {{-- Revenue Trend Chart --}}
-        <div class="rounded-xl border border-zinc-200 bg-white text-zinc-950 lg:col-span-2 flex flex-col justify-between p-6">
-            <div class="pb-4">
-                <div class="space-y-1">
-                    <h3 class="text-lg font-semibold tracking-tight text-zinc-900">Monthly Revenue</h3>
-                    <p class="text-xs text-zinc-500">Last 12 months</p>
-                </div>
-            </div>
-            <div class="h-80 w-full mt-2">
-                <canvas id="revenueChart"></canvas>
-            </div>
-        </div>
-
+    {{-- ── 3.5 Customer Reviews & Store Visits ────────────────────────── --}}
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {{-- Customer Reviews Card --}}
         <div class="rounded-xl border border-zinc-200 bg-white text-zinc-950 flex flex-col justify-between p-6">
             <div class="flex items-center justify-between pb-2 border-b border-zinc-100">
@@ -374,7 +345,38 @@
                 </div>
             </div>
         </div>
+
+        {{-- Store Visits by Source --}}
+        <div class="rounded-xl border border-zinc-200 bg-white text-zinc-950 flex flex-col justify-between p-6">
+            <div class="space-y-1">
+                <h3 class="text-lg font-semibold leading-none tracking-tight">Store Visits</h3>
+                <p class="text-xs text-zinc-500">Traffic by channel.</p>
+            </div>
+            
+            {{-- Doughnut Container with Center Text --}}
+            <div class="relative flex items-center justify-center h-32 my-2">
+                <canvas id="visitsChart" class="max-h-full"></canvas>
+                <div class="absolute inset-0 flex flex-col items-center justify-center pointer-events-none mt-1.5">
+                    <span class="text-xl font-bold tracking-tight text-zinc-950">10.2K</span>
+                    <span class="text-[9px] font-medium text-zinc-400">Visitors</span>
+                </div>
+            </div>
+            
+            {{-- Custom Legend --}}
+            <div class="text-[9px] font-bold text-zinc-705 flex flex-col items-center gap-1.5 pt-2 border-t border-zinc-100">
+                <div class="flex items-center gap-2">
+                    <span class="inline-flex items-center gap-1"><span class="w-2 h-2 rounded-sm bg-[#09090b]"></span> Direct</span>
+                    <span class="inline-flex items-center gap-1"><span class="w-2 h-2 rounded-sm bg-[#27272a]"></span> Social</span>
+                    <span class="inline-flex items-center gap-1"><span class="w-2 h-2 rounded-sm bg-[#52525b]"></span> Email</span>
+                </div>
+                <div class="flex items-center gap-2">
+                    <span class="inline-flex items-center gap-1"><span class="w-2 h-2 rounded-sm bg-[#a1a1aa]"></span> Referrals</span>
+                    <span class="inline-flex items-center gap-1"><span class="w-2 h-2 rounded-sm bg-[#e4e4e7]"></span> Other</span>
+                </div>
+            </div>
+        </div>
     </div>
+
 
     {{-- ── 4. Recent Disputes Table ───────────────────────────────────── --}}
     <div class="rounded-xl border border-zinc-200 bg-white text-zinc-950 overflow-hidden">
@@ -446,7 +448,6 @@
     </div>
 
     {{-- ── 5 & 6. Recent Orders & Support Tickets ────────────────────────── --}}
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
 
     {{-- ── 6. Full Width Recent Orders ─────────────────────────────────── --}}
     <div x-data="{
@@ -829,7 +830,7 @@
             </table>
         </div>
     </div>
-</div>
+
 
     {{-- ── 7. Bottom Row: Seller Applications & Top Sellers ────────────────── --}}
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
