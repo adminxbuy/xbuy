@@ -984,153 +984,151 @@
         </div>
 </div>
 
-{{-- ── Chart Script Initialization ───────────────────────────────────── --}}
-<script>
-document.addEventListener("DOMContentLoaded", function () {
+// 2. Customer Activity Line Chart
+window.customerActivityChart = function() {
+    return {
+        timeframe: '3_months',
+        segment: 'all',
+        chartInstance: null,
+        get timeframeLabel() {
+            if (this.timeframe === '3_months') return '3 months';
+            if (this.timeframe === '6_months') return '6 months';
+            if (this.timeframe === '12_months') return '12 months';
+            return '3 months';
+        },
+        init() {
+            this.$nextTick(() => {
+                this.initChart();
+            });
+        },
+        initChart() {
+            const ctx = document.getElementById('customerActivityChartCanvas').getContext('2d');
+            const datasetsData = this.generateData();
 
-
-    // 2. Customer Activity Line Chart
-    window.customerActivityChart = function() {
-        return {
-            timeframe: '3_months',
-            segment: 'all',
-            chartInstance: null,
-            get timeframeLabel() {
-                if (this.timeframe === '3_months') return '3 months';
-                if (this.timeframe === '6_months') return '6 months';
-                if (this.timeframe === '12_months') return '12 months';
-                return '3 months';
-            },
-            init() {
-                this.$nextTick(() => {
-                    this.initChart();
-                });
-            },
-            initChart() {
-                const ctx = document.getElementById('customerActivityChartCanvas').getContext('2d');
-                const datasetsData = this.generateData();
-
-                this.chartInstance = new Chart(ctx, {
-                    type: 'line',
-                    data: {
-                        labels: datasetsData.labels,
-                        datasets: datasetsData.datasets
+            this.chartInstance = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: datasetsData.labels,
+                    datasets: datasetsData.datasets
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    interaction: {
+                        mode: 'index',
+                        intersect: false,
                     },
-                    options: {
-                        responsive: true,
-                        maintainAspectRatio: false,
-                        interaction: {
-                            mode: 'index',
-                            intersect: false,
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            enabled: true,
+                            backgroundColor: '#09090b',
+                            titleColor: '#a1a1aa',
+                            bodyColor: '#ffffff',
+                            titleFont: { size: 11, family: 'Inter' },
+                            bodyFont: { size: 12, family: 'Inter', weight: '600' },
+                            padding: 10,
+                            cornerRadius: 8
+                        }
+                    },
+                    scales: {
+                        x: {
+                            grid: { display: false },
+                            ticks: { font: { size: 11, family: 'Inter' }, color: '#71717a' }
                         },
-                        plugins: {
-                            legend: { display: false },
-                            tooltip: {
-                                enabled: true,
-                                backgroundColor: '#09090b',
-                                titleColor: '#a1a1aa',
-                                bodyColor: '#ffffff',
-                                titleFont: { size: 11, family: 'Inter' },
-                                bodyFont: { size: 12, family: 'Inter', weight: '600' },
-                                padding: 10,
-                                cornerRadius: 8
-                            }
+                        y: {
+                            beginAtZero: true,
+                            grid: { color: '#f4f4f5', drawBorder: false },
+                            ticks: { font: { size: 11, family: 'Inter' }, color: '#71717a' }
+                        }
+                    },
+                    elements: {
+                        point: {
+                            radius: 0,
+                            hoverRadius: 4,
+                            backgroundColor: '#09090b'
                         },
-                        scales: {
-                            x: {
-                                grid: { display: false },
-                                ticks: { font: { size: 11, family: 'Inter' }, color: '#71717a' }
-                            },
-                            y: {
-                                beginAtZero: true,
-                                grid: { color: '#f4f4f5', drawBorder: false },
-                                ticks: { font: { size: 11, family: 'Inter' }, color: '#71717a' }
-                            }
-                        },
-                        elements: {
-                            point: {
-                                radius: 0,
-                                hoverRadius: 4,
-                                backgroundColor: '#09090b'
-                            },
-                            line: {
-                                tension: 0.35,
-                                borderWidth: 2
-                            }
+                        line: {
+                            tension: 0.35,
+                            borderWidth: 2
                         }
                     }
-                });
-            },
-            updateChart() {
-                if (!this.chartInstance) return;
-                const datasetsData = this.generateData();
-                this.chartInstance.data.labels = datasetsData.labels;
-                this.chartInstance.data.datasets = datasetsData.datasets;
-                this.chartInstance.update();
-            },
-            generateData() {
-                let labels = [];
-                if (this.timeframe === '3_months') {
-                    labels = ['Apr 9', 'Apr 16', 'Apr 22', 'Apr 29', 'May 6', 'May 12', 'May 19', 'May 26', 'Jun 2', 'Jun 8', 'Jun 15', 'Jun 22', 'Jun 29', 'Jul 6'];
-                } else if (this.timeframe === '6_months') {
-                    labels = ['Jan 9', 'Jan 23', 'Feb 6', 'Feb 20', 'Mar 6', 'Mar 20', 'Apr 6', 'Apr 20', 'May 6', 'May 20', 'Jun 6', 'Jun 20', 'Jul 6'];
-                } else {
-                    labels = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
                 }
-
-                const length = labels.length;
-                let activeData = [];
-                let newData = [];
-                let returningData = [];
-
-                for (let i = 0; i < length; i++) {
-                    let factor = (i % 3 === 0) ? 2.5 : 1.2;
-                    if (i % 5 === 0) factor = 4.0;
-                    
-                    activeData.push(Math.round(40 + Math.sin(i * 0.8) * 15 + factor * 8));
-                    newData.push(Math.round(25 + Math.sin(i * 0.5) * 8 + (i % 2) * 4));
-                    returningData.push(Math.round(15 + Math.cos(i * 0.6) * 5 + (i % 3) * 2));
-                }
-
-                let allDatasets = [
-                    {
-                        label: 'Active Accounts',
-                        data: activeData,
-                        borderColor: '#4b5563',
-                        backgroundColor: 'transparent',
-                        borderWidth: 2,
-                        id: 'active'
-                    },
-                    {
-                        label: 'New Customers',
-                        data: newData,
-                        borderColor: '#d1d5db',
-                        backgroundColor: 'transparent',
-                        borderWidth: 2,
-                        id: 'new'
-                    },
-                    {
-                        label: 'Returning Users',
-                        data: returningData,
-                        borderColor: '#1f2937',
-                        backgroundColor: 'transparent',
-                        borderWidth: 2,
-                        id: 'returning'
-                    }
-                ];
-
-                let filteredDatasets = allDatasets;
-                if (this.segment !== 'all') {
-                    filteredDatasets = allDatasets.filter(ds => ds.id === this.segment);
-                }
-
-                return {
-                    labels: labels,
-                    datasets: filteredDatasets
-                };
+            });
+        },
+        updateChart() {
+            if (!this.chartInstance) return;
+            const datasetsData = this.generateData();
+            this.chartInstance.data.labels = datasetsData.labels;
+            this.chartInstance.data.datasets = datasetsData.datasets;
+            this.chartInstance.update();
+        },
+        generateData() {
+            let labels = [];
+            if (this.timeframe === '3_months') {
+                labels = ['Apr 9', 'Apr 16', 'Apr 22', 'Apr 29', 'May 6', 'May 12', 'May 19', 'May 26', 'Jun 2', 'Jun 8', 'Jun 15', 'Jun 22', 'Jun 29', 'Jul 6'];
+            } else if (this.timeframe === '6_months') {
+                labels = ['Jan 9', 'Jan 23', 'Feb 6', 'Feb 20', 'Mar 6', 'Mar 20', 'Apr 6', 'Apr 20', 'May 6', 'May 20', 'Jun 6', 'Jun 20', 'Jul 6'];
+            } else {
+                labels = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
             }
-        };
+
+            const length = labels.length;
+            let activeData = [];
+            let newData = [];
+            let returningData = [];
+
+            for (let i = 0; i < length; i++) {
+                let factor = (i % 3 === 0) ? 2.5 : 1.2;
+                if (i % 5 === 0) factor = 4.0;
+                
+                activeData.push(Math.round(40 + Math.sin(i * 0.8) * 15 + factor * 8));
+                newData.push(Math.round(25 + Math.sin(i * 0.5) * 8 + (i % 2) * 4));
+                returningData.push(Math.round(15 + Math.cos(i * 0.6) * 5 + (i % 3) * 2));
+            }
+
+            let allDatasets = [
+                {
+                    label: 'Active Accounts',
+                    data: activeData,
+                    borderColor: '#4b5563',
+                    backgroundColor: 'transparent',
+                    borderWidth: 2,
+                    id: 'active'
+                },
+                {
+                    label: 'New Customers',
+                    data: newData,
+                    borderColor: '#d1d5db',
+                    backgroundColor: 'transparent',
+                    borderWidth: 2,
+                    id: 'new'
+                },
+                {
+                    label: 'Returning Users',
+                    data: returningData,
+                    borderColor: '#1f2937',
+                    backgroundColor: 'transparent',
+                    borderWidth: 2,
+                    id: 'returning'
+                }
+            ];
+
+            let filteredDatasets = allDatasets;
+            if (this.segment !== 'all') {
+                filteredDatasets = allDatasets.filter(ds => ds.id === this.segment);
+            }
+
+            return {
+                labels: labels,
+                datasets: filteredDatasets
+            };
+        }
     };
+};
+
+document.addEventListener("DOMContentLoaded", function () {
+
 
     // 3. Store Visits Doughnut Chart
     (function () {
