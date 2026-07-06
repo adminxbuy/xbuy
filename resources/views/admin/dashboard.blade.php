@@ -237,16 +237,59 @@
         </div>
     </div>
 
-    {{-- ── 3. Revenue Trend Chart (Full Width) ──────────────────── --}}
-    <div class="rounded-xl border border-zinc-200 bg-white text-zinc-950 flex flex-col justify-between p-6">
-        <div class="pb-4">
+    {{-- ── 3. Customer Activity Chart (Full Width) ──────────────────── --}}
+    <div class="rounded-xl border border-zinc-200 bg-white text-zinc-950 flex flex-col p-6 space-y-4" x-data="customerActivityChart()">
+        <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
             <div class="space-y-1">
-                <h3 class="text-lg font-semibold tracking-tight text-zinc-900">Monthly Revenue</h3>
-                <p class="text-xs text-zinc-500">Last 12 months</p>
+                <h3 class="text-lg font-bold tracking-tight text-zinc-900">Customer Activity</h3>
+                <p class="text-xs text-zinc-500">Customer activity for the last <span x-text="timeframeLabel">3 months</span></p>
+            </div>
+            
+            <div class="flex flex-wrap items-center gap-3">
+                {{-- Timeframe dropdown --}}
+                <div class="flex items-center gap-2 bg-white border border-zinc-200 h-9 px-3 rounded-lg">
+                    <select x-model="timeframe" @change="updateChart()" class="text-xs font-semibold bg-transparent text-zinc-750 focus:outline-none cursor-pointer">
+                        <option value="3_months">3 months</option>
+                        <option value="6_months">6 months</option>
+                        <option value="12_months">12 months</option>
+                    </select>
+                </div>
+
+                {{-- Segment dropdown --}}
+                <div class="flex items-center gap-2 bg-white border border-zinc-200 h-9 px-3 rounded-lg">
+                    <select x-model="segment" @change="updateChart()" class="text-xs font-semibold bg-transparent text-zinc-750 focus:outline-none cursor-pointer">
+                        <option value="all">All segments</option>
+                        <option value="active">Active accounts</option>
+                        <option value="new">New customers</option>
+                        <option value="returning">Returning users</option>
+                    </select>
+                </div>
+
+                {{-- View Report button --}}
+                <button type="button" class="inline-flex items-center justify-center h-9 border border-zinc-200 hover:bg-zinc-50 text-zinc-950 font-semibold px-4 rounded-lg text-xs transition-all">
+                    <span>View report</span>
+                </button>
             </div>
         </div>
-        <div class="h-80 w-full mt-2">
-            <canvas id="revenueChart"></canvas>
+
+        {{-- Custom Legend --}}
+        <div class="flex flex-wrap justify-end items-center text-[11px] font-semibold text-zinc-650 gap-4 mt-2">
+            <div class="flex items-center gap-1.5" x-show="segment === 'all' || segment === 'active'">
+                <span class="w-2.5 h-2.5 rounded bg-[#4b5563] inline-block"></span>
+                <span>Active Accounts</span>
+            </div>
+            <div class="flex items-center gap-1.5" x-show="segment === 'all' || segment === 'new'">
+                <span class="w-2.5 h-2.5 rounded bg-[#d1d5db] inline-block"></span>
+                <span>New Customers</span>
+            </div>
+            <div class="flex items-center gap-1.5" x-show="segment === 'all' || segment === 'returning'">
+                <span class="w-2.5 h-2.5 rounded bg-[#1f2937] inline-block"></span>
+                <span>Returning Users</span>
+            </div>
+        </div>
+
+        <div class="h-80 w-full mt-4">
+            <canvas id="customerActivityChartCanvas"></canvas>
         </div>
     </div>
 
@@ -946,64 +989,148 @@
 document.addEventListener("DOMContentLoaded", function () {
 
 
-    // 2. Revenue Trend Bar Chart — 12 months, odd=black, even=grey
-    (function () {
-        const ctx = document.getElementById('revenueChart').getContext('2d');
-
-        const data = [70, 95, 90, 45, 40, 95, 60, 80, 75, 85, 70, 90];
-        // Index 0 = Jan (month 1 = odd → black), index 1 = Feb (month 2 = even → grey), …
-        const colors = data.map((_, i) => (i % 2 === 0) ? '#09090b' : '#d4d4d8');
-
-        new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-                datasets: [{
-                    data: data,
-                    backgroundColor: colors,
-                    hoverBackgroundColor: colors,   // same color — no visual change on hover
-                    borderRadius: 6,
-                    borderSkipped: false,
-                    barPercentage: 0.55,
-                    categoryPercentage: 0.7
-                }]
+    // 2. Customer Activity Line Chart
+    window.customerActivityChart = function() {
+        return {
+            timeframe: '3_months',
+            segment: 'all',
+            chartInstance: null,
+            get timeframeLabel() {
+                if (this.timeframe === '3_months') return '3 months';
+                if (this.timeframe === '6_months') return '6 months';
+                if (this.timeframe === '12_months') return '12 months';
+                return '3 months';
             },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                hover: { mode: 'index' },
-                plugins: {
-                    legend: { display: false },
-                    tooltip: {
-                        enabled: true,
-                        displayColors: false,
-                        backgroundColor: '#09090b',
-                        titleColor: '#a1a1aa',
-                        bodyColor: '#ffffff',
-                        titleFont: { size: 11, family: 'Inter' },
-                        bodyFont: { size: 13, family: 'Inter', weight: '700' },
-                        padding: { x: 12, y: 8 },
-                        cornerRadius: 8,
-                        callbacks: {
-                            title: (items) => items[0].label,
-                            label: (item) => '₹' + (item.raw * 1000).toLocaleString('en-IN')
+            init() {
+                this.$nextTick(() => {
+                    this.initChart();
+                });
+            },
+            initChart() {
+                const ctx = document.getElementById('customerActivityChartCanvas').getContext('2d');
+                const datasetsData = this.generateData();
+
+                this.chartInstance = new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: datasetsData.labels,
+                        datasets: datasetsData.datasets
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        interaction: {
+                            mode: 'index',
+                            intersect: false,
+                        },
+                        plugins: {
+                            legend: { display: false },
+                            tooltip: {
+                                enabled: true,
+                                backgroundColor: '#09090b',
+                                titleColor: '#a1a1aa',
+                                bodyColor: '#ffffff',
+                                titleFont: { size: 11, family: 'Inter' },
+                                bodyFont: { size: 12, family: 'Inter', weight: '600' },
+                                padding: 10,
+                                cornerRadius: 8
+                            }
+                        },
+                        scales: {
+                            x: {
+                                grid: { display: false },
+                                ticks: { font: { size: 11, family: 'Inter' }, color: '#71717a' }
+                            },
+                            y: {
+                                beginAtZero: true,
+                                grid: { color: '#f4f4f5', drawBorder: false },
+                                ticks: { font: { size: 11, family: 'Inter' }, color: '#71717a' }
+                            }
+                        },
+                        elements: {
+                            point: {
+                                radius: 0,
+                                hoverRadius: 4,
+                                backgroundColor: '#09090b'
+                            },
+                            line: {
+                                tension: 0.35,
+                                borderWidth: 2
+                            }
                         }
                     }
-                },
-                scales: {
-                    x: {
-                        grid: { display: false },
-                        ticks: { font: { size: 11, family: 'Inter' }, color: '#71717a' }
-                    },
-                    y: {
-                        beginAtZero: true,
-                        grid: { color: '#f4f4f5', drawBorder: false, drawTicks: false },
-                        ticks: { display: false }
-                    }
+                });
+            },
+            updateChart() {
+                if (!this.chartInstance) return;
+                const datasetsData = this.generateData();
+                this.chartInstance.data.labels = datasetsData.labels;
+                this.chartInstance.data.datasets = datasetsData.datasets;
+                this.chartInstance.update();
+            },
+            generateData() {
+                let labels = [];
+                if (this.timeframe === '3_months') {
+                    labels = ['Apr 9', 'Apr 16', 'Apr 22', 'Apr 29', 'May 6', 'May 12', 'May 19', 'May 26', 'Jun 2', 'Jun 8', 'Jun 15', 'Jun 22', 'Jun 29', 'Jul 6'];
+                } else if (this.timeframe === '6_months') {
+                    labels = ['Jan 9', 'Jan 23', 'Feb 6', 'Feb 20', 'Mar 6', 'Mar 20', 'Apr 6', 'Apr 20', 'May 6', 'May 20', 'Jun 6', 'Jun 20', 'Jul 6'];
+                } else {
+                    labels = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
                 }
+
+                const length = labels.length;
+                let activeData = [];
+                let newData = [];
+                let returningData = [];
+
+                for (let i = 0; i < length; i++) {
+                    let factor = (i % 3 === 0) ? 2.5 : 1.2;
+                    if (i % 5 === 0) factor = 4.0;
+                    
+                    activeData.push(Math.round(40 + Math.sin(i * 0.8) * 15 + factor * 8));
+                    newData.push(Math.round(25 + Math.sin(i * 0.5) * 8 + (i % 2) * 4));
+                    returningData.push(Math.round(15 + Math.cos(i * 0.6) * 5 + (i % 3) * 2));
+                }
+
+                let allDatasets = [
+                    {
+                        label: 'Active Accounts',
+                        data: activeData,
+                        borderColor: '#4b5563',
+                        backgroundColor: 'transparent',
+                        borderWidth: 2,
+                        id: 'active'
+                    },
+                    {
+                        label: 'New Customers',
+                        data: newData,
+                        borderColor: '#d1d5db',
+                        backgroundColor: 'transparent',
+                        borderWidth: 2,
+                        id: 'new'
+                    },
+                    {
+                        label: 'Returning Users',
+                        data: returningData,
+                        borderColor: '#1f2937',
+                        backgroundColor: 'transparent',
+                        borderWidth: 2,
+                        id: 'returning'
+                    }
+                ];
+
+                let filteredDatasets = allDatasets;
+                if (this.segment !== 'all') {
+                    filteredDatasets = allDatasets.filter(ds => ds.id === this.segment);
+                }
+
+                return {
+                    labels: labels,
+                    datasets: filteredDatasets
+                };
             }
-        });
-    })();
+        };
+    };
 
     // 3. Store Visits Doughnut Chart
     (function () {
