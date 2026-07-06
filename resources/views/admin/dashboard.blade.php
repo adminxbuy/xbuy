@@ -1090,18 +1090,18 @@ window.customerActivityChart = function() {
 
             if (ctx) {
                 const activeGrad = ctx.createLinearGradient(0, 0, 0, 300);
-                activeGrad.addColorStop(0, 'rgba(99, 102, 241, 0.18)');
-                activeGrad.addColorStop(1, 'rgba(99, 102, 241, 0.00)');
+                activeGrad.addColorStop(0, 'rgba(113, 113, 122, 0.08)');
+                activeGrad.addColorStop(1, 'rgba(113, 113, 122, 0.00)');
                 activeBg = activeGrad;
 
                 const newGrad = ctx.createLinearGradient(0, 0, 0, 300);
-                newGrad.addColorStop(0, 'rgba(16, 185, 129, 0.18)');
-                newGrad.addColorStop(1, 'rgba(16, 185, 129, 0.00)');
+                newGrad.addColorStop(0, 'rgba(212, 212, 216, 0.08)');
+                newGrad.addColorStop(1, 'rgba(212, 212, 216, 0.00)');
                 newBg = newGrad;
 
                 const returningGrad = ctx.createLinearGradient(0, 0, 0, 300);
-                returningGrad.addColorStop(0, 'rgba(244, 63, 94, 0.18)');
-                returningGrad.addColorStop(1, 'rgba(244, 63, 94, 0.00)');
+                returningGrad.addColorStop(0, 'rgba(24, 24, 27, 0.08)');
+                returningGrad.addColorStop(1, 'rgba(24, 24, 27, 0.00)');
                 returningBg = returningGrad;
             }
 
@@ -1109,9 +1109,9 @@ window.customerActivityChart = function() {
                 {
                     label: 'Active Accounts',
                     data: activeData,
-                    borderColor: '#6366f1',
+                    borderColor: '#71717a',
                     backgroundColor: activeBg,
-                    borderWidth: 3,
+                    borderWidth: 2.5,
                     fill: true,
                     tension: 0.4,
                     id: 'active'
@@ -1119,9 +1119,9 @@ window.customerActivityChart = function() {
                 {
                     label: 'New Customers',
                     data: newData,
-                    borderColor: '#10b981',
+                    borderColor: '#d4d4d8',
                     backgroundColor: newBg,
-                    borderWidth: 3,
+                    borderWidth: 2.5,
                     fill: true,
                     tension: 0.4,
                     id: 'new'
@@ -1129,9 +1129,9 @@ window.customerActivityChart = function() {
                 {
                     label: 'Returning Users',
                     data: returningData,
-                    borderColor: '#f43f5e',
+                    borderColor: '#18181b',
                     backgroundColor: returningBg,
-                    borderWidth: 3,
+                    borderWidth: 2.5,
                     fill: true,
                     tension: 0.4,
                     id: 'returning'
