@@ -275,15 +275,15 @@
         {{-- Custom Legend --}}
         <div class="flex flex-wrap justify-end items-center text-[11px] font-semibold text-zinc-650 gap-4 mt-2">
             <div class="flex items-center gap-1.5" x-show="segment === 'all' || segment === 'active'">
-                <span class="w-2.5 h-2.5 rounded bg-[#4b5563] inline-block"></span>
+                <span class="w-2.5 h-2.5 rounded bg-[#6366f1] inline-block"></span>
                 <span>Active Accounts</span>
             </div>
             <div class="flex items-center gap-1.5" x-show="segment === 'all' || segment === 'new'">
-                <span class="w-2.5 h-2.5 rounded bg-[#d1d5db] inline-block"></span>
+                <span class="w-2.5 h-2.5 rounded bg-[#10b981] inline-block"></span>
                 <span>New Customers</span>
             </div>
             <div class="flex items-center gap-1.5" x-show="segment === 'all' || segment === 'returning'">
-                <span class="w-2.5 h-2.5 rounded bg-[#1f2937] inline-block"></span>
+                <span class="w-2.5 h-2.5 rounded bg-[#f43f5e] inline-block"></span>
                 <span>Returning Users</span>
             </div>
         </div>
@@ -1088,29 +1088,58 @@ window.customerActivityChart = function() {
                 returningData.push(Math.round(15 + Math.cos(i * 0.6) * 5 + (i % 3) * 2));
             }
 
+            const canvas = document.getElementById('customerActivityChartCanvas');
+            const ctx = canvas ? canvas.getContext('2d') : null;
+            let activeBg = 'transparent';
+            let newBg = 'transparent';
+            let returningBg = 'transparent';
+
+            if (ctx) {
+                const activeGrad = ctx.createLinearGradient(0, 0, 0, 300);
+                activeGrad.addColorStop(0, 'rgba(99, 102, 241, 0.18)');
+                activeGrad.addColorStop(1, 'rgba(99, 102, 241, 0.00)');
+                activeBg = activeGrad;
+
+                const newGrad = ctx.createLinearGradient(0, 0, 0, 300);
+                newGrad.addColorStop(0, 'rgba(16, 185, 129, 0.18)');
+                newGrad.addColorStop(1, 'rgba(16, 185, 129, 0.00)');
+                newBg = newGrad;
+
+                const returningGrad = ctx.createLinearGradient(0, 0, 0, 300);
+                returningGrad.addColorStop(0, 'rgba(244, 63, 94, 0.18)');
+                returningGrad.addColorStop(1, 'rgba(244, 63, 94, 0.00)');
+                returningBg = returningGrad;
+            }
+
             let allDatasets = [
                 {
                     label: 'Active Accounts',
                     data: activeData,
-                    borderColor: '#4b5563',
-                    backgroundColor: 'transparent',
-                    borderWidth: 2,
+                    borderColor: '#6366f1',
+                    backgroundColor: activeBg,
+                    borderWidth: 3,
+                    fill: true,
+                    tension: 0.4,
                     id: 'active'
                 },
                 {
                     label: 'New Customers',
                     data: newData,
-                    borderColor: '#d1d5db',
-                    backgroundColor: 'transparent',
-                    borderWidth: 2,
+                    borderColor: '#10b981',
+                    backgroundColor: newBg,
+                    borderWidth: 3,
+                    fill: true,
+                    tension: 0.4,
                     id: 'new'
                 },
                 {
                     label: 'Returning Users',
                     data: returningData,
-                    borderColor: '#1f2937',
-                    backgroundColor: 'transparent',
-                    borderWidth: 2,
+                    borderColor: '#f43f5e',
+                    backgroundColor: returningBg,
+                    borderWidth: 3,
+                    fill: true,
+                    tension: 0.4,
                     id: 'returning'
                 }
             ];
