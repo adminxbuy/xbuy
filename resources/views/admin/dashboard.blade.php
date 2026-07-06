@@ -272,21 +272,7 @@
             </div>
         </div>
 
-        {{-- Custom Legend --}}
-        <div class="flex flex-wrap justify-end items-center text-[11px] font-semibold text-zinc-650 gap-4 mt-2">
-            <div class="flex items-center gap-1.5" x-show="segment === 'all' || segment === 'active'">
-                <span class="w-2.5 h-2.5 rounded bg-[#6366f1] inline-block"></span>
-                <span>Active Accounts</span>
-            </div>
-            <div class="flex items-center gap-1.5" x-show="segment === 'all' || segment === 'new'">
-                <span class="w-2.5 h-2.5 rounded bg-[#10b981] inline-block"></span>
-                <span>New Customers</span>
-            </div>
-            <div class="flex items-center gap-1.5" x-show="segment === 'all' || segment === 'returning'">
-                <span class="w-2.5 h-2.5 rounded bg-[#f43f5e] inline-block"></span>
-                <span>Returning Users</span>
-            </div>
-        </div>
+
 
         <div class="h-80 w-full mt-4">
             <canvas id="customerActivityChartCanvas"></canvas>
