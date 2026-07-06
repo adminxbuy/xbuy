@@ -984,6 +984,7 @@
         </div>
 </div>
 
+<script>
 // 2. Customer Activity Line Chart
 window.customerActivityChart = function() {
     return {
