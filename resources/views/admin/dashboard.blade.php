@@ -85,8 +85,8 @@
         }
     @endphp
 
-    {{-- ── 1. 6-Card Stats Summary Grid (Shadcn Card layout) ──────────────── --}}
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4">
+    {{-- ── 1. 4-Card Stats Summary Grid (Shadcn Card layout) ──────────────── --}}
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         {{-- Total Sales --}}
         <div class="rounded-xl border border-zinc-200 bg-white text-zinc-950 flex flex-col justify-between p-6">
             <div class="flex flex-col gap-3">
@@ -117,40 +117,6 @@
                         {!! pctBadge($stats['escrow_held_pct']) !!}
                     </div>
                     <p class="text-xs text-zinc-400">held in trust</p>
-                </div>
-            </div>
-        </div>
-
-        {{-- Pending Listings --}}
-        <div class="rounded-xl border border-zinc-200 bg-white text-zinc-950 flex flex-col justify-between p-6">
-            <div class="flex flex-col gap-3">
-                <div class="w-10 h-10 rounded-xl bg-zinc-50 border border-zinc-150 flex items-center justify-center text-zinc-600">
-                    <i data-lucide="clock" class="w-5 h-5"></i>
-                </div>
-                <div class="space-y-1">
-                    <h3 class="text-sm font-medium text-zinc-500">Pending Listings</h3>
-                    <div class="flex items-center gap-2">
-                        <span class="text-2xl font-bold tracking-tight text-zinc-950">{{ $stats['pending_listings'] }}</span>
-                        {!! pctBadge($stats['pending_list_pct']) !!}
-                    </div>
-                    <p class="text-xs text-zinc-400">awaiting approval</p>
-                </div>
-            </div>
-        </div>
-
-        {{-- Open Disputes --}}
-        <div class="rounded-xl border border-zinc-200 bg-white text-zinc-950 flex flex-col justify-between p-6">
-            <div class="flex flex-col gap-3">
-                <div class="w-10 h-10 rounded-xl bg-zinc-50 border border-zinc-150 flex items-center justify-center text-zinc-600">
-                    <i data-lucide="alert-triangle" class="w-5 h-5"></i>
-                </div>
-                <div class="space-y-1">
-                    <h3 class="text-sm font-medium text-zinc-500">Open Disputes</h3>
-                    <div class="flex items-center gap-2">
-                        <span class="text-2xl font-bold tracking-tight text-zinc-950">{{ $stats['open_disputes'] }}</span>
-                        {!! pctBadge($stats['open_disp_pct']) !!}
-                    </div>
-                    <p class="text-xs text-zinc-400">active escalations</p>
                 </div>
             </div>
         </div>
