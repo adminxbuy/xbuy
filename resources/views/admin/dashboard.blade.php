@@ -1066,12 +1066,20 @@ window.customerActivityChart = function() {
         },
         generateData() {
             let labels = [];
+            let multiplier = 1.0;
+            let shift = 0.8;
             if (this.timeframe === '3_months') {
                 labels = ['Apr 9', 'Apr 16', 'Apr 22', 'Apr 29', 'May 6', 'May 12', 'May 19', 'May 26', 'Jun 2', 'Jun 8', 'Jun 15', 'Jun 22', 'Jun 29', 'Jul 6'];
+                multiplier = 1.0;
+                shift = 0.8;
             } else if (this.timeframe === '6_months') {
                 labels = ['Jan 9', 'Jan 23', 'Feb 6', 'Feb 20', 'Mar 6', 'Mar 20', 'Apr 6', 'Apr 20', 'May 6', 'May 20', 'Jun 6', 'Jun 20', 'Jul 6'];
+                multiplier = 1.8;
+                shift = 1.3;
             } else {
                 labels = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+                multiplier = 3.5;
+                shift = 2.1;
             }
 
             const length = labels.length;
@@ -1083,9 +1091,9 @@ window.customerActivityChart = function() {
                 let factor = (i % 3 === 0) ? 2.5 : 1.2;
                 if (i % 5 === 0) factor = 4.0;
                 
-                activeData.push(Math.round(40 + Math.sin(i * 0.8) * 15 + factor * 8));
-                newData.push(Math.round(25 + Math.sin(i * 0.5) * 8 + (i % 2) * 4));
-                returningData.push(Math.round(15 + Math.cos(i * 0.6) * 5 + (i % 3) * 2));
+                activeData.push(Math.round((40 + Math.sin(i * shift) * 15 + factor * 8) * multiplier));
+                newData.push(Math.round((25 + Math.sin(i * (shift * 0.7)) * 8 + (i % 2) * 4) * multiplier));
+                returningData.push(Math.round((15 + Math.cos(i * (shift * 0.8)) * 5 + (i % 3) * 2) * multiplier));
             }
 
             const canvas = document.getElementById('customerActivityChartCanvas');
