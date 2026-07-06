@@ -25,6 +25,7 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
 
     Route::post('/logout', [AuthController::class, 'logout'])->name('admin.logout');
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
+    Route::get('/sales-overview', [DashboardController::class, 'salesOverview'])->name('admin.sales-overview');
 
     // Profile Settings & Change Requests (All admins / staff)
     Route::get('/profile', [DashboardController::class, 'profile'])->name('admin.profile');

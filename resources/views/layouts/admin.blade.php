@@ -427,6 +427,11 @@
                 <span>Dashboard</span>
             </a>
 
+            <a href="{{ route('admin.sales-overview') }}" class="flex items-center space-x-3 px-3 py-2 rounded-lg text-sm font-medium  {{ request()->routeIs('admin.sales-overview') ? 'sidebar-active' : 'text-zinc-600 hover:bg-zinc-100 hover:text-zinc-900' }}">
+                <i data-lucide="trending-up" class="w-4 h-4"></i>
+                <span>Sales Overview</span>
+            </a>
+
             @if(Auth::user()->canAccess('sellers'))
             <a href="{{ route('admin.sellers') }}" class="flex items-center space-x-3 px-3 py-2 rounded-lg text-sm font-medium  {{ request()->routeIs('admin.sellers*') ? 'sidebar-active' : 'text-zinc-600 hover:bg-zinc-100 hover:text-zinc-900' }}">
                 <i data-lucide="users" class="w-4 h-4"></i>

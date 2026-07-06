@@ -237,6 +237,14 @@ class DashboardController extends Controller
     }
 
     /**
+     * Sales Overview page.
+     */
+    public function salesOverview()
+    {
+        return view('admin.sales-overview');
+    }
+
+    /**
      * Escrow Management page.
      */
     /**
