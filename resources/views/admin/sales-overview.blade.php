@@ -267,41 +267,39 @@
     {{-- Bottom Section Grid: Wallet, Upcoming Releases, Quick Transfer --}}
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
         
-        {{-- Card 1: Top Performing Shop (styled like Revolut Wallet) --}}
-        <div class="rounded-2xl bg-zinc-950 text-white p-6 shadow-md flex flex-col justify-between min-h-[250px] relative overflow-hidden">
-            {{-- Glossy background glow details --}}
-            <div class="absolute -right-16 -top-16 w-40 h-40 bg-white/5 rounded-full blur-xl pointer-events-none"></div>
+        {{-- Card 1: Top Performing Shop (styled like standard dashboard card) --}}
+        <div class="rounded-xl border border-zinc-200 bg-white p-6 shadow-sm flex flex-col justify-between min-h-[250px] relative overflow-hidden">
             
             <div class="flex items-start justify-between">
                 <div class="space-y-1">
                     <span class="text-[10px] font-bold text-zinc-400 uppercase tracking-widest">Top Selling Shop</span>
                     @if($topShops->first() && $topShops->first()->seller)
-                        <h4 class="text-lg font-bold tracking-tight text-white mt-1">{{ $topShops->first()->seller->shop_name }}</h4>
-                        <p class="text-[10px] text-zinc-400">Managed by {{ $topShops->first()->seller->user->name }}</p>
+                        <h4 class="text-lg font-bold tracking-tight text-zinc-950 mt-1">{{ $topShops->first()->seller->shop_name }}</h4>
+                        <p class="text-[10px] text-zinc-555">Managed by {{ $topShops->first()->seller->user->name }}</p>
                     @else
-                        <h4 class="text-lg font-bold tracking-tight text-white mt-1">No Top Shop</h4>
-                        <p class="text-[10px] text-zinc-400">No transactions recorded yet.</p>
+                        <h4 class="text-lg font-bold tracking-tight text-zinc-950 mt-1">No Top Shop</h4>
+                        <p class="text-[10px] text-zinc-555">No transactions recorded yet.</p>
                     @endif
                 </div>
-                <div class="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center font-bold text-sm shrink-0">R</div>
+                <div class="w-8 h-8 rounded-lg bg-zinc-100 border border-zinc-200 flex items-center justify-center font-bold text-sm text-zinc-800 shrink-0">S</div>
             </div>
 
             @if($topShops->first())
                 <div class="space-y-1.5">
-                    <span class="text-[9px] font-semibold text-zinc-400 uppercase tracking-wider">Total Shop GMV</span>
-                    <h3 class="text-3xl font-bold tracking-tight">₹{{ number_format($topShops->first()->gmv, 2) }}</h3>
-                    <p class="text-[10px] text-zinc-400">Generated over {{ $topShops->first()->order_count }} successful orders</p>
+                    <span class="text-[9px] font-semibold text-zinc-450 uppercase tracking-wider">Total Shop GMV</span>
+                    <h3 class="text-3xl font-bold tracking-tight text-zinc-950">₹{{ number_format($topShops->first()->gmv, 2) }}</h3>
+                    <p class="text-[10px] text-zinc-450">Generated over {{ $topShops->first()->order_count }} successful orders</p>
                 </div>
             @else
                 <div class="space-y-1.5">
-                    <span class="text-[9px] font-semibold text-zinc-400 uppercase tracking-wider">Total Shop GMV</span>
-                    <h3 class="text-3xl font-bold tracking-tight">₹0.00</h3>
+                    <span class="text-[9px] font-semibold text-zinc-450 uppercase tracking-wider">Total Shop GMV</span>
+                    <h3 class="text-3xl font-bold tracking-tight text-zinc-950">₹0.00</h3>
                 </div>
             @endif
 
-            <div class="flex items-center justify-between border-t border-white/10 pt-3 text-xs text-zinc-400">
+            <div class="flex items-center justify-between border-t border-zinc-100 pt-3 text-xs text-zinc-500">
                 <span>Direct payout split active</span>
-                <i data-lucide="chevron-right" class="w-4 h-4 text-white"></i>
+                <i data-lucide="chevron-right" class="w-4 h-4 text-zinc-650"></i>
             </div>
         </div>
 
