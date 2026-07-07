@@ -267,105 +267,200 @@
     {{-- Bottom Section Grid: Wallet, Upcoming Releases, Quick Transfer --}}
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
         
-        {{-- Card 1: Top Performing Shop (styled like standard dashboard card) --}}
-        <div class="rounded-xl border border-zinc-200 bg-white p-6 shadow-sm flex flex-col justify-between min-h-[250px] relative overflow-hidden">
-            
-            <div class="flex items-start justify-between">
-                <div class="space-y-1">
-                    <span class="text-[10px] font-bold text-zinc-400 uppercase tracking-widest">Top Selling Shop</span>
-                    @if($topShops->first() && $topShops->first()->seller)
-                        <h4 class="text-lg font-bold tracking-tight text-zinc-950 mt-1">{{ $topShops->first()->seller->shop_name }}</h4>
-                        <p class="text-[10px] text-zinc-555">Managed by {{ $topShops->first()->seller->user->name }}</p>
-                    @else
-                        <h4 class="text-lg font-bold tracking-tight text-zinc-950 mt-1">No Top Shop</h4>
-                        <p class="text-[10px] text-zinc-555">No transactions recorded yet.</p>
-                    @endif
+        {{-- Card 1: Wallet --}}
+        <div class="rounded-xl border border-zinc-200 bg-white p-6 shadow-sm flex flex-col justify-between min-h-[300px]">
+            <div>
+                <h3 class="text-sm font-semibold tracking-tight text-zinc-900 mb-4">Wallet</h3>
+                <div class="space-y-4">
+                    {{-- Item 1 --}}
+                    <div class="flex items-center justify-between text-xs">
+                        <div>
+                            <p class="font-bold text-zinc-800">Razorpay Route settlement</p>
+                            <p class="text-[10px] text-zinc-400">**** 4182</p>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span class="font-semibold text-zinc-900">₹{{ number_format($metrics['revenue'] * 1.5, 2) }}</span>
+                            <div class="w-8 h-8 rounded-lg bg-zinc-50 border border-zinc-150 flex items-center justify-center font-bold text-sm text-zinc-700 shrink-0">R</div>
+                        </div>
+                    </div>
+                    {{-- Item 2 --}}
+                    <div class="flex items-center justify-between text-xs">
+                        <div>
+                            <p class="font-bold text-zinc-800">Escrow Trust Pool</p>
+                            <p class="text-[10px] text-zinc-400">**** 1004</p>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span class="font-semibold text-zinc-900">₹{{ number_format($metrics['escrow'], 2) }}</span>
+                            <div class="w-8 h-8 rounded-lg bg-zinc-50 border border-zinc-150 flex items-center justify-center font-bold text-sm text-zinc-700 shrink-0">E</div>
+                        </div>
+                    </div>
+                    {{-- Item 3 --}}
+                    <div class="flex items-center justify-between text-xs">
+                        <div>
+                            <p class="font-bold text-zinc-800">Platform commission Reserves</p>
+                            <p class="text-[10px] text-zinc-400">**** 9912</p>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span class="font-semibold text-zinc-900">₹{{ number_format($metrics['revenue'], 2) }}</span>
+                            <div class="w-8 h-8 rounded-lg bg-zinc-50 border border-zinc-150 flex items-center justify-center font-bold text-sm text-zinc-700 shrink-0">P</div>
+                        </div>
+                    </div>
+                    {{-- Item 4 --}}
+                    <div class="flex items-center justify-between text-xs">
+                        <div>
+                            <p class="font-bold text-zinc-800">Refund reserve Pool</p>
+                            <p class="text-[10px] text-zinc-400">**** 8832</p>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span class="font-semibold text-zinc-900">₹{{ number_format($escrowAllocation['disputed'], 2) }}</span>
+                            <div class="w-8 h-8 rounded-lg bg-zinc-50 border border-zinc-150 flex items-center justify-center font-bold text-sm text-zinc-700 shrink-0">D</div>
+                        </div>
+                    </div>
                 </div>
-                <div class="w-8 h-8 rounded-lg bg-zinc-100 border border-zinc-200 flex items-center justify-center font-bold text-sm text-zinc-800 shrink-0">S</div>
             </div>
-
-            @if($topShops->first())
-                <div class="space-y-1.5">
-                    <span class="text-[9px] font-semibold text-zinc-450 uppercase tracking-wider">Total Shop GMV</span>
-                    <h3 class="text-3xl font-bold tracking-tight text-zinc-950">₹{{ number_format($topShops->first()->gmv, 2) }}</h3>
-                    <p class="text-[10px] text-zinc-450">Generated over {{ $topShops->first()->order_count }} successful orders</p>
-                </div>
-            @else
-                <div class="space-y-1.5">
-                    <span class="text-[9px] font-semibold text-zinc-450 uppercase tracking-wider">Total Shop GMV</span>
-                    <h3 class="text-3xl font-bold tracking-tight text-zinc-950">₹0.00</h3>
-                </div>
-            @endif
-
-            <div class="flex items-center justify-between border-t border-zinc-100 pt-3 text-xs text-zinc-500">
-                <span>Direct payout split active</span>
-                <i data-lucide="chevron-right" class="w-4 h-4 text-zinc-650"></i>
+            
+            <div class="flex items-center justify-between border-t border-zinc-100 pt-3 text-[10px] text-zinc-450 mt-4">
+                <span>Physical Vault: Ledger Nano X</span>
+                <span class="inline-flex items-center gap-1 text-emerald-600 font-semibold">
+                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 inline-block"></span> AIR-GAPPED
+                </span>
             </div>
         </div>
 
-        {{-- Card 2: Upcoming Releases --}}
-        <div class="rounded-xl border border-zinc-200 bg-white p-6 shadow-sm flex flex-col justify-between">
+        {{-- Card 2: Upcoming Bills & Payments --}}
+        <div class="rounded-xl border border-zinc-200 bg-white p-6 shadow-sm flex flex-col justify-between min-h-[300px]">
             <div>
-                <h3 class="text-sm font-semibold tracking-tight text-zinc-900 mb-3">Upcoming Payments / Releases</h3>
-                <div class="divide-y divide-zinc-50">
-                    @forelse($upcomingReleases as $escrow)
-                        <div class="py-2.5 flex items-center justify-between gap-3 text-xs">
-                            <div class="min-w-0">
-                                <p class="font-bold text-zinc-800 truncate">#{{ $escrow->order->order_number ?? 'N/A' }}</p>
-                                <p class="text-[10px] text-zinc-400 truncate">{{ $escrow->release_scheduled_at ? $escrow->release_scheduled_at->format('d M, H:i') : 'Scheduled' }}</p>
+                <h3 class="text-sm font-semibold tracking-tight text-zinc-900">Upcoming Bills & Payments</h3>
+                
+                <div class="mt-4">
+                    <h2 class="text-3xl font-extrabold tracking-tight text-zinc-950">₹{{ number_format($metrics['escrow'], 2) }}</h2>
+                    <p class="text-xs text-zinc-400 mt-1">You have {{ count($upcomingReleases) }} bills due this month</p>
+                </div>
+                
+                @if(count($upcomingReleases) > 0)
+                <div class="mt-3 bg-zinc-50 border border-zinc-150 rounded-lg p-2.5 flex items-center gap-2 text-xs font-semibold text-zinc-800">
+                    <i data-lucide="zap" class="w-3.5 h-3.5 text-zinc-950 shrink-0"></i>
+                    <span>Autopay will process ₹{{ number_format($upcomingReleases->take(1)->first()->amount_held, 0) }} today</span>
+                </div>
+                @endif
+                
+                <div class="mt-4 space-y-2">
+                    @forelse($upcomingReleases->take(3) as $escrow)
+                        <a href="{{ route('admin.escrow') }}" class="flex items-center justify-between p-2.5 bg-zinc-50 hover:bg-zinc-100 rounded-lg transition-all border border-zinc-150 text-xs">
+                            <div class="flex items-center gap-3">
+                                <div class="w-7 h-7 rounded-full bg-white border border-zinc-200 flex items-center justify-center font-bold text-zinc-700">
+                                    {{ substr($escrow->order->seller->shop_name ?? 'S', 0, 1) }}
+                                </div>
+                                <div class="min-w-0">
+                                    <p class="font-bold text-zinc-800 truncate">{{ $escrow->order->seller->shop_name ?? 'Seller' }}</p>
+                                    <p class="text-[10px] text-zinc-400 truncate">{{ $escrow->release_scheduled_at ? $escrow->release_scheduled_at->format('H.i A • F d, Y') : 'Scheduled' }}</p>
+                                </div>
                             </div>
-                            <span class="font-semibold text-zinc-900 shrink-0">₹{{ number_format($escrow->amount_held, 0) }}</span>
-                        </div>
+                            <div class="flex items-center gap-1.5 shrink-0">
+                                <span class="font-semibold text-zinc-900">₹{{ number_format($escrow->amount_held, 0) }}</span>
+                                <i data-lucide="chevron-right" class="w-3.5 h-3.5 text-zinc-400"></i>
+                            </div>
+                        </a>
                     @empty
-                        <div class="text-center py-8 text-xs text-zinc-400 font-medium">No pending releases found.</div>
+                        <div class="text-center py-6 text-xs text-zinc-400 font-medium">No upcoming payouts.</div>
                     @endforelse
                 </div>
             </div>
+        </div>
+
+        {{-- Column 3: Quick Transfer & Shortcuts --}}
+        <div class="space-y-4">
             
-            <a href="{{ route('admin.escrow') }}" class="inline-flex items-center justify-center w-full h-9 border border-zinc-200 hover:bg-zinc-50 text-zinc-950 font-semibold rounded-lg text-xs transition-all mt-4">
-                Manage All Escrows
-            </a>
-        </div>
-
-        {{-- Card 3: Commission rate quick-calculator --}}
-        <div class="rounded-xl border border-zinc-200 bg-white p-6 shadow-sm flex flex-col justify-between" x-data="{
-            amount: 5000,
-            rate: 5,
-            get commission() { return (this.amount * (this.rate / 100)).toFixed(2) },
-            get net() { return (this.amount - this.commission).toFixed(2) }
-        }">
-            <div>
-                <h3 class="text-sm font-semibold tracking-tight text-zinc-900 mb-3">Quick Commission Calculator</h3>
-                <div class="space-y-3.5">
-                    <div>
-                        <label class="block text-[10px] font-bold text-zinc-400 uppercase tracking-wider mb-1">Transaction amount (INR)</label>
-                        <input type="number" x-model.number="amount" class="w-full h-9 px-3 border border-zinc-200 rounded-lg text-xs font-semibold focus:outline-none focus:ring-1 focus:ring-zinc-950">
+            {{-- Quick Transfer --}}
+            <div class="rounded-xl border border-zinc-200 bg-white p-6 shadow-sm flex flex-col justify-between">
+                <div class="flex items-center justify-between mb-3">
+                    <h3 class="text-sm font-semibold tracking-tight text-zinc-900">Quick Transfer</h3>
+                    <div class="flex items-center -space-x-2">
+                        <img src="https://ui-avatars.com/api/?name=AR&size=24&background=f4f4f5" class="w-6 h-6 rounded-full border border-white" alt="avatar">
+                        <img src="https://ui-avatars.com/api/?name=SC&size=24&background=f4f4f5" class="w-6 h-6 rounded-full border border-white" alt="avatar">
+                        <img src="https://ui-avatars.com/api/?name=MJ&size=24&background=f4f4f5" class="w-6 h-6 rounded-full border border-white" alt="avatar">
+                        <img src="https://ui-avatars.com/api/?name=ED&size=24&background=f4f4f5" class="w-6 h-6 rounded-full border border-white" alt="avatar">
+                        <div class="w-6 h-6 rounded-full border border-white bg-zinc-50 flex items-center justify-center text-[8px] font-bold text-zinc-400 cursor-pointer">+</div>
                     </div>
-                    <div>
-                        <label class="block text-[10px] font-bold text-zinc-400 uppercase tracking-wider mb-1">Commission Rate (%)</label>
-                        <select x-model.number="rate" class="w-full h-9 px-3 border border-zinc-200 rounded-lg text-xs font-semibold focus:outline-none focus:ring-1 focus:ring-zinc-950">
-                            <option value="2">2.0% (Standard)</option>
-                            <option value="5" selected>5.0% (Partner)</option>
-                            <option value="10">10.0% (Premium)</option>
-                            <option value="15">15.0% (Special)</option>
-                        </select>
+                </div>
+                
+                <div class="flex gap-2">
+                    <div class="relative flex-1">
+                        <span class="absolute left-3 top-1/2 -translate-y-1/2 text-xs font-semibold text-zinc-400">₹</span>
+                        <input type="number" placeholder="0.00" class="w-full pl-7 pr-12 h-9 border border-zinc-200 bg-white rounded-lg text-xs font-semibold focus:outline-none">
+                        <span class="absolute right-3 top-1/2 -translate-y-1/2 text-[10px] font-bold text-zinc-400">INR</span>
                     </div>
+                    <button type="button" onclick="alert('Payout Initiated (Simulation)')" class="bg-zinc-950 hover:bg-zinc-800 text-white font-semibold text-xs px-4 h-9 rounded-lg transition-all shadow-sm shrink-0">
+                        Send
+                    </button>
                 </div>
             </div>
 
-            <div class="mt-4 pt-3 border-t border-zinc-50 flex items-center justify-between text-xs">
-                <div>
-                    <p class="text-[10px] text-zinc-400">Commission Fee</p>
-                    <p class="font-bold text-zinc-800">₹<span x-text="commission"></span></p>
-                </div>
-                <div class="text-right">
-                    <p class="text-[10px] text-zinc-400">Net Seller Payout</p>
-                    <p class="font-bold text-zinc-800">₹<span x-text="net"></span></p>
+            {{-- Shortcuts --}}
+            <div class="rounded-xl border border-zinc-200 bg-white p-6 shadow-sm">
+                <h3 class="text-sm font-semibold tracking-tight text-zinc-900 mb-4">Shortcuts</h3>
+                <div class="grid grid-cols-4 gap-y-4 gap-x-2 text-center">
+                    
+                    <a href="{{ route('admin.sellers') }}?kyc_status=pending" class="flex flex-col items-center gap-1.5 group">
+                        <div class="w-10 h-10 rounded-full border border-zinc-200 group-hover:bg-zinc-50 flex items-center justify-center transition-all shrink-0">
+                            <i data-lucide="qr-code" class="w-4 h-4 text-zinc-800"></i>
+                        </div>
+                        <span class="text-[10px] font-medium text-zinc-500 group-hover:text-zinc-900 transition-colors">Scan QR</span>
+                    </a>
+
+                    <a href="{{ route('admin.payouts') }}" class="flex flex-col items-center gap-1.5 group">
+                        <div class="w-10 h-10 rounded-full border border-zinc-200 group-hover:bg-zinc-50 flex items-center justify-center transition-all shrink-0">
+                            <i data-lucide="send" class="w-4 h-4 text-zinc-800"></i>
+                        </div>
+                        <span class="text-[10px] font-medium text-zinc-500 group-hover:text-zinc-900 transition-colors">Transfer</span>
+                    </a>
+
+                    <a href="{{ route('admin.escrow') }}" class="flex flex-col items-center gap-1.5 group">
+                        <div class="w-10 h-10 rounded-full border border-zinc-200 group-hover:bg-zinc-50 flex items-center justify-center transition-all shrink-0">
+                            <i data-lucide="banknote" class="w-4 h-4 text-zinc-800"></i>
+                        </div>
+                        <span class="text-[10px] font-medium text-zinc-500 group-hover:text-zinc-900 transition-colors">Pay Bills</span>
+                    </a>
+
+                    <a href="{{ route('admin.audit-logs') }}" class="flex flex-col items-center gap-1.5 group">
+                        <div class="w-10 h-10 rounded-full border border-zinc-200 group-hover:bg-zinc-50 flex items-center justify-center transition-all shrink-0">
+                            <i data-lucide="history" class="w-4 h-4 text-zinc-800"></i>
+                        </div>
+                        <span class="text-[10px] font-medium text-zinc-500 group-hover:text-zinc-900 transition-colors">History</span>
+                    </a>
+
+                    <a href="#" onclick="event.preventDefault(); alert('Feature coming soon!')" class="flex flex-col items-center gap-1.5 group">
+                        <div class="w-10 h-10 rounded-full border border-zinc-200 group-hover:bg-zinc-50 flex items-center justify-center transition-all shrink-0">
+                            <i data-lucide="smartphone" class="w-4 h-4 text-zinc-800"></i>
+                        </div>
+                        <span class="text-[10px] font-medium text-zinc-500 group-hover:text-zinc-900 transition-colors">Mobile</span>
+                    </a>
+
+                    <a href="{{ route('admin.settings') }}" class="flex flex-col items-center gap-1.5 group">
+                        <div class="w-10 h-10 rounded-full border border-zinc-200 group-hover:bg-zinc-50 flex items-center justify-center transition-all shrink-0">
+                            <i data-lucide="lightbulb" class="w-4 h-4 text-zinc-800"></i>
+                        </div>
+                        <span class="text-[10px] font-medium text-zinc-500 group-hover:text-zinc-900 transition-colors">Electricity</span>
+                    </a>
+
+                    <a href="{{ route('admin.disputes') }}" class="flex flex-col items-center gap-1.5 group">
+                        <div class="w-10 h-10 rounded-full border border-zinc-200 group-hover:bg-zinc-50 flex items-center justify-center transition-all shrink-0">
+                            <i data-lucide="droplet" class="w-4 h-4 text-zinc-800"></i>
+                        </div>
+                        <span class="text-[10px] font-medium text-zinc-500 group-hover:text-zinc-900 transition-colors">Water</span>
+                    </a>
+
+                    <a href="{{ route('admin.dashboard') }}" class="flex flex-col items-center gap-1.5 group">
+                        <div class="w-10 h-10 rounded-full border border-zinc-200 group-hover:bg-zinc-50 flex items-center justify-center transition-all shrink-0">
+                            <i data-lucide="more-horizontal" class="w-4 h-4 text-zinc-800"></i>
+                        </div>
+                        <span class="text-[10px] font-medium text-zinc-500 group-hover:text-zinc-900 transition-colors">More</span>
+                    </a>
+
                 </div>
             </div>
-        </div>
 
-    </div>
+        </div>
 
 </div>
 
