@@ -239,10 +239,249 @@ class DashboardController extends Controller
     /**
      * Sales Overview page.
      */
-    public function salesOverview()
+    /**
+     * Sales Overview page.
+     */
+    public function salesOverview(Request $request)
     {
-        return view('admin.sales-overview');
+        $now          = Carbon::now();
+        
+        // Timeframe preset dropdown
+        $preset = $request->input('preset', '30days');
+        
+        $dateStart = null;
+        $dateEnd = null;
+
+        if ($request->filled('date_start') && $request->filled('date_end')) {
+            $dateStart = Carbon::parse($request->input('date_start'))->startOfDay();
+            $dateEnd   = Carbon::parse($request->input('date_end'))->endOfDay();
+            $preset    = 'custom';
+        } else {
+            switch ($preset) {
+                case 'today':
+                    $dateStart = $now->copy()->startOfDay();
+                    $dateEnd   = $now->copy()->endOfDay();
+                    break;
+                case 'yesterday':
+                    $dateStart = $now->copy()->subDay()->startOfDay();
+                    $dateEnd   = $now->copy()->subDay()->endOfDay();
+                    break;
+                case '7days':
+                    $dateStart = $now->copy()->subDays(6)->startOfDay();
+                    $dateEnd   = $now->copy()->endOfDay();
+                    break;
+                case '15days':
+                    $dateStart = $now->copy()->subDays(14)->startOfDay();
+                    $dateEnd   = $now->copy()->endOfDay();
+                    break;
+                case '90days':
+                    $dateStart = $now->copy()->subDays(89)->startOfDay();
+                    $dateEnd   = $now->copy()->endOfDay();
+                    break;
+                case 'this_month':
+                    $dateStart = $now->copy()->startOfMonth()->startOfDay();
+                    $dateEnd   = $now->copy()->endOfDay();
+                    break;
+                case 'last_month':
+                    $dateStart = $now->copy()->subMonth()->startOfMonth()->startOfDay();
+                    $dateEnd   = $now->copy()->subMonth()->endOfMonth()->endOfDay();
+                    break;
+                case '30days':
+                default:
+                    $dateStart = $now->copy()->subDays(29)->startOfDay();
+                    $dateEnd   = $now->copy()->endOfDay();
+                    $preset    = '30days';
+                    break;
+            }
+        }
+
+        // Determine comparison period
+        $diffInDays = $dateStart->diffInDays($dateEnd) ?: 1;
+        $prevDateStart = $dateStart->copy()->subDays($diffInDays + 1)->startOfDay();
+        $prevDateEnd   = $dateStart->copy()->subDays(1)->endOfDay();
+        
+        // Base metrics calculation
+        $currentGmv = (float) Order::where('order_status', 'completed')
+            ->whereBetween('completed_at', [$dateStart, $dateEnd])
+            ->sum('total_amount');
+            
+        $prevGmv = (float) Order::where('order_status', 'completed')
+            ->whereBetween('completed_at', [$prevDateStart, $prevDateEnd])
+            ->sum('total_amount');
+            
+        $currentEscrow = (float) Escrow::whereIn('status', ['held', 'disputed'])
+            ->whereBetween('created_at', [$dateStart, $dateEnd])
+            ->sum('amount_held');
+            
+        $prevEscrow = (float) Escrow::whereIn('status', ['held', 'disputed'])
+            ->whereBetween('created_at', [$prevDateStart, $prevDateEnd])
+            ->sum('amount_held');
+            
+        $currentCommission = (float) Order::where('order_status', 'completed')
+            ->whereBetween('completed_at', [$dateStart, $dateEnd])
+            ->sum('commission_amount');
+            
+        $prevCommission = (float) Order::where('order_status', 'completed')
+            ->whereBetween('completed_at', [$prevDateStart, $prevDateEnd])
+            ->sum('commission_amount');
+            
+        // Fulfillment Rate: completed orders / total orders
+        $currentTotalOrders = Order::whereBetween('created_at', [$dateStart, $dateEnd])->count();
+        $currentCompletedOrders = Order::where('order_status', 'completed')
+            ->whereBetween('completed_at', [$dateStart, $dateEnd])
+            ->count();
+            
+        $prevTotalOrders = Order::whereBetween('created_at', [$prevDateStart, $prevDateEnd])->count();
+        $prevCompletedOrders = Order::where('order_status', 'completed')
+            ->whereBetween('completed_at', [$prevDateStart, $prevDateEnd])
+            ->count();
+            
+        $currentFulfillmentRate = $currentTotalOrders > 0 ? ($currentCompletedOrders / $currentTotalOrders) * 100 : 0;
+        $prevFulfillmentRate = $prevTotalOrders > 0 ? ($prevCompletedOrders / $prevTotalOrders) * 100 : 0;
+        
+        // Percentages helpers
+        $pct = fn($curr, $prev) => $prev > 0 ? round((($curr - $prev) / $prev) * 100, 1) : ($curr > 0 ? 100 : 0);
+        
+        $metrics = [
+            'gmv' => $currentGmv,
+            'gmv_change' => $pct($currentGmv, $prevGmv),
+            'escrow' => $currentEscrow,
+            'escrow_change' => $pct($currentEscrow, $prevEscrow),
+            'revenue' => $currentCommission,
+            'revenue_change' => $pct($currentCommission, $prevCommission),
+            'fulfillment' => $currentFulfillmentRate,
+            'fulfillment_change' => round($currentFulfillmentRate - $prevFulfillmentRate, 1)
+        ];
+        
+        // Sales distribution by category
+        $categoriesData = Order::where('orders.order_status', 'completed')
+            ->whereBetween('orders.completed_at', [$dateStart, $dateEnd])
+            ->join('listings', 'orders.listing_id', '=', 'listings.id')
+            ->selectRaw('listings.category, SUM(orders.total_amount) as total_sales, COUNT(orders.id) as order_count')
+            ->groupBy('listings.category')
+            ->orderByDesc('total_sales')
+            ->get();
+            
+        // Day-by-day sales trend for the chart
+        $dbDriver = DB::getDriverName();
+        $dateSql = $dbDriver === 'sqlite'
+            ? "strftime('%Y-%m-%d', completed_at)"
+            : "DATE(completed_at)";
+            
+        $salesTrendRaw = Order::where('order_status', 'completed')
+            ->whereBetween('completed_at', [$dateStart, $dateEnd])
+            ->selectRaw("{$dateSql} as date, SUM(total_amount) as total_amount, SUM(commission_amount) as commission_amount")
+            ->groupBy('date')
+            ->orderBy('date')
+            ->get()
+            ->keyBy('date');
+            
+        $chartLabels = [];
+        $chartGmvData = [];
+        $chartRevData = [];
+        
+        $tempDate = $dateStart->copy();
+        while ($tempDate->lte($dateEnd)) {
+            $dateStr = $tempDate->format('Y-m-d');
+            $chartLabels[] = $tempDate->format('d M');
+            $chartGmvData[] = isset($salesTrendRaw[$dateStr]) ? (float) $salesTrendRaw[$dateStr]->total_amount : 0;
+            $chartRevData[] = isset($salesTrendRaw[$dateStr]) ? (float) $salesTrendRaw[$dateStr]->commission_amount : 0;
+            $tempDate->addDay();
+        }
+        
+        // Escrow allocation chart (doughnut)
+        $escrowAllocation = [
+            'held' => (float) Escrow::where('status', 'held')->whereBetween('created_at', [$dateStart, $dateEnd])->sum('amount_held'),
+            'released' => (float) Escrow::whereIn('status', ['released', 'partially_released'])->whereBetween('created_at', [$dateStart, $dateEnd])->sum('amount_held'),
+            'refunded' => (float) Escrow::where('status', 'refunded')->whereBetween('created_at', [$dateStart, $dateEnd])->sum('amount_held'),
+            'disputed' => (float) Escrow::where('status', 'disputed')->whereBetween('created_at', [$dateStart, $dateEnd])->sum('amount_held')
+        ];
+        
+        // Top Performing Shops
+        $topShops = Order::where('order_status', 'completed')
+            ->whereBetween('completed_at', [$dateStart, $dateEnd])
+            ->selectRaw('seller_id, SUM(total_amount) as gmv, COUNT(id) as order_count')
+            ->groupBy('seller_id')
+            ->orderByDesc('gmv')
+            ->take(5)
+            ->get()
+            ->map(function ($row) {
+                $row->seller = SellerProfile::with('user')->find($row->seller_id);
+                return $row;
+            });
+            
+        // Upcoming Escrow Releases (held escrows)
+        $upcomingReleases = Escrow::with(['order.listing', 'order.seller.user'])
+            ->where('status', 'held')
+            ->orderBy('release_scheduled_at', 'asc')
+            ->take(5)
+            ->get();
+            
+        // Recent high-value transactions
+        $recentTransactions = Order::with(['listing', 'buyer', 'seller.user'])
+            ->whereBetween('created_at', [$dateStart, $dateEnd])
+            ->orderBy('total_amount', 'desc')
+            ->take(5)
+            ->get();
+            
+        // If CSV export requested
+        if ($request->input('export') === 'csv') {
+            return $this->exportSalesOverviewCSV($dateStart, $dateEnd, $metrics, $categoriesData);
+        }
+            
+        return view('admin.sales-overview', compact(
+            'preset', 'dateStart', 'dateEnd', 'metrics',
+            'categoriesData', 'chartLabels', 'chartGmvData', 'chartRevData',
+            'escrowAllocation', 'topShops', 'upcomingReleases', 'recentTransactions'
+        ));
     }
+
+    /**
+     * CSV Export Helper for Sales Overview metrics.
+     */
+    private function exportSalesOverviewCSV($dateStart, $dateEnd, $metrics, $categoriesData)
+    {
+        $headers = [
+            "Content-type"        => "text/csv",
+            "Content-Disposition" => "attachment; filename=sales_overview_export_" . date('Y-m-d') . ".csv",
+            "Pragma"              => "no-cache",
+            "Cache-Control"       => "must-revalidate, post-check=0, pre-check=0",
+            "Expires"             => "0"
+        ];
+
+        $callback = function() use ($dateStart, $dateEnd, $metrics, $categoriesData) {
+            $file = fopen('php://output', 'w');
+            
+            // Header Info
+            fputcsv($file, ['XBuy Sales Overview Report']);
+            fputcsv($file, ['Period', $dateStart->format('Y-m-d') . ' to ' . $dateEnd->format('Y-m-d')]);
+            fputcsv($file, []);
+
+            // Summary Metrics
+            fputcsv($file, ['Metric', 'Value', 'Period change %']);
+            fputcsv($file, ['Total GMV (Completed Sales)', 'INR ' . number_format($metrics['gmv'], 2), $metrics['gmv_change'] . '%']);
+            fputcsv($file, ['Active Escrow Held', 'INR ' . number_format($metrics['escrow'], 2), $metrics['escrow_change'] . '%']);
+            fputcsv($file, ['Platform Commission Revenue', 'INR ' . number_format($metrics['revenue'], 2), $metrics['revenue_change'] . '%']);
+            fputcsv($file, ['Order Fulfillment/Success Rate', number_format($metrics['fulfillment'], 1) . '%', $metrics['fulfillment_change'] . '%']);
+            fputcsv($file, []);
+
+            // Category Breakdown
+            fputcsv($file, ['Category Sales Distribution']);
+            fputcsv($file, ['Category Name', 'Total Sales (GMV)', 'Order Count']);
+            foreach ($categoriesData as $cat) {
+                fputcsv($file, [
+                    ucfirst(str_replace('_', ' ', $cat->category)),
+                    'INR ' . number_format($cat->total_sales, 2),
+                    $cat->order_count
+                ]);
+            }
+
+            fclose($file);
+        };
+
+        return response()->stream($callback, 200, $headers);
+    }
+
 
     /**
      * Escrow Management page.
