@@ -265,17 +265,17 @@
                 <div class="flex items-center space-x-8 md:space-x-12 lg:space-x-16 overflow-x-auto scrollbar-none pb-2 w-full pr-12">
                     @php
                         $brands = [
-                            ['name' => 'Apple', 'img' => 'https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?auto=format&fit=crop&q=80&w=150'],
-                            ['name' => 'Sony', 'img' => 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&q=80&w=150'],
-                            ['name' => 'Nike', 'img' => 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&q=80&w=150'],
-                            ['name' => 'Nintendo', 'img' => 'https://images.unsplash.com/photo-1587202372775-e229f172b9d7?auto=format&fit=crop&q=80&w=150'],
-                            ['name' => 'Funko', 'img' => 'https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?auto=format&fit=crop&q=80&w=150'],
-                            ['name' => 'Pokemon', 'img' => 'https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?auto=format&fit=crop&q=80&w=150'],
+                            ['name' => 'Apple', 'img' => 'https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?auto=format&fit=crop&q=80&w=200'],
+                            ['name' => 'Sony', 'img' => 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&q=80&w=200'],
+                            ['name' => 'Nike', 'img' => 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&q=80&w=200'],
+                            ['name' => 'Nintendo', 'img' => 'https://images.unsplash.com/photo-1564865878688-9a244444042a?auto=format&fit=crop&q=80&w=200'],
+                            ['name' => 'Funko', 'img' => 'https://images.unsplash.com/photo-1559868483-72ce86331f7c?auto=format&fit=crop&q=80&w=200'],
+                            ['name' => 'Pokemon', 'img' => 'https://images.unsplash.com/photo-1613771404724-11d2d7a698e4?auto=format&fit=crop&q=80&w=200'],
                         ];
                     @endphp
                     @foreach($brands as $brand)
                         <a href="/listings?search={{ urlencode($brand['name']) }}" class="flex flex-col items-center shrink-0 group">
-                            <div class="w-[150px] h-[150px] rounded-full bg-[#f4f4f5] flex items-center justify-center overflow-hidden transition-all duration-200">
+                            <div class="w-[150px] h-[150px] shrink-0 rounded-full bg-[#f4f4f5] flex items-center justify-center overflow-hidden transition-all duration-200">
                                 <img src="{{ $brand['img'] }}" alt="{{ $brand['name'] }}" class="w-[75%] h-[75%] object-contain select-none">
                             </div>
                             <span class="text-sm font-semibold text-zinc-800 mt-3 text-center select-none">{{ $brand['name'] }}</span>
