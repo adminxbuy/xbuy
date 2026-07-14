@@ -80,7 +80,7 @@
                     </a>
                 </div>
                 <!-- Float component image at bottom -->
-                <div class="absolute bottom-0 left-0 right-0 h-[140px] overflow-hidden select-none">
+                <div class="absolute bottom-0 left-0 right-0 h-[175px] overflow-hidden select-none">
                     <img src="https://images.unsplash.com/photo-1591488320449-011701bb6704?auto=format&fit=crop&q=80&w=400" alt="GPU" class="w-full h-full object-cover object-center rounded-b-[1.25rem]">
                 </div>
             </div>
@@ -98,7 +98,7 @@
                     </a>
                 </div>
                 <!-- Float component image at bottom -->
-                <div class="absolute bottom-0 left-0 right-0 h-[140px] overflow-hidden select-none">
+                <div class="absolute bottom-0 left-0 right-0 h-[175px] overflow-hidden select-none">
                     <img src="https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?auto=format&fit=crop&q=80&w=400" alt="CPU" class="w-full h-full object-cover object-center rounded-b-[1.25rem]">
                 </div>
             </div>
@@ -116,7 +116,7 @@
                     </a>
                 </div>
                 <!-- Float component image at bottom -->
-                <div class="absolute bottom-0 left-0 right-0 h-[140px] overflow-hidden select-none">
+                <div class="absolute bottom-0 left-0 right-0 h-[175px] overflow-hidden select-none">
                     <img src="https://images.unsplash.com/photo-1562976540-1502c2145186?auto=format&fit=crop&q=80&w=400" alt="RAM" class="w-full h-full object-cover object-center rounded-b-[1.25rem]">
                 </div>
             </div>
