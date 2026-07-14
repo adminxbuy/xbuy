@@ -262,7 +262,7 @@
             <h2 class="text-2xl font-bold text-zinc-900 tracking-tight select-none">Top brands</h2>
             
             <div class="relative flex items-center">
-                <div class="flex items-center space-x-6 md:space-x-8 overflow-x-auto scrollbar-none pb-2 w-full pr-12">
+                <div class="flex items-center space-x-8 md:space-x-12 lg:space-x-16 overflow-x-auto scrollbar-none pb-2 w-full pr-12">
                     @php
                         $brands = [
                             ['name' => 'Apple', 'img' => 'https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?auto=format&fit=crop&q=80&w=150'],
@@ -275,8 +275,8 @@
                     @endphp
                     @foreach($brands as $brand)
                         <a href="/listings?search={{ urlencode($brand['name']) }}" class="flex flex-col items-center shrink-0 group">
-                            <div class="w-32 h-32 md:w-36 md:h-36 rounded-full bg-zinc-100 flex items-center justify-center p-3 overflow-hidden transition-all duration-200">
-                                <img src="{{ $brand['img'] }}" alt="{{ $brand['name'] }}" class="w-full h-full object-cover rounded-full select-none">
+                            <div class="w-[150px] h-[150px] rounded-full bg-[#f4f4f5] flex items-center justify-center overflow-hidden transition-all duration-200">
+                                <img src="{{ $brand['img'] }}" alt="{{ $brand['name'] }}" class="w-[75%] h-[75%] object-contain select-none">
                             </div>
                             <span class="text-sm font-semibold text-zinc-800 mt-3 text-center select-none">{{ $brand['name'] }}</span>
                         </a>
