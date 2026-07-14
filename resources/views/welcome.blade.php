@@ -13,13 +13,13 @@
             <!-- Polaroid images arrangement (Left side) -->
             <div class="relative flex items-center justify-center w-full lg:w-1/3 min-h-[220px] select-none order-2 lg:order-1">
                 <!-- Polaroid 1 (Gaming mouse/keyboard or GPU) -->
-                <div class="absolute left-4 rotate-[-8deg] bg-white p-3 pb-6 rounded-lg shadow-md border border-zinc-200/40 w-44 hover:rotate-0 hover:scale-105 hover:z-20 transition-all duration-300">
+                <div class="absolute left-4 rotate-[-8deg] bg-white p-3 pb-6 rounded-lg shadow-md border border-zinc-200/40 w-44">
                     <img src="https://images.unsplash.com/photo-1591488320449-011701bb6704?auto=format&fit=crop&q=80&w=300" alt="GPU" class="w-full aspect-square object-cover rounded-sm border border-zinc-100">
                     <span class="block text-center font-bold text-zinc-700 text-xs mt-3 select-none">RTX 4070 Ti</span>
                 </div>
                 
                 <!-- Polaroid 2 (Custom PC Rig) -->
-                <div class="absolute right-4 rotate-[6deg] bg-white p-3 pb-6 rounded-lg shadow-md border border-zinc-200/40 w-44 hover:rotate-0 hover:scale-105 hover:z-20 transition-all duration-300">
+                <div class="absolute right-4 rotate-[6deg] bg-white p-3 pb-6 rounded-lg shadow-md border border-zinc-200/40 w-44">
                     <img src="https://images.unsplash.com/photo-1587202372775-e229f172b9d7?auto=format&fit=crop&q=80&w=300" alt="PC Setup" class="w-full aspect-square object-cover rounded-sm border border-zinc-100">
                     <span class="block text-center font-bold text-zinc-700 text-xs mt-3 select-none">Custom Rigs</span>
                 </div>
@@ -49,7 +49,7 @@
 
             <!-- Learn more CTA Button (Right side) -->
             <div class="relative z-10 w-full lg:w-auto flex justify-center lg:justify-end order-3">
-                <a href="/listings" class="bg-blue-800 hover:bg-blue-900 text-white font-bold px-8 py-3.5 rounded-full shadow-md flex items-center justify-center space-x-2 transition-all hover:scale-103">
+                <a href="/listings" class="bg-blue-800 text-white font-bold px-8 py-3.5 rounded-full shadow-md flex items-center justify-center space-x-2">
                     <span>Learn more</span>
                     <i data-lucide="chevron-right" class="w-5 h-5"></i>
                 </a>
@@ -68,55 +68,55 @@
         <div class="flex flex-wrap lg:flex-nowrap justify-center lg:justify-start gap-6">
             
             <!-- Card 1: Graphics Cards (GPUs) -->
-            <div class="w-full max-w-[312px] h-[198px] bg-blue-50/70 border border-blue-100 rounded-2xl p-5 flex flex-col justify-between relative overflow-hidden group hover:shadow-xs transition-shadow shrink-0">
+            <div class="w-full max-w-[312px] h-[198px] bg-blue-50/70 border border-blue-100 rounded-2xl p-5 flex flex-col justify-between relative overflow-hidden shrink-0">
                 <div class="flex items-start justify-between">
                     <div>
                         <span class="text-[10px] text-blue-600 font-semibold uppercase tracking-wider block">Gaming & AI GPUs</span>
                         <h3 class="text-xl font-bold text-zinc-900 mt-0.5 select-none">Graphics Cards</h3>
                     </div>
-                    <a href="/listings?category=gpu" class="text-[11px] font-bold text-blue-600 hover:text-blue-700 flex items-center gap-0.5">
+                    <a href="/listings?category=gpu" class="text-[11px] font-bold text-blue-600 flex items-center gap-0.5">
                         <span>See more</span>
                         <i data-lucide="arrow-right" class="w-3 h-3"></i>
                     </a>
                 </div>
                 <!-- Polaroid styled float component image -->
-                <div class="w-28 bg-white p-1.5 pb-3 rounded-lg border border-zinc-200/50 shadow-xs absolute -bottom-3 right-3 rotate-[12deg] group-hover:rotate-[6deg] group-hover:-translate-y-1.5 transition-all select-none">
+                <div class="w-28 bg-white p-1.5 pb-3 rounded-lg border border-zinc-200/50 shadow-xs absolute -bottom-3 right-3 rotate-[12deg] select-none">
                     <img src="https://images.unsplash.com/photo-1591488320449-011701bb6704?auto=format&fit=crop&q=80&w=200" alt="GPU" class="w-full aspect-square object-cover rounded-md border border-zinc-100">
                 </div>
             </div>
 
             <!-- Card 2: Processors (CPUs) -->
-            <div class="w-full max-w-[312px] h-[198px] bg-purple-50/70 border border-purple-100 rounded-2xl p-5 flex flex-col justify-between relative overflow-hidden group hover:shadow-xs transition-shadow shrink-0">
+            <div class="w-full max-w-[312px] h-[198px] bg-purple-50/70 border border-purple-100 rounded-2xl p-5 flex flex-col justify-between relative overflow-hidden shrink-0">
                 <div class="flex items-start justify-between">
                     <div>
                         <span class="text-[10px] text-purple-600 font-semibold uppercase tracking-wider block">Core speed & Power</span>
                         <h3 class="text-xl font-bold text-zinc-900 mt-0.5 select-none">Processors</h3>
                     </div>
-                    <a href="/listings?category=cpu" class="text-[11px] font-bold text-purple-600 hover:text-purple-700 flex items-center gap-0.5">
+                    <a href="/listings?category=cpu" class="text-[11px] font-bold text-purple-600 flex items-center gap-0.5">
                         <span>See more</span>
                         <i data-lucide="arrow-right" class="w-3 h-3"></i>
                     </a>
                 </div>
                 <!-- Polaroid styled float component image -->
-                <div class="w-28 bg-white p-1.5 pb-3 rounded-lg border border-zinc-200/50 shadow-xs absolute -bottom-3 right-3 rotate-[-8deg] group-hover:rotate-[-4deg] group-hover:-translate-y-1.5 transition-all select-none">
+                <div class="w-28 bg-white p-1.5 pb-3 rounded-lg border border-zinc-200/50 shadow-xs absolute -bottom-3 right-3 rotate-[-8deg] select-none">
                     <img src="https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?auto=format&fit=crop&q=80&w=200" alt="CPU" class="w-full aspect-square object-cover rounded-md border border-zinc-100">
                 </div>
             </div>
 
             <!-- Card 3: Essential Components (Motherboard & RAM) -->
-            <div class="w-full max-w-[312px] h-[198px] bg-amber-50/70 border border-amber-100 rounded-2xl p-5 flex flex-col justify-between relative overflow-hidden group hover:shadow-xs transition-shadow shrink-0">
+            <div class="w-full max-w-[312px] h-[198px] bg-amber-50/70 border border-amber-100 rounded-2xl p-5 flex flex-col justify-between relative overflow-hidden shrink-0">
                 <div class="flex items-start justify-between">
                     <div>
                         <span class="text-[10px] text-amber-700 font-semibold uppercase tracking-wider block">Bridges & Fast Memory</span>
                         <h3 class="text-xl font-bold text-zinc-900 mt-0.5 select-none">Gear & Kits</h3>
                     </div>
-                    <a href="/listings?category=motherboard" class="text-[11px] font-bold text-amber-700 hover:text-amber-800 flex items-center gap-0.5">
+                    <a href="/listings?category=motherboard" class="text-[11px] font-bold text-amber-700 flex items-center gap-0.5">
                         <span>See more</span>
                         <i data-lucide="arrow-right" class="w-3 h-3"></i>
                     </a>
                 </div>
                 <!-- Polaroid styled float component image -->
-                <div class="w-28 bg-white p-1.5 pb-3 rounded-lg border border-zinc-200/50 shadow-xs absolute -bottom-3 right-3 rotate-[15deg] group-hover:rotate-[8deg] group-hover:-translate-y-1.5 transition-all select-none">
+                <div class="w-28 bg-white p-1.5 pb-3 rounded-lg border border-zinc-200/50 shadow-xs absolute -bottom-3 right-3 rotate-[15deg] select-none">
                     <img src="https://images.unsplash.com/photo-1562976540-1502c2145186?auto=format&fit=crop&q=80&w=200" alt="RAM" class="w-full aspect-square object-cover rounded-md border border-zinc-100">
                 </div>
             </div>
