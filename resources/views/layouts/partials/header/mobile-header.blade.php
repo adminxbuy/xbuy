@@ -58,17 +58,51 @@
     </div>
 
     <!-- Search Row Below (Full Width) -->
-    <div class="mt-2">
+    <div class="mt-2 relative" @click.away="searchFocused = false">
         <form action="/listings" method="GET" class="w-full">
             <div class="relative flex items-center bg-white border border-black/10 rounded-xl overflow-hidden shadow-sm w-full focus-within:ring-2 focus-within:ring-black/10 focus-within:border-black/20 transition-all">
-                <input name="search" value="{{ request('search') }}" type="search" placeholder="Search components, brands, parts..." autocomplete="off"
-                    class="w-full pl-4 pr-10 py-2.5 text-xs text-zinc-900 placeholder-zinc-450 bg-transparent outline-none border-none">
+                <input name="search" 
+                       value="{{ request('search') }}" 
+                       type="search" 
+                       placeholder="Search components, brands, parts..." 
+                       autocomplete="off"
+                       @focus="searchFocused = true"
+                       class="w-full pl-4 pr-10 py-2.5 text-xs text-zinc-900 placeholder-zinc-400 bg-transparent outline-none border-none">
                 <button type="submit" class="absolute right-2 p-1.5 text-zinc-500 hover:text-black transition-colors rounded-lg">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2".5 viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.602 10.602Z"></path>
                     </svg>
                 </button>
             </div>
         </form>
+
+        <!-- Mobile Search Dropdown Card -->
+        <div x-show="searchFocused"
+             x-transition:enter="transition ease-out duration-150"
+             x-transition:enter-start="opacity-0 translate-y-1"
+             x-transition:enter-end="opacity-100 translate-y-0"
+             x-transition:leave="transition ease-in duration-100"
+             x-transition:leave-start="opacity-100 translate-y-0"
+             x-transition:leave-end="opacity-0 translate-y-1"
+             class="absolute left-0 right-0 mt-2 bg-white border border-zinc-200 shadow-xl rounded-2xl p-4 z-50"
+             style="display: none;">
+             
+            <div class="flex items-center justify-between">
+                <h3 class="text-xs font-bold text-zinc-900">Trending brands</h3>
+                <a href="/listings" class="text-[10px] font-bold text-yellow-600 hover:text-yellow-700 transition-colors">View more</a>
+            </div>
+            
+            <div class="flex flex-wrap gap-2 mt-3">
+                @php
+                    $trendingBrands = ['NVIDIA', 'Intel', 'AMD', 'ASUS', 'MSI', 'Gigabyte', 'Corsair', 'G.Skill', 'Samsung', 'Crucial', 'Kingston', 'NZXT', 'Logitech', 'Razer', 'Seasonic'];
+                @endphp
+                @foreach($trendingBrands as $brand)
+                    <a href="/listings?search={{ urlencode($brand) }}" 
+                       class="px-3 py-1.5 bg-zinc-100 hover:bg-zinc-200 transition-all text-[10px] font-semibold text-zinc-700 hover:text-zinc-900 rounded-full">
+                        {{ $brand }}
+                    </a>
+                @endforeach
+            </div>
+        </div>
     </div>
 </div>

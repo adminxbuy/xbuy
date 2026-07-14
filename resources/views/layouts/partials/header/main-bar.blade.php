@@ -21,7 +21,7 @@
         </div>
 
         <!-- Center: Search Bar (Mercari Style) -->
-        <div class="flex-1 max-w-3xl">
+        <div class="flex-1 max-w-3xl relative" @click.away="searchFocused = false">
             <form action="/listings" method="GET" class="w-full">
                 <div class="relative flex items-center bg-white border border-zinc-200/50 rounded-full overflow-hidden transition-all duration-200 focus-within:ring-2 focus-within:ring-[#fdd835]/40 focus-within:border-[#fdd835]/80 focus-within:shadow-sm">
                     <input name="search" 
@@ -30,7 +30,6 @@
                            placeholder="Search for components, brands, parts..." 
                            autocomplete="off"
                            @focus="searchFocused = true"
-                           @blur="searchFocused = false"
                            class="w-full pl-6 pr-12 py-3 text-sm text-zinc-900 placeholder-zinc-400 bg-transparent outline-none border-none">
                     <button type="submit" class="absolute right-3 p-2 text-zinc-400 hover:text-black transition-colors rounded-full">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -39,6 +38,35 @@
                     </button>
                 </div>
             </form>
+
+            <!-- Search Dropdown Card -->
+            <div x-show="searchFocused"
+                 x-transition:enter="transition ease-out duration-150"
+                 x-transition:enter-start="opacity-0 translate-y-1"
+                 x-transition:enter-end="opacity-100 translate-y-0"
+                 x-transition:leave="transition ease-in duration-100"
+                 x-transition:leave-start="opacity-100 translate-y-0"
+                 x-transition:leave-end="opacity-0 translate-y-1"
+                 class="absolute left-0 right-0 mt-2 bg-white border border-zinc-200 shadow-xl rounded-2xl p-6 z-50"
+                 style="display: none;">
+                 
+                <div class="flex items-center justify-between">
+                    <h3 class="text-sm font-bold text-zinc-900">Trending brands</h3>
+                    <a href="/listings" class="text-xs font-bold text-yellow-600 hover:text-yellow-700 transition-colors">View more</a>
+                </div>
+                
+                <div class="flex flex-wrap gap-2.5 mt-4">
+                    @php
+                        $trendingBrands = ['NVIDIA', 'Intel', 'AMD', 'ASUS', 'MSI', 'Gigabyte', 'Corsair', 'G.Skill', 'Samsung', 'Crucial', 'Kingston', 'NZXT', 'Logitech', 'Razer', 'Seasonic'];
+                    @endphp
+                    @foreach($trendingBrands as $brand)
+                        <a href="/listings?search={{ urlencode($brand) }}" 
+                           class="px-4 py-2 bg-zinc-100 hover:bg-zinc-200 transition-all text-xs font-semibold text-zinc-700 hover:text-zinc-900 rounded-full">
+                            {{ $brand }}
+                        </a>
+                    @endforeach
+                </div>
+            </div>
         </div>
 
         <!-- Right Side: User Menu and CTA -->
