@@ -68,7 +68,7 @@
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-[1280px]">
             
             <!-- Card 1: Graphics Cards (GPUs) -->
-            <div class="relative w-full h-[265.33px] bg-[#dbeafe]/70 border border-blue-100 rounded-[1.25rem] p-8 flex flex-col justify-between overflow-hidden shadow-xs">
+            <div class="relative w-full h-[320px] bg-[#dbeafe]/70 border border-blue-100 rounded-[1.25rem] p-8 flex flex-col justify-between overflow-hidden shadow-xs">
                 <div class="flex items-start justify-between z-10">
                     <div>
                         <span class="text-xs md:text-[13px] text-zinc-600 font-semibold tracking-tight block">Graphics cards, gaming GPUs</span>
@@ -80,13 +80,13 @@
                     </a>
                 </div>
                 <!-- Float component image at bottom -->
-                <div class="absolute bottom-0 left-0 right-0 h-[175px] overflow-hidden select-none">
+                <div class="absolute bottom-0 left-0 right-0 h-[220px] overflow-hidden select-none">
                     <img src="https://images.unsplash.com/photo-1591488320449-011701bb6704?auto=format&fit=crop&q=80&w=400" alt="GPU" class="w-full h-full object-cover object-center rounded-b-[1.25rem]">
                 </div>
             </div>
 
             <!-- Card 2: Processors (CPUs) -->
-            <div class="relative w-full h-[265.33px] bg-[#f3e8ff]/70 border border-purple-100 rounded-[1.25rem] p-8 flex flex-col justify-between overflow-hidden shadow-xs">
+            <div class="relative w-full h-[320px] bg-[#f3e8ff]/70 border border-purple-100 rounded-[1.25rem] p-8 flex flex-col justify-between overflow-hidden shadow-xs">
                 <div class="flex items-start justify-between z-10">
                     <div>
                         <span class="text-xs md:text-[13px] text-zinc-600 font-semibold tracking-tight block">Processors, core speed power</span>
@@ -98,13 +98,13 @@
                     </a>
                 </div>
                 <!-- Float component image at bottom -->
-                <div class="absolute bottom-0 left-0 right-0 h-[175px] overflow-hidden select-none">
+                <div class="absolute bottom-0 left-0 right-0 h-[220px] overflow-hidden select-none">
                     <img src="https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?auto=format&fit=crop&q=80&w=400" alt="CPU" class="w-full h-full object-cover object-center rounded-b-[1.25rem]">
                 </div>
             </div>
 
             <!-- Card 3: Essential Components (Motherboard & RAM) -->
-            <div class="relative w-full h-[265.33px] bg-[#fef3c7]/70 border border-amber-100 rounded-[1.25rem] p-8 flex flex-col justify-between overflow-hidden shadow-xs">
+            <div class="relative w-full h-[320px] bg-[#fef3c7]/70 border border-amber-100 rounded-[1.25rem] p-8 flex flex-col justify-between overflow-hidden shadow-xs">
                 <div class="flex items-start justify-between z-10">
                     <div>
                         <span class="text-xs md:text-[13px] text-zinc-700 font-semibold tracking-tight block">Memory, boards, custom rigs</span>
@@ -116,7 +116,7 @@
                     </a>
                 </div>
                 <!-- Float component image at bottom -->
-                <div class="absolute bottom-0 left-0 right-0 h-[175px] overflow-hidden select-none">
+                <div class="absolute bottom-0 left-0 right-0 h-[220px] overflow-hidden select-none">
                     <img src="https://images.unsplash.com/photo-1562976540-1502c2145186?auto=format&fit=crop&q=80&w=400" alt="RAM" class="w-full h-full object-cover object-center rounded-b-[1.25rem]">
                 </div>
             </div>
