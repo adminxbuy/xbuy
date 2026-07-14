@@ -257,5 +257,38 @@
 
         </div>
 
+        <!-- Section 5: Top Brands circular list (Mercari Style) -->
+        <div class="space-y-6 w-full max-w-[1280px] pt-4">
+            <h2 class="text-2xl font-bold text-zinc-900 tracking-tight select-none">Top brands</h2>
+            
+            <div class="relative flex items-center">
+                <div class="flex items-center space-x-6 md:space-x-8 overflow-x-auto scrollbar-none pb-2 w-full pr-12">
+                    @php
+                        $brands = [
+                            ['name' => 'Apple', 'img' => 'https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?auto=format&fit=crop&q=80&w=150'],
+                            ['name' => 'Sony', 'img' => 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&q=80&w=150'],
+                            ['name' => 'Nike', 'img' => 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&q=80&w=150'],
+                            ['name' => 'Nintendo', 'img' => 'https://images.unsplash.com/photo-1587202372775-e229f172b9d7?auto=format&fit=crop&q=80&w=150'],
+                            ['name' => 'Funko', 'img' => 'https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?auto=format&fit=crop&q=80&w=150'],
+                            ['name' => 'Pokemon', 'img' => 'https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?auto=format&fit=crop&q=80&w=150'],
+                        ];
+                    @endphp
+                    @foreach($brands as $brand)
+                        <a href="/listings?search={{ urlencode($brand['name']) }}" class="flex flex-col items-center shrink-0 group">
+                            <div class="w-32 h-32 md:w-36 md:h-36 rounded-full bg-zinc-100/80 border border-zinc-200/30 flex items-center justify-center p-5 overflow-hidden transition-all duration-200">
+                                <img src="{{ $brand['img'] }}" alt="{{ $brand['name'] }}" class="w-full h-full object-contain rounded-md select-none">
+                            </div>
+                            <span class="text-sm font-semibold text-zinc-800 mt-3 text-center select-none">{{ $brand['name'] }}</span>
+                        </a>
+                    @endforeach
+                </div>
+                
+                <!-- Carousel Right Arrow overlay -->
+                <button aria-label="Next brands" class="absolute right-0 top-[38%] w-10 h-10 rounded-full bg-white border border-zinc-200 shadow-md flex items-center justify-center text-zinc-700 hover:text-black transition-colors focus:outline-none z-10">
+                    <i data-lucide="chevron-right" class="w-5 h-5"></i>
+                </button>
+            </div>
+        </div>
+
     </div>
 @endsection
