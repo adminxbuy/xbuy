@@ -275,8 +275,8 @@
                     @endphp
                     @foreach($brands as $brand)
                         <a href="/listings?search={{ urlencode($brand['name']) }}" class="flex flex-col items-center shrink-0 group">
-                            <div class="w-32 h-32 md:w-36 md:h-36 rounded-full bg-zinc-100/80 border border-zinc-200/30 flex items-center justify-center p-5 overflow-hidden transition-all duration-200">
-                                <img src="{{ $brand['img'] }}" alt="{{ $brand['name'] }}" class="w-full h-full object-contain rounded-md select-none">
+                            <div class="w-32 h-32 md:w-36 md:h-36 rounded-full bg-zinc-100 flex items-center justify-center p-3 overflow-hidden transition-all duration-200">
+                                <img src="{{ $brand['img'] }}" alt="{{ $brand['name'] }}" class="w-full h-full object-cover rounded-full select-none">
                             </div>
                             <span class="text-sm font-semibold text-zinc-800 mt-3 text-center select-none">{{ $brand['name'] }}</span>
                         </a>
