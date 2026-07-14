@@ -122,5 +122,83 @@
             </div>
             
         </div>
+
+        <!-- Section 3: Four Category Highlight Cards (Mercari Style) -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 w-full max-w-[1280px]">
+            
+            <!-- Card 1: Electronics -->
+            <div class="relative w-full h-[300px] bg-[#dbeafe]/70 border border-blue-100 rounded-[1.25rem] p-6 flex flex-col justify-between overflow-hidden shadow-xs">
+                <div class="flex items-start justify-between z-10">
+                    <div>
+                        <span class="text-[10px] md:text-[11px] text-zinc-600 font-semibold tracking-tight block">Cell phones, tablets, laptops</span>
+                        <h3 class="text-2xl font-black text-zinc-900 mt-0.5 select-none tracking-tight leading-none">Electronics</h3>
+                    </div>
+                    <a href="/listings?category=electronics" class="text-xs font-bold text-zinc-800 flex items-center gap-1">
+                        <span>See more</span>
+                        <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+                    </a>
+                </div>
+                <!-- Float component image at bottom -->
+                <div class="absolute bottom-0 left-0 right-0 h-[200px] overflow-hidden select-none">
+                    <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&q=80&w=300" alt="Electronics" class="w-full h-full object-cover object-center rounded-b-[1.25rem]">
+                </div>
+            </div>
+
+            <!-- Card 2: Toys -->
+            <div class="relative w-full h-[300px] bg-[#dbeafe]/70 border border-blue-100 rounded-[1.25rem] p-6 flex flex-col justify-between overflow-hidden shadow-xs">
+                <div class="flex items-start justify-between z-10">
+                    <div>
+                        <span class="text-[10px] md:text-[11px] text-zinc-600 font-semibold tracking-tight block">Plushies, building blocks, dolls</span>
+                        <h3 class="text-2xl font-black text-zinc-900 mt-0.5 select-none tracking-tight leading-none">Toys</h3>
+                    </div>
+                    <a href="/listings?category=toys" class="text-xs font-bold text-zinc-800 flex items-center gap-1">
+                        <span>See more</span>
+                        <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+                    </a>
+                </div>
+                <!-- Float component image at bottom -->
+                <div class="absolute bottom-0 left-0 right-0 h-[200px] overflow-hidden select-none">
+                    <img src="https://images.unsplash.com/photo-1566577134770-3d85bb3a9cc4?auto=format&fit=crop&q=80&w=300" alt="Toys" class="w-full h-full object-cover object-center rounded-b-[1.25rem]">
+                </div>
+            </div>
+
+            <!-- Card 3: Beauty -->
+            <div class="relative w-full h-[300px] bg-[#dbeafe]/70 border border-blue-100 rounded-[1.25rem] p-6 flex flex-col justify-between overflow-hidden shadow-xs">
+                <div class="flex items-start justify-between z-10">
+                    <div>
+                        <span class="text-[10px] md:text-[11px] text-zinc-600 font-semibold tracking-tight block">Fragrance, makeup, accessories</span>
+                        <h3 class="text-2xl font-black text-zinc-900 mt-0.5 select-none tracking-tight leading-none">Beauty</h3>
+                    </div>
+                    <a href="/listings?category=beauty" class="text-xs font-bold text-zinc-800 flex items-center gap-1">
+                        <span>See more</span>
+                        <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+                    </a>
+                </div>
+                <!-- Float component image at bottom -->
+                <div class="absolute bottom-0 left-0 right-0 h-[200px] overflow-hidden select-none">
+                    <img src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&q=80&w=300" alt="Beauty" class="w-full h-full object-cover object-center rounded-b-[1.25rem]">
+                </div>
+            </div>
+
+            <!-- Card 4: Handbags -->
+            <div class="relative w-full h-[300px] bg-[#dbeafe]/70 border border-blue-100 rounded-[1.25rem] p-6 flex flex-col justify-between overflow-hidden shadow-xs">
+                <div class="flex items-start justify-between z-10">
+                    <div>
+                        <span class="text-[10px] md:text-[11px] text-zinc-600 font-semibold tracking-tight block">Authentic, designer, trend</span>
+                        <h3 class="text-2xl font-black text-zinc-900 mt-0.5 select-none tracking-tight leading-none">Handbags</h3>
+                    </div>
+                    <a href="/listings?category=handbags" class="text-xs font-bold text-zinc-800 flex items-center gap-1">
+                        <span>See more</span>
+                        <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+                    </a>
+                </div>
+                <!-- Float component image at bottom -->
+                <div class="absolute bottom-0 left-0 right-0 h-[200px] overflow-hidden select-none">
+                    <img src="https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&q=80&w=300" alt="Handbags" class="w-full h-full object-cover object-center rounded-b-[1.25rem]">
+                </div>
+            </div>
+
+        </div>
+
     </div>
 @endsection
