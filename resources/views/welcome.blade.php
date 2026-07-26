@@ -92,7 +92,7 @@
 
             <!-- Card 3: Kids -->
             <a href="/listings?category=kids" class="block w-full overflow-hidden rounded-xl border border-zinc-200/50 shadow-xs group">
-                <img src="https://images.unsplash.com/photo-1502086223501-7ea6ecd79368?auto=format&fit=crop&q=80&w=400" 
+                <img src="https://mediumblue-goldfish-835128.hostingersite.com/website_assets/images/kids_1785083226.avif" 
                      alt="Kids" 
                      class="w-full h-auto object-contain transition-transform duration-500 group-hover:scale-[1.015]">
             </a>
