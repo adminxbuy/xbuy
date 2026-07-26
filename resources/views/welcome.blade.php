@@ -18,21 +18,11 @@
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-[1280px]">
             
             <!-- Card 1: Graphics Cards (GPUs) -->
-            <div class="relative w-full h-[320px] bg-[#dbeafe]/70 border border-blue-100 rounded-[1.25rem] p-8 flex flex-col justify-between overflow-hidden shadow-xs">
-                <div class="flex items-start justify-between z-10">
-                    <div>
-                        <span class="text-xs md:text-[13px] text-zinc-600 font-semibold tracking-tight block">Graphics cards, gaming GPUs</span>
-                        <h3 class="text-3xl md:text-[32px] font-black text-zinc-900 mt-1 select-none tracking-tight leading-none">GPUs</h3>
-                    </div>
-                    <a href="/listings?category=gpu" class="text-xs font-bold text-zinc-800 flex items-center gap-1">
-                        <span>See more</span>
-                        <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
-                    </a>
-                </div>
-                <div class="absolute bottom-0 left-0 right-0 h-[220px] overflow-hidden select-none">
-                    <img src="https://mediumblue-goldfish-835128.hostingersite.com/website_assets/images/gaming_1785082243.avif" alt="GPU" class="w-full h-full object-cover object-center rounded-b-[1.25rem]">
-                </div>
-            </div>
+            <a href="/listings?category=gpu" class="block w-full overflow-hidden rounded-xl border border-zinc-200/50 shadow-xs group">
+                <img src="https://mediumblue-goldfish-835128.hostingersite.com/website_assets/images/gaming_1785082243.avif" 
+                     alt="GPUs" 
+                     class="w-full h-auto object-contain transition-transform duration-500 group-hover:scale-[1.015]">
+            </a>
 
             <!-- Card 2: Processors (CPUs) -->
             <div class="relative w-full h-[320px] bg-[#f3e8ff]/70 border border-purple-100 rounded-[1.25rem] p-8 flex flex-col justify-between overflow-hidden shadow-xs">
