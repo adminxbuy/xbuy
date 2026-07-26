@@ -6,7 +6,7 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-12">
         
         <!-- Section 1: Promo Banner -->
-        <div class="w-full rounded-[2rem] overflow-hidden shadow-xs border border-zinc-200/50 group cursor-pointer">
+        <div class="w-full rounded-xl overflow-hidden shadow-xs border border-zinc-200/50 group cursor-pointer">
             <a href="/listings">
                 <img src="https://mediumblue-goldfish-835128.hostingersite.com/website_assets/images/anon-banner-july-free-shipping-summer-2026-desktop_1785082076.avif" 
                      alt="Free Shipping Summer 2026" 
