@@ -29,9 +29,8 @@
                         <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
                     </a>
                 </div>
-                <!-- Float component image at bottom -->
                 <div class="absolute bottom-0 left-0 right-0 h-[220px] overflow-hidden select-none">
-                    <img src="https://images.unsplash.com/photo-1591488320449-011701bb6704?auto=format&fit=crop&q=80&w=400" alt="GPU" class="w-full h-full object-cover object-center rounded-b-[1.25rem]">
+                    <img src="https://mediumblue-goldfish-835128.hostingersite.com/website_assets/images/gaming_1785082243.avif" alt="GPU" class="w-full h-full object-cover object-center rounded-b-[1.25rem]">
                 </div>
             </div>
 
