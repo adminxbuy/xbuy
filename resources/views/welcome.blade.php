@@ -125,7 +125,7 @@
                     @foreach($brands as $brand)
                         <a href="/listings?search={{ urlencode($brand['name']) }}" class="flex flex-col items-center shrink-0 group" style="margin-right: 2rem;">
                             <div class="shrink-0 bg-[#f5f5f5] flex items-center justify-center overflow-hidden transition-all duration-200 hover:scale-105" style="width: 140px; height: 140px; border-radius: 50%; aspect-ratio: 1 / 1;">
-                                <img src="{{ $brand['img'] }}" alt="{{ $brand['name'] }}" class="select-none" style="width: 70%; height: 70%; object-fit: contain;">
+                                <img src="{{ $brand['img'] }}" alt="{{ $brand['name'] }}" class="select-none" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
                             </div>
                             <span class="text-sm font-semibold text-zinc-800 mt-3 text-center select-none">{{ $brand['name'] }}</span>
                         </a>
