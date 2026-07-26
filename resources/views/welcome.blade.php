@@ -99,7 +99,7 @@
 
             <!-- Card 4: Home -->
             <a href="/listings?category=home" class="block w-full overflow-hidden rounded-xl border border-zinc-200/50 shadow-xs group">
-                <img src="https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&q=80&w=400" 
+                <img src="https://mediumblue-goldfish-835128.hostingersite.com/website_assets/images/home_1785083399.avif" 
                      alt="Home" 
                      class="w-full h-auto object-contain transition-transform duration-500 group-hover:scale-[1.015]">
             </a>
