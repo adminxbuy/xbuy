@@ -85,7 +85,7 @@
 
             <!-- Card 2: Men -->
             <a href="/listings?category=men" class="block w-full overflow-hidden rounded-xl border border-zinc-200/50 shadow-xs group">
-                <img src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&q=80&w=400" 
+                <img src="https://mediumblue-goldfish-835128.hostingersite.com/website_assets/images/men_1785083043.avif" 
                      alt="Men" 
                      class="w-full h-auto object-contain transition-transform duration-500 group-hover:scale-[1.015]">
             </a>
