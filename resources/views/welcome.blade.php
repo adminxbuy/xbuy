@@ -111,7 +111,7 @@
             <h2 class="text-2xl font-bold text-zinc-900 tracking-tight select-none">Top brands</h2>
             
             <div class="relative flex items-center">
-                <div class="flex items-center space-x-8 md:space-x-12 lg:space-x-16 overflow-x-auto scrollbar-none pb-2 w-full pr-12">
+                <div class="flex items-center space-x-8 md:space-x-12 lg:space-x-16 overflow-x-auto scrollbar-none pb-2 w-full md:justify-center">
                     @php
                         $brands = [
                             ['name' => 'Apple', 'img' => 'https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?auto=format&fit=crop&q=80&w=200'],
@@ -123,7 +123,7 @@
                         ];
                     @endphp
                     @foreach($brands as $brand)
-                        <a href="/listings?search={{ urlencode($brand['name']) }}" class="flex flex-col items-center shrink-0 group" style="margin-right: 2rem;">
+                        <a href="/listings?search={{ urlencode($brand['name']) }}" class="flex flex-col items-center shrink-0 group">
                             <div class="shrink-0 bg-[#f5f5f5] flex items-center justify-center overflow-hidden transition-all duration-200 hover:scale-105" style="width: 140px; height: 140px; border-radius: 50%; aspect-ratio: 1 / 1;">
                                 <img src="{{ $brand['img'] }}" alt="{{ $brand['name'] }}" class="select-none" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
                             </div>
@@ -131,11 +131,6 @@
                         </a>
                     @endforeach
                 </div>
-                
-                <!-- Carousel Right Arrow overlay -->
-                <button aria-label="Next brands" class="absolute right-0 top-[38%] w-10 h-10 rounded-full bg-white border border-zinc-200 shadow-md flex items-center justify-center text-zinc-700 hover:text-black transition-colors focus:outline-none z-10">
-                    <i data-lucide="chevron-right" class="w-5 h-5"></i>
-                </button>
             </div>
         </div>
 
