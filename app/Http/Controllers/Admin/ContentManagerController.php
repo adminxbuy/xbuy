@@ -109,7 +109,7 @@ class ContentManagerController extends Controller
 
         // Validate extension by type
         $ext = strtolower($file->getClientOriginalExtension());
-        if ($type === 'images' && !in_array($ext, ['jpg', 'jpeg', 'png', 'gif', 'svg', 'webp', 'ico'])) {
+        if ($type === 'images' && !in_array($ext, ['jpg', 'jpeg', 'png', 'gif', 'svg', 'webp', 'avif', 'ico'])) {
             return back()->with('error', 'Invalid image file extension.');
         } elseif ($type === 'pdfs' && $ext !== 'pdf') {
             return back()->with('error', 'Only PDF files are allowed.');

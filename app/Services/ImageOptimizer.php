@@ -76,6 +76,10 @@ class ImageOptimizer
                     $encoded = $image->toWebp(80);
                     $modified = true;
                     break;
+                case 'avif':
+                    $encoded = $image->toAvif(80);
+                    $modified = true;
+                    break;
                 case 'jpg':
                 case 'jpeg':
                 default:

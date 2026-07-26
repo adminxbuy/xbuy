@@ -24,7 +24,7 @@ class AssetLibraryController extends Controller
 
         foreach ($files as $file) {
             $extension = strtolower($file->getExtension());
-            if (in_array($extension, ['jpg', 'jpeg', 'png', 'gif', 'svg', 'webp', 'ico'])) {
+            if (in_array($extension, ['jpg', 'jpeg', 'png', 'gif', 'svg', 'webp', 'avif', 'ico'])) {
                 $relativePath = '/website_assets/images/' . $file->getFilename();
                 $images[] = [
                     'name' => $file->getFilename(),
