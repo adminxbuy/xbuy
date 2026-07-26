@@ -110,8 +110,8 @@
         <div class="space-y-6 w-full max-w-[1280px] pt-4">
             <h2 class="text-2xl font-bold text-zinc-900 tracking-tight select-none">Top brands</h2>
             
-            <div class="relative flex items-center">
-                <div class="flex items-center space-x-8 md:space-x-12 lg:space-x-16 overflow-x-auto scrollbar-none pb-2 w-full md:justify-center">
+            <div class="relative flex items-center justify-center w-full">
+                <div class="scrollbar-none pb-2" style="display: flex; align-items: center; justify-content: center; gap: 2.5rem; width: 100%; overflow-x: auto; flex-wrap: wrap;">
                     @php
                         $brands = [
                             ['name' => 'Apple', 'img' => 'https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?auto=format&fit=crop&q=80&w=200'],
