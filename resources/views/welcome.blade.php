@@ -78,7 +78,7 @@
             
             <!-- Card 1: Women -->
             <a href="/listings?category=women" class="block w-full overflow-hidden rounded-xl border border-zinc-200/50 shadow-xs group">
-                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=400" 
+                <img src="https://mediumblue-goldfish-835128.hostingersite.com/website_assets/images/women_1785082959.avif" 
                      alt="Women" 
                      class="w-full h-auto object-contain transition-transform duration-500 group-hover:scale-[1.015]">
             </a>
