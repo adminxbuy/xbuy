@@ -52,7 +52,7 @@
 
             <!-- Card 2: Toys -->
             <a href="/listings?category=toys" class="block w-full overflow-hidden rounded-xl border border-zinc-200/50 shadow-xs group">
-                <img src="https://images.unsplash.com/photo-1566577134770-3d85bb3a9cc4?auto=format&fit=crop&q=80&w=300" 
+                <img src="https://mediumblue-goldfish-835128.hostingersite.com/website_assets/images/toys_1785082762.avif" 
                      alt="Toys" 
                      class="w-full h-auto object-contain transition-transform duration-500 group-hover:scale-[1.015]">
             </a>
