@@ -59,7 +59,7 @@
 
             <!-- Card 3: Beauty -->
             <a href="/listings?category=beauty" class="block w-full overflow-hidden rounded-xl border border-zinc-200/50 shadow-xs group">
-                <img src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&q=80&w=300" 
+                <img src="https://mediumblue-goldfish-835128.hostingersite.com/website_assets/images/beauty_1785082818.avif" 
                      alt="Beauty" 
                      class="w-full h-auto object-contain transition-transform duration-500 group-hover:scale-[1.015]">
             </a>
