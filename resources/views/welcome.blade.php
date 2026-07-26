@@ -77,56 +77,32 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 w-full max-w-[1280px]">
             
             <!-- Card 1: Women -->
-            <div class="relative w-full h-[480px] rounded-[1.25rem] overflow-hidden group shadow-xs">
-                <!-- Background Full-bleed Image -->
-                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=400" alt="Women" class="absolute inset-0 w-full h-full object-cover">
-                <!-- White/Light subtle top overlay to make text readable -->
-                <div class="absolute inset-0 bg-gradient-to-b from-white/40 via-transparent to-transparent"></div>
-                <!-- Content -->
-                <div class="relative p-8 z-10">
-                    <span class="text-xs md:text-[13px] text-zinc-800 font-semibold tracking-tight block">Blouses, dresses, and more</span>
-                    <h3 class="text-3xl md:text-[32px] font-black text-zinc-950 mt-1 select-none tracking-tight leading-none">Women</h3>
-                </div>
-            </div>
+            <a href="/listings?category=women" class="block w-full overflow-hidden rounded-xl border border-zinc-200/50 shadow-xs group">
+                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=400" 
+                     alt="Women" 
+                     class="w-full h-auto object-contain transition-transform duration-500 group-hover:scale-[1.015]">
+            </a>
 
             <!-- Card 2: Men -->
-            <div class="relative w-full h-[480px] rounded-[1.25rem] overflow-hidden group shadow-xs">
-                <!-- Background Full-bleed Image -->
-                <img src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&q=80&w=400" alt="Men" class="absolute inset-0 w-full h-full object-cover">
-                <!-- White/Light subtle top overlay -->
-                <div class="absolute inset-0 bg-gradient-to-b from-white/40 via-transparent to-transparent"></div>
-                <!-- Content -->
-                <div class="relative p-8 z-10">
-                    <span class="text-xs md:text-[13px] text-zinc-800 font-semibold tracking-tight block">Tees, polos, and more</span>
-                    <h3 class="text-3xl md:text-[32px] font-black text-zinc-950 mt-1 select-none tracking-tight leading-none">Men</h3>
-                </div>
-            </div>
+            <a href="/listings?category=men" class="block w-full overflow-hidden rounded-xl border border-zinc-200/50 shadow-xs group">
+                <img src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&q=80&w=400" 
+                     alt="Men" 
+                     class="w-full h-auto object-contain transition-transform duration-500 group-hover:scale-[1.015]">
+            </a>
 
             <!-- Card 3: Kids -->
-            <div class="relative w-full h-[480px] rounded-[1.25rem] overflow-hidden group shadow-xs">
-                <!-- Background Full-bleed Image -->
-                <img src="https://images.unsplash.com/photo-1502086223501-7ea6ecd79368?auto=format&fit=crop&q=80&w=400" alt="Kids" class="absolute inset-0 w-full h-full object-cover">
-                <!-- White/Light subtle top overlay -->
-                <div class="absolute inset-0 bg-gradient-to-b from-white/40 via-transparent to-transparent"></div>
-                <!-- Content -->
-                <div class="relative p-8 z-10">
-                    <span class="text-xs md:text-[13px] text-zinc-800 font-semibold tracking-tight block">Pajamas, outfits, and more</span>
-                    <h3 class="text-3xl md:text-[32px] font-black text-zinc-950 mt-1 select-none tracking-tight leading-none">Kids</h3>
-                </div>
-            </div>
+            <a href="/listings?category=kids" class="block w-full overflow-hidden rounded-xl border border-zinc-200/50 shadow-xs group">
+                <img src="https://images.unsplash.com/photo-1502086223501-7ea6ecd79368?auto=format&fit=crop&q=80&w=400" 
+                     alt="Kids" 
+                     class="w-full h-auto object-contain transition-transform duration-500 group-hover:scale-[1.015]">
+            </a>
 
             <!-- Card 4: Home -->
-            <div class="relative w-full h-[480px] rounded-[1.25rem] overflow-hidden group shadow-xs">
-                <!-- Background Full-bleed Image -->
-                <img src="https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&q=80&w=400" alt="Home" class="absolute inset-0 w-full h-full object-cover">
-                <!-- White/Light subtle top overlay -->
-                <div class="absolute inset-0 bg-gradient-to-b from-white/40 via-transparent to-transparent"></div>
-                <!-- Content -->
-                <div class="relative p-8 z-10">
-                    <span class="text-xs md:text-[13px] text-zinc-800 font-semibold tracking-tight block">Decor, appliances, and more</span>
-                    <h3 class="text-3xl md:text-[32px] font-black text-zinc-950 mt-1 select-none tracking-tight leading-none">Home</h3>
-                </div>
-            </div>
+            <a href="/listings?category=home" class="block w-full overflow-hidden rounded-xl border border-zinc-200/50 shadow-xs group">
+                <img src="https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&q=80&w=400" 
+                     alt="Home" 
+                     class="w-full h-auto object-contain transition-transform duration-500 group-hover:scale-[1.015]">
+            </a>
 
         </div>
 
