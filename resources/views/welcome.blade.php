@@ -66,7 +66,7 @@
 
             <!-- Card 4: Handbags -->
             <a href="/listings?category=handbags" class="block w-full overflow-hidden rounded-xl border border-zinc-200/50 shadow-xs group">
-                <img src="https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&q=80&w=300" 
+                <img src="https://mediumblue-goldfish-835128.hostingersite.com/website_assets/images/handbags_1785082857.avif" 
                      alt="Handbags" 
                      class="w-full h-auto object-contain transition-transform duration-500 group-hover:scale-[1.015]">
             </a>
