@@ -4,7 +4,7 @@
 @section('page_title', 'Payouts History')
 
 @section('header_actions')
-    <a href="{{ route('admin.trash.index', 'payouts') }}" class="flex items-center space-x-1.5 px-4 py-2.5 bg-rose-50 hover:bg-rose-100 text-rose-700 rounded-lg border border-rose-200/50 text-xs font-bold transition-all shadow-sm">
+    <a href="{{ route('admin.trash.index', 'payouts') }}" class="flex items-center space-x-1.5 px-4 py-2.5 bg-rose-50 hover:bg-rose-100 text-rose-700 rounded-lg border border-rose-200/50 text-xs font-medium transition-all shadow-sm">
         <i data-lucide="trash-2" class="w-4.5 h-4.5 text-red-500"></i>
         <span>Trash ({{ $trashedPayouts->count() }})</span>
     </a>
@@ -48,7 +48,7 @@
                     <div class="w-full sm:w-60 space-y-1">
                         <label class="text-xs font-bold uppercase tracking-wider block" style="color: var(--muted-foreground);">Seller Name</label>
                         <input type="text" name="seller" value="{{ request('seller') }}" placeholder="Search seller..."
-                            class="w-full p-2.5 rounded-xl focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:outline-none" style="border: 1px solid var(--border); background: var(--muted);">
+                            class="w-full p-2.5 rounded-lg focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:outline-none" style="border: 1px solid var(--border); background: var(--muted);">
                     </div>
 
                     <div class="date-range-picker-container flex flex-wrap items-center gap-4" x-data="dateRangePicker({
@@ -65,7 +65,7 @@
                                 Range</label>
                             <div class="relative">
                                 <select x-model="currentPreset" @change="applyPreset($event.target.value)"
-                                    class="p-2.5 pl-3 pr-8 text-xs rounded-xl focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:outline-none transition-all cursor-pointer font-semibold appearance-none" style="border: 1px solid var(--border); background: var(--muted); color: var(--foreground);">
+                                    class="p-2.5 pl-3 pr-8 text-xs rounded-lg focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:outline-none transition-all cursor-pointer font-semibold appearance-none" style="border: 1px solid var(--border); background: var(--muted); color: var(--foreground);">
                                     <option value="all">All Time</option>
                                     <option value="today">Today</option>
                                     <option value="yesterday">Yesterday</option>
@@ -89,7 +89,7 @@
                                     <i data-lucide="calendar"
                                         class="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5" style="color: var(--muted-foreground);"></i>
                                     <input type="text" x-ref="startInput" placeholder="Start Date" readonly
-                                        class="pl-9 pr-4 py-2.5 text-xs rounded-xl focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:outline-none cursor-pointer font-semibold w-32" style="border: 1px solid var(--border); background: var(--muted); color: var(--foreground);">
+                                        class="pl-9 pr-4 py-2.5 text-xs rounded-lg focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:outline-none cursor-pointer font-semibold w-32" style="border: 1px solid var(--border); background: var(--muted); color: var(--foreground);">
                                 </div>
                             </div>
                             <span class="text-xs mb-3" style="color: var(--muted-foreground);">to</span>
@@ -99,7 +99,7 @@
                                     <i data-lucide="calendar"
                                         class="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5" style="color: var(--muted-foreground);"></i>
                                     <input type="text" x-ref="endInput" placeholder="End Date" readonly
-                                        class="pl-9 pr-4 py-2.5 text-xs rounded-xl focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:outline-none cursor-pointer font-semibold w-32" style="border: 1px solid var(--border); background: var(--muted); color: var(--foreground);">
+                                        class="pl-9 pr-4 py-2.5 text-xs rounded-lg focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:outline-none cursor-pointer font-semibold w-32" style="border: 1px solid var(--border); background: var(--muted); color: var(--foreground);">
                                 </div>
                             </div>
                         </div>
@@ -186,7 +186,7 @@
                             @php
                                 $commPercent = $payout->amount_held > 0 ? round(($payout->commission_amount / $payout->amount_held) * 100, 1) : 0;
                             @endphp
-                            <tr class="hover:bg-muted/30 transition-colors" style="color: var(--muted-foreground);">
+                            <tr class="hover:bg-muted transition-colors" style="color: var(--muted-foreground);">
                                 <td class="p-4 pl-6 text-center">
                                     <input type="checkbox" value="{{ $payout->id }}" x-model="selectedIds"
                                         class="w-4 h-4 rounded border-border text-foreground focus:ring-black">

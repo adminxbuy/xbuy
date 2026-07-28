@@ -10,7 +10,7 @@
             @csrf
             @method('DELETE')
             <button type="submit"
-                class="px-3.5 py-2 bg-red-50 hover:bg-red-100 text-red-650 font-semibold rounded-xl text-xs transition-all flex items-center space-x-1.5 shadow-sm border border-red-200 active:scale-[0.98]">
+                class="px-3.5 py-2 bg-red-50 hover:bg-red-100 text-red-650 font-semibold rounded-xl text-xs transition-all flex items-center space-x-1.5 shadow-sm border border-red-200">
                 <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
                 <span>Delete Page</span>
             </button>
@@ -21,11 +21,11 @@
             <span>View Live Page</span>
         </a>
         <a href="{{ route('admin.pages.index') }}"
-            class="px-3.5 py-2 border border-border text-foreground hover:bg-muted font-semibold rounded-xl text-xs transition-all flex items-center justify-center">
+            class="px-3.5 py-2 border border-border text-foreground hover:bg-muted font-semibold rounded-lg text-xs transition-all flex items-center justify-center">
             Cancel
         </a>
         <button type="submit" form="edit-page-form"
-            class="px-4.5 py-2 bg-primary text-primary-foreground hover:bg-primary/90  font-semibold rounded-xl text-xs shadow-sm border border-black/10 transition-all flex items-center justify-center active:scale-[0.98]">
+            class="px-4.5 py-2 bg-primary text-primary-foreground hover:bg-primary/90  font-semibold rounded-lg text-xs shadow-sm border border-black/10 transition-all flex items-center justify-center">
             Save Changes
         </button>
     </div>
@@ -51,7 +51,7 @@
                             Title</label>
                         <input type="text" id="title" name="title" value="{{ old('title', $page->title) }}" required
                             placeholder="e.g. Terms of Use"
-                            class="w-full p-3 border border-border rounded-xl bg-muted text-foreground focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:ring-4 focus:ring-ring/15 focus:outline-none transition-all">
+                            class="w-full p-3 border border-border rounded-xl bg-muted text-foreground focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:ring-2 focus:ring-ring/50 focus:outline-none transition-all">
                     </div>
 
                     <div class="space-y-1.5 col-span-2 sm:col-span-1">
@@ -59,14 +59,14 @@
                             Slug</label>
                         <input type="text" id="slug" name="slug" value="{{ old('slug', $page->slug) }}" required
                             placeholder="e.g. terms-of-use"
-                            class="w-full p-3 border border-border rounded-xl bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:ring-4 focus:ring-ring/15 focus:outline-none transition-all">
+                            class="w-full p-3 border border-border rounded-xl bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:ring-2 focus:ring-ring/50 focus:outline-none transition-all">
                     </div>
 
                     <div class="space-y-1.5 col-span-2">
                         <label for="category_id"
                             class="block text-xs font-bold text-muted-foreground uppercase tracking-wider">Parent Category</label>
                         <select id="category_id" name="category_id"
-                            class="w-full p-3 border border-border rounded-xl bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:ring-4 focus:ring-ring/15 focus:outline-none transition-all">
+                            class="w-full p-3 border border-border rounded-lg bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:ring-2 focus:ring-ring/50 focus:outline-none transition-all">
                             <option value="">-- No Category (Will not show in categorised columns) --</option>
                             @foreach($categories as $category)
                                 <option value="{{ $category->id }}" {{ old('category_id', $page->category_id) == $category->id ? 'selected' : '' }}>{{ $category->name }}</option>
@@ -81,7 +81,7 @@
                 <label for="content" class="block text-xs font-bold text-muted-foreground uppercase tracking-wider">Page HTML
                     Content</label>
                 <textarea id="content" name="content"
-                    class="tinymce-editor w-full p-3 border border-border rounded-xl focus:outline-none focus:ring-1 focus:ring-ring focus:border-ring focus:border-transparent text-sm font-normal min-h-[450px]">{{ old('content', $page->content) }}</textarea>
+                    class="tinymce-editor w-full p-3 border border-border rounded-lg focus:outline-none focus:ring-1 focus:ring-ring focus:border-ring focus:border-transparent text-sm font-normal min-h-[450px]">{{ old('content', $page->content) }}</textarea>
             </div>
 
             <!-- SEO Metadata Settings Section -->
@@ -95,7 +95,7 @@
                             Title Tag</label>
                         <input type="text" id="meta_title" name="meta_title"
                             value="{{ old('meta_title', $page->meta_title) }}" placeholder="Meta title tag"
-                            class="w-full p-3 border border-border rounded-xl bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:ring-4 focus:ring-ring/15 focus:outline-none transition-all">
+                            class="w-full p-3 border border-border rounded-xl bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:ring-2 focus:ring-ring/50 focus:outline-none transition-all">
                     </div>
                     <div class="space-y-1.5 col-span-2 sm:col-span-1">
                         <label for="meta_description"
@@ -104,7 +104,7 @@
                         <input type="text" id="meta_description" name="meta_description"
                             value="{{ old('meta_description', $page->meta_description) }}"
                             placeholder="Meta description tag"
-                            class="w-full p-3 border border-border rounded-xl bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:ring-4 focus:ring-ring/15 focus:outline-none transition-all">
+                            class="w-full p-3 border border-border rounded-xl bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:ring-2 focus:ring-ring/50 focus:outline-none transition-all">
                     </div>
                 </div>
             </div>

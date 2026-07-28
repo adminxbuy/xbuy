@@ -261,14 +261,14 @@
             <table class="w-full text-left text-xs border-collapse">
                 <thead style="background: var(--muted);">
                     <tr class="border-b" style="border-color: var(--border);">
-                        <th class="px-6 py-3 w-12 font-semibold" style="color: var(--muted-foreground);"><input type="checkbox" class="rounded"></th>
-                        <th class="px-6 py-3 font-semibold" style="color: var(--muted-foreground);">Order</th>
-                        <th class="px-6 py-3 font-semibold" style="color: var(--muted-foreground);">Buyer</th>
-                        <th class="px-6 py-3 font-semibold" style="color: var(--muted-foreground);">Seller</th>
-                        <th class="px-6 py-3 font-semibold" style="color: var(--muted-foreground);">Reason</th>
-                        <th class="px-6 py-3 font-semibold" style="color: var(--muted-foreground);">Raised</th>
-                        <th class="px-6 py-3 font-semibold" style="color: var(--muted-foreground);">Status</th>
-                        <th class="px-6 py-3 text-right font-semibold" style="color: var(--muted-foreground);">Action</th>
+                        <th class="px-6 py-3 w-12 font-medium" style="color: var(--muted-foreground);"><input type="checkbox" class="rounded"></th>
+                        <th class="px-6 py-3 font-medium" style="color: var(--muted-foreground);">Order</th>
+                        <th class="px-6 py-3 font-medium" style="color: var(--muted-foreground);">Buyer</th>
+                        <th class="px-6 py-3 font-medium" style="color: var(--muted-foreground);">Seller</th>
+                        <th class="px-6 py-3 font-medium" style="color: var(--muted-foreground);">Reason</th>
+                        <th class="px-6 py-3 font-medium" style="color: var(--muted-foreground);">Raised</th>
+                        <th class="px-6 py-3 font-medium" style="color: var(--muted-foreground);">Status</th>
+                        <th class="px-6 py-3 text-right font-medium" style="color: var(--muted-foreground);">Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -324,11 +324,11 @@
             <table class="w-full text-left text-xs border-collapse">
                 <thead style="background: var(--muted);">
                     <tr class="border-b" style="border-color: var(--border);">
-                        <th class="px-6 py-3 font-semibold" style="color: var(--muted-foreground);">Order ID</th>
-                        <th class="px-6 py-3 font-semibold" style="color: var(--muted-foreground);">Customer</th>
-                        <th class="px-6 py-3 font-semibold" style="color: var(--muted-foreground);">Amount</th>
-                        <th class="px-6 py-3 font-semibold" style="color: var(--muted-foreground);">Status</th>
-                        <th class="px-6 py-3 font-semibold" style="color: var(--muted-foreground);">Date</th>
+                        <th class="px-6 py-3 font-medium" style="color: var(--muted-foreground);">Order ID</th>
+                        <th class="px-6 py-3 font-medium" style="color: var(--muted-foreground);">Customer</th>
+                        <th class="px-6 py-3 font-medium" style="color: var(--muted-foreground);">Amount</th>
+                        <th class="px-6 py-3 font-medium" style="color: var(--muted-foreground);">Status</th>
+                        <th class="px-6 py-3 font-medium" style="color: var(--muted-foreground);">Date</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -373,13 +373,13 @@
             <table class="w-full text-left text-xs border-collapse">
                 <thead style="background: var(--muted);">
                     <tr class="border-b" style="border-color: var(--border);">
-                        <th class="px-6 py-3 w-12 font-semibold" style="color: var(--muted-foreground);"><input type="checkbox" class="rounded"></th>
-                        <th class="px-6 py-3 font-semibold" style="color: var(--muted-foreground);">Ticket ID</th>
-                        <th class="px-6 py-3 font-semibold" style="color: var(--muted-foreground);">Buyer</th>
-                        <th class="px-6 py-3 font-semibold" style="color: var(--muted-foreground);">Subject</th>
-                        <th class="px-6 py-3 font-semibold" style="color: var(--muted-foreground);">Created</th>
-                        <th class="px-6 py-3 font-semibold" style="color: var(--muted-foreground);">Status</th>
-                        <th class="px-6 py-3 text-right font-semibold" style="color: var(--muted-foreground);">Actions</th>
+                        <th class="px-6 py-3 w-12 font-medium" style="color: var(--muted-foreground);"><input type="checkbox" class="rounded"></th>
+                        <th class="px-6 py-3 font-medium" style="color: var(--muted-foreground);">Ticket ID</th>
+                        <th class="px-6 py-3 font-medium" style="color: var(--muted-foreground);">Buyer</th>
+                        <th class="px-6 py-3 font-medium" style="color: var(--muted-foreground);">Subject</th>
+                        <th class="px-6 py-3 font-medium" style="color: var(--muted-foreground);">Created</th>
+                        <th class="px-6 py-3 font-medium" style="color: var(--muted-foreground);">Status</th>
+                        <th class="px-6 py-3 text-right font-medium" style="color: var(--muted-foreground);">Actions</th>
                     </tr>
                 </thead>
                 <tbody>

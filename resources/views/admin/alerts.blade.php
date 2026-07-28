@@ -4,7 +4,7 @@
 @section('page_title', 'System Alerts & Notifications')
 
 @section('header_actions')
-    <a href="{{ route('admin.trash.index', 'alerts') }}" class="flex items-center space-x-1.5 px-4 py-2.5 bg-rose-50 hover:bg-rose-100 text-rose-700 rounded-lg border border-rose-200/50 text-xs font-bold transition-all border border-red-200 shadow-sm">
+    <a href="{{ route('admin.trash.index', 'alerts') }}" class="flex items-center space-x-1.5 px-4 py-2.5 bg-rose-50 hover:bg-rose-100 text-rose-700 rounded-lg border border-rose-200/50 text-xs font-medium transition-all border border-red-200 shadow-sm">
         <i data-lucide="trash-2" class="w-4.5 h-4.5 text-red-500"></i>
         <span>Trash ({{ $trashedAlerts->count() }})</span>
     </a>
@@ -30,7 +30,7 @@
                     <form action="{{ route('admin.alerts.read-all') }}" method="POST" class="inline">
                         @csrf
                         <button type="submit"
-                            class="w-full sm:w-auto px-4 py-2 border border-border hover:bg-muted text-foreground rounded-xl text-xs font-semibold flex items-center justify-center gap-1.5 transition-all">
+                            class="w-full sm:w-auto px-4 py-2 border border-border hover:bg-muted text-foreground rounded-lg text-xs font-semibold flex items-center justify-center gap-1.5 transition-all">
                             <i data-lucide="check-square" class="w-3.5 h-3.5"></i>
                             <span>Mark All as Read</span>
                         </button>
@@ -42,7 +42,7 @@
                         onsubmit="return confirm('Are you sure you want to clear all alerts? This cannot be undone.');">
                         @csrf
                         <button type="submit"
-                            class="w-full sm:w-auto px-4 py-2 bg-rose-50 hover:bg-rose-100 text-rose-700 rounded-xl text-xs font-semibold flex items-center justify-center gap-1.5 transition-all">
+                            class="w-full sm:w-auto px-4 py-2 bg-rose-50 hover:bg-rose-100 text-rose-700 rounded-lg text-xs font-semibold flex items-center justify-center gap-1.5 transition-all">
                             <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
                             <span>Clear All Alerts</span>
                         </button>
@@ -64,7 +64,7 @@
                                 class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground"></i>
                             <input type="text" name="search" value="{{ request('search') }}"
                                 placeholder="Search title or message content…"
-                                class="w-full pl-9 pr-4 py-2.5 text-xs border border-border rounded-xl bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:outline-none">
+                                class="w-full pl-9 pr-4 py-2.5 text-xs border border-border rounded-lg bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:outline-none">
                         </div>
                     </div>
 
@@ -73,7 +73,7 @@
                         <label class="text-xs font-bold text-muted-foreground uppercase tracking-wider block">Status</label>
                         <div class="relative">
                             <select name="status"
-                                class="w-full p-2.5 pl-3 pr-8 text-xs border border-border rounded-xl bg-muted hover:bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:outline-none transition-all cursor-pointer font-semibold text-foreground appearance-none">
+                                class="w-full p-2.5 pl-3 pr-8 text-xs border border-border rounded-lg bg-muted hover:bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:outline-none transition-all cursor-pointer font-semibold text-foreground appearance-none">
                                 <option value="">All Statuses</option>
                                 <option value="unread" {{ request('status') === 'unread' ? 'selected' : '' }}>Unread</option>
                                 <option value="read" {{ request('status') === 'read' ? 'selected' : '' }}>Read</option>
@@ -100,7 +100,7 @@
                                 Range</label>
                             <div class="relative">
                                 <select x-model="currentPreset" @change="applyPreset($event.target.value)"
-                                    class="p-2.5 pl-3 pr-8 text-xs border border-border rounded-xl bg-muted hover:bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:outline-none transition-all cursor-pointer font-semibold text-foreground appearance-none">
+                                    class="p-2.5 pl-3 pr-8 text-xs border border-border rounded-lg bg-muted hover:bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:outline-none transition-all cursor-pointer font-semibold text-foreground appearance-none">
                                     <option value="all">All Time</option>
                                     <option value="today">Today</option>
                                     <option value="yesterday">Yesterday</option>
@@ -124,7 +124,7 @@
                                     <i data-lucide="calendar"
                                         class="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-muted-foreground"></i>
                                     <input type="text" x-ref="startInput" placeholder="Start Date" readonly
-                                        class="pl-9 pr-4 py-2.5 text-xs border border-border rounded-xl bg-muted hover:bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:outline-none cursor-pointer font-semibold text-foreground w-32">
+                                        class="pl-9 pr-4 py-2.5 text-xs border border-border rounded-lg bg-muted hover:bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:outline-none cursor-pointer font-semibold text-foreground w-32">
                                 </div>
                             </div>
                             <span class="text-muted-foreground text-xs mb-3 flex-shrink-0">to</span>
@@ -134,7 +134,7 @@
                                     <i data-lucide="calendar"
                                         class="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-muted-foreground"></i>
                                     <input type="text" x-ref="endInput" placeholder="End Date" readonly
-                                        class="pl-9 pr-4 py-2.5 text-xs border border-border rounded-xl bg-muted hover:bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:outline-none cursor-pointer font-semibold text-foreground w-32">
+                                        class="pl-9 pr-4 py-2.5 text-xs border border-border rounded-lg bg-muted hover:bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:outline-none cursor-pointer font-semibold text-foreground w-32">
                                 </div>
                             </div>
                         </div>
@@ -145,7 +145,7 @@
                 <div class="flex items-center gap-2 pt-5">
                     @if(request()->anyFilled(['search', 'status', 'date_start', 'date_end']))
                         <a href="{{ route('admin.alerts') }}"
-                            class="px-4 py-2 border border-border text-muted-foreground hover:bg-muted rounded-xl text-xs font-semibold flex items-center transition-all">
+                            class="px-4 py-2 border border-border text-muted-foreground hover:bg-muted rounded-lg text-xs font-semibold flex items-center transition-all">
                             Clear Filters
                         </a>
                     @endif
@@ -174,7 +174,7 @@
                         <table class="w-full text-left border-collapse text-xs">
                             <thead>
                                 <tr
-                                    class="bg-muted/80 uppercase font-bold text-muted-foreground border-b border-border text-[10px]">
+                                    class="bg-muted uppercase font-bold text-muted-foreground border-b border-border text-[10px]">
                                     <th class="px-4 py-2.5">Title</th>
                                     <th class="px-4 py-2.5">Message</th>
                                     <th class="px-4 py-2.5">Deleted At</th>
@@ -183,7 +183,7 @@
                             </thead>
                             <tbody class="divide-y divide-border">
                                 @foreach($trashedAlerts as $tAlert)
-                                    <tr class="hover:bg-muted/30">
+                                    <tr class="hover:bg-muted">
                                         <td class="px-4 py-3 font-bold text-foreground">{{ $tAlert->title }}</td>
                                         <td class="px-4 py-3 text-muted-foreground truncate max-w-xs" title="{{ $tAlert->message }}">
                                             {{ $tAlert->message }}</td>
@@ -194,7 +194,7 @@
                                                 method="POST">
                                                 @csrf
                                                 <button type="submit"
-                                                    class="px-2 py-1 bg-emerald-50 text-emerald-700 border border-emerald-250 hover:bg-emerald-100 rounded-lg font-bold text-[10px] uppercase flex items-center space-x-1">
+                                                    class="px-2 py-1 bg-emerald-50 text-emerald-700 border border-emerald-250 hover:bg-emerald-100 rounded-lg font-medium text-[10px] uppercase flex items-center space-x-1">
                                                     <i data-lucide="rotate-ccw" class="w-3.5 h-3.5"></i>
                                                     <span>Restore</span>
                                                 </button>
@@ -265,7 +265,7 @@
                     @endphp
 
                     <div
-                        class="p-5 flex items-start justify-between gap-4 transition-all duration-200 {{ !$alert->is_read ? 'bg-muted/20' : 'hover:bg-muted/30' }}">
+                        class="p-5 flex items-start justify-between gap-4 transition-all duration-200 {{ !$alert->is_read ? 'bg-muted' : 'hover:bg-muted' }}">
                         <div class="flex items-start gap-4">
                             <!-- Alert Icon -->
                             <div
@@ -305,7 +305,7 @@
                                 <form action="{{ route('admin.alerts.read', $alert->id) }}" method="POST">
                                     @csrf
                                     <button type="submit"
-                                        class="px-3 py-1.5 bg-muted hover:bg-primary text-primary-foreground hover:bg-primary/90/25 border border-border hover:border-foreground text-foreground hover:text-foreground rounded-lg text-[10px] font-bold transition-all"
+                                        class="px-3 py-1.5 bg-muted hover:bg-primary text-primary-foreground hover:bg-primary/90/25 border border-border hover:border-foreground text-foreground hover:text-foreground rounded-lg text-[10px] font-medium transition-all"
                                         title="Mark as Read">
                                         <i data-lucide="check" class="w-3.5 h-3.5 inline mr-0.5"></i> Mark Read
                                     </button>
@@ -333,7 +333,7 @@
 
             <!-- Pagination -->
             @if($alerts->hasPages())
-                <div class="px-5 py-4 border-t border-border bg-muted/50">
+                <div class="px-5 py-4 border-t border-border bg-muted">
                     {{ $alerts->links() }}
                 </div>
             @endif

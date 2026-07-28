@@ -59,7 +59,7 @@
                     <label for="rating_type" class="text-xs font-bold text-muted-foreground uppercase tracking-wider block">Rating Type</label>
                     <div class="relative">
                         <select name="rating_type" id="rating_type" required
-                                class="w-full p-3 pl-4 pr-10 text-xs border border-border rounded-xl bg-muted hover:bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:outline-none transition-all appearance-none cursor-pointer">
+                                class="w-full p-3 pl-4 pr-10 text-xs border border-border rounded-lg bg-muted hover:bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:outline-none transition-all appearance-none cursor-pointer">
                             <option value="manual" {{ $rating->rating_type === 'manual' ? 'selected' : '' }}>Manual Override (Admin Created)</option>
                             <option value="auto" {{ $rating->rating_type === 'auto' ? 'selected' : '' }}>Automatic (System Generated)</option>
                         </select>
@@ -90,7 +90,7 @@
                 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
                     <!-- Item Accuracy -->
-                    <div class="space-y-2 p-4 bg-muted/50 border border-border/60 rounded-xl">
+                    <div class="space-y-2 p-4 bg-muted border border-border/60 rounded-xl">
                         <div class="flex justify-between items-center text-xs">
                             <label for="item_accuracy" class="font-bold text-foreground">Item Accuracy</label>
                             <span class="px-2 py-0.5 bg-muted text-foreground font-bold rounded" x-text="accuracy">5</span>
@@ -100,7 +100,7 @@
                     </div>
 
                     <!-- Packaging Quality -->
-                    <div class="space-y-2 p-4 bg-muted/50 border border-border/60 rounded-xl">
+                    <div class="space-y-2 p-4 bg-muted border border-border/60 rounded-xl">
                         <div class="flex justify-between items-center text-xs">
                             <label for="packaging" class="font-bold text-foreground">Packaging Quality</label>
                             <span class="px-2 py-0.5 bg-muted text-foreground font-bold rounded" x-text="packaging">5</span>
@@ -110,7 +110,7 @@
                     </div>
 
                     <!-- Shipping Speed -->
-                    <div class="space-y-2 p-4 bg-muted/50 border border-border/60 rounded-xl">
+                    <div class="space-y-2 p-4 bg-muted border border-border/60 rounded-xl">
                         <div class="flex justify-between items-center text-xs">
                             <label for="shipping_speed" class="font-bold text-foreground">Shipping Speed</label>
                             <span class="px-2 py-0.5 bg-muted text-foreground font-bold rounded" x-text="shipping">5</span>
@@ -120,7 +120,7 @@
                     </div>
 
                     <!-- Communication -->
-                    <div class="space-y-2 p-4 bg-muted/50 border border-border/60 rounded-xl">
+                    <div class="space-y-2 p-4 bg-muted border border-border/60 rounded-xl">
                         <div class="flex justify-between items-center text-xs">
                             <label for="communication" class="font-bold text-foreground">Communication</label>
                             <span class="px-2 py-0.5 bg-muted text-foreground font-bold rounded" x-text="communication">5</span>
@@ -135,7 +135,7 @@
             <div class="space-y-1.5 pt-2">
                 <label for="review_text" class="text-xs font-bold text-muted-foreground uppercase tracking-wider block">Review Comments</label>
                 <textarea name="review_text" id="review_text" rows="4" placeholder="Enter comments or reason for override here..."
-                          class="w-full p-3 text-xs border border-border rounded-xl bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:outline-none transition-all @error('review_text') border-red-500 @enderror">{{ old('review_text', $rating->review_text) }}</textarea>
+                          class="w-full p-3 text-xs border border-border rounded-lg bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:outline-none transition-all @error('review_text') border-red-500 @enderror">{{ old('review_text', $rating->review_text) }}</textarea>
                 @error('review_text')
                     <p class="text-red-500 text-[10px] font-semibold mt-1">{{ $message }}</p>
                 @enderror
@@ -143,10 +143,10 @@
 
             <!-- Form Actions -->
             <div class="flex items-center justify-end gap-3 pt-5 border-t border-border">
-                <a href="{{ route('admin.ratings') }}" class="px-5 py-2.5 border border-border hover:bg-muted text-muted-foreground rounded-xl text-xs font-bold transition-all">
+                <a href="{{ route('admin.ratings') }}" class="px-5 py-2.5 border border-border hover:bg-muted text-muted-foreground rounded-lg text-xs font-medium transition-all">
                     Cancel
                 </a>
-                <button type="submit" class="px-6 py-2.5 bg-primary text-primary-foreground hover:bg-primary/90 rounded-xl text-xs font-bold transition-all shadow-sm">
+                <button type="submit" class="px-6 py-2.5 bg-primary text-primary-foreground hover:bg-primary/90 rounded-lg text-xs font-medium transition-all shadow-sm">
                     Update & Recalculate
                 </button>
             </div>

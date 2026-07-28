@@ -19,7 +19,7 @@
                 <label class="text-[10px] font-bold text-muted-foreground uppercase tracking-wider block">Commission Percentage (%)</label>
                 <div class="relative">
                     <input type="number" step="0.1" name="commission_percent" value="{{ $settings['commission_percent'] }}" min="0" max="100" required
-                           class="w-full p-3 pr-10 text-xs border border-border rounded-xl bg-muted hover:bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:outline-none transition-all font-semibold text-foreground">
+                           class="w-full p-3 pr-10 text-xs border border-border rounded-lg bg-muted hover:bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:outline-none transition-all font-semibold text-foreground">
                     <span class="absolute right-3 top-1/2 -translate-y-1/2 text-xs font-bold text-muted-foreground">%</span>
                 </div>
             </div>
@@ -30,7 +30,7 @@
                 <div class="relative">
                     <span class="absolute left-3 top-1/2 -translate-y-1/2 text-xs font-bold text-muted-foreground">₹</span>
                     <input type="number" name="platform_expense" value="{{ $settings['platform_expense'] }}" min="0" required
-                           class="w-full pl-7 pr-4 p-3 text-xs border border-border rounded-xl bg-muted hover:bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:outline-none transition-all font-semibold text-foreground">
+                           class="w-full pl-7 pr-4 p-3 text-xs border border-border rounded-lg bg-muted hover:bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:outline-none transition-all font-semibold text-foreground">
                 </div>
             </div>
 
@@ -40,7 +40,7 @@
                 <div class="relative">
                     <span class="absolute left-3 top-1/2 -translate-y-1/2 text-xs font-bold text-muted-foreground">₹</span>
                     <input type="number" name="min_cap" value="{{ $settings['min_cap'] }}" min="0" required
-                           class="w-full pl-7 pr-4 p-3 text-xs border border-border rounded-xl bg-muted hover:bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:outline-none transition-all font-semibold text-foreground">
+                           class="w-full pl-7 pr-4 p-3 text-xs border border-border rounded-lg bg-muted hover:bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:outline-none transition-all font-semibold text-foreground">
                 </div>
             </div>
 
@@ -50,7 +50,7 @@
                 <div class="relative">
                     <span class="absolute left-3 top-1/2 -translate-y-1/2 text-xs font-bold text-muted-foreground">₹</span>
                     <input type="number" name="max_cap" value="{{ $settings['max_cap'] }}" min="0" required
-                           class="w-full pl-7 pr-4 p-3 text-xs border border-border rounded-xl bg-muted hover:bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:outline-none transition-all font-semibold text-foreground">
+                           class="w-full pl-7 pr-4 p-3 text-xs border border-border rounded-lg bg-muted hover:bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:outline-none transition-all font-semibold text-foreground">
                 </div>
             </div>
 
@@ -59,7 +59,7 @@
                 <label class="text-[10px] font-bold text-muted-foreground uppercase tracking-wider block">Payment Day of Month</label>
                 <div class="relative">
                     <input type="number" name="payment_day" value="{{ $settings['payment_day'] }}" min="1" max="31" required
-                           class="w-full p-3 text-xs border border-border rounded-xl bg-muted hover:bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:outline-none transition-all font-semibold text-foreground">
+                           class="w-full p-3 text-xs border border-border rounded-lg bg-muted hover:bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:outline-none transition-all font-semibold text-foreground">
                     <span class="absolute right-3 top-1/2 -translate-y-1/2 text-xs font-bold text-muted-foreground">th</span>
                 </div>
             </div>
@@ -68,7 +68,7 @@
             <div class="space-y-1">
                 <label class="text-[10px] font-bold text-muted-foreground uppercase tracking-wider block">Amendment Trigger (orders/month)</label>
                 <input type="number" name="amendment_trigger" value="{{ $settings['amendment_trigger'] }}" min="1" required
-                       class="w-full p-3 text-xs border border-border rounded-xl bg-muted hover:bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:outline-none transition-all font-semibold text-foreground">
+                       class="w-full p-3 text-xs border border-border rounded-lg bg-muted hover:bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:outline-none transition-all font-semibold text-foreground">
             </div>
         </div>
 
@@ -82,7 +82,7 @@
         </div>
 
         <div class="flex items-center justify-end gap-3 pt-4 border-t border-border">
-            <button type="submit" class="bg-primary text-primary-foreground hover:bg-primary/90 hover:bg-primary/90 hover:text-primary-foreground font-bold px-6 py-2.5 rounded-xl text-xs transition-all shadow-sm flex items-center gap-1.5">
+            <button type="submit" class="bg-primary text-primary-foreground hover:bg-primary/90 hover:bg-primary/90 hover:text-primary-foreground font-medium px-6 py-2.5 rounded-lg text-xs transition-all shadow-sm flex items-center gap-1.5">
                 <i data-lucide="save" class="w-4 h-4"></i>
                 <span>Save Settings</span>
             </button>

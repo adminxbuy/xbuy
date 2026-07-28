@@ -267,7 +267,7 @@
             <div class="bg-card border border-border rounded-xl ring-0 overflow-hidden flex flex-col h-[400px]"
                 x-data="sellerChatManager()">
                 <!-- Chat Header -->
-                <div class="px-6 py-4 border-b border-border bg-muted/50 flex items-center justify-between">
+                <div class="px-6 py-4 border-b border-border bg-muted flex items-center justify-between">
                     <div class="flex items-center space-x-2.5">
                         <div class="w-8 h-8 rounded-full bg-primary text-primary-foreground hover:bg-primary/90/15 flex items-center justify-center text-foreground">
                             <i data-lucide="message-square" class="w-4 h-4"></i>
@@ -310,12 +310,12 @@
                 </div>
 
                 <!-- Chat Input Area -->
-                <div class="p-4 border-t border-border bg-muted/30">
+                <div class="p-4 border-t border-border bg-muted">
                     <form @submit.prevent="sendMessage()" class="flex gap-2">
                         <input type="text" x-model="newMessage" placeholder="Type a message..." required
-                            class="flex-1 px-4 py-2.5 border border-border rounded-xl text-sm focus:ring-1 focus:ring-ring focus:border-ring focus:outline-none bg-card transition-all">
+                            class="flex-1 px-4 py-2.5 border border-border rounded-lg text-sm focus:ring-1 focus:ring-ring focus:border-ring focus:outline-none bg-card transition-all">
                         <button type="submit" :disabled="sending"
-                            class="bg-primary hover:bg-primary/90 disabled:bg-muted text-primary-foreground font-bold px-5 py-2.5 rounded-xl text-sm shadow-sm transition-all flex items-center space-x-2">
+                            class="bg-primary hover:bg-primary/90 disabled:bg-muted text-primary-foreground font-medium px-5 py-2.5 rounded-lg text-sm shadow-sm transition-all flex items-center space-x-2">
                             <span x-show="!sending">Send</span>
                             <span x-show="sending" x-cloak>Sending...</span>
                             <i data-lucide="send" class="w-4 h-4"></i>
@@ -434,7 +434,7 @@
                         </form>
 
                         <button @click="rejecting = true" x-show="!rejecting"
-                            class="w-full bg-muted hover:bg-rose-50 text-foreground hover:text-rose-700 font-semibold py-3 px-4 rounded-xl transition-all border border-border hover:border-rose-200 flex items-center justify-center space-x-2">
+                            class="w-full bg-muted hover:bg-rose-50 text-foreground hover:text-rose-700 font-semibold py-3 px-4 rounded-lg transition-all border border-border hover:border-rose-200 flex items-center justify-center space-x-2">
                             <i data-lucide="x" class="w-4 h-4"></i>
                             <span>Reject Documents</span>
                         </button>
@@ -449,16 +449,16 @@
                                     Rejection</label>
                                 <textarea id="reason" name="reason" rows="3" required
                                     placeholder="Specify why documents are invalid..."
-                                    class="w-full p-3 border border-border rounded-xl text-sm focus:ring-1 focus:ring-ring focus:border-ring focus:outline-none bg-card"></textarea>
+                                    class="w-full p-3 border border-border rounded-lg text-sm focus:ring-1 focus:ring-ring focus:border-ring focus:outline-none bg-card"></textarea>
                             </div>
 
                             <div class="flex gap-2">
                                 <button type="button" @click="rejecting = false"
-                                    class="flex-1 bg-card hover:bg-muted text-foreground text-xs font-bold py-2 px-3 border border-border rounded-lg transition-all">
+                                    class="flex-1 bg-card hover:bg-muted text-foreground text-xs font-medium py-2 px-3 border border-border rounded-lg transition-all">
                                     Cancel
                                 </button>
                                 <button type="submit"
-                                    class="flex-1 bg-rose-600 hover:bg-rose-700 text-white text-xs font-bold py-2 px-3 rounded-lg shadow-sm transition-all">
+                                    class="flex-1 bg-rose-600 hover:bg-rose-700 text-white text-xs font-medium py-2 px-3 rounded-lg shadow-sm transition-all">
                                     Submit Rejection
                                 </button>
                             </div>
@@ -494,14 +494,14 @@
                     <form action="{{ route('admin.sellers.status-update', $seller->id) }}" method="POST" class="flex gap-2">
                         @csrf
                         <select name="status"
-                            class="flex-1 p-2 border border-border rounded-xl bg-muted text-xs font-semibold focus:outline-none focus:ring-1 focus:ring-ring focus:border-ring focus:bg-card transition-all">
+                            class="flex-1 p-2 border border-border rounded-lg bg-muted text-xs font-semibold focus:outline-none focus:ring-1 focus:ring-ring focus:border-ring focus:bg-card transition-all">
                             <option value="active" {{ $seller->status === 'active' ? 'selected' : '' }}>Active</option>
                             <option value="suspended" {{ $seller->status === 'suspended' ? 'selected' : '' }}>Suspended
                             </option>
                             <option value="banned" {{ $seller->status === 'banned' ? 'selected' : '' }}>Banned</option>
                         </select>
                         <button type="submit"
-                            class="bg-primary text-primary-foreground hover:bg-primary/90 font-bold px-3 py-2 rounded-xl text-xs shadow-sm transition-all active:scale-[0.98]">
+                            class="bg-primary text-primary-foreground hover:bg-primary/90 font-medium px-3 py-2 rounded-lg text-xs shadow-sm transition-all">
                             Apply
                         </button>
                     </form>
@@ -532,7 +532,7 @@
                     <form action="{{ route('admin.sellers.badge-update', $seller->id) }}" method="POST" class="flex gap-2">
                         @csrf
                         <select name="badge_level"
-                            class="flex-1 p-2 border border-border rounded-xl bg-muted text-xs font-semibold focus:outline-none focus:ring-1 focus:ring-ring focus:border-ring focus:bg-card transition-all">
+                            class="flex-1 p-2 border border-border rounded-lg bg-muted text-xs font-semibold focus:outline-none focus:ring-1 focus:ring-ring focus:border-ring focus:bg-card transition-all">
                             <option value="basic" {{ $seller->badge_level === 'basic' ? 'selected' : '' }}>Basic</option>
                             <option value="verified" {{ $seller->badge_level === 'verified' ? 'selected' : '' }}>Verified
                             </option>
@@ -540,7 +540,7 @@
                             </option>
                         </select>
                         <button type="submit"
-                            class="bg-primary text-primary-foreground hover:bg-primary/90 font-bold px-3 py-2 rounded-xl text-xs shadow-sm transition-all active:scale-[0.98]">
+                            class="bg-primary text-primary-foreground hover:bg-primary/90 font-medium px-3 py-2 rounded-lg text-xs shadow-sm transition-all">
                             Apply
                         </button>
                     </form>

@@ -4,7 +4,7 @@
 @section('page_title', 'Supplier Ratings & Reviews')
 
 @section('header_actions')
-    <a href="{{ route('admin.trash.index', 'ratings') }}" class="flex items-center space-x-1.5 px-4 py-2.5 bg-rose-50 hover:bg-rose-100 text-rose-700 rounded-lg border border-rose-200/50 text-xs font-bold transition-all border border-red-200 shadow-sm">
+    <a href="{{ route('admin.trash.index', 'ratings') }}" class="flex items-center space-x-1.5 px-4 py-2.5 bg-rose-50 hover:bg-rose-100 text-rose-700 rounded-lg border border-rose-200/50 text-xs font-medium transition-all border border-red-200 shadow-sm">
         <i data-lucide="trash-2" class="w-4.5 h-4.5 text-red-500"></i>
         <span>Trash ({{ $trashedRatings->count() }})</span>
     </a>
@@ -105,7 +105,7 @@
                 <div class="flex flex-wrap items-center justify-between gap-4">
                     <h4 class="font-bold text-foreground text-sm">Rating Filters</h4>
                     <a href="{{ route('admin.ratings.create') }}"
-                        class="px-4 py-2 bg-primary text-primary-foreground hover:bg-primary/90  rounded-xl text-xs font-bold flex items-center gap-2 transition-all shadow-sm">
+                        class="px-4 py-2 bg-primary text-primary-foreground hover:bg-primary/90  rounded-lg text-xs font-medium flex items-center gap-2 transition-all shadow-sm">
                         <i data-lucide="plus" class="w-4 h-4"></i>
                         <span>Add Manual Rating</span>
                     </a>
@@ -120,7 +120,7 @@
                                 class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground"></i>
                             <input type="text" name="search" value="{{ request('search') }}"
                                 placeholder="Search reviews or orders..."
-                                class="w-full pl-9 pr-4 py-2.5 text-xs border border-border rounded-xl bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:outline-none transition-all">
+                                class="w-full pl-9 pr-4 py-2.5 text-xs border border-border rounded-lg bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:outline-none transition-all">
                         </div>
                     </div>
 
@@ -130,7 +130,7 @@
                             Supplier</label>
                         <div class="relative">
                             <select name="seller_id"
-                                class="w-full p-2.5 pl-3 pr-8 text-xs border border-border rounded-xl bg-muted hover:bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:outline-none transition-all appearance-none cursor-pointer">
+                                class="w-full p-2.5 pl-3 pr-8 text-xs border border-border rounded-lg bg-muted hover:bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:outline-none transition-all appearance-none cursor-pointer">
                                 <option value="">All Sellers</option>
                                 @foreach($sellers as $seller)
                                     <option value="{{ $seller->id }}" {{ request('seller_id') == $seller->id ? 'selected' : '' }}>
@@ -150,7 +150,7 @@
                         <label class="text-[10px] font-bold text-muted-foreground uppercase tracking-wider block">Buyer User</label>
                         <div class="relative">
                             <select name="buyer_id"
-                                class="w-full p-2.5 pl-3 pr-8 text-xs border border-border rounded-xl bg-muted hover:bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:outline-none transition-all appearance-none cursor-pointer">
+                                class="w-full p-2.5 pl-3 pr-8 text-xs border border-border rounded-lg bg-muted hover:bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:outline-none transition-all appearance-none cursor-pointer">
                                 <option value="">All Buyers</option>
                                 @foreach($buyers as $buyer)
                                     <option value="{{ $buyer->id }}" {{ request('buyer_id') == $buyer->id ? 'selected' : '' }}>
@@ -171,7 +171,7 @@
                             Type</label>
                         <div class="relative">
                             <select name="rating_type"
-                                class="w-full p-2.5 pl-3 pr-8 text-xs border border-border rounded-xl bg-muted hover:bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:outline-none transition-all appearance-none cursor-pointer">
+                                class="w-full p-2.5 pl-3 pr-8 text-xs border border-border rounded-lg bg-muted hover:bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:outline-none transition-all appearance-none cursor-pointer">
                                 <option value="">All Types</option>
                                 <option value="manual" {{ request('rating_type') === 'manual' ? 'selected' : '' }}>Manual
                                     (Admin/Override)</option>
@@ -191,7 +191,7 @@
                             Stars</label>
                         <div class="relative">
                             <select name="score"
-                                class="w-full p-2.5 pl-3 pr-8 text-xs border border-border rounded-xl bg-muted hover:bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:outline-none transition-all appearance-none cursor-pointer">
+                                class="w-full p-2.5 pl-3 pr-8 text-xs border border-border rounded-lg bg-muted hover:bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:outline-none transition-all appearance-none cursor-pointer">
                                 <option value="">All Scores</option>
                                 <option value="5" {{ request('score') == '5' ? 'selected' : '' }}>5 Stars</option>
                                 <option value="4" {{ request('score') == '4' ? 'selected' : '' }}>4 Stars & above</option>
@@ -210,12 +210,12 @@
                 <div class="flex items-center justify-end gap-2 pt-2 border-t border-border">
                     @if(request()->anyFilled(['search', 'seller_id', 'buyer_id', 'rating_type', 'score']))
                         <a href="{{ route('admin.ratings') }}"
-                            class="px-4 py-2 border border-border hover:bg-muted text-muted-foreground rounded-xl text-xs font-semibold transition-all">
+                            class="px-4 py-2 border border-border hover:bg-muted text-muted-foreground rounded-lg text-xs font-semibold transition-all">
                             Reset Filters
                         </a>
                     @endif
                     <button type="submit"
-                        class="px-5 py-2 bg-primary hover:bg-primary text-primary-foreground rounded-xl text-xs font-semibold transition-all">
+                        class="px-5 py-2 bg-primary hover:bg-primary text-primary-foreground rounded-lg text-xs font-semibold transition-all">
                         Apply Filters
                     </button>
                 </div>
@@ -243,7 +243,7 @@
                         <table class="w-full text-left border-collapse text-xs">
                             <thead>
                                 <tr
-                                    class="bg-muted/80 uppercase font-bold text-muted-foreground border-b border-border text-[10px]">
+                                    class="bg-muted uppercase font-bold text-muted-foreground border-b border-border text-[10px]">
                                     <th class="px-4 py-2.5">Order</th>
                                     <th class="px-4 py-2.5">Seller</th>
                                     <th class="px-4 py-2.5">Buyer</th>
@@ -254,7 +254,7 @@
                             </thead>
                             <tbody class="divide-y divide-border">
                                 @foreach($trashedRatings as $tRating)
-                                    <tr class="hover:bg-muted/30">
+                                    <tr class="hover:bg-muted">
                                         <td class="px-4 py-3 font-semibold text-foreground">
                                             {{ $tRating->order->order_number ?? 'N/A' }}</td>
                                         <td class="px-4 py-3 text-muted-foreground">{{ $tRating->seller->shop_name ?? 'N/A' }}</td>
@@ -268,7 +268,7 @@
                                                 method="POST">
                                                 @csrf
                                                 <button type="submit"
-                                                    class="px-2 py-1 bg-emerald-50 text-emerald-700 border border-emerald-250 hover:bg-emerald-100 rounded-lg font-bold text-[10px] uppercase flex items-center space-x-1">
+                                                    class="px-2 py-1 bg-emerald-50 text-emerald-700 border border-emerald-250 hover:bg-emerald-100 rounded-lg font-medium text-[10px] uppercase flex items-center space-x-1">
                                                     <i data-lucide="rotate-ccw" class="w-3.5 h-3.5"></i>
                                                     <span>Restore</span>
                                                 </button>
@@ -316,7 +316,7 @@
                     </thead>
                     <tbody class="divide-y divide-border text-xs">
                         @forelse($ratings as $rating)
-                            <tr class="hover:bg-muted/40 transition-colors">
+                            <tr class="hover:bg-muted transition-colors">
                                 <td class="py-4 px-6">
                                     @if($rating->rating_type === 'manual')
                                         <span
@@ -423,7 +423,7 @@
                 </table>
             </div>
             @if($ratings->hasPages())
-                <div class="px-6 py-4 border-t border-border bg-muted/50">
+                <div class="px-6 py-4 border-t border-border bg-muted">
                     {{ $ratings->links() }}
                 </div>
             @endif

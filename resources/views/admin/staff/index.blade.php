@@ -5,7 +5,7 @@
 
 @section('header_actions')
     @if(Auth::user()->isSuperAdmin())
-    <a href="{{ route('admin.accounts.create') }}" class="inline-flex items-center gap-2 bg-primary text-primary-foreground hover:bg-primary/90 hover:bg-primary/90 hover:text-primary-foreground font-bold px-4 py-2.5 rounded-xl text-xs transition-all shadow-sm">
+    <a href="{{ route('admin.accounts.create') }}" class="inline-flex items-center gap-2 bg-primary text-primary-foreground hover:bg-primary/90 hover:bg-primary/90 hover:text-primary-foreground font-medium px-4 py-2.5 rounded-lg text-xs transition-all shadow-sm">
         <i data-lucide="user-plus" class="w-3.5 h-3.5"></i>
         <span>Add Staff Account</span>
     </a>
@@ -23,10 +23,10 @@
             <div class="relative">
                 <i data-lucide="search" class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground"></i>
                 <input type="text" name="search" value="{{ request('search') }}" placeholder="Search staff..." 
-                       class="pl-9 pr-4 py-2 text-xs border border-border rounded-xl bg-muted hover:bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:outline-none transition-all w-56 font-semibold">
+                       class="pl-9 pr-4 py-2 text-xs border border-border rounded-lg bg-muted hover:bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:outline-none transition-all w-56 font-semibold">
             </div>
             @if(request()->filled('search'))
-                <a href="{{ route('admin.staff.directory') }}" class="px-3 py-2 border border-border text-muted-foreground hover:bg-muted rounded-xl text-xs font-semibold">
+                <a href="{{ route('admin.staff.directory') }}" class="px-3 py-2 border border-border text-muted-foreground hover:bg-muted rounded-lg text-xs font-semibold">
                     Clear
                 </a>
             @endif
@@ -35,7 +35,7 @@
 
     <div class="overflow-x-auto">
         <table class="w-full text-left text-sm">
-            <thead class="bg-muted text-[10px] uppercase tracking-wider text-muted-foreground font-bold border-b border-border">
+            <thead class="bg-muted text-xs uppercase tracking-widerr text-muted-foreground font-medium border-b border-border">
                 <tr>
                     <th class="px-6 py-4">Name</th>
                     <th class="px-6 py-4">Designation</th>
@@ -49,7 +49,7 @@
             </thead>
             <tbody class="divide-y divide-border">
                 @forelse($staff as $member)
-                <tr class="hover:bg-muted/50 transition-all">
+                <tr class="hover:bg-muted transition-all">
                     <td class="px-6 py-4">
                         <div class="flex items-center space-x-3">
                             <img src="https://ui-avatars.com/api/?name={{ urlencode($member->name) }}&background=e4e4e7&color=71717a&size=40" class="w-10 h-10 rounded-xl" alt="avatar">

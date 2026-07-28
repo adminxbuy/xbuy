@@ -37,7 +37,7 @@
         @method('PUT')
         
         {{-- Staff Profile Summary header --}}
-        <div class="flex items-center gap-4 bg-muted/70 border border-border p-4 rounded-xl">
+        <div class="flex items-center gap-4 bg-muted border border-border p-4 rounded-xl">
             <img src="https://ui-avatars.com/api/?name={{ urlencode($admin->name) }}&background=e4e4e7&color=71717a&size=48" 
                  class="w-12 h-12 rounded-xl shrink-0 border border-border" alt="{{ $admin->name }}">
             <div>
@@ -59,7 +59,7 @@
                 <div class="relative">
                     <i data-lucide="user" class="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground"></i>
                     <input type="text" name="name" required value="{{ old('name', $admin->name) }}" placeholder="e.g. Rahul Sharma"
-                           class="w-full pl-10 pr-4 py-3 text-xs border border-border rounded-xl bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:ring-4 focus:ring-yellow-100 focus:outline-none transition-all">
+                           class="w-full pl-10 pr-4 py-3 text-xs border border-border rounded-xl bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:ring-2 focus:ring-ring/50 focus:outline-none transition-all">
                 </div>
             </div>
 
@@ -71,7 +71,7 @@
                 <div class="relative">
                     <i data-lucide="mail" class="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground"></i>
                     <input type="email" name="email" required value="{{ old('email', $admin->email) }}" placeholder="username@xbuy.in"
-                           class="w-full pl-10 pr-4 py-3 text-xs border border-border rounded-xl bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:ring-4 focus:ring-yellow-100 focus:outline-none transition-all">
+                           class="w-full pl-10 pr-4 py-3 text-xs border border-border rounded-xl bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:ring-2 focus:ring-ring/50 focus:outline-none transition-all">
                 </div>
             </div>
         </div>
@@ -84,12 +84,12 @@
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
                 <template x-for="(role, key) in roles" :key="key">
                     <label class="border rounded-xl p-4 flex flex-col justify-between gap-3 cursor-pointer transition-all hover:bg-muted"
-                           :class="selectedRole === key ? 'border-yellow-400 bg-muted/30 ring-1 ring-yellow-400' : 'border-border bg-card'">
+                           :class="selectedRole === key ? 'border-primary bg-muted ring-1 ring-primary' : 'border-border bg-card'">
                         <div class="flex items-center justify-between">
                             <div class="p-2 rounded-xl" :class="role.bgClass">
                                 <i :data-lucide="role.icon" class="w-4 h-4" :class="role.iconClass"></i>
                             </div>
-                            <input type="radio" name="admin_role" :value="key" required x-model="selectedRole" @change="onRoleChange(key)" class="text-yellow-500 focus:ring-yellow-400">
+                            <input type="radio" name="admin_role" :value="key" required x-model="selectedRole" @change="onRoleChange(key)" class="text-yellow-500 focus:ring-ring">
                         </div>
                         <div>
                             <p class="text-xs font-bold text-foreground" x-text="role.label"></p>
@@ -107,7 +107,7 @@
                 <div class="relative">
                     <i data-lucide="shield" class="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground"></i>
                     <input type="text" name="custom_role_title" x-model="customRoleTitle" placeholder="e.g. Manager, Senior Auditor" :required="selectedRole === 'custom'" :disabled="selectedRole !== 'custom'"
-                           class="w-full pl-10 pr-4 py-3 text-xs border border-border rounded-xl bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:ring-4 focus:ring-yellow-100 focus:outline-none transition-all">
+                           class="w-full pl-10 pr-4 py-3 text-xs border border-border rounded-lg bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:ring-2 focus:ring-ring/50 focus:outline-none transition-all">
                 </div>
                 <p class="text-[10px] text-muted-foreground">Give this custom permission matrix a user-friendly name (e.g. Manager).</p>
             </div>
@@ -128,7 +128,7 @@
             <div class="border border-border rounded-xl overflow-hidden shadow-sm">
                 <table class="w-full text-left border-collapse text-xs">
                     <thead>
-                        <tr class="bg-muted/80 border-b border-border font-bold text-muted-foreground">
+                        <tr class="bg-muted border-b border-border font-bold text-muted-foreground">
                             <th class="p-3 pl-4">System Section</th>
                             <th class="p-3 text-center">None</th>
                             <th class="p-3 text-center">View Only</th>
@@ -139,7 +139,7 @@
                     </thead>
                     <tbody class="divide-y divide-border">
                         <template x-for="(secLabel, secKey) in sections" :key="secKey">
-                            <tr class="hover:bg-muted/40 transition-colors">
+                            <tr class="hover:bg-muted transition-colors">
                                 <td class="p-3 pl-4 font-bold text-foreground" x-text="secLabel"></td>
                                 
                                 {{-- Radio Buttons for Access Types --}}
@@ -150,7 +150,7 @@
                                                :value="type"
                                                x-model="customPerms[secKey]"
                                                @change="if(selectedRole !== 'custom') { selectedRole = 'custom'; }"
-                                               class="text-yellow-500 focus:ring-yellow-400">
+                                               class="text-yellow-500 focus:ring-ring">
                                     </td>
                                 </template>
                             </tr>
@@ -161,7 +161,7 @@
         </div>
 
         {{-- Dynamic Access Scope Summary Card --}}
-        <div class="bg-muted/30 border border-border rounded-xl p-5 space-y-4">
+        <div class="bg-muted border border-border rounded-xl p-5 space-y-4">
             <div class="flex items-center justify-between">
                 <div class="flex items-center gap-2">
                     <div class="p-1.5 bg-primary text-primary-foreground hover:bg-primary/90/10 text-foreground rounded-lg border border-border">
@@ -237,7 +237,7 @@
                     <div class="relative">
                         <i data-lucide="lock" class="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground"></i>
                         <input :type="show ? 'text' : 'password'" name="password" placeholder="Leave blank to keep current"
-                               class="w-full pl-10 pr-10 py-3 text-xs border border-border rounded-xl bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:ring-4 focus:ring-yellow-100 focus:outline-none transition-all">
+                               class="w-full pl-10 pr-10 py-3 text-xs border border-border rounded-lg bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:ring-2 focus:ring-ring/50 focus:outline-none transition-all">
                         <button type="button" @click="show = !show" class="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground">
                             <i :data-lucide="show ? 'eye-off' : 'eye'" class="w-4 h-4"></i>
                         </button>
@@ -250,7 +250,7 @@
                     <div class="relative">
                         <i data-lucide="lock" class="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground"></i>
                         <input :type="show ? 'text' : 'password'" name="password_confirmation" placeholder="Repeat new password"
-                               class="w-full pl-10 pr-10 py-3 text-xs border border-border rounded-xl bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:ring-4 focus:ring-yellow-100 focus:outline-none transition-all">
+                               class="w-full pl-10 pr-10 py-3 text-xs border border-border rounded-lg bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:ring-2 focus:ring-ring/50 focus:outline-none transition-all">
                         <button type="button" @click="show = !show" class="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground">
                             <i :data-lucide="show ? 'eye-off' : 'eye'" class="w-4 h-4"></i>
                         </button>
@@ -266,7 +266,7 @@
                 Cancel
             </a>
             <button type="submit" 
-                    class="px-6 py-3 bg-primary text-primary-foreground hover:bg-primary/90 hover:bg-[#e6c22f] text-foreground text-xs font-black rounded-xl flex items-center gap-1.5 transition-all shadow-sm">
+                    class="px-6 py-3 bg-primary text-primary-foreground hover:bg-primary/90 hover:bg-[#e6c22f] text-foreground text-xs font-black rounded-lg flex items-center gap-1.5 transition-all shadow-sm">
                 <i data-lucide="save" class="w-4 h-4"></i>
                 Save Changes
             </button>

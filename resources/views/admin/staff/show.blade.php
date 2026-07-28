@@ -197,7 +197,7 @@
                 </div>
                 <form action="{{ route('admin.staff.show', $member->id) }}" method="GET" class="flex items-center gap-2">
                     <input type="month" name="month_year" value="{{ request('month_year') }}"
-                           class="p-2.5 text-xs border border-border rounded-xl bg-muted hover:bg-muted focus:bg-card focus:outline-none transition-all cursor-pointer font-semibold text-foreground">
+                           class="p-2.5 text-xs border border-border rounded-lg bg-muted hover:bg-muted focus:bg-card focus:outline-none transition-all cursor-pointer font-semibold text-foreground">
                     @if(request()->filled('month_year'))
                         <a href="{{ route('admin.staff.show', $member->id) }}" class="px-3 py-2 border border-border text-muted-foreground hover:bg-muted rounded-xl text-xs font-semibold">
                             Reset
@@ -209,7 +209,7 @@
             <!-- Month Table -->
             <div class="overflow-hidden border border-border rounded-xl">
                 <table class="w-full text-left text-sm">
-                    <thead class="bg-muted text-[10px] uppercase tracking-wider text-muted-foreground font-bold border-b border-border">
+                    <thead class="bg-muted text-xs uppercase tracking-widerr text-muted-foreground font-medium border-b border-border">
                         <tr>
                             <th class="px-6 py-3">Month</th>
                             <th class="px-6 py-3">Orders Count</th>
@@ -222,7 +222,7 @@
                     </thead>
                     <tbody class="divide-y divide-border">
                         @forelse($monthlySummaries as $monthKey => $sum)
-                        <tr class="hover:bg-muted/50 transition-all font-semibold">
+                        <tr class="hover:bg-muted transition-all font-semibold">
                             <td class="px-6 py-3.5 text-foreground text-xs">{{ $sum['month_name'] }}</td>
                             <td class="px-6 py-3.5 text-muted-foreground text-xs">{{ $sum['orders_count'] }} orders</td>
                             <td class="px-6 py-3.5 text-foreground text-xs">₹{{ number_format($sum['gross'], 2) }}</td>
@@ -248,7 +248,7 @@
                             <td colspan="7" class="p-4 border-t border-b border-border">
                                 <div class="overflow-x-auto rounded-lg border border-border shadow-inner bg-card">
                                     <table class="w-full text-left text-xs">
-                                        <thead class="bg-muted text-[9px] uppercase tracking-wider text-muted-foreground font-bold border-b border-border">
+                                        <thead class="bg-muted text-[9px] uppercase tracking-widerr text-muted-foreground font-medium border-b border-border">
                                             <tr>
                                                 <th class="px-4 py-2">Order #</th>
                                                 <th class="px-4 py-2">Date</th>
@@ -331,7 +331,7 @@
                     </div>
                 </div>
                 @empty
-                <div class="px-6 py-12 text-center border border-border rounded-xl bg-muted/50">
+                <div class="px-6 py-12 text-center border border-border rounded-xl bg-muted">
                     <div class="w-10 h-10 bg-muted rounded-xl flex items-center justify-center text-muted-foreground mx-auto mb-2 border border-border">
                         <i data-lucide="mail-search" class="w-5 h-5"></i>
                     </div>
@@ -359,7 +359,7 @@
                     <span class="text-[9px] text-muted-foreground bg-muted font-semibold px-2 py-0.5 rounded-full mt-1.5 inline-block">IP: {{ $log->ip_address }}</span>
                 </div>
                 @empty
-                <div class="px-6 py-12 text-center border border-border rounded-xl bg-muted/50 -ml-6">
+                <div class="px-6 py-12 text-center border border-border rounded-xl bg-muted -ml-6">
                     <div class="w-10 h-10 bg-muted rounded-xl flex items-center justify-center text-muted-foreground mx-auto mb-2 border border-border">
                         <i data-lucide="shield-alert" class="w-5 h-5"></i>
                     </div>

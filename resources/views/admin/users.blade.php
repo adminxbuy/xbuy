@@ -40,12 +40,12 @@
                 <div class="w-full sm:w-60 space-y-1">
                     <label class="text-xs font-bold text-muted-foreground uppercase tracking-wider block">Search</label>
                     <input type="text" name="search" value="{{ request('search') }}" placeholder="Name, email, phone..."
-                           class="w-full p-2.5 border border-border rounded-xl bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:outline-none">
+                           class="w-full p-2.5 border border-border rounded-lg bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:outline-none">
                 </div>
 
                 <div class="w-full sm:w-48 space-y-1">
                     <label class="text-xs font-bold text-muted-foreground uppercase tracking-wider block">Status</label>
-                    <select name="status" class="w-full p-2.5 border border-border rounded-xl bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:outline-none font-semibold text-foreground">
+                    <select name="status" class="w-full p-2.5 border border-border rounded-lg bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:outline-none font-semibold text-foreground">
                         <option value="">All Statuses</option>
                         <option value="active" {{ request('status') === 'active' ? 'selected' : '' }}>Active</option>
                         <option value="suspended" {{ request('status') === 'suspended' ? 'selected' : '' }}>Suspended</option>
@@ -66,7 +66,7 @@
                         <label class="text-xs font-bold text-muted-foreground uppercase tracking-wider block">Joined Date Range</label>
                         <div class="relative">
                             <select x-model="currentPreset" @change="applyPreset($event.target.value)"
-                                    class="p-2.5 pl-3 pr-8 text-xs border border-border rounded-xl bg-muted hover:bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:outline-none transition-all cursor-pointer font-semibold text-foreground appearance-none">
+                                    class="p-2.5 pl-3 pr-8 text-xs border border-border rounded-lg bg-muted hover:bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:outline-none transition-all cursor-pointer font-semibold text-foreground appearance-none">
                                 <option value="all">All Time</option>
                                 <option value="today">Today</option>
                                 <option value="yesterday">Yesterday</option>
@@ -88,7 +88,7 @@
                             <div class="relative">
                                 <i data-lucide="calendar" class="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-muted-foreground"></i>
                                 <input type="text" x-ref="startInput" placeholder="Start Date" readonly
-                                       class="pl-9 pr-4 py-2.5 text-xs border border-border rounded-xl bg-muted hover:bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:outline-none cursor-pointer font-semibold text-foreground w-32">
+                                       class="pl-9 pr-4 py-2.5 text-xs border border-border rounded-lg bg-muted hover:bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:outline-none cursor-pointer font-semibold text-foreground w-32">
                             </div>
                         </div>
                         <span class="text-muted-foreground text-xs mb-3">to</span>
@@ -97,7 +97,7 @@
                             <div class="relative">
                                 <i data-lucide="calendar" class="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-muted-foreground"></i>
                                 <input type="text" x-ref="endInput" placeholder="End Date" readonly
-                                       class="pl-9 pr-4 py-2.5 text-xs border border-border rounded-xl bg-muted hover:bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:outline-none cursor-pointer font-semibold text-foreground w-32">
+                                       class="pl-9 pr-4 py-2.5 text-xs border border-border rounded-lg bg-muted hover:bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:outline-none cursor-pointer font-semibold text-foreground w-32">
                             </div>
                         </div>
                     </div>
@@ -133,7 +133,7 @@
                 </thead>
                 <tbody class="divide-y divide-border">
                     @forelse($users as $user)
-                        <tr class="hover:bg-muted/30 transition-colors text-foreground">
+                        <tr class="hover:bg-muted transition-colors text-foreground">
                             <!-- Buyer Name -->
                             <td class="p-4 pl-6">
                                 <div class="flex items-center gap-2.5">
@@ -213,7 +213,7 @@
                             </td>
                              <!-- Actions -->
                              <td class="p-4 pr-6 text-right space-x-1.5 whitespace-nowrap">
-                                 <button @click="openKycModal({{ json_encode($user) }})" class="text-[10px] bg-primary text-primary-foreground hover:bg-primary/80 px-2 py-1.5 rounded-lg transition-all font-bold" title="KYC / Wallet Info">
+                                 <button @click="openKycModal({{ json_encode($user) }})" class="text-[10px] bg-primary text-primary-foreground hover:bg-primary/80 px-2 py-1.5 rounded-lg transition-all font-medium" title="KYC / Wallet Info">
                                      KYC / Wallet
                                  </button>
                                  <a href="/admin/orders?buyer_id={{ $user->id }}" class="text-[10px] bg-muted text-foreground hover:bg-muted border border-border px-2 py-1.5 rounded-lg transition-all font-semibold" title="View Orders">
@@ -225,7 +225,7 @@
                                      <button @click="openActionModal('suspend', {{ json_encode($user) }})" class="text-[10px] bg-amber-50 text-amber-700 hover:bg-amber-100 border border-amber-250/30 px-2 py-1.5 rounded-lg transition-all font-bold">
                                          Suspend
                                      </button>
-                                     <button @click="openActionModal('ban', {{ json_encode($user) }})" class="text-[10px] bg-rose-50 text-rose-700 hover:bg-rose-100 border border-rose-250/30 px-2 py-1.5 rounded-lg transition-all font-bold">
+                                     <button @click="openActionModal('ban', {{ json_encode($user) }})" class="text-[10px] bg-rose-50 text-rose-700 hover:bg-rose-100 border border-rose-250/30 px-2 py-1.5 rounded-lg transition-all font-medium">
                                          Ban
                                      </button>
                                  @else
@@ -260,7 +260,7 @@
         <div class="relative w-full max-w-md mx-auto bg-card rounded-[24px] shadow-2xl border border-border z-10 overflow-hidden" 
              x-show="actionModalOpen" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 scale-95" x-transition:enter-end="opacity-100 scale-100">
             
-            <div class="px-6 py-5 border-b border-border flex items-center justify-between bg-muted/50">
+            <div class="px-6 py-5 border-b border-border flex items-center justify-between bg-muted">
                 <h4 class="font-bold text-foreground text-sm" x-text="actionType === 'suspend' ? 'Suspend User' : 'Ban User'"></h4>
                 <button @click="closeActionModal()" class="text-muted-foreground hover:text-foreground focus:outline-none">
                     <i data-lucide="x" class="w-4 h-4"></i>
@@ -277,7 +277,7 @@
                 <div class="space-y-1.5">
                     <label for="action_reason" class="block text-xs font-bold text-muted-foreground uppercase tracking-wider">Reason for Action</label>
                     <textarea id="action_reason" name="reason" required placeholder="Specify why this account action is being taken..." rows="3"
-                              class="w-full p-3 border border-border rounded-xl bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:outline-none transition-all"></textarea>
+                              class="w-full p-3 border border-border rounded-lg bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:outline-none transition-all"></textarea>
                 </div>
 
                 <div class="pt-4 border-t border-border flex justify-end space-x-2">
@@ -303,7 +303,7 @@
         <div class="relative w-full max-w-lg mx-auto bg-card rounded-[24px] shadow-2xl border border-border z-10 overflow-hidden" 
              x-show="kycModalOpen" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 scale-95" x-transition:enter-end="opacity-100 scale-100">
             
-            <div class="px-6 py-5 border-b border-border flex items-center justify-between bg-muted/50">
+            <div class="px-6 py-5 border-b border-border flex items-center justify-between bg-muted">
                 <h4 class="font-bold text-foreground text-sm">KYC & Wallet Verification Details</h4>
                 <button @click="closeKycModal()" class="text-muted-foreground hover:text-foreground focus:outline-none">
                     <i data-lucide="x" class="w-4 h-4"></i>

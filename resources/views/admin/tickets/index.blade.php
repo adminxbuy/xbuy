@@ -4,7 +4,7 @@
 @section('page_title', 'Buyer Support Tickets Workspace')
 
 @section('header_actions')
-    <a href="{{ route('admin.trash.index', 'tickets') }}" class="flex items-center space-x-1.5 px-4 py-2.5 bg-rose-50 hover:bg-rose-100 text-rose-700 rounded-lg border border-rose-200/50 text-xs font-bold transition-all border border-red-200 shadow-sm">
+    <a href="{{ route('admin.trash.index', 'tickets') }}" class="flex items-center space-x-1.5 px-4 py-2.5 bg-rose-50 hover:bg-rose-100 text-rose-700 rounded-lg border border-rose-200/50 text-xs font-medium transition-all border border-red-200 shadow-sm">
         <i data-lucide="trash-2" class="w-4.5 h-4.5 text-red-500"></i>
         <span>Trash ({{ $trashedTickets->count() }})</span>
     </a>
@@ -26,14 +26,14 @@
                     <div class="relative">
                         <i data-lucide="search" class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground"></i>
                         <input type="text" name="search" value="{{ request('search') }}" placeholder="Search by subject, message, buyer..."
-                               class="w-full pl-9 pr-4 py-2 border border-border rounded-xl bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:outline-none transition-all text-xs font-semibold text-foreground">
+                               class="w-full pl-9 pr-4 py-2 border border-border rounded-lg bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:outline-none transition-all text-xs font-semibold text-foreground">
                     </div>
                 </div>
 
                 <!-- Status Filter -->
                 <div class="w-full sm:w-48 space-y-1">
                     <label class="text-xs font-bold text-muted-foreground uppercase tracking-wider block">Status</label>
-                    <select name="status" onchange="this.form.submit()" class="w-full p-2.5 border border-border rounded-xl bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:outline-none transition-all text-xs font-semibold text-foreground">
+                    <select name="status" onchange="this.form.submit()" class="w-full p-2.5 border border-border rounded-lg bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:outline-none transition-all text-xs font-semibold text-foreground">
                         <option value="">All Tickets</option>
                         <option value="open" {{ request('status') === 'open' ? 'selected' : '' }}>Open</option>
                         <option value="in_progress" {{ request('status') === 'in_progress' ? 'selected' : '' }}>In Progress</option>
@@ -55,7 +55,7 @@
                         <label class="text-xs font-bold text-muted-foreground uppercase tracking-wider block">Timeline / Date Range</label>
                         <div class="relative">
                             <select x-model="currentPreset" @change="applyPreset($event.target.value)"
-                                    class="p-2.5 pl-3 pr-8 text-xs border border-border rounded-xl bg-muted hover:bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:outline-none transition-all cursor-pointer font-semibold text-foreground appearance-none">
+                                    class="p-2.5 pl-3 pr-8 text-xs border border-border rounded-lg bg-muted hover:bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:outline-none transition-all cursor-pointer font-semibold text-foreground appearance-none">
                                 <option value="all">All Time</option>
                                 <option value="today">Today</option>
                                 <option value="yesterday">Yesterday</option>
@@ -79,7 +79,7 @@
                             <div class="relative">
                                 <i data-lucide="calendar" class="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-muted-foreground"></i>
                                 <input type="text" x-ref="startInput" placeholder="Start Date" readonly
-                                       class="pl-9 pr-4 py-2.5 text-xs border border-border rounded-xl bg-muted hover:bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:outline-none cursor-pointer font-semibold text-foreground w-32">
+                                       class="pl-9 pr-4 py-2.5 text-xs border border-border rounded-lg bg-muted hover:bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:outline-none cursor-pointer font-semibold text-foreground w-32">
                             </div>
                         </div>
                         <span class="text-muted-foreground text-xs mb-3">to</span>
@@ -88,7 +88,7 @@
                             <div class="relative">
                                 <i data-lucide="calendar" class="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-muted-foreground"></i>
                                 <input type="text" x-ref="endInput" placeholder="End Date" readonly
-                                       class="pl-9 pr-4 py-2.5 text-xs border border-border rounded-xl bg-muted hover:bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:outline-none cursor-pointer font-semibold text-foreground w-32">
+                                       class="pl-9 pr-4 py-2.5 text-xs border border-border rounded-lg bg-muted hover:bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:outline-none cursor-pointer font-semibold text-foreground w-32">
                             </div>
                         </div>
                     </div>
@@ -98,7 +98,7 @@
             <div class="flex items-center gap-2 pt-5">
                 @if(request()->anyFilled(['status', 'search', 'date_start', 'date_end']))
                     <a href="{{ route('admin.tickets') }}" 
-                       class="px-4 py-2.5 border border-border text-muted-foreground hover:bg-muted rounded-xl text-xs font-semibold flex items-center transition-all">
+                       class="px-4 py-2.5 border border-border text-muted-foreground hover:bg-muted rounded-lg text-xs font-semibold flex items-center transition-all">
                         Clear Filters
                     </a>
                 @endif
@@ -120,7 +120,7 @@
                     <option value="status_resolved">Set Resolved</option>
                     <option value="delete">Move to Trash</option>
                 </select>
-                <button type="button" @click="if(bulkAction && confirm('Are you sure you want to apply this action to ' + selectedIds.length + ' tickets?')) $refs.bulkForm.submit()" class="bg-primary text-primary-foreground hover:bg-primary/90 px-3 py-1.5 rounded-lg text-xs font-bold uppercase tracking-wider transition-colors" :disabled="!bulkAction">
+                <button type="button" @click="if(bulkAction && confirm('Are you sure you want to apply this action to ' + selectedIds.length + ' tickets?')) $refs.bulkForm.submit()" class="bg-primary text-primary-foreground hover:bg-primary/90 px-3 py-1.5 rounded-lg text-xs font-medium uppercase tracking-wider transition-colors" :disabled="!bulkAction">
                     Apply
                 </button>
             </form>
@@ -147,7 +147,7 @@
             </thead>
             <tbody class="divide-y divide-border text-sm">
                 @forelse($tickets as $ticket)
-                    <tr class="transition-all hover:bg-muted/50">
+                    <tr class="transition-all hover:bg-muted">
                         <td class="px-6 py-4 text-center">
                             <input type="checkbox" value="{{ $ticket->id }}" x-model="selectedIds" class="w-4 h-4 rounded border-border text-foreground focus:ring-black">
                         </td>
@@ -222,7 +222,7 @@
 
     <!-- Pagination -->
     @if($tickets->hasPages())
-        <div class="px-6 py-4 border-t border-border bg-muted/50">
+        <div class="px-6 py-4 border-t border-border bg-muted">
             {{ $tickets->links() }}
         </div>
     @endif

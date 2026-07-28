@@ -307,7 +307,7 @@
                         default            => ['dot' => 'bg-muted-foreground/40', 'text' => 'text-muted-foreground', 'bg' => 'bg-muted', 'border' => 'border-border', 'label' => ucfirst($listing->listing_status)],
                     };
                 @endphp
-                <tr class="border-b border-border hover:bg-muted/60 transition-colors group">
+                <tr class="border-b border-border hover:bg-muted transition-colors group">
 
                     {{-- Checkbox --}}
                     <td class="px-4 py-3" @click.stop>
@@ -537,16 +537,16 @@
         <table class="w-full text-xs">
             <thead>
                 <tr class="border-b border-border">
-                    <th class="px-5 py-2.5 text-left text-[11px] font-semibold text-muted-foreground">Title</th>
-                    <th class="px-5 py-2.5 text-left text-[11px] font-semibold text-muted-foreground">Seller</th>
-                    <th class="px-5 py-2.5 text-left text-[11px] font-semibold text-muted-foreground">Price</th>
-                    <th class="px-5 py-2.5 text-left text-[11px] font-semibold text-muted-foreground">Deleted</th>
-                    <th class="px-5 py-2.5 text-right text-[11px] font-semibold text-muted-foreground">Actions</th>
+                    <th class="px-5 py-2.5 text-left text-xs font-medium text-muted-foreground">Title</th>
+                    <th class="px-5 py-2.5 text-left text-xs font-medium text-muted-foreground">Seller</th>
+                    <th class="px-5 py-2.5 text-left text-xs font-medium text-muted-foreground">Price</th>
+                    <th class="px-5 py-2.5 text-left text-xs font-medium text-muted-foreground">Deleted</th>
+                    <th class="px-5 py-2.5 text-right text-xs font-medium text-muted-foreground">Actions</th>
                 </tr>
             </thead>
             <tbody class="divide-y divide-border">
                 @foreach($trashedListings as $tl)
-                <tr class="hover:bg-muted/50 transition-colors">
+                <tr class="hover:bg-muted transition-colors">
                     <td class="px-5 py-2.5 font-medium text-foreground">{{ $tl->title }}</td>
                     <td class="px-5 py-2.5 text-muted-foreground">{{ $tl->seller->shop_name ?? 'N/A' }}</td>
                     <td class="px-5 py-2.5 font-semibold text-foreground">₹{{ number_format($tl->price, 0) }}</td>
@@ -764,7 +764,7 @@
                 <input type="hidden" name="_token" :value="listing?.csrf">
                 <input type="hidden" name="status" value="active">
                 <button type="submit"
-                        class="w-full flex items-center justify-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold py-2.5 rounded-xl transition-all">
+                        class="w-full flex items-center justify-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-medium py-2.5 rounded-lg transition-all">
                     <i data-lucide="check-circle" class="w-4 h-4"></i> Approve Listing
                 </button>
             </form>
@@ -786,7 +786,7 @@
                 <label class="block text-[10px] font-bold text-muted-foreground uppercase tracking-wider">Rejection Reason</label>
                 <textarea name="reason" rows="3" required x-model="rejectReason"
                           placeholder="e.g., Missing serial photo, incomplete docs…"
-                          class="w-full p-3 text-xs border border-border rounded-xl bg-muted focus:bg-card focus:border-ring outline-none resize-none transition-all"></textarea>
+                          class="w-full p-3 text-xs border border-border rounded-lg bg-muted focus:bg-card focus:border-ring outline-none resize-none transition-all"></textarea>
                 <div class="flex gap-2">
                     <button type="button" @click="rejecting = false"
                             class="flex-1 bg-card border border-border text-muted-foreground text-xs font-semibold py-2.5 rounded-xl hover:bg-muted transition-all">Cancel</button>
@@ -826,7 +826,7 @@
                 <input type="hidden" name="_token" :value="listing?.csrf">
                 <input type="hidden" name="status" value="pending_approval">
                 <button type="submit"
-                        class="w-full flex items-center justify-center gap-2 bg-card border border-border hover:border-border hover:bg-muted text-muted-foreground hover:text-foreground text-xs font-bold py-2.5 rounded-xl transition-all">
+                        class="w-full flex items-center justify-center gap-2 bg-card border border-border hover:border-border hover:bg-muted text-muted-foreground hover:text-foreground text-xs font-medium py-2.5 rounded-lg transition-all">
                     <i data-lucide="rotate-ccw" class="w-4 h-4"></i> Move to Pending Review
                 </button>
             </form>
@@ -838,7 +838,7 @@
                 <input type="hidden" name="_token" :value="listing?.csrf">
                 <input type="hidden" name="status" value="active">
                 <button type="submit"
-                        class="w-full flex items-center justify-center gap-2 bg-emerald-50 border border-emerald-200 hover:bg-emerald-100 text-emerald-700 text-xs font-bold py-2.5 rounded-xl transition-all">
+                        class="w-full flex items-center justify-center gap-2 bg-emerald-50 border border-emerald-200 hover:bg-emerald-100 text-emerald-700 text-xs font-medium py-2.5 rounded-lg transition-all">
                     <i data-lucide="check-circle" class="w-4 h-4"></i> Reactivate Listing
                 </button>
             </form>

@@ -5,7 +5,7 @@
 
 @section('content')
 <div class="bg-card border border-border rounded-xl ring-0 overflow-hidden mb-6">
-    <div class="px-6 py-5 border-b border-border bg-muted/50 flex justify-between items-center">
+    <div class="px-6 py-5 border-b border-border bg-muted flex justify-between items-center">
         <h3 class="font-bold text-foreground text-sm">Security Audit Log Registry</h3>
         <span class="text-xs text-muted-foreground">Total Activity Tracks logged</span>
     </div>
@@ -24,7 +24,7 @@
             </thead>
             <tbody class="divide-y divide-border text-sm">
                 @forelse($logs as $log)
-                    <tr class="hover:bg-muted/30 transition-all">
+                    <tr class="hover:bg-muted transition-all">
                         <td class="px-6 py-4 font-semibold text-foreground">
                             {{ $log->admin->name }}
                         </td>
@@ -56,7 +56,7 @@
 
     <!-- Pagination -->
     @if($logs->hasPages())
-        <div class="px-6 py-4 border-t border-border bg-muted/50">
+        <div class="px-6 py-4 border-t border-border bg-muted">
             {{ $logs->links() }}
         </div>
     @endif

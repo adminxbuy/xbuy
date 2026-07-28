@@ -43,7 +43,7 @@
                 <div class="space-y-1">
                     <label class="text-[10px] font-bold text-muted-foreground uppercase tracking-wider block">Notice Type</label>
                     <select name="type" x-model="noticeType"
-                            class="w-full p-3 text-xs border border-border rounded-xl bg-muted hover:bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:outline-none transition-all cursor-pointer font-semibold text-foreground">
+                            class="w-full p-3 text-xs border border-border rounded-lg bg-muted hover:bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:outline-none transition-all cursor-pointer font-semibold text-foreground">
                         <option value="General Notice">General Notice</option>
                         <option value="Warning">Official Warning</option>
                         <option value="Salary Slip">Salary Slip</option>
@@ -59,7 +59,7 @@
                 <div class="space-y-1">
                     <label class="text-[10px] font-bold text-muted-foreground uppercase tracking-wider block">Delivery Channel</label>
                     <select name="delivery_method" x-model="deliveryMethod"
-                            class="w-full p-3 text-xs border border-border rounded-xl bg-muted hover:bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:outline-none transition-all cursor-pointer font-semibold text-foreground">
+                            class="w-full p-3 text-xs border border-border rounded-lg bg-muted hover:bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:outline-none transition-all cursor-pointer font-semibold text-foreground">
                         <option value="email">Email Only</option>
                         <option value="whatsapp">WhatsApp Only</option>
                         <option value="both">Both (Email & WhatsApp)</option>
@@ -74,13 +74,13 @@
             <div class="space-y-1">
                 <label class="text-[10px] font-bold text-muted-foreground uppercase tracking-wider block">Subject Line</label>
                 <input type="text" name="subject" x-ref="subjectInput" @input="updatePreview()" placeholder="Enter message subject" required
-                       class="w-full p-3 text-xs border border-border rounded-xl bg-muted hover:bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:outline-none transition-all font-semibold text-foreground">
+                       class="w-full p-3 text-xs border border-border rounded-lg bg-muted hover:bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:outline-none transition-all font-semibold text-foreground">
             </div>
 
             <!-- Rich Text Editor (TinyMCE) -->
             <div class="space-y-1">
                 <label class="text-[10px] font-bold text-muted-foreground uppercase tracking-wider block">Message Body</label>
-                <textarea name="message" x-ref="messageTextarea" @input="updatePreview()" class="tinymce-editor w-full p-3 border border-border rounded-xl bg-muted focus:bg-card min-h-[300px]"></textarea>
+                <textarea name="message" x-ref="messageTextarea" @input="updatePreview()" class="tinymce-editor w-full p-3 border border-border rounded-lg bg-muted focus:bg-card min-h-[300px]"></textarea>
             </div>
 
             <!-- Optional Attachment -->
@@ -96,10 +96,10 @@
             <!-- Form Actions -->
             <div class="flex items-center justify-end gap-3 pt-4 border-t border-border">
                 <button type="button" @click="updatePreview(); previewMode = !previewMode"
-                        class="px-4 py-2.5 border border-border text-muted-foreground hover:bg-muted rounded-xl text-xs font-semibold transition-all">
+                        class="px-4 py-2.5 border border-border text-muted-foreground hover:bg-muted rounded-lg text-xs font-semibold transition-all">
                     <span x-text="previewMode ? 'Edit Form' : 'Preview Notice'"></span>
                 </button>
-                <button type="submit" class="bg-primary text-primary-foreground hover:bg-primary/90 hover:bg-primary/90 hover:text-primary-foreground font-bold px-6 py-2.5 rounded-xl text-xs transition-all shadow-sm flex items-center gap-1.5">
+                <button type="submit" class="bg-primary text-primary-foreground hover:bg-primary/90 hover:bg-primary/90 hover:text-primary-foreground font-medium px-6 py-2.5 rounded-lg text-xs transition-all shadow-sm flex items-center gap-1.5">
                     <i data-lucide="send" class="w-4 h-4"></i>
                     <span>Send Dispatch</span>
                 </button>

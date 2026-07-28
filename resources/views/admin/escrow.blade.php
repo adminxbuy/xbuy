@@ -4,7 +4,7 @@
 @section('page_title', 'Escrow Management')
 
 @section('header_actions')
-    <a href="{{ route('admin.trash.index', 'escrows') }}" class="flex items-center space-x-1.5 px-4 py-2.5 bg-rose-50 hover:bg-rose-100 text-rose-700 rounded-lg border border-rose-200/50 text-xs font-bold transition-all shadow-sm">
+    <a href="{{ route('admin.trash.index', 'escrows') }}" class="flex items-center space-x-1.5 px-4 py-2.5 bg-rose-50 hover:bg-rose-100 text-rose-700 rounded-lg border border-rose-200/50 text-xs font-medium transition-all shadow-sm">
         <i data-lucide="trash-2" class="w-4.5 h-4.5 text-red-500"></i>
         <span>Trash ({{ $trashedEscrows->count() }})</span>
     </a>
@@ -52,7 +52,7 @@
             <div class="flex flex-wrap items-center gap-4 flex-1">
                 <div class="w-full sm:w-48 space-y-1">
                     <label class="text-xs font-bold uppercase tracking-wider block" style="color: var(--muted-foreground);">Status</label>
-                    <select name="status" onchange="this.form.submit()" class="w-full p-2.5 rounded-xl focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:outline-none font-semibold" style="border: 1px solid var(--border); background: var(--muted); color: var(--foreground);">
+                    <select name="status" onchange="this.form.submit()" class="w-full p-2.5 rounded-lg focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:outline-none font-semibold" style="border: 1px solid var(--border); background: var(--muted); color: var(--foreground);">
                         <option value="">All Statuses</option>
                         <option value="held" {{ request('status') === 'held' ? 'selected' : '' }}>Held</option>
                         <option value="released" {{ request('status') === 'released' ? 'selected' : '' }}>Released</option>
@@ -75,7 +75,7 @@
                         <label class="text-xs font-bold uppercase tracking-wider block" style="color: var(--muted-foreground);">Escrow Date Range</label>
                         <div class="relative">
                             <select x-model="currentPreset" @change="applyPreset($event.target.value)"
-                                    class="p-2.5 pl-3 pr-8 text-xs rounded-xl focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:outline-none transition-all cursor-pointer font-semibold appearance-none" style="border: 1px solid var(--border); background: var(--muted); color: var(--foreground);">
+                                    class="p-2.5 pl-3 pr-8 text-xs rounded-lg focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:outline-none transition-all cursor-pointer font-semibold appearance-none" style="border: 1px solid var(--border); background: var(--muted); color: var(--foreground);">
                                 <option value="all">All Time</option>
                                 <option value="today">Today</option>
                                 <option value="yesterday">Yesterday</option>
@@ -97,7 +97,7 @@
                             <div class="relative">
                                 <i data-lucide="calendar" class="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5" style="color: var(--muted-foreground);"></i>
                                 <input type="text" x-ref="startInput" placeholder="Start Date" readonly
-                                       class="pl-9 pr-4 py-2.5 text-xs rounded-xl focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:outline-none cursor-pointer font-semibold w-32" style="border: 1px solid var(--border); background: var(--muted); color: var(--foreground);">
+                                       class="pl-9 pr-4 py-2.5 text-xs rounded-lg focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:outline-none cursor-pointer font-semibold w-32" style="border: 1px solid var(--border); background: var(--muted); color: var(--foreground);">
                             </div>
                         </div>
                         <span class="text-xs mb-3" style="color: var(--muted-foreground);">to</span>
@@ -106,7 +106,7 @@
                             <div class="relative">
                                 <i data-lucide="calendar" class="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5" style="color: var(--muted-foreground);"></i>
                                 <input type="text" x-ref="endInput" placeholder="End Date" readonly
-                                       class="pl-9 pr-4 py-2.5 text-xs rounded-xl focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:outline-none cursor-pointer font-semibold w-32" style="border: 1px solid var(--border); background: var(--muted); color: var(--foreground);">
+                                       class="pl-9 pr-4 py-2.5 text-xs rounded-lg focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:outline-none cursor-pointer font-semibold w-32" style="border: 1px solid var(--border); background: var(--muted); color: var(--foreground);">
                             </div>
                         </div>
                     </div>
@@ -115,7 +115,7 @@
                 <div class="w-full sm:w-60 space-y-1">
                     <label class="text-xs font-bold uppercase tracking-wider block" style="color: var(--muted-foreground);">Seller Shop Name</label>
                     <input type="text" name="seller" value="{{ request('seller') }}" placeholder="Search seller..."
-                           class="w-full p-2.5 rounded-xl focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:outline-none font-semibold" style="border: 1px solid var(--border); background: var(--muted);">
+                           class="w-full p-2.5 rounded-lg focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:outline-none font-semibold" style="border: 1px solid var(--border); background: var(--muted);">
                 </div>
             </div>
 
@@ -175,7 +175,7 @@
                         @php
                             $isOverdue = $escrow->status === 'held' && $escrow->release_scheduled_at && $escrow->release_scheduled_at->isPast();
                         @endphp
-                        <tr class="transition-colors hover:bg-muted/20 {{ $isOverdue ? 'bg-orange-50/40 hover:bg-orange-50/60' : '' }}">
+                        <tr class="transition-colors hover:bg-muted {{ $isOverdue ? 'bg-orange-50/40 hover:bg-orange-50/60' : '' }}">
                             <td class="p-4 pl-6 text-center">
                                 <input type="checkbox" value="{{ $escrow->id }}" x-model="selectedIds" class="w-4 h-4 rounded border-border text-foreground focus:ring-black">
                             </td>
@@ -238,14 +238,14 @@
                                 @if($escrow->status === 'held' || $escrow->status === 'disputed')
                                     <form action="{{ route('admin.escrow.release', $escrow->id) }}" method="POST" class="inline" onsubmit="return confirm('Release this escrow fully to the seller?');">
                                         @csrf
-                                        <button type="submit" class="text-[10px] bg-emerald-50 text-emerald-700 hover:bg-emerald-100 border border-emerald-200/50 font-bold px-2 py-1.5 rounded-lg transition-all" title="Release to Seller">
+                                        <button type="submit" class="text-[10px] bg-emerald-50 text-emerald-700 hover:bg-emerald-100 border border-emerald-200/50 font-medium px-2 py-1.5 rounded-lg transition-all" title="Release to Seller">
                                             Release
                                         </button>
                                     </form>
  
                                     <form action="{{ route('admin.escrow.refund', $escrow->id) }}" method="POST" class="inline" onsubmit="return confirm('Refund this escrow fully to the buyer?');">
                                         @csrf
-                                        <button type="submit" class="text-[10px] bg-rose-50 text-rose-700 hover:bg-rose-100 border border-rose-200/50 font-bold px-2 py-1.5 rounded-lg transition-all" title="Refund to Buyer">
+                                        <button type="submit" class="text-[10px] bg-rose-50 text-rose-700 hover:bg-rose-100 border border-rose-200/50 font-medium px-2 py-1.5 rounded-lg transition-all" title="Refund to Buyer">
                                             Refund
                                         </button>
                                     </form>
@@ -260,7 +260,7 @@
                         </tr>
 
                         <!-- Expandable Details Row -->
-                        <tr x-show="isExpanded({{ $escrow->id }})" x-cloak class="bg-muted/30">
+                        <tr x-show="isExpanded({{ $escrow->id }})" x-cloak class="bg-muted">
                             <td colspan="9" class="p-5 pl-8 pr-6 border-b" style="border-color: var(--border);">
                                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-xs p-5 shadow-sm animate-fade-in" style="color: var(--muted-foreground); background: var(--card); border: 1px solid var(--border); border-radius: 0.75rem;">
                                     <!-- Col 1: Product & Order Details -->
@@ -383,7 +383,7 @@
                     <div class="relative">
                         <span class="absolute left-3 top-1/2 -translate-y-1/2 font-semibold text-xs" style="color: var(--muted-foreground);">₹</span>
                         <input type="number" step="0.01" min="0" :max="selectedEscrow.amount_held" id="seller_amount" name="seller_amount" required x-model="sellerReleaseAmount"
-                               class="w-full pl-7 pr-3 p-3 rounded-xl focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:outline-none transition-all" style="border: 1px solid var(--border); background: var(--muted);">
+                               class="w-full pl-7 pr-3 p-3 rounded-lg focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:outline-none transition-all" style="border: 1px solid var(--border); background: var(--muted);">
                     </div>
                     <p class="text-[10px] leading-relaxed">The remaining amount (<span class="font-semibold" style="color: var(--muted-foreground);" x-text="'₹' + (selectedEscrow.amount_held - sellerReleaseAmount)"></span>) will be refunded to the buyer.</p>
                 </div>

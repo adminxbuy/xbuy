@@ -13,12 +13,12 @@
             </div>
             <div class="flex items-center space-x-3">
                 <button @click="openCategoryModal()"
-                    class="bg-card hover:bg-muted text-foreground font-semibold py-2.5 px-5 rounded-lg ring-0 border border-border transition-all flex items-center space-x-2 text-sm active:scale-[0.98]">
+                    class="bg-card hover:bg-muted text-foreground font-semibold py-2.5 px-5 rounded-lg ring-0 border border-border transition-all flex items-center space-x-2 text-sm">
                     <i data-lucide="folder-plus" class="w-4 h-4"></i>
                     <span>Create Parent Category</span>
                 </button>
                 <button @click="openAddModal()"
-                    class="bg-primary text-primary-foreground hover:bg-primary/90  font-semibold py-2.5 px-5 rounded-lg ring-0 border border-black/10 transition-all flex items-center space-x-2 text-sm active:scale-[0.98]">
+                    class="bg-primary text-primary-foreground hover:bg-primary/90  font-semibold py-2.5 px-5 rounded-lg ring-0 border border-black/10 transition-all flex items-center space-x-2 text-sm">
                     <i data-lucide="plus" class="w-4 h-4"></i>
                     <span>Create New Page</span>
                 </button>
@@ -29,7 +29,7 @@
         <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
 
         <!-- View Switcher Tabs -->
-        <div class="flex border-b border-border mt-2 bg-muted/50 p-1.5 rounded-xl border">
+        <div class="flex border-b border-border mt-2 bg-muted p-1.5 rounded-xl border">
             <button type="button" @click="tab = 'hierarchy'"
                 :class="tab === 'hierarchy' ? 'bg-card shadow-sm border border-border text-foreground font-bold' : 'text-muted-foreground hover:text-foreground border-transparent'"
                 class="flex-1 py-2 rounded-lg text-xs uppercase tracking-wider transition-all focus:outline-none flex items-center justify-center space-x-2">
@@ -90,7 +90,7 @@
                         </div>
 
                         <!-- Draggable Pages Inside Category (Collapsible Body) -->
-                        <div x-show="expanded" x-collapse class="border-t border-border bg-muted/10 p-4">
+                        <div x-show="expanded" x-collapse class="border-t border-border bg-muted p-4">
                             <div class="space-y-2.5 min-h-[50px] pages-sortable transition-all"
                                 data-category-id="{{ $category->id }}">
                                 @forelse($pages->where('category_id', $category->id) as $page)
@@ -254,7 +254,7 @@
                     class="bg-muted border border-border rounded-xl p-4 flex flex-col sm:flex-row gap-4 justify-between items-center">
                     <div class="relative w-full sm:w-80">
                         <input type="text" x-model="searchQuery" placeholder="Search pages by title or slug..."
-                            class="w-full pl-9 pr-4 py-2 border border-border rounded-xl bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:ring-4 focus:ring-ring/15 focus:outline-none text-sm transition-all">
+                            class="w-full pl-9 pr-4 py-2 border border-border rounded-lg bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:ring-2 focus:ring-ring/50 focus:outline-none text-sm transition-all">
                         <div class="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground">
                             <i data-lucide="search" class="w-4 h-4"></i>
                         </div>
@@ -278,7 +278,7 @@
                             </thead>
                             <tbody class="divide-y divide-border">
                                 <template x-for="page in filteredPages()" :key="page.id">
-                                    <tr class="hover:bg-muted/30 transition-colors text-sm text-foreground">
+                                    <tr class="hover:bg-muted transition-colors text-sm text-foreground">
                                         <!-- Title & Slug -->
                                         <td class="p-4 pl-6">
                                             <span class="font-bold text-foreground" x-text="page.title"></span>
@@ -312,7 +312,7 @@
                                             @click.outside="dropdownOpen = false"
                                             x-init="setTimeout(() => lucide.createIcons(), 50)">
                                             <button type="button" @click="dropdownOpen = !dropdownOpen"
-                                                class="p-2 text-muted-foreground hover:text-foreground hover:bg-muted rounded-xl transition-all inline-flex items-center focus:outline-none">
+                                                class="p-2 text-muted-foreground hover:text-foreground hover:bg-muted rounded-lg transition-all inline-flex items-center focus:outline-none">
                                                 <i data-lucide="more-vertical" class="w-4.5 h-4.5"></i>
                                             </button>
 
@@ -383,10 +383,10 @@
                                 class="block text-[11px] font-bold text-muted-foreground uppercase tracking-wider mb-1.5">Category
                                 Name</label>
                             <input type="text" id="category_name" name="name" required placeholder="e.g. SHOP"
-                                class="w-full px-3.5 py-2 border border-border rounded-xl bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:ring-4 focus:ring-ring/15 focus:outline-none text-xs transition-all">
+                                class="w-full px-3.5 py-2 border border-border rounded-lg bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:ring-2 focus:ring-ring/50 focus:outline-none text-xs transition-all">
                         </div>
                         <button type="submit"
-                            class="w-full py-2 bg-primary text-primary-foreground hover:bg-primary/90  font-semibold rounded-xl text-xs shadow-sm border border-black/10 transition-all active:scale-[0.98]">
+                            class="w-full py-2 bg-primary text-primary-foreground hover:bg-primary/90  font-semibold rounded-lg text-xs shadow-sm border border-black/10 transition-all">
                             Create Parent Category
                         </button>
                     </form>
@@ -400,7 +400,7 @@
                         <div class="space-y-2 max-h-64 overflow-y-auto pr-1">
                             @foreach($categories as $category)
                                 <div
-                                    class="flex items-center justify-between p-2.5 bg-muted border border-border rounded-xl hover:bg-muted/50 transition-colors">
+                                    class="flex items-center justify-between p-2.5 bg-muted border border-border rounded-xl hover:bg-muted transition-colors">
                                     <div class="flex flex-col">
                                         <span class="text-xs font-bold text-foreground">{{ $category->name }}</span>
                                         <span class="text-[10px] text-muted-foreground font-mono">{{ $category->slug }}</span>
@@ -470,7 +470,7 @@
                                         <form action="{{ route('admin.pages.categories.restore', $tCat->id) }}" method="POST">
                                             @csrf
                                             <button type="submit"
-                                                class="px-2.5 py-1.5 bg-emerald-50 text-emerald-700 hover:bg-emerald-100 rounded-lg text-[10px] font-bold border border-emerald-200 transition-colors flex items-center space-x-1">
+                                                class="px-2.5 py-1.5 bg-emerald-50 text-emerald-700 hover:bg-emerald-100 rounded-lg text-[10px] font-medium border border-emerald-200 transition-colors flex items-center space-x-1">
                                                 <i data-lucide="rotate-ccw" class="w-3 h-3"></i>
                                                 <span>Restore</span>
                                             </button>
@@ -533,7 +533,7 @@
                                         <form action="{{ route('admin.pages.restore', $tPage->id) }}" method="POST">
                                             @csrf
                                             <button type="submit"
-                                                class="px-2.5 py-1.5 bg-emerald-50 text-emerald-700 hover:bg-emerald-100 rounded-lg text-[10px] font-bold border border-emerald-200 transition-colors flex items-center space-x-1">
+                                                class="px-2.5 py-1.5 bg-emerald-50 text-emerald-700 hover:bg-emerald-100 rounded-lg text-[10px] font-medium border border-emerald-200 transition-colors flex items-center space-x-1">
                                                 <i data-lucide="rotate-ccw" class="w-3 h-3"></i>
                                                 <span>Restore</span>
                                             </button>
@@ -564,7 +564,7 @@
             x-cloak>
             <div class="fixed inset-0 bg-background/65 backdrop-blur-md transition-opacity" @click="closeModal()"></div>
 
-            <div class="relative w-full max-w-2xl mx-auto bg-card rounded-[28px] shadow-2xl border border-border/80 z-10 overflow-hidden"
+            <div class="relative w-full max-w-2xl mx-auto bg-card rounded-xl shadow-2xl border border-border/80 z-10 overflow-hidden"
                 x-show="modalOpen" x-transition:enter="transition ease-out duration-350"
                 x-transition:enter-start="opacity-0 scale-95 translate-y-6"
                 x-transition:enter-end="opacity-100 scale-100 translate-y-0"
@@ -572,7 +572,7 @@
                 x-transition:leave-start="opacity-100 scale-100 translate-y-0"
                 x-transition:leave-end="opacity-0 scale-95 translate-y-6">
 
-                <div class="px-6 py-5 border-b border-border flex items-center justify-between bg-muted/50">
+                <div class="px-6 py-5 border-b border-border flex items-center justify-between bg-muted">
                     <div class="flex items-center space-x-2.5">
                         <div class="w-8 h-8 rounded-lg bg-primary text-primary-foreground hover:bg-primary/90/15 flex items-center justify-center text-foreground">
                             <i data-lucide="file-text" class="w-4 h-4"></i>
@@ -592,13 +592,13 @@
                             <label for="title" class="block text-xs font-bold text-muted-foreground uppercase tracking-wider">Page
                                 Title</label>
                             <input type="text" id="title" name="title" required placeholder="e.g. Terms of Use"
-                                class="w-full p-3 border border-border rounded-xl bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:ring-4 focus:ring-ring/15 focus:outline-none transition-all">
+                                class="w-full p-3 border border-border rounded-lg bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:ring-2 focus:ring-ring/50 focus:outline-none transition-all">
                         </div>
                         <div class="space-y-1.5 col-span-2 sm:col-span-1">
                             <label for="slug" class="block text-xs font-bold text-muted-foreground uppercase tracking-wider">URL
                                 Slug (Optional)</label>
                             <input type="text" id="slug" name="slug" placeholder="e.g. terms-of-use"
-                                class="w-full p-3 border border-border rounded-xl bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:ring-4 focus:ring-ring/15 focus:outline-none transition-all">
+                                class="w-full p-3 border border-border rounded-lg bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:ring-2 focus:ring-ring/50 focus:outline-none transition-all">
                         </div>
                     </div>
 
@@ -606,7 +606,7 @@
                         <label for="category_id"
                             class="block text-xs font-bold text-muted-foreground uppercase tracking-wider">Parent Category</label>
                         <select id="category_id" name="category_id"
-                            class="w-full p-3 border border-border rounded-xl bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:ring-4 focus:ring-ring/15 focus:outline-none transition-all">
+                            class="w-full p-3 border border-border rounded-lg bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:ring-2 focus:ring-ring/50 focus:outline-none transition-all">
                             <option value="">-- No Category (Will not show in categorised columns) --</option>
                             @foreach($categories as $category)
                                 <option value="{{ $category->id }}">{{ $category->name }}</option>
@@ -619,7 +619,7 @@
                             Content</label>
                         <textarea id="content" name="content" rows="6"
                             placeholder="<h1>Heading</h1><p>Your content here...</p>"
-                            class="tinymce-editor w-full p-3 border border-border rounded-xl bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:ring-4 focus:ring-ring/15 focus:outline-none transition-all font-mono text-xs"></textarea>
+                            class="tinymce-editor w-full p-3 border border-border rounded-xl bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:ring-2 focus:ring-ring/50 focus:outline-none transition-all font-mono text-xs"></textarea>
                     </div>
 
                     <div class="border-t border-border pt-4 space-y-4">
@@ -630,7 +630,7 @@
                                     class="block text-xs font-bold text-muted-foreground uppercase tracking-wider">Meta
                                     Title</label>
                                 <input type="text" id="meta_title" name="meta_title" placeholder="Meta title tag"
-                                    class="w-full p-3 border border-border rounded-xl bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:ring-4 focus:ring-ring/15 focus:outline-none transition-all">
+                                    class="w-full p-3 border border-border rounded-lg bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:ring-2 focus:ring-ring/50 focus:outline-none transition-all">
                             </div>
                             <div class="space-y-1.5 col-span-2 sm:col-span-1">
                                 <label for="meta_description"
@@ -638,7 +638,7 @@
                                     Description</label>
                                 <input type="text" id="meta_description" name="meta_description"
                                     placeholder="Meta description tag"
-                                    class="w-full p-3 border border-border rounded-xl bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:ring-4 focus:ring-ring/15 focus:outline-none transition-all">
+                                    class="w-full p-3 border border-border rounded-lg bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:ring-2 focus:ring-ring/50 focus:outline-none transition-all">
                             </div>
                         </div>
                     </div>
@@ -653,11 +653,11 @@
 
                     <div class="pt-4 border-t border-border flex justify-end space-x-2">
                         <button type="button" @click="closeModal()"
-                            class="px-5 py-2.5 border border-border text-foreground hover:bg-muted font-semibold rounded-xl text-xs transition-all active:scale-[0.98]">
+                            class="px-5 py-2.5 border border-border text-foreground hover:bg-muted font-semibold rounded-lg text-xs transition-all">
                             Cancel
                         </button>
                         <button type="submit"
-                            class="px-6 py-2.5 bg-primary text-primary-foreground hover:bg-primary/90  font-semibold rounded-xl text-xs shadow-sm border border-black/10 transition-all active:scale-[0.98]">
+                            class="px-6 py-2.5 bg-primary text-primary-foreground hover:bg-primary/90  font-semibold rounded-lg text-xs shadow-sm border border-black/10 transition-all">
                             Create Page
                         </button>
                     </div>
@@ -672,7 +672,7 @@
             <div class="fixed inset-0 bg-background/65 backdrop-blur-md transition-opacity" @click="closeCategoryModal()">
             </div>
 
-            <div class="relative w-full max-w-md mx-auto bg-card rounded-[28px] shadow-2xl border border-border/80 z-10 overflow-hidden"
+            <div class="relative w-full max-w-md mx-auto bg-card rounded-xl shadow-2xl border border-border/80 z-10 overflow-hidden"
                 x-show="categoryModalOpen" x-transition:enter="transition ease-out duration-350"
                 x-transition:enter-start="opacity-0 scale-95 translate-y-6"
                 x-transition:enter-end="opacity-100 scale-100 translate-y-0"
@@ -680,7 +680,7 @@
                 x-transition:leave-start="opacity-100 scale-100 translate-y-0"
                 x-transition:leave-end="opacity-0 scale-95 translate-y-6">
 
-                <div class="px-6 py-5 border-b border-border flex items-center justify-between bg-muted/50">
+                <div class="px-6 py-5 border-b border-border flex items-center justify-between bg-muted">
                     <div class="flex items-center space-x-2.5">
                         <div class="w-8 h-8 rounded-lg bg-primary text-primary-foreground hover:bg-primary/90/15 flex items-center justify-center text-foreground">
                             <i data-lucide="folder-plus" class="w-4.5 h-4.5"></i>
@@ -699,16 +699,16 @@
                         <label for="modal_category_name"
                             class="block text-xs font-bold text-muted-foreground uppercase tracking-wider">Category Name</label>
                         <input type="text" id="modal_category_name" name="name" required placeholder="e.g. SHOP"
-                            class="w-full p-3 border border-border rounded-xl bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:ring-4 focus:ring-ring/15 focus:outline-none transition-all">
+                            class="w-full p-3 border border-border rounded-lg bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:ring-2 focus:ring-ring/50 focus:outline-none transition-all">
                     </div>
 
                     <div class="pt-4 border-t border-border flex justify-end space-x-2">
                         <button type="button" @click="closeCategoryModal()"
-                            class="px-5 py-2.5 border border-border text-foreground hover:bg-muted font-semibold rounded-xl text-xs transition-all active:scale-[0.98]">
+                            class="px-5 py-2.5 border border-border text-foreground hover:bg-muted font-semibold rounded-lg text-xs transition-all">
                             Cancel
                         </button>
                         <button type="submit"
-                            class="px-6 py-2.5 bg-primary text-primary-foreground hover:bg-primary/90  font-semibold rounded-xl text-xs shadow-sm border border-black/10 transition-all active:scale-[0.98]">
+                            class="px-6 py-2.5 bg-primary text-primary-foreground hover:bg-primary/90  font-semibold rounded-lg text-xs shadow-sm border border-black/10 transition-all">
                             Create Category
                         </button>
                     </div>

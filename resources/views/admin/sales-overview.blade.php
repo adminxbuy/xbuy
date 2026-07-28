@@ -1,17 +1,12 @@
 @extends('layouts.admin')
 
 @section('title', 'Sales Overview')
+@section('page_title', 'Sales Overview')
 
 @section('content')
-<div class="space-y-6 p-6 overflow-y-auto max-h-[calc(100vh-3rem)]">
-    {{-- Header Section --}}
+<div class="space-y-6 overflow-y-auto">
+    {{-- Filters & Actions Form --}}
     <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-        <div class="space-y-0.5">
-            <h1 class="text-3xl font-bold tracking-tight text-foreground">Sales Overview</h1>
-            <p class="text-xs text-muted-foreground">Track and monitor your marketplace transaction volume, escrows, and platform commissions.</p>
-        </div>
-
-        {{-- Filters & Actions Form --}}
         <form action="{{ route('admin.sales-overview') }}" method="GET" class="flex flex-wrap items-center gap-3">
             {{-- Preset selector --}}
             <div class="flex items-center gap-2 bg-card border border-border h-9 px-3 rounded-lg">

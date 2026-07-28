@@ -152,12 +152,12 @@
                         <div class="space-y-1.5">
                             <label class="block text-xs font-bold text-muted-foreground uppercase tracking-wider">{{ str_replace('_', ' ', $setting->key) }}</label>
                             @if($key === 'currency_selector')
-                                <select name="currency_selector" class="w-full p-3 border border-border rounded-xl text-sm focus:ring-1 focus:ring-ring focus:border-ring focus:outline-none bg-card">
+                                <select name="currency_selector" class="w-full p-3 border border-border rounded-lg text-sm focus:ring-1 focus:ring-ring focus:border-ring focus:outline-none bg-card">
                                     <option value="INR" {{ $setting->value === 'INR' ? 'selected' : '' }}>INR (Indian Rupee - ₹)</option>
                                     <option value="USD" {{ $setting->value === 'USD' ? 'selected' : '' }}>USD (US Dollar - $)</option>
                                 </select>
                             @elseif($key === 'timezone_selector')
-                                <select name="timezone_selector" class="w-full p-3 border border-border rounded-xl text-sm focus:ring-1 focus:ring-ring focus:border-ring focus:outline-none bg-card">
+                                <select name="timezone_selector" class="w-full p-3 border border-border rounded-lg text-sm focus:ring-1 focus:ring-ring focus:border-ring focus:outline-none bg-card">
                                     <option value="Asia/Kolkata" {{ $setting->value === 'Asia/Kolkata' ? 'selected' : '' }}>Asia/Kolkata (Indian Standard Time - IST)</option>
                                     <option value="UTC" {{ $setting->value === 'UTC' ? 'selected' : '' }}>UTC (Coordinated Universal Time)</option>
                                     <option value="America/New_York" {{ $setting->value === 'America/New_York' ? 'selected' : '' }}>America/New_York (Eastern Time - EST/EDT)</option>
@@ -247,7 +247,7 @@
             </div>
             
             <div class="pt-5 border-t border-border flex justify-end">
-                <button type="submit" class="bg-primary text-primary-foreground hover:bg-primary/90  font-semibold py-2.5 px-5 rounded-lg ring-0 border border-black/10 transition-all text-xs active:scale-[0.98]">
+                <button type="submit" class="bg-primary text-primary-foreground hover:bg-primary/90  font-semibold py-2.5 px-5 rounded-lg ring-0 border border-black/10 transition-all text-xs">
                     Save General Settings
                 </button>
             </div>
@@ -277,7 +277,7 @@
             </div>
             
             <div class="pt-5 border-t border-border flex justify-end">
-                <button type="submit" class="bg-primary text-primary-foreground hover:bg-primary/90  font-semibold py-2.5 px-5 rounded-lg ring-0 border border-black/10 transition-all text-xs active:scale-[0.98]">
+                <button type="submit" class="bg-primary text-primary-foreground hover:bg-primary/90  font-semibold py-2.5 px-5 rounded-lg ring-0 border border-black/10 transition-all text-xs">
                     Save Listings Config
                 </button>
             </div>
@@ -307,7 +307,7 @@
             </div>
             
             <div class="pt-5 border-t border-border flex justify-end">
-                <button type="submit" class="bg-primary text-primary-foreground hover:bg-primary/90  font-semibold py-2.5 px-5 rounded-lg ring-0 border border-black/10 transition-all text-xs active:scale-[0.98]">
+                <button type="submit" class="bg-primary text-primary-foreground hover:bg-primary/90  font-semibold py-2.5 px-5 rounded-lg ring-0 border border-black/10 transition-all text-xs">
                     Save Orders Settings
                 </button>
             </div>
@@ -337,7 +337,7 @@
             </div>
             
             <div class="pt-5 border-t border-border flex justify-end">
-                <button type="submit" class="bg-primary text-primary-foreground hover:bg-primary/90  font-semibold py-2.5 px-5 rounded-lg ring-0 border border-black/10 transition-all text-xs active:scale-[0.98]">
+                <button type="submit" class="bg-primary text-primary-foreground hover:bg-primary/90  font-semibold py-2.5 px-5 rounded-lg ring-0 border border-black/10 transition-all text-xs">
                     Save Seller Config
                 </button>
             </div>
@@ -367,7 +367,7 @@
             </div>
             
             <div class="pt-5 border-t border-border flex justify-end">
-                <button type="submit" class="bg-primary text-primary-foreground hover:bg-primary/90  font-semibold py-2.5 px-5 rounded-lg ring-0 border border-black/10 transition-all text-xs active:scale-[0.98]">
+                <button type="submit" class="bg-primary text-primary-foreground hover:bg-primary/90  font-semibold py-2.5 px-5 rounded-lg ring-0 border border-black/10 transition-all text-xs">
                     Save Buyer Config
                 </button>
             </div>
@@ -397,7 +397,7 @@
             </div>
             
             <div class="pt-5 border-t border-border flex justify-end">
-                <button type="submit" class="bg-primary text-primary-foreground hover:bg-primary/90  font-semibold py-2.5 px-5 rounded-lg ring-0 border border-black/10 transition-all text-xs active:scale-[0.98]">
+                <button type="submit" class="bg-primary text-primary-foreground hover:bg-primary/90  font-semibold py-2.5 px-5 rounded-lg ring-0 border border-black/10 transition-all text-xs">
                     Save Disputes Config
                 </button>
             </div>
@@ -427,7 +427,7 @@
             </div>
             
             <div class="pt-5 border-t border-border flex justify-end">
-                <button type="submit" class="bg-primary text-primary-foreground hover:bg-primary/90  font-semibold py-2.5 px-5 rounded-lg ring-0 border border-black/10 transition-all text-xs active:scale-[0.98]">
+                <button type="submit" class="bg-primary text-primary-foreground hover:bg-primary/90  font-semibold py-2.5 px-5 rounded-lg ring-0 border border-black/10 transition-all text-xs">
                     Save Notifications Config
                 </button>
             </div>
@@ -457,7 +457,7 @@
             </div>
             
             <div class="pt-5 border-t border-border flex justify-end">
-                <button type="submit" class="bg-primary text-primary-foreground hover:bg-primary/90  font-semibold py-2.5 px-5 rounded-lg ring-0 border border-black/10 transition-all text-xs active:scale-[0.98]">
+                <button type="submit" class="bg-primary text-primary-foreground hover:bg-primary/90  font-semibold py-2.5 px-5 rounded-lg ring-0 border border-black/10 transition-all text-xs">
                     Save SEO Config
                 </button>
             </div>
@@ -635,7 +635,7 @@
             </div>
 
             <div class="pt-5 border-t border-border flex justify-end">
-                <button type="submit" class="bg-primary text-primary-foreground hover:bg-primary/90  font-semibold py-2.5 px-5 rounded-lg ring-0 border border-black/10 transition-all text-xs active:scale-[0.98]">
+                <button type="submit" class="bg-primary text-primary-foreground hover:bg-primary/90  font-semibold py-2.5 px-5 rounded-lg ring-0 border border-black/10 transition-all text-xs">
                     Save Social & App Links
                 </button>
             </div>
@@ -659,7 +659,7 @@
                         <div class="space-y-1.5">
                             <label class="block text-xs font-bold text-muted-foreground uppercase tracking-wider">{{ str_replace('_', ' ', $setting->key) }}</label>
                             @if($key === 'razorpay_mode')
-                                <select name="razorpay_mode" class="w-full p-3 border border-border rounded-xl text-sm focus:ring-1 focus:ring-ring focus:border-ring focus:outline-none bg-card">
+                                <select name="razorpay_mode" class="w-full p-3 border border-border rounded-lg text-sm focus:ring-1 focus:ring-ring focus:border-ring focus:outline-none bg-card">
                                     <option value="test" {{ $setting->value === 'test' ? 'selected' : '' }}>test (Sandbox mode)</option>
                                     <option value="live" {{ $setting->value === 'live' ? 'selected' : '' }}>live (Production mode)</option>
                                 </select>
@@ -673,7 +673,7 @@
             </div>
             
             <div class="pt-5 border-t border-border flex justify-end">
-                <button type="submit" class="bg-primary text-primary-foreground hover:bg-primary/90  font-semibold py-2.5 px-5 rounded-lg ring-0 border border-black/10 transition-all text-xs active:scale-[0.98]">
+                <button type="submit" class="bg-primary text-primary-foreground hover:bg-primary/90  font-semibold py-2.5 px-5 rounded-lg ring-0 border border-black/10 transition-all text-xs">
                     Save Razorpay Credentials
                 </button>
             </div>
@@ -705,7 +705,7 @@
             </div>
             
             <div class="pt-5 border-t border-border flex justify-end">
-                <button type="submit" class="bg-primary text-primary-foreground hover:bg-primary/90  font-semibold py-2.5 px-5 rounded-lg ring-0 border border-black/10 transition-all text-xs active:scale-[0.98]">
+                <button type="submit" class="bg-primary text-primary-foreground hover:bg-primary/90  font-semibold py-2.5 px-5 rounded-lg ring-0 border border-black/10 transition-all text-xs">
                     Save Shiprocket Settings
                 </button>
             </div>
@@ -754,7 +754,7 @@
             </div>
             
             <div class="pt-5 border-t border-border flex justify-end">
-                <button type="submit" class="bg-primary text-primary-foreground hover:bg-primary/90  font-semibold py-2.5 px-5 rounded-lg ring-0 border border-black/10 transition-all text-xs active:scale-[0.98]">
+                <button type="submit" class="bg-primary text-primary-foreground hover:bg-primary/90  font-semibold py-2.5 px-5 rounded-lg ring-0 border border-black/10 transition-all text-xs">
                     Save SMTP Config
                 </button>
             </div>
@@ -769,9 +769,9 @@
             
             <div class="flex flex-col sm:flex-row gap-3">
                 <input type="email" x-model="testEmail" placeholder="Enter recipient email address..."
-                       class="flex-1 px-4 py-2.5 border border-border rounded-xl text-sm focus:ring-1 focus:ring-ring focus:border-ring focus:outline-none bg-card">
+                       class="flex-1 px-4 py-2.5 border border-border rounded-lg text-sm focus:ring-1 focus:ring-ring focus:border-ring focus:outline-none bg-card">
                 <button type="button" @click="testSMTP()" :disabled="testing"
-                        class="bg-primary text-primary-foreground hover:bg-primary/90 font-semibold px-5 py-2.5 rounded-xl text-xs shadow-sm transition-all disabled:opacity-50 flex items-center justify-center space-x-2">
+                        class="bg-primary text-primary-foreground hover:bg-primary/90 font-semibold px-5 py-2.5 rounded-lg text-xs shadow-sm transition-all disabled:opacity-50 flex items-center justify-center space-x-2">
                     <span x-show="!testing">Test Connection</span>
                     <span x-show="testing" class="flex items-center space-x-2">
                         <svg class="animate-spin h-3.5 w-3.5 text-primary-foreground" fill="none" viewBox="0 0 24 24">
@@ -811,7 +811,7 @@
             </div>
             
             <div class="pt-5 border-t border-border flex justify-end">
-                <button type="submit" class="bg-primary text-primary-foreground hover:bg-primary/90  font-semibold py-2.5 px-5 rounded-lg ring-0 border border-black/10 transition-all text-xs active:scale-[0.98]">
+                <button type="submit" class="bg-primary text-primary-foreground hover:bg-primary/90  font-semibold py-2.5 px-5 rounded-lg ring-0 border border-black/10 transition-all text-xs">
                     Save Tickets Config
                 </button>
             </div>
@@ -859,7 +859,7 @@
             </div>
             <!-- Modal Footer -->
             <div class="p-4 border-t border-border flex justify-end bg-muted rounded-b-2xl">
-                <button type="button" @click="libraryOpen = false" class="px-4 py-2 border border-border bg-card hover:bg-muted text-foreground rounded-xl text-xs font-semibold shadow-sm transition-all">
+                <button type="button" @click="libraryOpen = false" class="px-4 py-2 border border-border bg-card hover:bg-muted text-foreground rounded-lg text-xs font-semibold shadow-sm transition-all">
                     Cancel
                 </button>
             </div>

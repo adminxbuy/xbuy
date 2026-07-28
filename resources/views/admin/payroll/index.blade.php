@@ -5,14 +5,14 @@
 
 @section('header_actions')
     <div class="flex items-center gap-2">
-        <a href="{{ route('admin.payroll.settings') }}" class="inline-flex items-center gap-1.5 px-3 py-2.5 bg-muted hover:bg-muted text-foreground hover:text-foreground rounded-xl text-xs font-bold transition-all border border-border shadow-sm">
+        <a href="{{ route('admin.payroll.settings') }}" class="inline-flex items-center gap-1.5 px-3 py-2.5 bg-muted hover:bg-muted text-foreground hover:text-foreground rounded-lg text-xs font-medium transition-all border border-border shadow-sm">
             <i data-lucide="settings" class="w-3.5 h-3.5"></i>
             <span>Payroll Settings</span>
         </a>
         @if(count($pendingStaffList) > 0)
         <form action="{{ route('admin.payroll.disburse') }}" method="POST" onsubmit="return confirm('Disburse payrolls to all pending staff members? This will send Salary Slip emails automatically.')">
             @csrf
-            <button type="submit" class="inline-flex items-center gap-2 bg-primary text-primary-foreground hover:bg-primary/90 hover:bg-primary/90 hover:text-primary-foreground font-bold px-4 py-2.5 rounded-xl text-xs transition-all shadow-sm">
+            <button type="submit" class="inline-flex items-center gap-2 bg-primary text-primary-foreground hover:bg-primary/90 hover:bg-primary/90 hover:text-primary-foreground font-medium px-4 py-2.5 rounded-lg text-xs transition-all shadow-sm">
                 <i data-lucide="check-circle" class="w-3.5 h-3.5"></i>
                 <span>Disburse All Pending</span>
             </button>
@@ -94,7 +94,7 @@
 
     <div class="overflow-x-auto">
         <table class="w-full text-left text-sm">
-            <thead class="bg-muted text-[10px] uppercase tracking-wider text-muted-foreground font-bold border-b border-border">
+            <thead class="bg-muted text-xs uppercase tracking-widerr text-muted-foreground font-medium border-b border-border">
                 <tr>
                     <th class="px-6 py-4">Name / designation</th>
                     <th class="px-6 py-4">Orders Handled</th>
@@ -107,7 +107,7 @@
             </thead>
             <tbody class="divide-y divide-border">
                 @forelse($pendingStaffList as $item)
-                <tr class="hover:bg-muted/50 transition-all font-semibold">
+                <tr class="hover:bg-muted transition-all font-semibold">
                     <td class="px-6 py-4">
                         <div class="flex items-center space-x-3">
                             <img src="https://ui-avatars.com/api/?name={{ urlencode($item['staff']->name) }}&background=e4e4e7&color=71717a&size=36" class="w-9 h-9 rounded-xl" alt="avatar">

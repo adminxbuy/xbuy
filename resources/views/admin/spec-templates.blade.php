@@ -31,7 +31,7 @@
 
         <!-- Specification fields table card -->
         <div class="bg-card border border-border rounded-xl ring-0 overflow-hidden">
-            <div class="p-5 border-b border-border bg-muted/50 flex justify-between items-center">
+            <div class="p-5 border-b border-border bg-muted flex justify-between items-center">
                 <h3 class="font-bold text-foreground text-sm flex items-center">
                     <i data-lucide="sliders" class="w-4 h-4 mr-2 text-muted-foreground"></i>
                     Category Specification Fields
@@ -55,7 +55,7 @@
                     </thead>
                     <tbody class="divide-y divide-border">
                         <template x-for="spec in getCurrentSpecs()" :key="spec.id">
-                            <tr class="hover:bg-muted/30 transition-colors text-sm text-foreground">
+                            <tr class="hover:bg-muted transition-colors text-sm text-foreground">
                                 <!-- Label / Key -->
                                 <td class="p-4 pl-6">
                                     <span class="font-bold text-foreground" x-text="spec.spec_label"></span>
@@ -111,7 +111,7 @@
                                 <!-- Actions -->
                                 <td class="p-4 pr-6 text-right space-x-1">
                                     <button @click="openEditModal(spec)"
-                                        class="p-2 text-muted-foreground hover:text-foreground hover:bg-muted rounded-xl transition-all"
+                                        class="p-2 text-muted-foreground hover:text-foreground hover:bg-muted rounded-lg transition-all"
                                         title="Edit Field">
                                         <i data-lucide="edit-3" class="w-4 h-4"></i>
                                     </button>
@@ -147,7 +147,7 @@
             <div class="fixed inset-0 bg-background/65 backdrop-blur-md transition-opacity" @click="closeModal()"></div>
 
             <!-- Modal Content Card -->
-            <div class="relative w-full max-w-lg mx-auto bg-card rounded-[28px] shadow-2xl border border-border/80 z-10 overflow-hidden"
+            <div class="relative w-full max-w-lg mx-auto bg-card rounded-xl shadow-2xl border border-border/80 z-10 overflow-hidden"
                 x-show="modalOpen" x-transition:enter="transition ease-out duration-350"
                 x-transition:enter-start="opacity-0 scale-95 translate-y-6"
                 x-transition:enter-end="opacity-100 scale-100 translate-y-0"
@@ -156,7 +156,7 @@
                 x-transition:leave-end="opacity-0 scale-95 translate-y-6">
 
                 <!-- Header -->
-                <div class="px-6 py-5 border-b border-border flex items-center justify-between bg-muted/50">
+                <div class="px-6 py-5 border-b border-border flex items-center justify-between bg-muted">
                     <div class="flex items-center space-x-2.5">
                         <div class="w-8 h-8 rounded-lg bg-primary text-primary-foreground hover:bg-primary/90/15 flex items-center justify-center text-foreground">
                             <i data-lucide="sliders" class="w-4 h-4"></i>
@@ -185,7 +185,7 @@
                             Spec Key</label>
                         <input type="text" id="modal_key" name="spec_key" x-model="form.spec_key" :required="!isEdit"
                             placeholder="e.g. vram_gb, memory_type, cores"
-                            class="w-full p-3 border border-border rounded-xl bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:ring-4 focus:ring-ring/15 focus:outline-none transition-all">
+                            class="w-full p-3 border border-border rounded-lg bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:ring-2 focus:ring-ring/50 focus:outline-none transition-all">
                     </div>
 
                     <!-- Spec Label -->
@@ -194,7 +194,7 @@
                             class="block text-xs font-bold text-muted-foreground uppercase tracking-wider">Display Label</label>
                         <input type="text" id="modal_label" name="spec_label" x-model="form.spec_label" required
                             placeholder="e.g. VRAM Capacity, Memory Type, CPU Socket"
-                            class="w-full p-3 border border-border rounded-xl bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:ring-4 focus:ring-ring/15 focus:outline-none transition-all">
+                            class="w-full p-3 border border-border rounded-lg bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:ring-2 focus:ring-ring/50 focus:outline-none transition-all">
                     </div>
 
                     <!-- Input Type & Unit -->
@@ -203,7 +203,7 @@
                             <label for="modal_type"
                                 class="block text-xs font-bold text-muted-foreground uppercase tracking-wider">Value Type</label>
                             <select id="modal_type" name="spec_type" x-model="form.spec_type" required
-                                class="w-full p-3 border border-border rounded-xl bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:ring-4 focus:ring-ring/15 focus:outline-none transition-all">
+                                class="w-full p-3 border border-border rounded-lg bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:ring-2 focus:ring-ring/50 focus:outline-none transition-all">
                                 <option value="text">Text</option>
                                 <option value="number">Number</option>
                                 <option value="select">Dropdown Select</option>
@@ -217,7 +217,7 @@
                                 (Optional)</label>
                             <input type="text" id="modal_unit" name="spec_unit" x-model="form.spec_unit"
                                 placeholder="e.g. GB, MHz, W, mm"
-                                class="w-full p-3 border border-border rounded-xl bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:ring-4 focus:ring-ring/15 focus:outline-none transition-all">
+                                class="w-full p-3 border border-border rounded-lg bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:ring-2 focus:ring-ring/50 focus:outline-none transition-all">
                         </div>
                     </div>
 
@@ -227,7 +227,7 @@
                             class="block text-xs font-bold text-muted-foreground uppercase tracking-wider">Select Options</label>
                         <input type="text" id="modal_options" name="options" x-model="form.options"
                             placeholder="e.g. DDR3, DDR4, DDR5 (comma separated)"
-                            class="w-full p-3 border border-border rounded-xl bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:ring-4 focus:ring-ring/15 focus:outline-none transition-all">
+                            class="w-full p-3 border border-border rounded-lg bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:ring-2 focus:ring-ring/50 focus:outline-none transition-all">
                         <p class="text-[10px] text-muted-foreground mt-1">Provide list options separated by commas.</p>
                     </div>
 
@@ -249,11 +249,11 @@
                     <!-- Submit / Cancel -->
                     <div class="pt-5 border-t border-border flex justify-end space-x-2">
                         <button type="button" @click="closeModal()"
-                            class="px-5 py-2.5 border border-border text-foreground hover:bg-muted font-semibold rounded-xl text-xs transition-all active:scale-[0.98]">
+                            class="px-5 py-2.5 border border-border text-foreground hover:bg-muted font-semibold rounded-lg text-xs transition-all">
                             Cancel
                         </button>
                         <button type="submit"
-                            class="px-6 py-2.5 bg-primary text-primary-foreground hover:bg-primary/90  font-semibold rounded-xl text-xs shadow-sm border border-black/10 transition-all active:scale-[0.98] hover:scale-[1.02]">
+                            class="px-6 py-2.5 bg-primary text-primary-foreground hover:bg-primary/90  font-semibold rounded-lg text-xs shadow-sm border border-black/10 transition-all hover:scale-[1.02]">
                             Save Field
                         </button>
                     </div>

@@ -31,7 +31,7 @@
                 <div class="space-y-1">
                     <div class="relative">
                         <select x-model="currentPreset" @change="applyPreset($event.target.value)"
-                                class="p-2.5 pl-3 pr-8 text-xs border border-border rounded-xl bg-muted hover:bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:outline-none transition-all cursor-pointer font-semibold text-foreground appearance-none">
+                                class="p-2.5 pl-3 pr-8 text-xs border border-border rounded-lg bg-muted hover:bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:outline-none transition-all cursor-pointer font-semibold text-foreground appearance-none">
                             <option value="all">All Time</option>
                             <option value="today">Today</option>
                             <option value="yesterday">Yesterday</option>
@@ -52,7 +52,7 @@
                         <div class="relative">
                             <i data-lucide="calendar" class="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-muted-foreground"></i>
                             <input type="text" x-ref="startInput" placeholder="Start Date" readonly
-                                   class="pl-9 pr-4 py-2.5 text-xs border border-border rounded-xl bg-muted hover:bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:outline-none cursor-pointer font-semibold text-foreground w-32">
+                                   class="pl-9 pr-4 py-2.5 text-xs border border-border rounded-lg bg-muted hover:bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:outline-none cursor-pointer font-semibold text-foreground w-32">
                         </div>
                     </div>
                     <span class="text-muted-foreground text-xs mb-3">to</span>
@@ -60,7 +60,7 @@
                         <div class="relative">
                             <i data-lucide="calendar" class="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-muted-foreground"></i>
                             <input type="text" x-ref="endInput" placeholder="End Date" readonly
-                                   class="pl-9 pr-4 py-2.5 text-xs border border-border rounded-xl bg-muted hover:bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:outline-none cursor-pointer font-semibold text-foreground w-32">
+                                   class="pl-9 pr-4 py-2.5 text-xs border border-border rounded-lg bg-muted hover:bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:outline-none cursor-pointer font-semibold text-foreground w-32">
                         </div>
                     </div>
                 </div>
@@ -167,7 +167,7 @@
 <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
     {{-- Top 10 Sellers by GMV --}}
     <div class="bg-card border border-border rounded-xl ring-0 overflow-hidden">
-        <div class="px-5 py-4 border-b border-border flex items-center justify-between bg-muted/50">
+        <div class="px-5 py-4 border-b border-border flex items-center justify-between bg-muted">
             <div>
                 <h3 class="font-bold text-foreground text-sm">Top 10 Sellers by GMV</h3>
                 <p class="text-[11px] text-muted-foreground">Ranked by total sales volume in this period</p>
@@ -176,7 +176,7 @@
         </div>
         <div class="overflow-x-auto">
             <table class="w-full text-sm">
-                <thead class="bg-muted text-[10px] uppercase text-muted-foreground tracking-wider font-bold border-b border-border">
+                <thead class="bg-muted text-xs uppercase text-muted-foreground tracking-widerr font-medium border-b border-border">
                     <tr>
                         <th class="px-5 py-3 text-left">Rank</th>
                         <th class="px-5 py-3 text-left">Shop Name</th>
@@ -186,7 +186,7 @@
                 </thead>
                 <tbody class="divide-y divide-border">
                     @forelse($topSellersGmv as $index => $sellerGmv)
-                    <tr class="hover:bg-muted/50">
+                    <tr class="hover:bg-muted">
                         <td class="px-5 py-3.5 text-xs font-bold text-muted-foreground">#{{ $index + 1 }}</td>
                         <td class="px-5 py-3.5 text-xs font-semibold text-foreground">
                             {{ $sellerGmv->seller->shop_name ?? 'Unknown Shop' }}
@@ -206,7 +206,7 @@
 
     {{-- Top 10 Sellers by Rating --}}
     <div class="bg-card border border-border rounded-xl ring-0 overflow-hidden">
-        <div class="px-5 py-4 border-b border-border flex items-center justify-between bg-muted/50">
+        <div class="px-5 py-4 border-b border-border flex items-center justify-between bg-muted">
             <div>
                 <h3 class="font-bold text-foreground text-sm">Top 10 Sellers by Rating</h3>
                 <p class="text-[11px] text-muted-foreground">Overall ratings from verified transactions</p>
@@ -215,7 +215,7 @@
         </div>
         <div class="overflow-x-auto">
             <table class="w-full text-sm">
-                <thead class="bg-muted text-[10px] uppercase text-muted-foreground tracking-wider font-bold border-b border-border">
+                <thead class="bg-muted text-xs uppercase text-muted-foreground tracking-widerr font-medium border-b border-border">
                     <tr>
                         <th class="px-5 py-3 text-left">Rank</th>
                         <th class="px-5 py-3 text-left">Shop Name</th>
@@ -225,7 +225,7 @@
                 </thead>
                 <tbody class="divide-y divide-border">
                     @forelse($topSellersRating as $index => $sellerRating)
-                    <tr class="hover:bg-muted/50">
+                    <tr class="hover:bg-muted">
                         <td class="px-5 py-3.5 text-xs font-bold text-muted-foreground">#{{ $index + 1 }}</td>
                         <td class="px-5 py-3.5 text-xs font-semibold text-foreground">
                             {{ $sellerRating->shop_name }}

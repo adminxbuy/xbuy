@@ -81,13 +81,13 @@
                     <th class="px-6 py-3.5 w-12 text-center">
                         <input type="checkbox" x-model="selectAll" @change="if(selectAll) { selectedIds = {{ $sellers->pluck('id')->toJson() }} } else { selectedIds = [] }" class="rounded">
                     </th>
-                    <th class="px-6 py-3.5 font-semibold" style="color: var(--muted-foreground);">Seller Detail</th>
-                    <th class="px-6 py-3.5 font-semibold" style="color: var(--muted-foreground);">Shop Details</th>
-                    <th class="px-6 py-3.5 font-semibold" style="color: var(--muted-foreground);">Badge</th>
-                    <th class="px-6 py-3.5 font-semibold" style="color: var(--muted-foreground);">KYC Status</th>
-                    <th class="px-6 py-3.5 font-semibold" style="color: var(--muted-foreground);">Account Status</th>
-                    <th class="px-6 py-3.5 font-semibold" style="color: var(--muted-foreground);">Joined</th>
-                    <th class="px-6 py-3.5 text-right font-semibold" style="color: var(--muted-foreground);">Actions</th>
+                    <th class="px-6 py-3.5 font-medium" style="color: var(--muted-foreground);">Seller Detail</th>
+                    <th class="px-6 py-3.5 font-medium" style="color: var(--muted-foreground);">Shop Details</th>
+                    <th class="px-6 py-3.5 font-medium" style="color: var(--muted-foreground);">Badge</th>
+                    <th class="px-6 py-3.5 font-medium" style="color: var(--muted-foreground);">KYC Status</th>
+                    <th class="px-6 py-3.5 font-medium" style="color: var(--muted-foreground);">Account Status</th>
+                    <th class="px-6 py-3.5 font-medium" style="color: var(--muted-foreground);">Joined</th>
+                    <th class="px-6 py-3.5 text-right font-medium" style="color: var(--muted-foreground);">Actions</th>
                 </tr>
             </thead>
             <tbody>

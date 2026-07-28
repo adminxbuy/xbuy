@@ -4,7 +4,7 @@
 @section('page_title', 'Fraud Detection Center')
 
 @section('header_actions')
-    <a href="{{ route('admin.trash.index', 'fraud_flags') }}" class="flex items-center space-x-1.5 px-4 py-2.5 bg-rose-50 hover:bg-rose-100 text-rose-700 rounded-lg border border-rose-200/50 text-xs font-bold transition-all border border-red-200 shadow-sm">
+    <a href="{{ route('admin.trash.index', 'fraud_flags') }}" class="flex items-center space-x-1.5 px-4 py-2.5 bg-rose-50 hover:bg-rose-100 text-rose-700 rounded-lg border border-rose-200/50 text-xs font-medium transition-all border border-red-200 shadow-sm">
         <i data-lucide="trash-2" class="w-4.5 h-4.5 text-red-500"></i>
         <span>Trash ({{ $trashedFlags->count() }})</span>
     </a>
@@ -45,7 +45,7 @@
         </div>
         <button
             @click="showCreateModal = true"
-            class="px-4 py-2.5 bg-rose-600 hover:bg-rose-700 text-primary-foreground rounded-xl text-xs font-semibold flex items-center gap-1.5 transition-all shadow-sm">
+            class="px-4 py-2.5 bg-rose-600 hover:bg-rose-700 text-primary-foreground rounded-lg text-xs font-semibold flex items-center gap-1.5 transition-all shadow-sm">
             <i data-lucide="plus" class="w-3.5 h-3.5"></i>
             Flag Manually
         </button>
@@ -84,7 +84,7 @@
                 <div class="relative">
                     <i data-lucide="search" class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground"></i>
                     <input type="text" name="search" value="{{ request('search') }}" placeholder="User name or listing title…"
-                           class="w-full pl-9 pr-4 py-2.5 text-xs border border-border rounded-xl bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:outline-none">
+                           class="w-full pl-9 pr-4 py-2.5 text-xs border border-border rounded-lg bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:outline-none">
                 </div>
             </div>
 
@@ -93,7 +93,7 @@
                 <label class="text-[10px] font-bold text-muted-foreground uppercase tracking-wider block">Flag Type</label>
                 <div class="relative">
                     <select name="flag_type"
-                            class="w-full p-2.5 pl-3 pr-8 text-xs border border-border rounded-xl bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:outline-none transition-all cursor-pointer font-semibold text-foreground appearance-none">
+                            class="w-full p-2.5 pl-3 pr-8 text-xs border border-border rounded-lg bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:outline-none transition-all cursor-pointer font-semibold text-foreground appearance-none">
                         <option value="">All Types</option>
                         <option value="duplicate_serial"            {{ request('flag_type') === 'duplicate_serial'             ? 'selected' : '' }}>Duplicate Serial</option>
                         <option value="multiple_accounts_same_ip"   {{ request('flag_type') === 'multiple_accounts_same_ip'    ? 'selected' : '' }}>Multiple Accounts / Same IP</option>
@@ -112,7 +112,7 @@
                 <label class="text-[10px] font-bold text-muted-foreground uppercase tracking-wider block">Status</label>
                 <div class="relative">
                     <select name="status"
-                            class="w-full p-2.5 pl-3 pr-8 text-xs border border-border rounded-xl bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:outline-none transition-all cursor-pointer font-semibold text-foreground appearance-none">
+                            class="w-full p-2.5 pl-3 pr-8 text-xs border border-border rounded-lg bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:outline-none transition-all cursor-pointer font-semibold text-foreground appearance-none">
                         <option value="">All Statuses</option>
                         <option value="pending"   {{ request('status') === 'pending'   ? 'selected' : '' }}>Pending</option>
                         <option value="reviewed"  {{ request('status') === 'reviewed'  ? 'selected' : '' }}>Reviewed</option>
@@ -138,7 +138,7 @@
                     <label class="text-[10px] font-bold text-muted-foreground uppercase tracking-wider block">Timeline / Date Range</label>
                     <div class="relative">
                         <select x-model="currentPreset" @change="applyPreset($event.target.value)"
-                                class="p-2.5 pl-3 pr-8 text-xs border border-border rounded-xl bg-muted hover:bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:outline-none transition-all cursor-pointer font-semibold text-foreground appearance-none">
+                                class="p-2.5 pl-3 pr-8 text-xs border border-border rounded-lg bg-muted hover:bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:outline-none transition-all cursor-pointer font-semibold text-foreground appearance-none">
                             <option value="all">All Time</option>
                             <option value="today">Today</option>
                             <option value="yesterday">Yesterday</option>
@@ -160,7 +160,7 @@
                         <div class="relative">
                             <i data-lucide="calendar" class="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-muted-foreground"></i>
                             <input type="text" x-ref="startInput" placeholder="Start Date" readonly
-                                   class="pl-9 pr-4 py-2.5 text-xs border border-border rounded-xl bg-muted hover:bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:outline-none cursor-pointer font-semibold text-foreground w-32">
+                                   class="pl-9 pr-4 py-2.5 text-xs border border-border rounded-lg bg-muted hover:bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:outline-none cursor-pointer font-semibold text-foreground w-32">
                         </div>
                     </div>
                     <span class="text-muted-foreground text-xs mb-3 flex-shrink-0">to</span>
@@ -169,7 +169,7 @@
                         <div class="relative">
                             <i data-lucide="calendar" class="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-muted-foreground"></i>
                             <input type="text" x-ref="endInput" placeholder="End Date" readonly
-                                   class="pl-9 pr-4 py-2.5 text-xs border border-border rounded-xl bg-muted hover:bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:outline-none cursor-pointer font-semibold text-foreground w-32">
+                                   class="pl-9 pr-4 py-2.5 text-xs border border-border rounded-lg bg-muted hover:bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:outline-none cursor-pointer font-semibold text-foreground w-32">
                         </div>
                     </div>
                 </div>
@@ -177,12 +177,12 @@
 
             <div class="flex items-center gap-2 pt-5">
                 <button type="submit"
-                        class="px-4 py-2.5 bg-primary text-primary-foreground rounded-xl text-xs font-semibold flex items-center gap-1.5 transition-all hover:bg-primary/80">
+                        class="px-4 py-2.5 bg-primary text-primary-foreground rounded-lg text-xs font-semibold flex items-center gap-1.5 transition-all hover:bg-primary/80">
                     <i data-lucide="filter" class="w-3.5 h-3.5"></i> Filter
                 </button>
                 @if(request()->anyFilled(['search', 'flag_type', 'status', 'date_start', 'date_end']))
                     <a href="{{ route('admin.fraud-flags.index') }}"
-                       class="px-4 py-2.5 border border-border text-muted-foreground hover:bg-muted rounded-xl text-xs font-semibold transition-all">
+                       class="px-4 py-2.5 border border-border text-muted-foreground hover:bg-muted rounded-lg text-xs font-semibold transition-all">
                         Clear
                     </a>
                 @endif
@@ -208,7 +208,7 @@
                 <div class="overflow-x-auto">
                     <table class="w-full text-left border-collapse text-xs">
                         <thead>
-                            <tr class="bg-muted/80 uppercase font-bold text-muted-foreground border-b border-border text-[10px]">
+                            <tr class="bg-muted uppercase font-bold text-muted-foreground border-b border-border text-[10px]">
                                 <th class="px-4 py-2.5">Flag Type</th>
                                 <th class="px-4 py-2.5">Flagged User</th>
                                 <th class="px-4 py-2.5">Flagged Listing</th>
@@ -218,7 +218,7 @@
                         </thead>
                         <tbody class="divide-y divide-border">
                             @foreach($trashedFlags as $tFlag)
-                                <tr class="hover:bg-muted/30">
+                                <tr class="hover:bg-muted">
                                     <td class="px-4 py-3 font-bold text-foreground">{{ str_replace('_', ' ', $tFlag->flag_type) }}</td>
                                     <td class="px-4 py-3 text-muted-foreground">{{ $tFlag->flaggedUser->name ?? 'N/A' }}</td>
                                     <td class="px-4 py-3 text-muted-foreground">{{ $tFlag->flaggedListing->title ?? 'N/A' }}</td>
@@ -226,7 +226,7 @@
                                     <td class="px-4 py-3 text-right flex justify-end space-x-2">
                                         <form action="{{ route('admin.trash.restore', ['model' => 'fraud-flags', 'id' => $tFlag->id]) }}" method="POST">
                                             @csrf
-                                            <button type="submit" class="px-2 py-1 bg-emerald-50 text-emerald-700 border border-emerald-250 hover:bg-emerald-100 rounded-lg font-bold text-[10px] uppercase flex items-center space-x-1">
+                                            <button type="submit" class="px-2 py-1 bg-emerald-50 text-emerald-700 border border-emerald-250 hover:bg-emerald-100 rounded-lg font-medium text-[10px] uppercase flex items-center space-x-1">
                                                 <i data-lucide="rotate-ccw" class="w-3.5 h-3.5"></i>
                                                 <span>Restore</span>
                                             </button>
@@ -275,7 +275,7 @@
 
             <div class="border-b border-border last:border-0" x-data="{ expanded: false }">
                 {{-- Main Row --}}
-                <div class="p-4 flex flex-col sm:flex-row sm:items-center gap-4 hover:bg-muted/40 transition-all">
+                <div class="p-4 flex flex-col sm:flex-row sm:items-center gap-4 hover:bg-muted transition-all">
 
                     {{-- Type Icon --}}
                     <div class="w-10 h-10 rounded-xl bg-{{ $type['color'] }}-50 text-{{ $type['color'] }}-600 border border-{{ $type['color'] }}-100 flex items-center justify-center flex-shrink-0">
@@ -343,7 +343,7 @@
                                   onsubmit="return confirm('Dismiss this flag?')">
                                 @csrf
                                 <button type="submit"
-                                        class="px-3 py-1.5 bg-muted hover:bg-muted border border-border text-muted-foreground rounded-lg text-[10px] font-bold flex items-center gap-1 transition-all">
+                                        class="px-3 py-1.5 bg-muted hover:bg-muted border border-border text-muted-foreground rounded-lg text-[10px] font-medium flex items-center gap-1 transition-all">
                                     <i data-lucide="x" class="w-3.5 h-3.5"></i> Dismiss
                                 </button>
                             </form>
@@ -353,7 +353,7 @@
                                   onsubmit="return confirm('Dismiss this flag?')">
                                 @csrf
                                 <button type="submit"
-                                        class="px-3 py-1.5 bg-muted hover:bg-muted border border-border text-muted-foreground rounded-lg text-[10px] font-bold flex items-center gap-1 transition-all">
+                                        class="px-3 py-1.5 bg-muted hover:bg-muted border border-border text-muted-foreground rounded-lg text-[10px] font-medium flex items-center gap-1 transition-all">
                                     <i data-lucide="x" class="w-3.5 h-3.5"></i> Dismiss
                                 </button>
                             </form>
@@ -366,7 +366,7 @@
                 </div>
 
                 {{-- Expandable Details Panel --}}
-                <div x-show="expanded" x-collapse class="border-t border-dashed border-border bg-muted/60 px-5 py-4">
+                <div x-show="expanded" x-collapse class="border-t border-dashed border-border bg-muted px-5 py-4">
                     <p class="text-[10px] font-bold text-muted-foreground uppercase tracking-wider mb-3 flex items-center gap-1.5">
                         <i data-lucide="info" class="w-3 h-3"></i> Flag Details
                     </p>
@@ -431,7 +431,7 @@
 
         {{-- Pagination --}}
         @if($flags->hasPages())
-            <div class="px-5 py-4 border-t border-border bg-muted/50">
+            <div class="px-5 py-4 border-t border-border bg-muted">
                 {{ $flags->links() }}
             </div>
         @endif
@@ -474,7 +474,7 @@
                     <label class="text-xs font-bold text-muted-foreground">Flag Type <span class="text-rose-500">*</span></label>
                     <div class="relative">
                         <select name="flag_type" required
-                                class="w-full p-3 pl-3 pr-8 text-xs border border-border rounded-xl bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:outline-none transition-all appearance-none font-medium text-foreground">
+                                class="w-full p-3 pl-3 pr-8 text-xs border border-border rounded-lg bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:outline-none transition-all appearance-none font-medium text-foreground">
                             <option value="">Select flag type…</option>
                             <option value="duplicate_serial">Duplicate Serial</option>
                             <option value="multiple_accounts_same_ip">Multiple Accounts / Same IP</option>
@@ -492,21 +492,21 @@
                 <div class="space-y-1.5">
                     <label class="text-xs font-bold text-muted-foreground">User ID <span class="text-muted-foreground">(optional)</span></label>
                     <input type="number" name="flagged_user_id" placeholder="e.g. 42"
-                           class="w-full p-3 text-xs border border-border rounded-xl bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:outline-none transition-all">
+                           class="w-full p-3 text-xs border border-border rounded-lg bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:outline-none transition-all">
                 </div>
 
                 {{-- Listing ID --}}
                 <div class="space-y-1.5">
                     <label class="text-xs font-bold text-muted-foreground">Listing ID <span class="text-muted-foreground">(optional)</span></label>
                     <input type="number" name="flagged_listing_id" placeholder="e.g. 17"
-                           class="w-full p-3 text-xs border border-border rounded-xl bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:outline-none transition-all">
+                           class="w-full p-3 text-xs border border-border rounded-lg bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:outline-none transition-all">
                 </div>
 
                 {{-- Note --}}
                 <div class="space-y-1.5">
                     <label class="text-xs font-bold text-muted-foreground">Admin Note <span class="text-muted-foreground">(optional)</span></label>
                     <textarea name="note" rows="3" placeholder="Describe what was suspicious…"
-                              class="w-full p-3 text-xs border border-border rounded-xl bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:outline-none transition-all resize-none"></textarea>
+                              class="w-full p-3 text-xs border border-border rounded-lg bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:outline-none transition-all resize-none"></textarea>
                 </div>
 
                 <div class="flex items-center justify-end gap-3 pt-2 border-t border-border">
@@ -515,7 +515,7 @@
                         Cancel
                     </button>
                     <button type="submit"
-                            class="px-5 py-2.5 bg-rose-600 hover:bg-rose-700 text-white text-xs font-bold rounded-xl flex items-center gap-1.5 transition-all shadow-sm">
+                            class="px-5 py-2.5 bg-rose-600 hover:bg-rose-700 text-white text-xs font-medium rounded-lg flex items-center gap-1.5 transition-all shadow-sm">
                         <i data-lucide="flag" class="w-3.5 h-3.5"></i>
                         Create Flag
                     </button>

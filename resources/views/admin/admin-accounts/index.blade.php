@@ -40,7 +40,7 @@
             </div>
         </div>
         <a href="{{ route('admin.accounts.create') }}"
-           class="px-4 py-2.5 bg-primary text-primary-foreground hover:bg-primary/90 hover:bg-[#e6c22f] text-foreground rounded-xl text-xs font-bold flex items-center gap-1.5 transition-all shadow-sm">
+           class="px-4 py-2.5 bg-primary text-primary-foreground hover:bg-primary/90 hover:bg-[#e6c22f] text-foreground rounded-lg text-xs font-medium flex items-center gap-1.5 transition-all shadow-sm">
             <i data-lucide="user-plus" class="w-3.5 h-3.5"></i>
             Add Staff
         </a>
@@ -61,7 +61,7 @@
     <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-7 gap-3">
         @foreach($roleConfig as $roleKey => $rc)
         <a href="{{ route('admin.accounts.index', ['admin_role' => $roleKey]) }}"
-           class="bg-card border {{ request('admin_role') === $roleKey ? 'border-yellow-400 ring-2 ring-yellow-150' : 'border-border' }} rounded-xl p-3 shadow-sm hover:shadow-md transition-all flex flex-col items-center gap-2 text-center">
+           class="bg-card border {{ request('admin_role') === $roleKey ? 'border-primary ring-2 ring-primary/20' : 'border-border' }} rounded-xl p-3 shadow-sm hover:shadow-md transition-all flex flex-col items-center gap-2 text-center">
             <div class="w-9 h-9 rounded-xl bg-{{ $rc['color'] }}-50 text-{{ $rc['color'] }}-600 flex items-center justify-center border border-{{ $rc['color'] }}-100">
                 <i data-lucide="{{ $rc['icon'] }}" class="w-4 h-4"></i>
             </div>
@@ -81,13 +81,13 @@
                 <div class="relative">
                     <i data-lucide="search" class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground"></i>
                     <input type="text" name="search" value="{{ request('search') }}" placeholder="Name or email…"
-                           class="w-full pl-9 pr-4 py-2.5 text-xs border border-border rounded-xl bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:outline-none">
+                           class="w-full pl-9 pr-4 py-2.5 text-xs border border-border rounded-lg bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:outline-none">
                 </div>
             </div>
             <div class="w-full sm:w-48 space-y-1">
                 <label class="text-[10px] font-bold text-muted-foreground uppercase tracking-wider block">Role</label>
                 <div class="relative">
-                    <select name="admin_role" class="w-full p-2.5 pl-3 pr-8 text-xs border border-border rounded-xl bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:outline-none transition-all cursor-pointer font-semibold text-foreground appearance-none">
+                    <select name="admin_role" class="w-full p-2.5 pl-3 pr-8 text-xs border border-border rounded-lg bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:outline-none transition-all cursor-pointer font-semibold text-foreground appearance-none">
                         <option value="">All Roles</option>
                         @foreach($roleConfig as $rk => $rc)
                             <option value="{{ $rk }}" {{ request('admin_role') === $rk ? 'selected' : '' }}>{{ $rc['label'] }}</option>
@@ -99,11 +99,11 @@
                 </div>
             </div>
             <div class="flex items-center gap-2 pt-5">
-                <button type="submit" class="px-4 py-2.5 bg-primary text-primary-foreground rounded-xl text-xs font-semibold flex items-center gap-1.5 hover:bg-primary/80 transition-all">
+                <button type="submit" class="px-4 py-2.5 bg-primary text-primary-foreground rounded-lg text-xs font-semibold flex items-center gap-1.5 hover:bg-primary/80 transition-all">
                     <i data-lucide="filter" class="w-3.5 h-3.5"></i> Filter
                 </button>
                 @if(request()->anyFilled(['search','admin_role']))
-                    <a href="{{ route('admin.accounts.index') }}" class="px-4 py-2.5 border border-border text-muted-foreground hover:bg-muted rounded-xl text-xs font-semibold transition-all">Clear</a>
+                    <a href="{{ route('admin.accounts.index') }}" class="px-4 py-2.5 border border-border text-muted-foreground hover:bg-muted rounded-lg text-xs font-semibold transition-all">Clear</a>
                 @endif
             </div>
         </form>
@@ -114,12 +114,12 @@
         <div class="overflow-x-auto">
             <table class="w-full text-sm">
                 <thead>
-                    <tr class="border-b border-border bg-muted/60">
-                        <th class="text-left px-5 py-3 text-[10px] font-black text-muted-foreground uppercase tracking-widest">Staff Member</th>
-                        <th class="text-left px-4 py-3 text-[10px] font-black text-muted-foreground uppercase tracking-widest">Role</th>
-                        <th class="text-left px-4 py-3 text-[10px] font-black text-muted-foreground uppercase tracking-widest">Access</th>
-                        <th class="text-left px-4 py-3 text-[10px] font-black text-muted-foreground uppercase tracking-widest">Joined</th>
-                        <th class="text-right px-5 py-3 text-[10px] font-black text-muted-foreground uppercase tracking-widest">Actions</th>
+                    <tr class="border-b border-border bg-muted">
+                        <th class="text-left px-5 py-3 text-xs font-black text-muted-foreground uppercase tracking-widerr">Staff Member</th>
+                        <th class="text-left px-4 py-3 text-xs font-black text-muted-foreground uppercase tracking-widerr">Role</th>
+                        <th class="text-left px-4 py-3 text-xs font-black text-muted-foreground uppercase tracking-widerr">Access</th>
+                        <th class="text-left px-4 py-3 text-xs font-black text-muted-foreground uppercase tracking-widerr">Joined</th>
+                        <th class="text-right px-5 py-3 text-xs font-black text-muted-foreground uppercase tracking-widerr">Actions</th>
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-border">
@@ -158,7 +158,7 @@
                                 default => '71717a',
                             };
                         @endphp
-                        <tr class="hover:bg-muted/40 transition-all">
+                        <tr class="hover:bg-muted transition-all">
                             <td class="px-5 py-3.5">
                                 <div class="flex items-center gap-3">
                                     <img src="https://ui-avatars.com/api/?name={{ urlencode($admin->name) }}&background={{ $avatarBg }}&color=fff&size=36"
@@ -202,7 +202,7 @@
                                               onsubmit="return confirm('Revoke staff access for {{ $admin->name }}? They will become a regular buyer.')">
                                             @csrf @method('DELETE')
                                             <button type="submit"
-                                                    class="px-3 py-1.5 bg-rose-50 hover:bg-rose-100 border border-rose-200 text-rose-700 rounded-lg text-[10px] font-bold flex items-center gap-1 transition-all">
+                                                    class="px-3 py-1.5 bg-rose-50 hover:bg-rose-100 border border-rose-200 text-rose-700 rounded-lg text-[10px] font-medium flex items-center gap-1 transition-all">
                                                 <i data-lucide="user-x" class="w-3.5 h-3.5"></i> Revoke
                                             </button>
                                         </form>
@@ -227,7 +227,7 @@
             </table>
         </div>
         @if($admins->hasPages())
-            <div class="px-5 py-4 border-t border-border bg-muted/50">
+            <div class="px-5 py-4 border-t border-border bg-muted">
                 {{ $admins->links() }}
             </div>
         @endif

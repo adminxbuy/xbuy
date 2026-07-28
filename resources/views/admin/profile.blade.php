@@ -65,7 +65,7 @@
                         <div class="space-y-1.5">
                             <label for="gender" class="block text-xs font-semibold text-foreground">Gender</label>
                             <select id="gender" name="gender" 
-                                    class="w-full px-3.5 py-2 border border-border rounded-xl text-sm focus:outline-none focus:ring-1 focus:ring-ring focus:border-ring transition-all cursor-pointer">
+                                    class="w-full px-3.5 py-2 border border-border rounded-lg text-sm focus:outline-none focus:ring-1 focus:ring-ring focus:border-ring transition-all cursor-pointer">
                                 <option value="" {{ is_null($user->gender) ? 'selected' : '' }}>Select Gender</option>
                                 <option value="male" {{ $user->gender === 'male' ? 'selected' : '' }}>Male</option>
                                 <option value="female" {{ $user->gender === 'female' ? 'selected' : '' }}>Female</option>
@@ -96,7 +96,7 @@
                         <label for="requested_bank_account" class="block text-xs font-semibold text-foreground">Bank Account Details (Bank Name, Holder Name, Account #, IFSC)</label>
                         <textarea id="requested_bank_account" name="requested_bank_account" rows="4" 
                                   placeholder="e.g. State Bank of India&#10;Holder: Toby Belhome&#10;Account No: 12345678901&#10;IFSC: SBIN0001234"
-                                  class="w-full px-3.5 py-2 border border-border rounded-xl text-sm focus:outline-none focus:ring-1 focus:ring-ring focus:border-ring transition-all">{{ old('requested_bank_account', $profile->bank_account) }}</textarea>
+                                  class="w-full px-3.5 py-2 border border-border rounded-lg text-sm focus:outline-none focus:ring-1 focus:ring-ring focus:border-ring transition-all">{{ old('requested_bank_account', $profile->bank_account) }}</textarea>
                         <span class="text-[10px] text-amber-600 font-semibold block flex items-center space-x-1">
                             <i data-lucide="shield-alert" class="w-3 h-3 flex-shrink-0"></i>
                             <span>Changing Bank Details requires Super Admin approval.</span>
@@ -119,7 +119,7 @@
 
             <!-- Submit Button -->
             <div class="flex justify-end pt-4 border-t border-border">
-                <button type="submit" class="px-6 py-2.5 bg-primary text-primary-foreground hover:bg-primary/90 hover:bg-[#fbc02d] text-foreground font-semibold rounded-xl text-sm transition-all shadow-sm flex items-center space-x-2">
+                <button type="submit" class="px-6 py-2.5 bg-primary text-primary-foreground hover:bg-primary/90 hover:bg-[#fbc02d] text-foreground font-semibold rounded-lg text-sm transition-all shadow-sm flex items-center space-x-2">
                     <i data-lucide="save" class="w-4 h-4"></i>
                     <span>Save Profile Changes & Request Updates</span>
                 </button>

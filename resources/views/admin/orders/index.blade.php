@@ -47,7 +47,7 @@
                     <div class="relative">
                         <i data-lucide="search" class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4" style="color: var(--muted-foreground);"></i>
                         <input type="text" name="search" value="{{ request('search') }}" placeholder="Search order number or buyer name..."
-                               class="w-full pl-9 pr-4 py-2 text-xs rounded-xl focus:ring-1 focus:outline-none" style="border: 1px solid var(--border); background: var(--muted); color: var(--foreground);">
+                               class="w-full pl-9 pr-4 py-2 text-xs rounded-lg focus:ring-1 focus:outline-none" style="border: 1px solid var(--border); background: var(--muted); color: var(--foreground);">
                     </div>
                 </div>
                 <div class="date-range-picker-container flex flex-wrap items-center gap-4" x-data="dateRangePicker({ start: '{{ request('date_start') }}', end: '{{ request('date_end') }}', startName: 'date_start', endName: 'date_end' })">
@@ -55,7 +55,7 @@
                     <input type="hidden" name="date_end" x-model="dateEnd">
                     <div class="space-y-1">
                         <label class="text-xs font-bold uppercase tracking-wider block" style="color: var(--muted-foreground);">Date Range</label>
-                        <select x-model="currentPreset" @change="applyPreset($event.target.value)" class="p-2.5 pl-3 pr-8 text-xs rounded-xl focus:ring-1 focus:outline-none transition-all cursor-pointer font-semibold appearance-none" style="border: 1px solid var(--border); background: var(--muted); color: var(--foreground);">
+                        <select x-model="currentPreset" @change="applyPreset($event.target.value)" class="p-2.5 pl-3 pr-8 text-xs rounded-lg focus:ring-1 focus:outline-none transition-all cursor-pointer font-semibold appearance-none" style="border: 1px solid var(--border); background: var(--muted); color: var(--foreground);">
                             <option value="all">All Time</option>
                             <option value="today">Today</option>
                             <option value="yesterday">Yesterday</option>
@@ -69,12 +69,12 @@
                     <div class="flex items-end gap-2" x-show="currentPreset === 'custom'">
                         <div class="space-y-1">
                             <label class="text-xs font-bold uppercase tracking-wider block" style="color: var(--muted-foreground);">From</label>
-                            <input type="text" x-ref="startInput" placeholder="Start" readonly class="pl-3 pr-4 py-2.5 text-xs rounded-xl w-32 font-semibold" style="border: 1px solid var(--border); background: var(--muted); color: var(--foreground);">
+                            <input type="text" x-ref="startInput" placeholder="Start" readonly class="pl-3 pr-4 py-2.5 text-xs rounded-lg w-32 font-semibold" style="border: 1px solid var(--border); background: var(--muted); color: var(--foreground);">
                         </div>
                         <span class="text-xs mb-3" style="color: var(--muted-foreground);">to</span>
                         <div class="space-y-1">
                             <label class="text-xs font-bold uppercase tracking-wider block" style="color: var(--muted-foreground);">To</label>
-                            <input type="text" x-ref="endInput" placeholder="End" readonly class="pl-3 pr-4 py-2.5 text-xs rounded-xl w-32 font-semibold" style="border: 1px solid var(--border); background: var(--muted); color: var(--foreground);">
+                            <input type="text" x-ref="endInput" placeholder="End" readonly class="pl-3 pr-4 py-2.5 text-xs rounded-lg w-32 font-semibold" style="border: 1px solid var(--border); background: var(--muted); color: var(--foreground);">
                         </div>
                     </div>
                 </div>
@@ -112,14 +112,14 @@
                 <thead style="background: var(--muted);">
                     <tr class="border-b" style="border-color: var(--border);">
                         <th class="px-5 py-3.5 w-12 text-center"><input type="checkbox" x-model="selectAll" @change="if(selectAll) { selectedIds = {{ collect($orders->items())->pluck('id')->toJson() }} } else { selectedIds = [] }" class="rounded"></th>
-                        <th class="px-5 py-3.5 font-semibold text-[10px] uppercase tracking-wider" style="color: var(--muted-foreground);">Order</th>
-                        <th class="px-5 py-3.5 font-semibold text-[10px] uppercase tracking-wider" style="color: var(--muted-foreground);">Product</th>
-                        <th class="px-5 py-3.5 font-semibold text-[10px] uppercase tracking-wider" style="color: var(--muted-foreground);">Buyer</th>
-                        <th class="px-5 py-3.5 font-semibold text-[10px] uppercase tracking-wider" style="color: var(--muted-foreground);">Seller</th>
-                        <th class="px-5 py-3.5 text-right font-semibold text-[10px] uppercase tracking-wider" style="color: var(--muted-foreground);">Amount</th>
-                        <th class="px-5 py-3.5 font-semibold text-[10px] uppercase tracking-wider" style="color: var(--muted-foreground);">Escrow</th>
-                        <th class="px-5 py-3.5 font-semibold text-[10px] uppercase tracking-wider" style="color: var(--muted-foreground);">Status</th>
-                        <th class="px-5 py-3.5 text-right font-semibold text-[10px] uppercase tracking-wider" style="color: var(--muted-foreground);">Action</th>
+                        <th class="px-5 py-3.5 font-medium text-xs uppercase tracking-widerr" style="color: var(--muted-foreground);">Order</th>
+                        <th class="px-5 py-3.5 font-medium text-xs uppercase tracking-widerr" style="color: var(--muted-foreground);">Product</th>
+                        <th class="px-5 py-3.5 font-medium text-xs uppercase tracking-widerr" style="color: var(--muted-foreground);">Buyer</th>
+                        <th class="px-5 py-3.5 font-medium text-xs uppercase tracking-widerr" style="color: var(--muted-foreground);">Seller</th>
+                        <th class="px-5 py-3.5 text-right font-medium text-xs uppercase tracking-widerr" style="color: var(--muted-foreground);">Amount</th>
+                        <th class="px-5 py-3.5 font-medium text-xs uppercase tracking-widerr" style="color: var(--muted-foreground);">Escrow</th>
+                        <th class="px-5 py-3.5 font-medium text-xs uppercase tracking-widerr" style="color: var(--muted-foreground);">Status</th>
+                        <th class="px-5 py-3.5 text-right font-medium text-xs uppercase tracking-widerr" style="color: var(--muted-foreground);">Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -346,7 +346,7 @@
             <p class="text-xs font-bold uppercase tracking-wide mb-3" style="color: var(--muted-foreground);">Manual Status Update</p>
             <form :action="order?.status_url" method="POST" class="flex gap-2">
                 <input type="hidden" name="_token" :value="order?.csrf">
-                <select name="order_status" class="flex-1 text-sm rounded-xl px-3 py-2.5 focus:ring-1 focus:outline-none" style="border: 1px solid var(--border); background: var(--card); color: var(--foreground);">
+                <select name="order_status" class="flex-1 text-sm rounded-lg px-3 py-2.5 focus:ring-1 focus:outline-none" style="border: 1px solid var(--border); background: var(--card); color: var(--foreground);">
                     @foreach(['pending_payment' => 'Pending Payment', 'payment_received' => 'Payment Received', 'confirmed' => 'Confirmed', 'label_generated' => 'Label Generated', 'picked_up' => 'Picked Up', 'in_transit' => 'In Transit', 'out_for_delivery' => 'Out for Delivery', 'delivered' => 'Delivered', 'testing_period' => 'Testing Period', 'completed' => 'Completed', 'disputed' => 'Disputed', 'refunded' => 'Refunded', 'cancelled' => 'Cancelled'] as $val => $lbl)
                         <option value="{{ $val }}" x-bind:selected="order?.order_status === '{{ $val }}'">{{ $lbl }}</option>
                     @endforeach

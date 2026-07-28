@@ -5,7 +5,7 @@
 
 @section('header_actions')
     <a href="{{ route('admin.my-earnings.print') }}?month_year={{ request('month_year') }}" target="_blank"
-       class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-primary text-primary-foreground hover:bg-primary/90 hover:bg-primary/90 hover:text-primary-foreground rounded-lg text-xs font-bold transition-all shadow-sm">
+       class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-primary text-primary-foreground hover:bg-primary/90 hover:bg-primary/90 hover:text-primary-foreground rounded-lg text-xs font-medium transition-all shadow-sm">
         <i data-lucide="printer" class="w-3.5 h-3.5"></i>
         <span>Download report (PDF)</span>
     </a>
@@ -62,9 +62,9 @@
         
         <form action="{{ route('admin.my-earnings') }}" method="GET" class="flex items-center gap-2">
             <input type="month" name="month_year" value="{{ request('month_year') }}"
-                   class="p-2.5 text-xs border border-border rounded-xl bg-muted hover:bg-muted focus:bg-card focus:outline-none transition-all cursor-pointer font-semibold text-foreground">
+                   class="p-2.5 text-xs border border-border rounded-lg bg-muted hover:bg-muted focus:bg-card focus:outline-none transition-all cursor-pointer font-semibold text-foreground">
             @if(request()->filled('month_year'))
-                <a href="{{ route('admin.my-earnings') }}" class="px-3 py-2 border border-border text-muted-foreground hover:bg-muted rounded-xl text-xs font-semibold">
+                <a href="{{ route('admin.my-earnings') }}" class="px-3 py-2 border border-border text-muted-foreground hover:bg-muted rounded-lg text-xs font-semibold">
                     Clear Filter
                 </a>
             @endif
@@ -73,7 +73,7 @@
 
     <div class="overflow-x-auto">
         <table class="w-full text-left text-sm">
-            <thead class="bg-muted text-[10px] uppercase tracking-wider text-muted-foreground font-bold border-b border-border">
+            <thead class="bg-muted text-xs uppercase tracking-widerr text-muted-foreground font-medium border-b border-border">
                 <tr>
                     <th class="px-6 py-4">Order #</th>
                     <th class="px-6 py-4">Sale Value</th>
@@ -86,7 +86,7 @@
             </thead>
             <tbody class="divide-y divide-border">
                 @forelse($filteredOrders as $order)
-                <tr class="hover:bg-muted/50 transition-all font-semibold">
+                <tr class="hover:bg-muted transition-all font-semibold">
                     <td class="px-6 py-4 font-bold text-foreground text-xs">
                         #{{ $order->order_number }}
                     </td>

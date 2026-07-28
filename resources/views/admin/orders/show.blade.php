@@ -194,7 +194,7 @@
             <div class="bg-card border border-border rounded-xl ring-0 overflow-hidden flex flex-col h-[400px]"
                 x-data="buyerChatManager()">
                 <!-- Chat Header -->
-                <div class="px-6 py-4 border-b border-border bg-muted/50 flex items-center justify-between">
+                <div class="px-6 py-4 border-b border-border bg-muted flex items-center justify-between">
                     <div class="flex items-center space-x-2.5">
                         <div class="w-8 h-8 rounded-full bg-primary text-primary-foreground hover:bg-primary/90/15 flex items-center justify-center text-foreground">
                             <i data-lucide="message-square" class="w-4 h-4"></i>
@@ -238,12 +238,12 @@
                 </div>
 
                 <!-- Chat Input Area -->
-                <div class="p-4 border-t border-border bg-muted/30">
+                <div class="p-4 border-t border-border bg-muted">
                     <form @submit.prevent="sendMessage()" class="flex gap-2">
                         <input type="text" x-model="newMessage" placeholder="Type a message to buyer..." required
-                            class="flex-1 px-4 py-2.5 border border-border rounded-xl text-sm focus:ring-1 focus:ring-ring focus:border-ring focus:outline-none bg-card transition-all">
+                            class="flex-1 px-4 py-2.5 border border-border rounded-lg text-sm focus:ring-1 focus:ring-ring focus:border-ring focus:outline-none bg-card transition-all">
                         <button type="submit" :disabled="sending"
-                            class="bg-primary hover:bg-primary/90 disabled:bg-muted text-primary-foreground font-bold px-5 py-2.5 rounded-xl text-sm shadow-sm transition-all flex items-center space-x-2">
+                            class="bg-primary hover:bg-primary/90 disabled:bg-muted text-primary-foreground font-medium px-5 py-2.5 rounded-lg text-sm shadow-sm transition-all flex items-center space-x-2">
                             <span x-show="!sending">Send</span>
                             <span x-show="sending" x-cloak>Sending...</span>
                             <i data-lucide="send" class="w-4 h-4"></i>

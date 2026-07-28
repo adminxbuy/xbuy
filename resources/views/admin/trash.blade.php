@@ -45,7 +45,7 @@
         ];
         $backRoute = $backRoutes[$modelName] ?? 'admin.dashboard';
     @endphp
-    <a href="{{ route($backRoute) }}" class="flex items-center space-x-1.5 px-4 py-2 bg-muted hover:bg-muted text-foreground hover:text-foreground rounded-xl text-xs font-semibold transition-all border border-border shadow-sm">
+    <a href="{{ route($backRoute) }}" class="flex items-center space-x-1.5 px-4 py-2 bg-muted hover:bg-muted text-foreground hover:text-foreground rounded-lg text-xs font-semibold transition-all border border-border shadow-sm">
         <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i>
         <span>Back to {{ $displayNames[$modelName] ?? 'List' }}</span>
     </a>
@@ -71,7 +71,7 @@
     <div class="bg-card border border-border rounded-xl p-4 shadow-sm flex flex-col sm:flex-row justify-between items-center gap-4">
         <form action="{{ route('admin.trash.index', $modelName) }}" method="GET" class="w-full sm:w-80 relative">
             <input type="text" name="search" value="{{ request('search') }}" placeholder="Search in trash..."
-                class="w-full pl-9 pr-4 py-2.5 border border-border rounded-xl bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:outline-none text-xs transition-all font-semibold text-foreground">
+                class="w-full pl-9 pr-4 py-2.5 border border-border rounded-lg bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:outline-none text-xs transition-all font-semibold text-foreground">
             <div class="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground">
                 <i data-lucide="search" class="w-4 h-4"></i>
             </div>
@@ -109,7 +109,7 @@
                         <tbody class="divide-y divide-border">
                             @foreach(['images', 'pdfs', 'videos'] as $fType)
                                 @foreach($trashedContent[$fType] as $tFile)
-                                    <tr class="hover:bg-muted/50 transition-colors">
+                                    <tr class="hover:bg-muted transition-colors">
                                         <td class="px-5 py-3.5 font-bold text-foreground truncate max-w-[300px]" title="{{ $tFile['original_name'] }}">{{ $tFile['original_name'] }}</td>
                                         <td class="px-5 py-3.5 capitalize text-muted-foreground">{{ $fType }}</td>
                                         <td class="px-5 py-3.5 text-right text-muted-foreground font-semibold">{{ $tFile['size'] }}</td>
@@ -118,7 +118,7 @@
                                             <form action="{{ route('admin.content.restore') }}" method="POST">
                                                 @csrf
                                                 <input type="hidden" name="path" value="{{ $tFile['url'] }}">
-                                                <button type="submit" class="px-3 py-1.5 bg-emerald-50 text-emerald-700 border border-emerald-250 hover:bg-emerald-100 rounded-xl font-bold text-[10px] uppercase flex items-center space-x-1 transition-all">
+                                                <button type="submit" class="px-3 py-1.5 bg-emerald-50 text-emerald-700 border border-emerald-250 hover:bg-emerald-100 rounded-lg font-medium text-[10px] uppercase flex items-center space-x-1 transition-all">
                                                     <i data-lucide="rotate-ccw" class="w-3.5 h-3.5"></i>
                                                     <span>Restore</span>
                                                 </button>
@@ -164,7 +164,7 @@
                         </thead>
                         <tbody class="divide-y divide-border">
                             @foreach($trashedItems as $item)
-                                <tr class="hover:bg-muted/50 transition-colors">
+                                <tr class="hover:bg-muted transition-colors">
                                     <td class="px-5 py-3.5">
                                         @if($modelName === 'articles')
                                             <div class="font-bold text-foreground text-sm">{{ $item->title }}</div>
@@ -253,7 +253,7 @@
                                         @endphp
                                         <form action="{{ $restoreRoute === 'admin.trash.restore' ? route($restoreRoute, ['model' => $modelName, 'id' => $item->id]) : route($restoreRoute, $item->id) }}" method="POST">
                                             @csrf
-                                            <button type="submit" class="px-3 py-1.5 bg-emerald-50 text-emerald-700 border border-emerald-250 hover:bg-emerald-100 rounded-xl font-bold text-[10px] uppercase flex items-center space-x-1 transition-all">
+                                            <button type="submit" class="px-3 py-1.5 bg-emerald-50 text-emerald-700 border border-emerald-250 hover:bg-emerald-100 rounded-lg font-medium text-[10px] uppercase flex items-center space-x-1 transition-all">
                                                 <i data-lucide="rotate-ccw" class="w-3.5 h-3.5"></i>
                                                 <span>Restore</span>
                                             </button>
@@ -285,7 +285,7 @@
                 </div>
 
                 @if($trashedItems->hasPages())
-                    <div class="px-5 py-4 border-t border-border bg-muted/50">
+                    <div class="px-5 py-4 border-t border-border bg-muted">
                         {{ $trashedItems->links() }}
                     </div>
                 @endif
