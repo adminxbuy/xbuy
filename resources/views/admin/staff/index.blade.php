@@ -5,7 +5,7 @@
 
 @section('header_actions')
     @if(Auth::user()->isSuperAdmin())
-    <a href="{{ route('admin.accounts.create') }}" class="inline-flex items-center gap-2 bg-zinc-900 text-white hover:bg-zinc-800 hover:bg-zinc-800 hover:text-white font-bold px-4 py-2.5 rounded-xl text-xs transition-all shadow-sm">
+    <a href="{{ route('admin.accounts.create') }}" class="inline-flex items-center gap-2 bg-primary text-primary-foreground hover:bg-primary/90 hover:bg-primary/90 hover:text-primary-foreground font-bold px-4 py-2.5 rounded-xl text-xs transition-all shadow-sm">
         <i data-lucide="user-plus" class="w-3.5 h-3.5"></i>
         <span>Add Staff Account</span>
     </a>
@@ -13,20 +13,20 @@
 @endsection
 
 @section('content')
-<div class="bg-white border border-zinc-200 rounded-xl ring-1 ring-zinc-950/5 overflow-hidden mb-6">
-    <div class="px-6 py-4 border-b border-zinc-100 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+<div class="bg-card border border-border rounded-xl ring-0 overflow-hidden mb-6">
+    <div class="px-6 py-4 border-b border-border flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
-            <h3 class="font-bold text-zinc-800 text-base">Active Platform Staff</h3>
-            <p class="text-xs text-zinc-400">Manage directory details, suspension, and notice dispatches.</p>
+            <h3 class="font-bold text-foreground text-base">Active Platform Staff</h3>
+            <p class="text-xs text-muted-foreground">Manage directory details, suspension, and notice dispatches.</p>
         </div>
         <form action="{{ route('admin.staff.directory') }}" method="GET" class="flex items-center gap-2">
             <div class="relative">
-                <i data-lucide="search" class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-450"></i>
+                <i data-lucide="search" class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground"></i>
                 <input type="text" name="search" value="{{ request('search') }}" placeholder="Search staff..." 
-                       class="pl-9 pr-4 py-2 text-xs border border-zinc-200 rounded-xl bg-zinc-50 hover:bg-zinc-100 focus:bg-white focus:ring-1 focus:ring-zinc-950 focus:border-zinc-950 focus:outline-none transition-all w-56 font-semibold">
+                       class="pl-9 pr-4 py-2 text-xs border border-border rounded-xl bg-muted hover:bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:outline-none transition-all w-56 font-semibold">
             </div>
             @if(request()->filled('search'))
-                <a href="{{ route('admin.staff.directory') }}" class="px-3 py-2 border border-zinc-200 text-zinc-650 hover:bg-zinc-50 rounded-xl text-xs font-semibold">
+                <a href="{{ route('admin.staff.directory') }}" class="px-3 py-2 border border-border text-muted-foreground hover:bg-muted rounded-xl text-xs font-semibold">
                     Clear
                 </a>
             @endif
@@ -35,7 +35,7 @@
 
     <div class="overflow-x-auto">
         <table class="w-full text-left text-sm">
-            <thead class="bg-zinc-50 text-[10px] uppercase tracking-wider text-zinc-400 font-bold border-b border-zinc-200">
+            <thead class="bg-muted text-[10px] uppercase tracking-wider text-muted-foreground font-bold border-b border-border">
                 <tr>
                     <th class="px-6 py-4">Name</th>
                     <th class="px-6 py-4">Designation</th>
@@ -47,33 +47,33 @@
                     <th class="px-6 py-4 text-right">Actions</th>
                 </tr>
             </thead>
-            <tbody class="divide-y divide-zinc-100">
+            <tbody class="divide-y divide-border">
                 @forelse($staff as $member)
-                <tr class="hover:bg-zinc-50/50 transition-all">
+                <tr class="hover:bg-muted/50 transition-all">
                     <td class="px-6 py-4">
                         <div class="flex items-center space-x-3">
                             <img src="https://ui-avatars.com/api/?name={{ urlencode($member->name) }}&background=e4e4e7&color=71717a&size=40" class="w-10 h-10 rounded-xl" alt="avatar">
                             <div>
-                                <h4 class="text-xs font-bold text-zinc-900">{{ $member->name }}</h4>
-                                <p class="text-[10px] text-zinc-400">{{ $member->email }}</p>
+                                <h4 class="text-xs font-bold text-foreground">{{ $member->name }}</h4>
+                                <p class="text-[10px] text-muted-foreground">{{ $member->email }}</p>
                             </div>
                         </div>
                     </td>
-                    <td class="px-6 py-4 text-zinc-650 text-xs font-semibold">
+                    <td class="px-6 py-4 text-muted-foreground text-xs font-semibold">
                         {{ $member->staffProfile->designation ?? 'Staff Member' }}
                     </td>
                     <td class="px-6 py-4">
-                        <span class="px-2 py-0.5 text-[9px] rounded-full font-bold bg-zinc-100 text-zinc-600 border border-zinc-200">
+                        <span class="px-2 py-0.5 text-[9px] rounded-full font-bold bg-muted text-muted-foreground border border-border">
                             {{ ucfirst(str_replace('_', ' ', $member->admin_role)) }}
                         </span>
                     </td>
-                    <td class="px-6 py-4 text-zinc-500 text-xs">
+                    <td class="px-6 py-4 text-muted-foreground text-xs">
                         {{ $member->staffProfile->joined_at ? $member->staffProfile->joined_at->format('d M, Y') : $member->created_at->format('d M, Y') }}
                     </td>
-                    <td class="px-6 py-4 font-bold text-zinc-800 text-xs">
+                    <td class="px-6 py-4 font-bold text-foreground text-xs">
                         ₹{{ number_format($member->this_month_earned, 2) }}
                     </td>
-                    <td class="px-6 py-4 font-bold text-zinc-800 text-xs">
+                    <td class="px-6 py-4 font-bold text-foreground text-xs">
                         ₹{{ number_format($member->total_earned, 2) }}
                     </td>
                     <td class="px-6 py-4">
@@ -86,7 +86,7 @@
                     </td>
                     <td class="px-6 py-4 text-right whitespace-nowrap space-x-1">
                         <a href="{{ route('admin.staff.show', $member->id) }}" 
-                           class="inline-flex items-center gap-1 text-xs font-bold bg-zinc-100 hover:bg-zinc-900 text-white hover:bg-zinc-800 text-zinc-800 px-3 py-1.5 rounded-lg transition-all border border-zinc-200">
+                           class="inline-flex items-center gap-1 text-xs font-bold bg-muted hover:bg-primary text-primary-foreground hover:bg-primary/90 text-foreground px-3 py-1.5 rounded-lg transition-all border border-border">
                             <i data-lucide="eye" class="w-3.5 h-3.5"></i>
                             <span>Profile</span>
                         </a>
@@ -126,11 +126,11 @@
                 <tr>
                     <td colspan="8" class="px-6 py-12 text-center">
                         <div class="flex flex-col items-center justify-center">
-                            <div class="w-10 h-10 bg-zinc-50 rounded-xl flex items-center justify-center text-zinc-450 mb-2 border border-zinc-200">
+                            <div class="w-10 h-10 bg-muted rounded-xl flex items-center justify-center text-muted-foreground mb-2 border border-border">
                                 <i data-lucide="users" class="w-5 h-5"></i>
                             </div>
-                            <h4 class="text-xs font-bold text-zinc-800">No Staff Found</h4>
-                            <p class="text-[11px] text-zinc-400 mt-0.5">Try searching with a different term.</p>
+                            <h4 class="text-xs font-bold text-foreground">No Staff Found</h4>
+                            <p class="text-[11px] text-muted-foreground mt-0.5">Try searching with a different term.</p>
                         </div>
                     </td>
                 </tr>

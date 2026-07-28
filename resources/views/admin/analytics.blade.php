@@ -6,16 +6,16 @@
 @section('content')
 
 {{-- Date Range Picker and Filter Controls --}}
-<div class="bg-white border border-zinc-200 rounded-xl p-5 shadow-sm mb-8">
+<div class="bg-card border border-border rounded-xl p-5 shadow-sm mb-8">
     <form action="{{ route('admin.analytics') }}" method="GET" class="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <input type="hidden" name="days" value="custom">
         <div class="flex items-center gap-3">
-            <div class="p-2 bg-zinc-50 text-zinc-650 rounded-xl">
+            <div class="p-2 bg-muted text-muted-foreground rounded-xl">
                 <i data-lucide="calendar-range" class="w-5 h-5"></i>
             </div>
             <div>
-                <h4 class="font-bold text-zinc-950 text-sm">Select Analytics Period</h4>
-                <p class="text-xs text-zinc-500">Current range: {{ $start->format('d M Y') }} - {{ $end->format('d M Y') }}</p>
+                <h4 class="font-bold text-foreground text-sm">Select Analytics Period</h4>
+                <p class="text-xs text-muted-foreground">Current range: {{ $start->format('d M Y') }} - {{ $end->format('d M Y') }}</p>
             </div>
         </div>
 
@@ -31,7 +31,7 @@
                 <div class="space-y-1">
                     <div class="relative">
                         <select x-model="currentPreset" @change="applyPreset($event.target.value)"
-                                class="p-2.5 pl-3 pr-8 text-xs border border-zinc-200 rounded-xl bg-zinc-50 hover:bg-zinc-100 focus:bg-white focus:ring-1 focus:ring-zinc-950 focus:border-zinc-950 focus:outline-none transition-all cursor-pointer font-semibold text-zinc-700 appearance-none">
+                                class="p-2.5 pl-3 pr-8 text-xs border border-border rounded-xl bg-muted hover:bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:outline-none transition-all cursor-pointer font-semibold text-foreground appearance-none">
                             <option value="all">All Time</option>
                             <option value="today">Today</option>
                             <option value="yesterday">Yesterday</option>
@@ -41,7 +41,7 @@
                             <option value="last_month">Last Month</option>
                             <option value="custom">Custom Range</option>
                         </select>
-                        <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-zinc-400">
+                        <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-muted-foreground">
                             <i data-lucide="chevron-down" class="w-3.5 h-3.5"></i>
                         </div>
                     </div>
@@ -50,17 +50,17 @@
                 <div class="flex items-end gap-2" x-show="currentPreset === 'custom'">
                     <div class="space-y-1">
                         <div class="relative">
-                            <i data-lucide="calendar" class="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-zinc-400"></i>
+                            <i data-lucide="calendar" class="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-muted-foreground"></i>
                             <input type="text" x-ref="startInput" placeholder="Start Date" readonly
-                                   class="pl-9 pr-4 py-2.5 text-xs border border-zinc-200 rounded-xl bg-zinc-50 hover:bg-zinc-100 focus:bg-white focus:ring-1 focus:ring-zinc-950 focus:border-zinc-950 focus:outline-none cursor-pointer font-semibold text-zinc-750 w-32">
+                                   class="pl-9 pr-4 py-2.5 text-xs border border-border rounded-xl bg-muted hover:bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:outline-none cursor-pointer font-semibold text-foreground w-32">
                         </div>
                     </div>
-                    <span class="text-zinc-400 text-xs mb-3">to</span>
+                    <span class="text-muted-foreground text-xs mb-3">to</span>
                     <div class="space-y-1">
                         <div class="relative">
-                            <i data-lucide="calendar" class="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-zinc-400"></i>
+                            <i data-lucide="calendar" class="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-muted-foreground"></i>
                             <input type="text" x-ref="endInput" placeholder="End Date" readonly
-                                   class="pl-9 pr-4 py-2.5 text-xs border border-zinc-200 rounded-xl bg-zinc-50 hover:bg-zinc-100 focus:bg-white focus:ring-1 focus:ring-zinc-950 focus:border-zinc-950 focus:outline-none cursor-pointer font-semibold text-zinc-750 w-32">
+                                   class="pl-9 pr-4 py-2.5 text-xs border border-border rounded-xl bg-muted hover:bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:outline-none cursor-pointer font-semibold text-foreground w-32">
                         </div>
                     </div>
                 </div>
@@ -71,7 +71,7 @@
 {{-- Row 1: KPI Cards --}}
 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
     {{-- Card 1: GMV --}}
-    <div class="bg-white border border-zinc-200 rounded-xl p-5 shadow-sm flex flex-col gap-2 relative overflow-hidden group hover:shadow-md transition-all">
+    <div class="bg-card border border-border rounded-xl p-5 shadow-sm flex flex-col gap-2 relative overflow-hidden group hover:shadow-md transition-all">
         <div class="flex items-center justify-between">
             <div class="p-2.5 bg-emerald-50 text-emerald-600 rounded-xl w-fit"><i data-lucide="indian-rupee" class="w-5 h-5"></i></div>
             <span class="text-xs font-bold flex items-center gap-1 {{ $gmvChange >= 0 ? 'text-emerald-600' : 'text-rose-600' }}">
@@ -79,12 +79,12 @@
                 {{ $gmvChange >= 0 ? '+' : '' }}{{ $gmvChange }}%
             </span>
         </div>
-        <h3 class="text-2xl font-bold text-zinc-900 mt-2">₹{{ number_format($currentGmv, 0) }}</h3>
-        <p class="text-[11px] text-zinc-400 font-semibold uppercase tracking-wide">GMV</p>
+        <h3 class="text-2xl font-bold text-foreground mt-2">₹{{ number_format($currentGmv, 0) }}</h3>
+        <p class="text-[11px] text-muted-foreground font-semibold uppercase tracking-wide">GMV</p>
     </div>
 
     {{-- Card 2: Orders --}}
-    <div class="bg-white border border-zinc-200 rounded-xl p-5 shadow-sm flex flex-col gap-2 relative overflow-hidden group hover:shadow-md transition-all">
+    <div class="bg-card border border-border rounded-xl p-5 shadow-sm flex flex-col gap-2 relative overflow-hidden group hover:shadow-md transition-all">
         <div class="flex items-center justify-between">
             <div class="p-2.5 bg-blue-50 text-blue-600 rounded-xl w-fit"><i data-lucide="shopping-bag" class="w-5 h-5"></i></div>
             <span class="text-xs font-bold flex items-center gap-1 {{ $ordersChange >= 0 ? 'text-emerald-600' : 'text-rose-600' }}">
@@ -92,12 +92,12 @@
                 {{ $ordersChange >= 0 ? '+' : '' }}{{ $ordersChange }}%
             </span>
         </div>
-        <h3 class="text-2xl font-bold text-zinc-900 mt-2">{{ number_format($currentOrders) }}</h3>
-        <p class="text-[11px] text-zinc-400 font-semibold uppercase tracking-wide">Orders</p>
+        <h3 class="text-2xl font-bold text-foreground mt-2">{{ number_format($currentOrders) }}</h3>
+        <p class="text-[11px] text-muted-foreground font-semibold uppercase tracking-wide">Orders</p>
     </div>
 
     {{-- Card 3: Commission --}}
-    <div class="bg-white border border-zinc-200 rounded-xl p-5 shadow-sm flex flex-col gap-2 relative overflow-hidden group hover:shadow-md transition-all">
+    <div class="bg-card border border-border rounded-xl p-5 shadow-sm flex flex-col gap-2 relative overflow-hidden group hover:shadow-md transition-all">
         <div class="flex items-center justify-between">
             <div class="p-2.5 bg-violet-50 text-violet-600 rounded-xl w-fit"><i data-lucide="percent" class="w-5 h-5"></i></div>
             <span class="text-xs font-bold flex items-center gap-1 {{ $commissionChange >= 0 ? 'text-emerald-600' : 'text-rose-600' }}">
@@ -105,30 +105,30 @@
                 {{ $commissionChange >= 0 ? '+' : '' }}{{ $commissionChange }}%
             </span>
         </div>
-        <h3 class="text-2xl font-bold text-zinc-900 mt-2">₹{{ number_format($currentCommission, 0) }}</h3>
-        <p class="text-[11px] text-zinc-400 font-semibold uppercase tracking-wide">Commission</p>
+        <h3 class="text-2xl font-bold text-foreground mt-2">₹{{ number_format($currentCommission, 0) }}</h3>
+        <p class="text-[11px] text-muted-foreground font-semibold uppercase tracking-wide">Commission</p>
     </div>
 
     {{-- Card 4: Avg Order Value --}}
-    <div class="bg-white border border-zinc-200 rounded-xl p-5 shadow-sm flex flex-col gap-2 relative overflow-hidden group hover:shadow-md transition-all">
+    <div class="bg-card border border-border rounded-xl p-5 shadow-sm flex flex-col gap-2 relative overflow-hidden group hover:shadow-md transition-all">
         <div class="flex items-center justify-between">
-            <div class="p-2.5 bg-zinc-50 text-zinc-650 rounded-xl w-fit"><i data-lucide="bar-chart-2" class="w-5 h-5"></i></div>
+            <div class="p-2.5 bg-muted text-muted-foreground rounded-xl w-fit"><i data-lucide="bar-chart-2" class="w-5 h-5"></i></div>
             <span class="text-xs font-bold flex items-center gap-1 {{ $aovChange >= 0 ? 'text-emerald-600' : 'text-rose-600' }}">
                 <i data-lucide="{{ $aovChange >= 0 ? 'trending-up' : 'trending-down' }}" class="w-3.5 h-3.5"></i>
                 {{ $aovChange >= 0 ? '+' : '' }}{{ $aovChange }}%
             </span>
         </div>
-        <h3 class="text-2xl font-bold text-zinc-900 mt-2">₹{{ number_format($currentAov, 0) }}</h3>
-        <p class="text-[11px] text-zinc-400 font-semibold uppercase tracking-wide">Avg Order Value</p>
+        <h3 class="text-2xl font-bold text-foreground mt-2">₹{{ number_format($currentAov, 0) }}</h3>
+        <p class="text-[11px] text-muted-foreground font-semibold uppercase tracking-wide">Avg Order Value</p>
     </div>
 </div>
 
 {{-- Row 2: Full Width GMV Line Chart --}}
-<div class="bg-white border border-zinc-200 rounded-xl p-6 shadow-sm mb-6">
+<div class="bg-card border border-border rounded-xl p-6 shadow-sm mb-6">
     <div class="flex items-center justify-between mb-4">
         <div>
-            <h3 class="font-bold text-zinc-800 text-sm">GMV Trend</h3>
-            <p class="text-xs text-zinc-400">Gross Merchandise Value trend over the selected period</p>
+            <h3 class="font-bold text-foreground text-sm">GMV Trend</h3>
+            <p class="text-xs text-muted-foreground">Gross Merchandise Value trend over the selected period</p>
         </div>
     </div>
     <div class="h-80">
@@ -139,10 +139,10 @@
 {{-- Row 3: Category Breakdown & Order Status Side-by-Side --}}
 <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
     {{-- Category Breakdown Bar Chart --}}
-    <div class="bg-white border border-zinc-200 rounded-xl p-6 shadow-sm">
+    <div class="bg-card border border-border rounded-xl p-6 shadow-sm">
         <div>
-            <h3 class="font-bold text-zinc-800 text-sm">Category Breakdown</h3>
-            <p class="text-xs text-zinc-400 mb-4">GMV generated per listing category</p>
+            <h3 class="font-bold text-foreground text-sm">Category Breakdown</h3>
+            <p class="text-xs text-muted-foreground mb-4">GMV generated per listing category</p>
         </div>
         <div class="h-64">
             <canvas id="categoryChart"></canvas>
@@ -150,10 +150,10 @@
     </div>
 
     {{-- Order Status Pie Chart --}}
-    <div class="bg-white border border-zinc-200 rounded-xl p-6 shadow-sm">
+    <div class="bg-card border border-border rounded-xl p-6 shadow-sm">
         <div>
-            <h3 class="font-bold text-zinc-800 text-sm">Order Status Breakdown</h3>
-            <p class="text-xs text-zinc-400 mb-4">Distribution of statuses for orders in this period</p>
+            <h3 class="font-bold text-foreground text-sm">Order Status Breakdown</h3>
+            <p class="text-xs text-muted-foreground mb-4">Distribution of statuses for orders in this period</p>
         </div>
         <div class="h-64 flex justify-center items-center">
             <div class="w-full max-w-[240px]">
@@ -166,17 +166,17 @@
 {{-- Row 4: Top 10 Tables Side-by-Side --}}
 <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
     {{-- Top 10 Sellers by GMV --}}
-    <div class="bg-white border border-zinc-200 rounded-xl ring-1 ring-zinc-950/5 overflow-hidden">
-        <div class="px-5 py-4 border-b border-zinc-100 flex items-center justify-between bg-zinc-50/50">
+    <div class="bg-card border border-border rounded-xl ring-0 overflow-hidden">
+        <div class="px-5 py-4 border-b border-border flex items-center justify-between bg-muted/50">
             <div>
-                <h3 class="font-bold text-zinc-800 text-sm">Top 10 Sellers by GMV</h3>
-                <p class="text-[11px] text-zinc-400">Ranked by total sales volume in this period</p>
+                <h3 class="font-bold text-foreground text-sm">Top 10 Sellers by GMV</h3>
+                <p class="text-[11px] text-muted-foreground">Ranked by total sales volume in this period</p>
             </div>
             <i data-lucide="award" class="w-5 h-5 text-[#09090b]"></i>
         </div>
         <div class="overflow-x-auto">
             <table class="w-full text-sm">
-                <thead class="bg-zinc-50 text-[10px] uppercase text-zinc-400 tracking-wider font-bold border-b border-zinc-250">
+                <thead class="bg-muted text-[10px] uppercase text-muted-foreground tracking-wider font-bold border-b border-border">
                     <tr>
                         <th class="px-5 py-3 text-left">Rank</th>
                         <th class="px-5 py-3 text-left">Shop Name</th>
@@ -184,19 +184,19 @@
                         <th class="px-5 py-3 text-right">Total GMV</th>
                     </tr>
                 </thead>
-                <tbody class="divide-y divide-zinc-100">
+                <tbody class="divide-y divide-border">
                     @forelse($topSellersGmv as $index => $sellerGmv)
-                    <tr class="hover:bg-zinc-50/50">
-                        <td class="px-5 py-3.5 text-xs font-bold text-zinc-400">#{{ $index + 1 }}</td>
-                        <td class="px-5 py-3.5 text-xs font-semibold text-zinc-800">
+                    <tr class="hover:bg-muted/50">
+                        <td class="px-5 py-3.5 text-xs font-bold text-muted-foreground">#{{ $index + 1 }}</td>
+                        <td class="px-5 py-3.5 text-xs font-semibold text-foreground">
                             {{ $sellerGmv->seller->shop_name ?? 'Unknown Shop' }}
                         </td>
-                        <td class="px-5 py-3.5 text-right text-xs text-zinc-500">{{ $sellerGmv->order_count }}</td>
-                        <td class="px-5 py-3.5 text-right text-xs font-bold text-zinc-900">₹{{ number_format($sellerGmv->gmv, 0) }}</td>
+                        <td class="px-5 py-3.5 text-right text-xs text-muted-foreground">{{ $sellerGmv->order_count }}</td>
+                        <td class="px-5 py-3.5 text-right text-xs font-bold text-foreground">₹{{ number_format($sellerGmv->gmv, 0) }}</td>
                     </tr>
                     @empty
                     <tr>
-                        <td colspan="4" class="px-5 py-12 text-center text-zinc-400 text-xs">No seller data available for this range</td>
+                        <td colspan="4" class="px-5 py-12 text-center text-muted-foreground text-xs">No seller data available for this range</td>
                     </tr>
                     @endforelse
                 </tbody>
@@ -205,17 +205,17 @@
     </div>
 
     {{-- Top 10 Sellers by Rating --}}
-    <div class="bg-white border border-zinc-200 rounded-xl ring-1 ring-zinc-950/5 overflow-hidden">
-        <div class="px-5 py-4 border-b border-zinc-100 flex items-center justify-between bg-zinc-50/50">
+    <div class="bg-card border border-border rounded-xl ring-0 overflow-hidden">
+        <div class="px-5 py-4 border-b border-border flex items-center justify-between bg-muted/50">
             <div>
-                <h3 class="font-bold text-zinc-800 text-sm">Top 10 Sellers by Rating</h3>
-                <p class="text-[11px] text-zinc-400">Overall ratings from verified transactions</p>
+                <h3 class="font-bold text-foreground text-sm">Top 10 Sellers by Rating</h3>
+                <p class="text-[11px] text-muted-foreground">Overall ratings from verified transactions</p>
             </div>
             <i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-current"></i>
         </div>
         <div class="overflow-x-auto">
             <table class="w-full text-sm">
-                <thead class="bg-zinc-50 text-[10px] uppercase text-zinc-400 tracking-wider font-bold border-b border-zinc-250">
+                <thead class="bg-muted text-[10px] uppercase text-muted-foreground tracking-wider font-bold border-b border-border">
                     <tr>
                         <th class="px-5 py-3 text-left">Rank</th>
                         <th class="px-5 py-3 text-left">Shop Name</th>
@@ -223,28 +223,28 @@
                         <th class="px-5 py-3 text-right">Rating</th>
                     </tr>
                 </thead>
-                <tbody class="divide-y divide-zinc-100">
+                <tbody class="divide-y divide-border">
                     @forelse($topSellersRating as $index => $sellerRating)
-                    <tr class="hover:bg-zinc-50/50">
-                        <td class="px-5 py-3.5 text-xs font-bold text-zinc-400">#{{ $index + 1 }}</td>
-                        <td class="px-5 py-3.5 text-xs font-semibold text-zinc-800">
+                    <tr class="hover:bg-muted/50">
+                        <td class="px-5 py-3.5 text-xs font-bold text-muted-foreground">#{{ $index + 1 }}</td>
+                        <td class="px-5 py-3.5 text-xs font-semibold text-foreground">
                             {{ $sellerRating->shop_name }}
                         </td>
-                        <td class="px-5 py-3.5 text-right text-xs text-zinc-500">{{ $sellerRating->ratings_count }}</td>
+                        <td class="px-5 py-3.5 text-right text-xs text-muted-foreground">{{ $sellerRating->ratings_count }}</td>
                         <td class="px-5 py-3.5 text-right text-xs">
                             @if($sellerRating->ratings_avg_weighted_total)
-                            <div class="flex items-center justify-end gap-1.5 font-bold text-zinc-900">
+                            <div class="flex items-center justify-end gap-1.5 font-bold text-foreground">
                                 <i data-lucide="star" class="w-3.5 h-3.5 text-yellow-400 fill-yellow-400"></i>
                                 <span>{{ number_format($sellerRating->ratings_avg_weighted_total, 1) }}</span>
                             </div>
                             @else
-                            <span class="text-zinc-450 text-[11px] font-semibold">No ratings</span>
+                            <span class="text-muted-foreground text-[11px] font-semibold">No ratings</span>
                             @endif
                         </td>
                     </tr>
                     @empty
                     <tr>
-                        <td colspan="4" class="px-5 py-12 text-center text-zinc-400 text-xs">No rated sellers found</td>
+                        <td colspan="4" class="px-5 py-12 text-center text-muted-foreground text-xs">No rated sellers found</td>
                     </tr>
                     @endforelse
                 </tbody>
@@ -254,11 +254,11 @@
 </div>
 
 {{-- Row 5: Dispute Rate Trend Line Chart --}}
-<div class="bg-white border border-zinc-200 rounded-xl p-6 shadow-sm">
+<div class="bg-card border border-border rounded-xl p-6 shadow-sm">
     <div class="flex items-center justify-between mb-4">
         <div>
-            <h3 class="font-bold text-zinc-800 text-sm">Dispute Rate Trend</h3>
-            <p class="text-xs text-zinc-400">Daily dispute percentage with a standard 5% limit threshold</p>
+            <h3 class="font-bold text-foreground text-sm">Dispute Rate Trend</h3>
+            <p class="text-xs text-muted-foreground">Daily dispute percentage with a standard 5% limit threshold</p>
         </div>
     </div>
     <div class="h-80">

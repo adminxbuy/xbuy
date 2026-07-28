@@ -4,7 +4,7 @@
 @section('page_title', 'Send Notice to: ' . $member->name)
 
 @section('header_actions')
-    <a href="{{ route('admin.staff.show', $member->id) }}" class="flex items-center space-x-1.5 px-3 py-1.5 bg-zinc-100 hover:bg-zinc-200 text-zinc-700 hover:text-zinc-900 rounded-lg text-xs font-semibold transition-all border border-zinc-200 shadow-sm">
+    <a href="{{ route('admin.staff.show', $member->id) }}" class="flex items-center space-x-1.5 px-3 py-1.5 bg-muted hover:bg-muted text-foreground hover:text-foreground rounded-lg text-xs font-semibold transition-all border border-border shadow-sm">
         <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i>
         <span>Back to Profile</span>
     </a>
@@ -29,10 +29,10 @@
 }" class="grid grid-cols-1 lg:grid-cols-3 gap-6">
 
     <!-- Form Column -->
-    <div class="lg:col-span-2 bg-white border border-zinc-200 rounded-xl p-6 shadow-sm">
+    <div class="lg:col-span-2 bg-card border border-border rounded-xl p-6 shadow-sm">
         <div class="mb-6">
-            <h3 class="font-bold text-zinc-800 text-base">New Staff Notification / slip</h3>
-            <p class="text-xs text-zinc-400">Dispatch alerts, salary slips, or formal write-ups directly to staff channels.</p>
+            <h3 class="font-bold text-foreground text-base">New Staff Notification / slip</h3>
+            <p class="text-xs text-muted-foreground">Dispatch alerts, salary slips, or formal write-ups directly to staff channels.</p>
         </div>
 
         <form action="{{ route('admin.staff.notice.send', $member->id) }}" method="POST" enctype="multipart/form-data" class="space-y-6">
@@ -41,9 +41,9 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <!-- Notice Type -->
                 <div class="space-y-1">
-                    <label class="text-[10px] font-bold text-zinc-500 uppercase tracking-wider block">Notice Type</label>
+                    <label class="text-[10px] font-bold text-muted-foreground uppercase tracking-wider block">Notice Type</label>
                     <select name="type" x-model="noticeType"
-                            class="w-full p-3 text-xs border border-zinc-200 rounded-xl bg-zinc-50 hover:bg-zinc-100 focus:bg-white focus:ring-1 focus:ring-zinc-950 focus:border-zinc-950 focus:outline-none transition-all cursor-pointer font-semibold text-zinc-700">
+                            class="w-full p-3 text-xs border border-border rounded-xl bg-muted hover:bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:outline-none transition-all cursor-pointer font-semibold text-foreground">
                         <option value="General Notice">General Notice</option>
                         <option value="Warning">Official Warning</option>
                         <option value="Salary Slip">Salary Slip</option>
@@ -57,9 +57,9 @@
 
                 <!-- Delivery Channel -->
                 <div class="space-y-1">
-                    <label class="text-[10px] font-bold text-zinc-500 uppercase tracking-wider block">Delivery Channel</label>
+                    <label class="text-[10px] font-bold text-muted-foreground uppercase tracking-wider block">Delivery Channel</label>
                     <select name="delivery_method" x-model="deliveryMethod"
-                            class="w-full p-3 text-xs border border-zinc-200 rounded-xl bg-zinc-50 hover:bg-zinc-100 focus:bg-white focus:ring-1 focus:ring-zinc-950 focus:border-zinc-950 focus:outline-none transition-all cursor-pointer font-semibold text-zinc-700">
+                            class="w-full p-3 text-xs border border-border rounded-xl bg-muted hover:bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:outline-none transition-all cursor-pointer font-semibold text-foreground">
                         <option value="email">Email Only</option>
                         <option value="whatsapp">WhatsApp Only</option>
                         <option value="both">Both (Email & WhatsApp)</option>
@@ -72,34 +72,34 @@
 
             <!-- Subject -->
             <div class="space-y-1">
-                <label class="text-[10px] font-bold text-zinc-500 uppercase tracking-wider block">Subject Line</label>
+                <label class="text-[10px] font-bold text-muted-foreground uppercase tracking-wider block">Subject Line</label>
                 <input type="text" name="subject" x-ref="subjectInput" @input="updatePreview()" placeholder="Enter message subject" required
-                       class="w-full p-3 text-xs border border-zinc-200 rounded-xl bg-zinc-50 hover:bg-zinc-100 focus:bg-white focus:ring-1 focus:ring-zinc-950 focus:border-zinc-950 focus:outline-none transition-all font-semibold text-zinc-850">
+                       class="w-full p-3 text-xs border border-border rounded-xl bg-muted hover:bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:outline-none transition-all font-semibold text-foreground">
             </div>
 
             <!-- Rich Text Editor (TinyMCE) -->
             <div class="space-y-1">
-                <label class="text-[10px] font-bold text-zinc-500 uppercase tracking-wider block">Message Body</label>
-                <textarea name="message" x-ref="messageTextarea" @input="updatePreview()" class="tinymce-editor w-full p-3 border border-zinc-200 rounded-xl bg-zinc-50 focus:bg-white min-h-[300px]"></textarea>
+                <label class="text-[10px] font-bold text-muted-foreground uppercase tracking-wider block">Message Body</label>
+                <textarea name="message" x-ref="messageTextarea" @input="updatePreview()" class="tinymce-editor w-full p-3 border border-border rounded-xl bg-muted focus:bg-card min-h-[300px]"></textarea>
             </div>
 
             <!-- Optional Attachment -->
             <div class="space-y-1">
-                <label class="text-[10px] font-bold text-zinc-500 uppercase tracking-wider block">PDF Attachment (Optional)</label>
-                <div class="relative border-2 border-dashed border-zinc-200 rounded-xl p-4 bg-zinc-50 hover:bg-zinc-100 transition-all flex flex-col items-center justify-center cursor-pointer text-zinc-500">
+                <label class="text-[10px] font-bold text-muted-foreground uppercase tracking-wider block">PDF Attachment (Optional)</label>
+                <div class="relative border-2 border-dashed border-border rounded-xl p-4 bg-muted hover:bg-muted transition-all flex flex-col items-center justify-center cursor-pointer text-muted-foreground">
                     <input type="file" name="pdf_file" accept=".pdf" class="absolute inset-0 opacity-0 cursor-pointer">
-                    <i data-lucide="file-up" class="w-6 h-6 text-zinc-400 mb-1"></i>
+                    <i data-lucide="file-up" class="w-6 h-6 text-muted-foreground mb-1"></i>
                     <span class="text-xs font-semibold">Click to select PDF file (Max 10MB)</span>
                 </div>
             </div>
 
             <!-- Form Actions -->
-            <div class="flex items-center justify-end gap-3 pt-4 border-t border-zinc-100">
+            <div class="flex items-center justify-end gap-3 pt-4 border-t border-border">
                 <button type="button" @click="updatePreview(); previewMode = !previewMode"
-                        class="px-4 py-2.5 border border-zinc-200 text-zinc-650 hover:bg-zinc-50 rounded-xl text-xs font-semibold transition-all">
+                        class="px-4 py-2.5 border border-border text-muted-foreground hover:bg-muted rounded-xl text-xs font-semibold transition-all">
                     <span x-text="previewMode ? 'Edit Form' : 'Preview Notice'"></span>
                 </button>
-                <button type="submit" class="bg-zinc-900 text-white hover:bg-zinc-800 hover:bg-zinc-800 hover:text-white font-bold px-6 py-2.5 rounded-xl text-xs transition-all shadow-sm flex items-center gap-1.5">
+                <button type="submit" class="bg-primary text-primary-foreground hover:bg-primary/90 hover:bg-primary/90 hover:text-primary-foreground font-bold px-6 py-2.5 rounded-xl text-xs transition-all shadow-sm flex items-center gap-1.5">
                     <i data-lucide="send" class="w-4 h-4"></i>
                     <span>Send Dispatch</span>
                 </button>
@@ -109,40 +109,40 @@
 
     <!-- Preview Column -->
     <div class="lg:col-span-1 space-y-6">
-        <div class="bg-white border border-zinc-200 rounded-xl p-6 shadow-sm min-h-[400px] flex flex-col">
-            <div class="border-b border-zinc-100 pb-3 mb-4 flex items-center justify-between">
-                <h4 class="font-bold text-zinc-800 text-sm">Live Dispatch Preview</h4>
+        <div class="bg-card border border-border rounded-xl p-6 shadow-sm min-h-[400px] flex flex-col">
+            <div class="border-b border-border pb-3 mb-4 flex items-center justify-between">
+                <h4 class="font-bold text-foreground text-sm">Live Dispatch Preview</h4>
                 <span class="text-[10px] bg-amber-50 text-amber-705 border border-amber-200/60 font-bold px-2 py-0.5 rounded-full">Preview</span>
             </div>
 
             <!-- Empty State Preview -->
-            <div x-show="!subject && !message" class="flex-1 flex flex-col items-center justify-center text-center text-zinc-400">
-                <i data-lucide="eye" class="w-8 h-8 mb-2 text-zinc-350"></i>
+            <div x-show="!subject && !message" class="flex-1 flex flex-col items-center justify-center text-center text-muted-foreground">
+                <i data-lucide="eye" class="w-8 h-8 mb-2 text-muted-foreground"></i>
                 <p class="text-xs font-semibold">Fill out the form details to visualize the dispatch layout here.</p>
             </div>
 
             <!-- Rendered Preview -->
             <div x-show="subject || message" class="flex-1 flex flex-col justify-between space-y-4 text-xs">
-                <div class="p-4 bg-zinc-50 border border-zinc-250 rounded-xl space-y-3">
+                <div class="p-4 bg-muted border border-border rounded-xl space-y-3">
                     <div>
-                        <span class="text-[9px] font-bold text-zinc-400 uppercase tracking-widest">Notice Type</span>
-                        <span class="text-xs font-bold text-zinc-800 block" x-text="noticeType"></span>
-                    </div>
-                    <div>
-                        <span class="text-[9px] font-bold text-zinc-400 uppercase tracking-widest">To Staff</span>
-                        <span class="text-xs font-bold text-zinc-800 block">{{ $member->name }} ({{ $member->email }})</span>
+                        <span class="text-[9px] font-bold text-muted-foreground uppercase tracking-widest">Notice Type</span>
+                        <span class="text-xs font-bold text-foreground block" x-text="noticeType"></span>
                     </div>
                     <div>
-                        <span class="text-[9px] font-bold text-zinc-400 uppercase tracking-widest">Delivery Channels</span>
-                        <span class="text-xs font-semibold text-zinc-650 block" x-text="deliveryMethod.toUpperCase()"></span>
+                        <span class="text-[9px] font-bold text-muted-foreground uppercase tracking-widest">To Staff</span>
+                        <span class="text-xs font-bold text-foreground block">{{ $member->name }} ({{ $member->email }})</span>
                     </div>
-                    <div class="border-t border-zinc-200 pt-3">
-                        <span class="text-[9px] font-bold text-zinc-400 uppercase tracking-widest">Subject</span>
-                        <p class="text-xs font-bold text-zinc-900" x-text="subject || '(No Subject Line Specified)'"></p>
+                    <div>
+                        <span class="text-[9px] font-bold text-muted-foreground uppercase tracking-widest">Delivery Channels</span>
+                        <span class="text-xs font-semibold text-muted-foreground block" x-text="deliveryMethod.toUpperCase()"></span>
                     </div>
-                    <div class="border-t border-zinc-200 pt-3 min-h-[150px]">
-                        <span class="text-[9px] font-bold text-zinc-400 uppercase tracking-widest block mb-2">Message HTML</span>
-                        <div class="prose max-w-none text-[11px] text-zinc-700 bg-white border border-zinc-150 p-3 rounded-lg overflow-y-auto max-h-[200px]" x-html="message || '<em>No message body added yet.</em>'"></div>
+                    <div class="border-t border-border pt-3">
+                        <span class="text-[9px] font-bold text-muted-foreground uppercase tracking-widest">Subject</span>
+                        <p class="text-xs font-bold text-foreground" x-text="subject || '(No Subject Line Specified)'"></p>
+                    </div>
+                    <div class="border-t border-border pt-3 min-h-[150px]">
+                        <span class="text-[9px] font-bold text-muted-foreground uppercase tracking-widest block mb-2">Message HTML</span>
+                        <div class="prose max-w-none text-[11px] text-foreground bg-card border border-border p-3 rounded-lg overflow-y-auto max-h-[200px]" x-html="message || '<em>No message body added yet.</em>'"></div>
                     </div>
                 </div>
                 

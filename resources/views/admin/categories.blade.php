@@ -8,7 +8,7 @@
         <!-- Header Controls -->
         <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
             <div>
-                <p class="text-sm text-zinc-500">Organize and manage the listing categories and subcategories on the
+                <p style="color: var(--muted-foreground);" class="text-sm">Organize and manage the listing categories and subcategories on the
                     marketplace.</p>
             </div>
             <div class="flex items-center space-x-3">
@@ -17,7 +17,7 @@
                     <span>Trash ({{ $trashedCategories->count() }})</span>
                 </a>
                 <button @click="openAddModal()"
-                    class="bg-zinc-900 text-white hover:bg-zinc-800 hover:bg-[#ffd747] text-black font-semibold py-2.5 px-5 rounded-lg ring-1 ring-zinc-950/5 border border-black/10 transition-all flex items-center space-x-2 text-sm">
+                    class="bg-primary text-primary-foreground hover:bg-primary/90  font-semibold py-2.5 px-5 rounded-lg ring-0 border border-black/10 transition-all flex items-center space-x-2 text-sm">
                     <i data-lucide="plus" class="w-4 h-4"></i>
                     <span>Add New Category</span>
                 </button>
@@ -25,31 +25,31 @@
         </div>
 
         <!-- Main Content Grid -->
-        <div class="bg-white border border-zinc-200 rounded-xl ring-1 ring-zinc-950/5 overflow-hidden">
-            <div class="p-5 border-b border-zinc-150 bg-zinc-50/50 flex justify-between items-center">
-                <h3 class="font-bold text-zinc-800 text-sm flex items-center">
-                    <i data-lucide="folder-tree" class="w-4 h-4 mr-2 text-zinc-600"></i>
+        <div style="background: var(--card); border: 1px solid var(--border);" class="rounded-xl ring-0 overflow-hidden">
+            <div style="background: var(--muted); border-bottom: 1px solid var(--border);" class="p-5 flex justify-between items-center">
+                <h3 class="font-bold text-sm flex items-center" style="color: var(--foreground);">
+                    <i data-lucide="folder-tree" class="w-4 h-4 mr-2" style="color: var(--muted-foreground);"></i>
                     Category Tree Directory
                 </h3>
-                <span class="text-xs text-zinc-400 font-medium">Use arrows to adjust display priority</span>
+                <span class="text-xs font-medium" style="color: var(--muted-foreground);">Use arrows to adjust display priority</span>
             </div>
 
-            <div class="divide-y divide-zinc-200">
+            <div class="divide-y" style="border-color: var(--border);">
                 @forelse($categories as $category)
                     <!-- Parent Row -->
-                    <div class="p-4 hover:bg-zinc-50/30 transition-colors" data-id="{{ $category->id }}">
+                    <div class="p-4 hover:opacity-80 transition-colors" data-id="{{ $category->id }}">
                         <div class="flex items-center justify-between">
                             <div class="flex items-center space-x-3">
                                 <!-- Toggle Collapse Button -->
                                 <button @click="toggleCollapse({{ $category->id }})"
-                                    class="p-1 text-zinc-400 hover:text-zinc-700 hover:bg-zinc-150 rounded-lg transition-all focus:outline-none">
+                                    class="p-1 hover:opacity-70 rounded-lg transition-all focus:outline-none" style="color: var(--muted-foreground);">
                                     <i data-lucide="chevron-right" class="w-4 h-4 transition-transform duration-200"
                                         :class="isExpanded({{ $category->id }}) ? 'rotate-90' : ''"></i>
                                 </button>
 
                                 <!-- Category Icon / Image -->
                                 <div
-                                    class="w-9 h-9 rounded-xl bg-zinc-100 flex items-center justify-center text-zinc-650 border border-zinc-200 overflow-hidden">
+                                    class="w-9 h-9 rounded-xl flex items-center justify-center overflow-hidden" style="background: var(--muted); border: 1px solid var(--border); color: var(--muted-foreground);">
                                     @if($category->image)
                                         <img src="{{ $category->image }}" class="object-cover w-full h-full">
                                     @else
@@ -58,9 +58,9 @@
                                 </div>
 
                                 <div>
-                                    <span class="font-bold text-zinc-800 text-sm">{{ $category->name }}</span>
+                                    <span class="font-bold text-sm" style="color: var(--foreground);">{{ $category->name }}</span>
                                     <span
-                                        class="text-[11px] bg-zinc-100 border border-zinc-200 text-zinc-500 font-semibold px-2 py-0.5 rounded-full ml-2">
+                                        class="text-[11px] font-semibold px-2 py-0.5 rounded-full ml-2" style="background: var(--muted); border: 1px solid var(--border); color: var(--muted-foreground);">
                                         {{ $category->listing_count }} Listings
                                     </span>
                                 </div>
@@ -69,13 +69,13 @@
                             <!-- Actions -->
                             <div class="flex items-center space-x-2">
                                 <!-- Reorder Arrows -->
-                                <div class="flex items-center bg-zinc-100 rounded-lg p-0.5 border border-zinc-200">
+                                <div class="flex items-center rounded-lg p-0.5" style="background: var(--muted); border: 1px solid var(--border);">
                                     <button @click="moveUp('parent', {{ $category->id }})"
-                                        class="p-1 text-zinc-500 hover:text-black hover:bg-white rounded transition-all focus:outline-none">
+                                        class="p-1 hover:opacity-70 rounded transition-all focus:outline-none" style="color: var(--muted-foreground);">
                                         <i data-lucide="arrow-up" class="w-3.5 h-3.5"></i>
                                     </button>
                                     <button @click="moveDown('parent', {{ $category->id }})"
-                                        class="p-1 text-zinc-500 hover:text-black hover:bg-white rounded transition-all focus:outline-none">
+                                        class="p-1 hover:opacity-70 rounded transition-all focus:outline-none" style="color: var(--muted-foreground);">
                                         <i data-lucide="arrow-down" class="w-3.5 h-3.5"></i>
                                     </button>
                                 </div>
@@ -84,20 +84,20 @@
                                 <label class="relative inline-flex items-center cursor-pointer">
                                     <input type="checkbox" @change="toggleActive({{ $category->id }})" class="sr-only peer" {{ $category->is_active ? 'checked' : '' }}>
                                     <div
-                                        class="w-9 h-5 bg-zinc-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-zinc-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-emerald-500">
+                                        class="w-9 h-5 bg-muted peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-card after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-card after:border-border after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-emerald-500">
                                     </div>
                                 </label>
 
                                  <!-- Dropdown Menu for Actions -->
                                  <div x-data="{ openMenu: false }" class="relative inline-block text-left">
                                      <button @click="openMenu = !openMenu" @click.away="openMenu = false"
-                                         class="p-2 text-zinc-500 hover:text-zinc-800 hover:bg-zinc-100 rounded-xl transition-all focus:outline-none"
-                                         title="More Actions">
+                                         class="p-2 hover:opacity-70 rounded-xl transition-all focus:outline-none"
+                                         style="color: var(--muted-foreground);" title="More Actions">
                                          <i data-lucide="more-vertical" class="w-4 h-4"></i>
                                      </button>
 
                                      <div x-show="openMenu" x-cloak
-                                         class="absolute right-0 mt-2 w-48 bg-white border border-zinc-200 rounded-xl shadow-lg z-20 py-1.5 focus:outline-none"
+                                         class="absolute right-0 mt-2 w-48 rounded-xl shadow-lg z-20 py-1.5 focus:outline-none" style="background: var(--card); border: 1px solid var(--border);"
                                          x-transition:enter="transition ease-out duration-100"
                                          x-transition:enter-start="transform opacity-0 scale-95"
                                          x-transition:enter-end="transform opacity-100 scale-100"
@@ -107,18 +107,18 @@
                                          <div class="px-1 py-1 space-y-0.5">
                                              <a href="{{ env('FRONTEND_URL', 'http://localhost:3000') }}/categories/{{ $category->slug }}"
                                                  target="_blank"
-                                                 class="flex items-center px-3 py-2 text-xs font-semibold text-zinc-700 hover:bg-zinc-100 hover:text-black rounded-lg transition-colors">
-                                                 <i data-lucide="external-link" class="w-3.5 h-3.5 mr-2 text-zinc-400"></i>
+                                                 class="flex items-center px-3 py-2 text-xs font-semibold hover:opacity-70 rounded-lg transition-colors" style="color: var(--muted-foreground);">
+                                                 <i data-lucide="external-link" class="w-3.5 h-3.5 mr-2" style="color: var(--muted-foreground);"></i>
                                                  <span>View Category</span>
                                              </a>
 
                                              <button @click="openEditModal({{ json_encode($category) }})"
-                                                 class="w-full flex items-center px-3 py-2 text-xs font-semibold text-zinc-700 hover:bg-zinc-100 hover:text-black rounded-lg transition-colors text-left">
-                                                 <i data-lucide="edit-3" class="w-3.5 h-3.5 mr-2 text-zinc-400"></i>
+                                                 class="w-full flex items-center px-3 py-2 text-xs font-semibold hover:opacity-70 rounded-lg transition-colors text-left" style="color: var(--muted-foreground);">
+                                                 <i data-lucide="edit-3" class="w-3.5 h-3.5 mr-2" style="color: var(--muted-foreground);"></i>
                                                  <span>Edit Category</span>
                                              </button>
 
-                                             <div class="border-t border-zinc-100 my-1"></div>
+                                             <div class="my-1" style="border-top: 1px solid var(--border);"></div>
 
                                              <form action="{{ route('admin.categories.destroy', $category->id) }}" method="POST"
                                                  onsubmit="return confirm('Are you sure you want to delete this category?');"
@@ -139,34 +139,34 @@
 
                         <!-- Subcategories list -->
                         <div x-show="isExpanded({{ $category->id }})" x-cloak
-                            class="mt-3 ml-12 space-y-2 border-l-2 border-zinc-150 pl-4">
+                            class="mt-3 ml-12 space-y-2 pl-4" style="border-left: 2px solid var(--border);">
                             @forelse($category->children as $sub)
-                                <div class="flex items-center justify-between py-1.5 hover:bg-zinc-50/50 rounded-lg px-2"
+                                <div class="flex items-center justify-between py-1.5 hover:opacity-80 rounded-lg px-2"
                                     data-id="{{ $sub->id }}">
                                     <div class="flex items-center space-x-2">
-                                        <i data-lucide="corner-down-right" class="w-3.5 h-3.5 text-zinc-400"></i>
+                                        <i data-lucide="corner-down-right" class="w-3.5 h-3.5" style="color: var(--muted-foreground);"></i>
                                         @if($sub->image)
                                             <div
-                                                class="w-6 h-6 rounded-lg bg-zinc-100 flex items-center justify-center border border-zinc-200 overflow-hidden flex-shrink-0">
+                                                class="w-6 h-6 rounded-lg flex items-center justify-center overflow-hidden flex-shrink-0" style="background: var(--muted); border: 1px solid var(--border);">
                                                 <img src="{{ $sub->image }}" class="object-cover w-full h-full">
                                             </div>
                                         @endif
-                                        <span class="text-sm font-medium text-zinc-700">{{ $sub->name }}</span>
+                                        <span class="text-sm font-medium" style="color: var(--foreground);">{{ $sub->name }}</span>
                                         <span
-                                            class="text-[10px] bg-zinc-100 border border-zinc-200 text-zinc-450 font-medium px-2 py-0.5 rounded-full">
+                                            class="text-[10px] font-medium px-2 py-0.5 rounded-full" style="background: var(--muted); border: 1px solid var(--border); color: var(--muted-foreground);">
                                             {{ $sub->listing_count }} Listings
                                         </span>
                                     </div>
 
                                     <div class="flex items-center space-x-2">
                                         <!-- Reorder Arrows -->
-                                        <div class="flex items-center bg-zinc-100 rounded-lg p-0.5 border border-zinc-200">
+                                        <div class="flex items-center rounded-lg p-0.5" style="background: var(--muted); border: 1px solid var(--border);">
                                             <button @click="moveUp('child', {{ $sub->id }}, {{ $category->id }})"
-                                                class="p-0.5 text-zinc-500 hover:text-black hover:bg-white rounded transition-all focus:outline-none">
+                                                class="p-0.5 hover:opacity-70 rounded transition-all focus:outline-none" style="color: var(--muted-foreground);">
                                                 <i data-lucide="arrow-up" class="w-3 h-3"></i>
                                             </button>
                                             <button @click="moveDown('child', {{ $sub->id }}, {{ $category->id }})"
-                                                class="p-0.5 text-zinc-500 hover:text-black hover:bg-white rounded transition-all focus:outline-none">
+                                                class="p-0.5 hover:opacity-70 rounded transition-all focus:outline-none" style="color: var(--muted-foreground);">
                                                 <i data-lucide="arrow-down" class="w-3 h-3"></i>
                                             </button>
                                         </div>
@@ -175,20 +175,20 @@
                                         <label class="relative inline-flex items-center cursor-pointer">
                                             <input type="checkbox" @change="toggleActive({{ $sub->id }})" class="sr-only peer" {{ $sub->is_active ? 'checked' : '' }}>
                                             <div
-                                                class="w-8 h-4.5 bg-zinc-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-zinc-300 after:border after:rounded-full after:h-3.5 after:w-3.5 after:transition-all peer-checked:bg-emerald-500">
+                                                class="w-8 h-4.5 bg-muted peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-card after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-card after:border-border after:border after:rounded-full after:h-3.5 after:w-3.5 after:transition-all peer-checked:bg-emerald-500">
                                             </div>
                                         </label>
 
                                          <!-- Dropdown Menu for Actions -->
                                          <div x-data="{ openMenu: false }" class="relative inline-block text-left">
                                              <button @click="openMenu = !openMenu" @click.away="openMenu = false"
-                                                 class="p-1.5 text-zinc-500 hover:text-zinc-800 hover:bg-zinc-100 rounded-lg transition-all focus:outline-none"
-                                                 title="More Actions">
+                                                 class="p-1.5 hover:opacity-70 rounded-lg transition-all focus:outline-none"
+                                                 style="color: var(--muted-foreground);" title="More Actions">
                                                  <i data-lucide="more-vertical" class="w-3.5 h-3.5"></i>
                                              </button>
 
                                              <div x-show="openMenu" x-cloak
-                                                 class="absolute right-0 mt-2 w-48 bg-white border border-zinc-200 rounded-xl shadow-lg z-20 py-1.5 focus:outline-none"
+                                                 class="absolute right-0 mt-2 w-48 rounded-xl shadow-lg z-20 py-1.5 focus:outline-none" style="background: var(--card); border: 1px solid var(--border);"
                                                  x-transition:enter="transition ease-out duration-100"
                                                  x-transition:enter-start="transform opacity-0 scale-95"
                                                  x-transition:enter-end="transform opacity-100 scale-100"
@@ -198,18 +198,18 @@
                                                  <div class="px-1 py-1 space-y-0.5">
                                                      <a href="{{ env('FRONTEND_URL', 'http://localhost:3000') }}/categories/{{ $sub->slug }}"
                                                          target="_blank"
-                                                         class="flex items-center px-3 py-2 text-xs font-semibold text-zinc-700 hover:bg-zinc-100 hover:text-black rounded-lg transition-colors">
-                                                         <i data-lucide="external-link" class="w-3.5 h-3.5 mr-2 text-zinc-400"></i>
+                                                         class="flex items-center px-3 py-2 text-xs font-semibold hover:opacity-70 rounded-lg transition-colors" style="color: var(--muted-foreground);">
+                                                         <i data-lucide="external-link" class="w-3.5 h-3.5 mr-2" style="color: var(--muted-foreground);"></i>
                                                          <span>View Subcategory</span>
                                                      </a>
 
                                                      <button @click="openEditModal({{ json_encode($sub) }})"
-                                                         class="w-full flex items-center px-3 py-2 text-xs font-semibold text-zinc-700 hover:bg-zinc-100 hover:text-black rounded-lg transition-colors text-left">
-                                                         <i data-lucide="edit-3" class="w-3.5 h-3.5 mr-2 text-zinc-400"></i>
+                                                         class="w-full flex items-center px-3 py-2 text-xs font-semibold hover:opacity-70 rounded-lg transition-colors text-left" style="color: var(--muted-foreground);">
+                                                         <i data-lucide="edit-3" class="w-3.5 h-3.5 mr-2" style="color: var(--muted-foreground);"></i>
                                                          <span>Edit Subcategory</span>
                                                      </button>
 
-                                                     <div class="border-t border-zinc-100 my-1"></div>
+                                                     <div class="my-1" style="border-top: 1px solid var(--border);"></div>
 
                                                      <form action="{{ route('admin.categories.destroy', $sub->id) }}" method="POST"
                                                          onsubmit="return confirm('Are you sure you want to delete this subcategory?');"
@@ -228,18 +228,18 @@
                                     </div>
                                 </div>
                             @empty
-                                <p class="text-xs text-zinc-450 italic py-1 pl-6">No subcategories created yet.</p>
+                                <p class="text-xs italic py-1 pl-6" style="color: var(--muted-foreground);">No subcategories created yet.</p>
                             @endforelse
                         </div>
                     </div>
                 @empty
                     <div class="p-12 text-center">
                         <div
-                            class="w-12 h-12 rounded-full bg-zinc-100 flex items-center justify-center mx-auto mb-3 text-zinc-400">
+                            class="w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-3" style="background: var(--muted); color: var(--muted-foreground);">
                             <i data-lucide="folder-x" class="w-6 h-6"></i>
                         </div>
-                        <p class="text-sm font-semibold text-zinc-700">No categories found</p>
-                        <p class="text-xs text-zinc-450 mt-1">Get started by creating your first category.</p>
+                        <p class="text-sm font-semibold" style="color: var(--foreground);">No categories found</p>
+                        <p class="text-xs mt-1" style="color: var(--muted-foreground);">Get started by creating your first category.</p>
                     </div>
                 @endforelse
             </div>
@@ -250,10 +250,10 @@
             class="fixed inset-0 z-50 flex items-center justify-center p-4 overflow-x-hidden overflow-y-auto outline-none"
             x-cloak>
             <!-- Glassmorphism backdrop -->
-            <div class="fixed inset-0 bg-zinc-950/65 backdrop-blur-md transition-opacity" @click="closeModal()"></div>
+            <div class="fixed inset-0 bg-background/65 backdrop-blur-md transition-opacity" @click="closeModal()"></div>
 
             <!-- Modal Content Card -->
-            <div class="relative w-full max-w-lg mx-auto bg-white rounded-[28px] shadow-2xl border border-zinc-200/80 z-10 overflow-hidden"
+            <div class="relative w-full max-w-lg mx-auto rounded-[28px] shadow-2xl z-10 overflow-hidden" style="background: var(--card); border: 1px solid var(--border);"
                 x-show="modalOpen" x-transition:enter="transition ease-out duration-350"
                 x-transition:enter-start="opacity-0 scale-95 translate-y-6"
                 x-transition:enter-end="opacity-100 scale-100 translate-y-0"
@@ -262,31 +262,33 @@
                 x-transition:leave-end="opacity-0 scale-95 translate-y-6">
 
                 <!-- Header -->
-                <div class="px-6 py-5 border-b border-zinc-150 flex items-center justify-between bg-zinc-50/50">
+                <div class="px-6 py-5 flex items-center justify-between" style="background: var(--muted); border-bottom: 1px solid var(--border);">
                     <div class="flex items-center space-x-2.5">
-                        <div class="w-8 h-8 rounded-lg bg-zinc-900 text-white hover:bg-zinc-800/15 flex items-center justify-center text-zinc-800">
+                        <div class="w-8 h-8 rounded-lg flex items-center justify-center" style="background: var(--primary); color: var(--primary-foreground);">
                             <i data-lucide="folder-tree" class="w-4 h-4"></i>
                         </div>
-                        <h4 class="font-bold text-zinc-900 text-base"
-                            x-text="isEdit ? 'Edit Category' : 'Add New Category'"></h4>
+                        <h4 class="font-bold text-base"
+                            style="color: var(--foreground);" x-text="isEdit ? 'Edit Category' : 'Add New Category'"></h4>
                     </div>
                     <button @click="closeModal()"
-                        class="w-8 h-8 rounded-full hover:bg-zinc-100 flex items-center justify-center text-zinc-450 hover:text-zinc-800 transition-all focus:outline-none">
+                        class="w-8 h-8 rounded-full flex items-center justify-center transition-all focus:outline-none" style="color: var(--muted-foreground);">
                         <i data-lucide="x" class="w-4.5 h-4.5"></i>
                     </button>
                 </div>
 
                 <!-- Tab Headers -->
-                <div class="flex border-b border-zinc-150 bg-zinc-50/30 px-6">
+                <div class="flex px-6" style="border-bottom: 1px solid var(--border); background: var(--muted);">
                     <button type="button" @click="modalTab = 'basic'"
-                        :class="modalTab === 'basic' ? 'border-[#09090b] font-semibold text-black' : 'border-transparent text-zinc-500 hover:text-zinc-800'"
-                        class="px-4 py-3 border-b-2 text-xs uppercase tracking-wider transition-all focus:outline-none flex items-center space-x-2">
+                        :class="modalTab === 'basic' ? 'font-semibold' : ''"
+                        class="px-4 py-3 border-b-2 text-xs uppercase tracking-wider transition-all focus:outline-none flex items-center space-x-2"
+                        :style="modalTab === 'basic' ? 'color: var(--foreground); border-color: var(--foreground);' : 'color: var(--muted-foreground); border-color: transparent;'">
                         <i data-lucide="info" class="w-3.5 h-3.5"></i>
                         <span>General Info</span>
                     </button>
                     <button type="button" @click="modalTab = 'seo'"
-                        :class="modalTab === 'seo' ? 'border-[#09090b] font-semibold text-black' : 'border-transparent text-zinc-500 hover:text-zinc-800'"
-                        class="px-4 py-3 border-b-2 text-xs uppercase tracking-wider transition-all focus:outline-none flex items-center space-x-2">
+                        :class="modalTab === 'seo' ? 'font-semibold' : ''"
+                        class="px-4 py-3 border-b-2 text-xs uppercase tracking-wider transition-all focus:outline-none flex items-center space-x-2"
+                        :style="modalTab === 'seo' ? 'color: var(--foreground); border-color: var(--foreground);' : 'color: var(--muted-foreground); border-color: transparent;'">
                         <i data-lucide="globe" class="w-3.5 h-3.5"></i>
                         <span>SEO Meta Settings</span>
                     </button>
@@ -304,19 +306,19 @@
                         <!-- Name Field -->
                         <div class="space-y-1.5">
                             <label for="modal_name"
-                                class="block text-xs font-bold text-zinc-500 uppercase tracking-wider">Category Name</label>
+                                class="block text-xs font-bold uppercase tracking-wider" style="color: var(--muted-foreground);">Category Name</label>
                             <input type="text" id="modal_name" name="name" x-model="form.name" required
                                 placeholder="e.g. DDR5 RAM or Graphics Card"
-                                class="w-full p-3 border border-zinc-200 rounded-xl bg-zinc-50 focus:bg-white focus:ring-1 focus:ring-zinc-950 focus:border-zinc-950 focus:ring-4 focus:ring-zinc-950/15 focus:outline-none transition-all">
+                                class="w-full p-3 rounded-xl focus:ring-1 focus:border-ring focus:ring-4 focus:ring-ring/15 focus:outline-none transition-all" style="background: var(--muted); border: 1px solid var(--border); color: var(--foreground);">
                         </div>
 
                         <!-- Parent Category -->
                         <div class="space-y-1.5">
                             <label for="modal_parent"
-                                class="block text-xs font-bold text-zinc-500 uppercase tracking-wider">Parent Category
+                                class="block text-xs font-bold uppercase tracking-wider" style="color: var(--muted-foreground);">Parent Category
                                 (Optional)</label>
                             <select id="modal_parent" name="parent_id" x-model="form.parent_id"
-                                class="w-full p-3 border border-zinc-200 rounded-xl bg-zinc-50 focus:bg-white focus:ring-1 focus:ring-zinc-950 focus:border-zinc-950 focus:ring-4 focus:ring-zinc-950/15 focus:outline-none transition-all">
+                                class="w-full p-3 rounded-xl focus:ring-1 focus:border-ring focus:ring-4 focus:ring-ring/15 focus:outline-none transition-all" style="background: var(--muted); border: 1px solid var(--border); color: var(--foreground);">
                                 <option value="">None (Make it a Parent Category)</option>
                                 @foreach($categories as $parent)
                                     <option value="{{ $parent->id }}" :disabled="form.id == {{ $parent->id }}">
@@ -327,17 +329,17 @@
 
                         <!-- Category Image Upload -->
                         <div class="space-y-1.5">
-                            <label class="block text-xs font-bold text-zinc-500 uppercase tracking-wider">Category Image
+                            <label class="block text-xs font-bold uppercase tracking-wider" style="color: var(--muted-foreground);">Category Image
                                 (Frontend display)</label>
                             <input type="hidden" name="selected_image_path" id="selected_category_image_path" value="">
                             <div class="flex items-center space-x-4">
                                 <div
-                                    class="w-14 h-14 rounded-xl border border-zinc-250 flex items-center justify-center bg-zinc-50 overflow-hidden flex-shrink-0">
+                                    class="w-14 h-14 rounded-xl flex items-center justify-center overflow-hidden flex-shrink-0" style="background: var(--muted); border: 1px solid var(--border);">
                                     <template x-if="form.image">
                                         <img :src="form.image" class="object-cover w-full h-full">
                                     </template>
                                     <template x-if="!form.image">
-                                        <div class="text-zinc-400">
+                                        <div style="color: var(--muted-foreground);">
                                             <i data-lucide="image" class="w-6 h-6"></i>
                                         </div>
                                     </template>
@@ -345,12 +347,12 @@
                                 <div class="flex-1 space-y-2">
                                     <div class="flex flex-wrap gap-2">
                                         <button type="button" @click="openLibrary('category_image')"
-                                            class="px-3 py-1.5 bg-zinc-100 hover:bg-zinc-200 text-zinc-700 rounded-lg text-xs font-semibold border border-zinc-200 transition-all flex items-center space-x-1">
+                                            class="px-3 py-1.5 hover:opacity-80 rounded-lg text-xs font-semibold transition-all flex items-center space-x-1" style="background: var(--muted); border: 1px solid var(--border); color: var(--muted-foreground);">
                                             <i data-lucide="image" class="w-3.5 h-3.5"></i>
                                             <span>Choose from Library</span>
                                         </button>
                                         <label
-                                            class="px-3 py-1.5 bg-zinc-800 hover:bg-zinc-900 text-white rounded-lg text-xs font-semibold cursor-pointer transition-all flex items-center space-x-1">
+                                            class="px-3 py-1.5 bg-primary text-primary-foreground hover:bg-primary/90 rounded-lg text-xs font-semibold cursor-pointer transition-all flex items-center space-x-1">
                                             <i data-lucide="upload" class="w-3.5 h-3.5"></i>
                                             <span>Upload File</span>
                                             <input type="file" name="image" accept="image/*" class="hidden"
@@ -364,7 +366,7 @@
                                             </button>
                                         </template>
                                     </div>
-                                    <p class="text-[10px] text-zinc-400">PNG or JPG. Best on white/transparent background.
+                                    <p class="text-[10px]" style="color: var(--muted-foreground);">PNG or JPG. Best on white/transparent background.
                                     </p>
                                 </div>
                             </div>
@@ -374,35 +376,36 @@
                         <div class="grid grid-cols-2 gap-4">
                             <div class="space-y-1.5">
                                 <label for="modal_icon"
-                                    class="block text-xs font-bold text-zinc-500 uppercase tracking-wider">Lucide Icon
+                                    class="block text-xs font-bold uppercase tracking-wider" style="color: var(--muted-foreground);">Lucide Icon
                                     Name</label>
                                 <div class="relative">
                                     <input type="text" id="modal_icon" name="icon" x-model="form.icon"
                                         placeholder="cpu, keyboard, zap"
-                                        class="w-full pl-9 pr-3 p-3 border border-zinc-200 rounded-xl bg-zinc-50 focus:bg-white focus:ring-1 focus:ring-zinc-950 focus:border-zinc-950 focus:ring-4 focus:ring-zinc-950/15 focus:outline-none transition-all">
-                                    <div class="absolute left-3 top-1/2 -translate-y-1/2 text-zinc-400">
+                                        class="w-full pl-9 pr-3 p-3 rounded-xl focus:ring-1 focus:border-ring focus:ring-4 focus:ring-ring/15 focus:outline-none transition-all" style="background: var(--muted); border: 1px solid var(--border); color: var(--foreground);">
+                                    <div class="absolute left-3 top-1/2 -translate-y-1/2" style="color: var(--muted-foreground);">
                                         <i data-lucide="tag" class="w-4 h-4"></i>
                                     </div>
                                 </div>
                             </div>
 
                             <div class="space-y-1.5">
-                                <label class="block text-xs font-bold text-zinc-500 uppercase tracking-wider">Display
+                                <label class="block text-xs font-bold uppercase tracking-wider" style="color: var(--muted-foreground);">Display
                                     Order</label>
                                 <input type="number" name="sort_order" x-model="form.sort_order" readonly
-                                    class="w-full p-3 border border-zinc-200 rounded-xl bg-zinc-100 text-zinc-500 cursor-not-allowed">
+                                    class="w-full p-3 rounded-xl cursor-not-allowed" style="background: var(--muted); border: 1px solid var(--border); color: var(--muted-foreground);">
                             </div>
                         </div>
 
                         <!-- Predefined Icon Quick Picker -->
-                        <div class="space-y-1.5 p-3.5 bg-zinc-50 border border-zinc-150 rounded-xl">
-                            <span class="block text-[11px] font-bold text-zinc-500 uppercase tracking-wider mb-2">Quick Icon
+                        <div class="space-y-1.5 p-3.5 rounded-xl" style="background: var(--muted); border: 1px solid var(--border);">
+                            <span class="block text-[11px] font-bold uppercase tracking-wider mb-2" style="color: var(--muted-foreground);">Quick Icon
                                 Selection Helper</span>
                             <div class="grid grid-cols-6 gap-2">
                                 <template
                                     x-for="icName in ['cpu', 'keyboard', 'monitor', 'wifi', 'zap', 'box', 'hard-drive', 'link', 'database', 'layers', 'shield', 'folder']">
                                     <button type="button" @click="form.icon = icName"
-                                        :class="form.icon === icName ? 'bg-zinc-900 text-white hover:bg-zinc-800 text-black border-black/10' : 'bg-white hover:bg-zinc-100 text-zinc-650 border-zinc-200'"
+                                        :class="form.icon === icName ? 'bg-primary text-primary-foreground hover:bg-primary/90 text-primary-foreground border-black/10' : 'hover:opacity-80 border-border'"
+                                        :style="form.icon !== icName ? 'background: var(--card); color: var(--muted-foreground); border: 1px solid var(--border);' : ''"
                                         class="py-1.5 border rounded-lg flex flex-col items-center justify-center transition-all focus:outline-none">
                                         <span class="text-[10px] font-medium" x-text="icName"></span>
                                     </button>
@@ -413,10 +416,10 @@
                         <!-- Description -->
                         <div class="space-y-1.5">
                             <label for="modal_description"
-                                class="block text-xs font-bold text-zinc-500 uppercase tracking-wider">Description</label>
+                                class="block text-xs font-bold uppercase tracking-wider" style="color: var(--muted-foreground);">Description</label>
                             <textarea id="modal_description" name="description" x-model="form.description" rows="2"
                                 placeholder="Describe the category..."
-                                class="w-full p-3 border border-zinc-200 rounded-xl bg-zinc-50 focus:bg-white focus:ring-1 focus:ring-zinc-950 focus:border-zinc-950 focus:ring-4 focus:ring-zinc-950/15 focus:outline-none transition-all"></textarea>
+                                class="w-full p-3 rounded-xl focus:ring-1 focus:border-ring focus:ring-4 focus:ring-ring/15 focus:outline-none transition-all" style="background: var(--muted); border: 1px solid var(--border); color: var(--foreground);"></textarea>
                         </div>
                     </div>
 
@@ -424,30 +427,30 @@
                     <div x-show="modalTab === 'seo'" class="space-y-4">
                         <div class="space-y-1.5">
                             <label for="modal_meta_title"
-                                class="block text-xs font-bold text-zinc-500 uppercase tracking-wider">Meta Page
+                                class="block text-xs font-bold uppercase tracking-wider" style="color: var(--muted-foreground);">Meta Page
                                 Title</label>
                             <input type="text" id="modal_meta_title" name="meta_title" x-model="form.meta_title"
                                 placeholder="SEO optimized title (ideal: <60 characters)"
-                                class="w-full p-3 border border-zinc-200 rounded-xl bg-zinc-50 focus:bg-white focus:ring-1 focus:ring-zinc-950 focus:border-zinc-950 focus:ring-4 focus:ring-zinc-950/15 focus:outline-none transition-all">
+                                class="w-full p-3 rounded-xl focus:ring-1 focus:border-ring focus:ring-4 focus:ring-ring/15 focus:outline-none transition-all" style="background: var(--muted); border: 1px solid var(--border); color: var(--foreground);">
                         </div>
                         <div class="space-y-1.5">
                             <label for="modal_meta_desc"
-                                class="block text-xs font-bold text-zinc-500 uppercase tracking-wider">Meta Page
+                                class="block text-xs font-bold uppercase tracking-wider" style="color: var(--muted-foreground);">Meta Page
                                 Description</label>
                             <textarea id="modal_meta_desc" name="meta_description" x-model="form.meta_description" rows="4"
                                 placeholder="SEO search engine description snippet (ideal: <160 characters)..."
-                                class="w-full p-3 border border-zinc-200 rounded-xl bg-zinc-50 focus:bg-white focus:ring-1 focus:ring-zinc-950 focus:border-zinc-950 focus:ring-4 focus:ring-zinc-950/15 focus:outline-none transition-all"></textarea>
+                                class="w-full p-3 rounded-xl focus:ring-1 focus:border-ring focus:ring-4 focus:ring-ring/15 focus:outline-none transition-all" style="background: var(--muted); border: 1px solid var(--border); color: var(--foreground);"></textarea>
                         </div>
                     </div>
 
                     <!-- Submit / Cancel -->
-                    <div class="pt-5 border-t border-zinc-150 flex justify-end space-x-2">
+                    <div class="pt-5 flex justify-end space-x-2" style="border-top: 1px solid var(--border);">
                         <button type="button" @click="closeModal()"
-                            class="px-5 py-2.5 border border-zinc-200 text-zinc-700 hover:bg-zinc-50 font-semibold rounded-xl text-xs transition-all active:scale-[0.98]">
+                            class="px-5 py-2.5 hover:opacity-80 font-semibold rounded-xl text-xs transition-all active:scale-[0.98]" style="border: 1px solid var(--border); color: var(--muted-foreground);">
                             Cancel
                         </button>
                         <button type="submit"
-                            class="px-6 py-2.5 bg-zinc-900 text-white hover:bg-zinc-800 hover:bg-[#ffd747] text-black font-semibold rounded-xl text-xs shadow-sm border border-black/10 transition-all active:scale-[0.98] hover:scale-[1.02]">
+                            class="px-6 py-2.5 font-semibold rounded-xl text-xs shadow-sm transition-all active:scale-[0.98] hover:scale-[1.02]" style="background: var(--primary); color: var(--primary-foreground);">
                             Save Changes
                         </button>
                     </div>
@@ -458,26 +461,26 @@
         <!-- Asset Library Modal -->
         <div x-show="libraryOpen" x-transition x-cloak
             class="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4 backdrop-blur-sm">
-            <div class="bg-white rounded-xl max-w-2xl w-full max-h-[85vh] flex flex-col shadow-2xl border border-zinc-200"
+            <div class="rounded-xl max-w-2xl w-full max-h-[85vh] flex flex-col shadow-2xl" style="background: var(--card); border: 1px solid var(--border);"
                 @click.away="libraryOpen = false">
                 <!-- Modal Header -->
-                <div class="p-4 border-b border-zinc-150 flex items-center justify-between">
+                <div class="p-4 flex items-center justify-between" style="border-bottom: 1px solid var(--border);">
                     <div class="flex items-center space-x-2">
-                        <i data-lucide="image" class="w-5 h-5 text-zinc-550"></i>
-                        <h3 class="text-sm font-bold text-zinc-800 uppercase tracking-wider">Select from Asset Library</h3>
+                        <i data-lucide="image" class="w-5 h-5" style="color: var(--muted-foreground);"></i>
+                        <h3 class="text-sm font-bold uppercase tracking-wider" style="color: var(--foreground);">Select from Asset Library</h3>
                     </div>
                     <button type="button" @click="libraryOpen = false"
-                        class="text-zinc-400 hover:text-zinc-600 focus:outline-none">
+                        class="focus:outline-none" style="color: var(--muted-foreground);">
                         <i data-lucide="x" class="w-5 h-5"></i>
                     </button>
                 </div>
                 <!-- Modal Body -->
-                <div class="p-6 overflow-y-auto flex-1 bg-zinc-50">
+                <div class="p-6 overflow-y-auto flex-1" style="background: var(--muted);">
                     <template x-if="libraryImages.length === 0">
-                        <div class="text-center py-12 text-zinc-450">
-                            <i data-lucide="image-off" class="w-10 h-10 mx-auto mb-3 text-zinc-300"></i>
+                        <div class="text-center py-12" style="color: var(--muted-foreground);">
+                            <i data-lucide="image-off" class="w-10 h-10 mx-auto mb-3" style="opacity: 0.4;"></i>
                             <p class="text-xs font-semibold">No assets found in library</p>
-                            <p class="text-[10px] text-zinc-400 mt-1">Upload images to public/website_assets/images
+                            <p class="text-[10px] mt-1" style="opacity: 0.6;">Upload images to public/website_assets/images
                                 directory</p>
                         </div>
                     </template>
@@ -485,15 +488,15 @@
                         <div class="grid grid-cols-3 sm:grid-cols-4 gap-4">
                             <template x-for="img in libraryImages" :key="img.url">
                                 <button type="button" @click="selectLibraryImage(img.url)"
-                                    class="group p-2 bg-white rounded-xl border border-zinc-200 hover:border-[#09090b] hover:ring-2 hover:ring-[#09090b]/20 transition-all text-left flex flex-col items-center justify-between aspect-square">
+                                    class="group p-2 rounded-xl hover:ring-2 transition-all text-left flex flex-col items-center justify-between aspect-square" style="background: var(--card); border: 1px solid var(--border);">
                                     <div
-                                        class="w-full flex-1 flex items-center justify-center overflow-hidden rounded-lg bg-zinc-50">
+                                        class="w-full flex-1 flex items-center justify-center overflow-hidden rounded-lg" style="background: var(--muted);">
                                         <img :src="img.url"
                                             class="max-h-24 max-w-full object-contain p-1 group-hover:scale-105 transition-all">
                                     </div>
                                     <div class="w-full mt-2 text-center">
-                                        <p class="text-[9px] font-semibold text-zinc-700 truncate" x-text="img.name"></p>
-                                        <p class="text-[8px] text-zinc-400" x-text="img.size"></p>
+                                        <p class="text-[9px] font-semibold truncate" style="color: var(--foreground);" x-text="img.name"></p>
+                                        <p class="text-[8px]" style="color: var(--muted-foreground);" x-text="img.size"></p>
                                     </div>
                                 </button>
                             </template>
@@ -501,9 +504,9 @@
                     </template>
                 </div>
                 <!-- Modal Footer -->
-                <div class="p-4 border-t border-zinc-150 flex justify-end bg-zinc-50 rounded-b-2xl">
+                <div class="p-4 flex justify-end rounded-b-2xl" style="border-top: 1px solid var(--border); background: var(--muted);">
                     <button type="button" @click="libraryOpen = false"
-                        class="px-4 py-2 border border-zinc-200 bg-white hover:bg-zinc-50 text-zinc-700 rounded-xl text-xs font-semibold shadow-sm transition-all">
+                        class="px-4 py-2 bg-card hover:opacity-80 rounded-xl text-xs font-semibold shadow-sm transition-all" style="border: 1px solid var(--border); color: var(--foreground);">
                         Cancel
                     </button>
                 </div>
@@ -517,7 +520,7 @@
                 modalOpen: false,
                 modalTab: 'basic',
                 isEdit: false,
-                collapsedCategories: [], // Deprecated: keep for compatibility/no-op
+                collapsedCategories: [],
                 expandedCategories: [],
                 libraryOpen: false,
                 libraryImages: [],
@@ -628,7 +631,6 @@
                         });
                         let result = await response.json();
                         if (result.success) {
-                            // Success callback
                         }
                     } catch (err) {
                         console.error('Failed to toggle active state', err);

@@ -8,11 +8,11 @@
     {{-- Back Link & Page Title --}}
     <div class="flex items-center justify-between">
         <a href="{{ route('admin.accounts.index') }}" 
-           class="inline-flex items-center gap-2 text-xs font-bold text-zinc-500 hover:text-zinc-900 bg-white border border-zinc-200 hover:border-zinc-300 px-3 py-2 rounded-xl transition-all shadow-sm">
+           class="inline-flex items-center gap-2 text-xs font-bold text-muted-foreground hover:text-foreground bg-card border border-border hover:border-border px-3 py-2 rounded-xl transition-all shadow-sm">
             <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i>
             Back to List
         </a>
-        <span class="text-xs text-zinc-400 font-medium">Create and authorize a new administrative account</span>
+        <span class="text-xs text-muted-foreground font-medium">Create and authorize a new administrative account</span>
     </div>
 
     {{-- Error Banner --}}
@@ -29,37 +29,37 @@
     @endif
 
     {{-- Form Column --}}
-    <form action="{{ route('admin.accounts.store') }}" method="POST" class="bg-white border border-zinc-200 rounded-xl p-6 shadow-sm space-y-6">
+    <form action="{{ route('admin.accounts.store') }}" method="POST" class="bg-card border border-border rounded-xl p-6 shadow-sm space-y-6">
         @csrf
         
-        <div class="border-b border-zinc-100 pb-4">
-            <h3 class="text-base font-bold text-zinc-900">Staff Details</h3>
-            <p class="text-xs text-zinc-500 mt-1">Provide credentials and select an access role for the user.</p>
+        <div class="border-b border-border pb-4">
+            <h3 class="text-base font-bold text-foreground">Staff Details</h3>
+            <p class="text-xs text-muted-foreground mt-1">Provide credentials and select an access role for the user.</p>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
             {{-- Name --}}
             <div class="space-y-1.5">
-                <label class="text-xs font-bold text-zinc-700 flex items-center gap-1">
+                <label class="text-xs font-bold text-foreground flex items-center gap-1">
                     Full Name <span class="text-rose-500" x-show="!userExists">*</span>
                 </label>
                 <div class="relative">
-                    <i data-lucide="user" class="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-400"></i>
+                    <i data-lucide="user" class="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground"></i>
                     <input type="text" name="name" :required="!userExists" :readonly="userExists" x-model="name" value="{{ old('name') }}" placeholder="e.g. Rahul Sharma"
-                           class="w-full pl-10 pr-4 py-3 text-xs border border-zinc-200 rounded-xl bg-zinc-50 focus:bg-white focus:ring-1 focus:ring-zinc-950 focus:border-zinc-950 focus:ring-4 focus:ring-yellow-100 focus:outline-none transition-all"
-                           :class="userExists ? 'opacity-80 cursor-not-allowed bg-zinc-100' : ''">
+                           class="w-full pl-10 pr-4 py-3 text-xs border border-border rounded-xl bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:ring-4 focus:ring-yellow-100 focus:outline-none transition-all"
+                           :class="userExists ? 'opacity-80 cursor-not-allowed bg-muted' : ''">
                 </div>
             </div>
 
             {{-- Email --}}
             <div class="space-y-1.5">
-                <label class="text-xs font-bold text-zinc-700 flex items-center gap-1">
+                <label class="text-xs font-bold text-foreground flex items-center gap-1">
                     Email Address <span class="text-rose-500">*</span>
                 </label>
                 <div class="relative">
-                    <i data-lucide="mail" class="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-400"></i>
+                    <i data-lucide="mail" class="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground"></i>
                     <input type="email" name="email" required x-model="email" @input.debounce.300ms="checkEmailExist()" value="{{ old('email') }}" placeholder="username@xbuy.in"
-                           class="w-full pl-10 pr-4 py-3 text-xs border border-zinc-200 rounded-xl bg-zinc-50 focus:bg-white focus:ring-1 focus:ring-zinc-950 focus:border-zinc-950 focus:ring-4 focus:ring-yellow-100 focus:outline-none transition-all">
+                           class="w-full pl-10 pr-4 py-3 text-xs border border-border rounded-xl bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:ring-4 focus:ring-yellow-100 focus:outline-none transition-all">
                 </div>
                 <div x-show="userExists" x-cloak class="mt-2 p-3 bg-emerald-50 text-emerald-800 border border-emerald-200 rounded-xl text-xs flex items-start gap-2 shadow-sm">
                     <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-600 shrink-0 mt-0.5"></i>
@@ -70,13 +70,13 @@
 
         {{-- Role Selection --}}
         <div class="space-y-3">
-            <label class="text-xs font-bold text-zinc-700 flex items-center gap-1">
+            <label class="text-xs font-bold text-foreground flex items-center gap-1">
                 Access Role <span class="text-rose-500">*</span>
             </label>
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
                 <template x-for="(role, key) in roles" :key="key">
-                    <label class="border rounded-xl p-4 flex flex-col justify-between gap-3 cursor-pointer transition-all hover:bg-zinc-50"
-                           :class="selectedRole === key ? 'border-yellow-400 bg-zinc-50/30 ring-1 ring-yellow-400' : 'border-zinc-200 bg-white'">
+                    <label class="border rounded-xl p-4 flex flex-col justify-between gap-3 cursor-pointer transition-all hover:bg-muted"
+                           :class="selectedRole === key ? 'border-yellow-400 bg-muted/30 ring-1 ring-yellow-400' : 'border-border bg-card'">
                         <div class="flex items-center justify-between">
                             <div class="p-2 rounded-xl" :class="role.bgClass">
                                 <i :data-lucide="role.icon" class="w-4 h-4" :class="role.iconClass"></i>
@@ -84,8 +84,8 @@
                             <input type="radio" name="admin_role" :value="key" required x-model="selectedRole" @change="onRoleChange(key)" class="text-yellow-500 focus:ring-yellow-400">
                         </div>
                         <div>
-                            <p class="text-xs font-bold text-zinc-900" x-text="role.label"></p>
-                            <p class="text-[10px] text-zinc-500 mt-1 leading-relaxed" x-text="role.shortDesc"></p>
+                            <p class="text-xs font-bold text-foreground" x-text="role.label"></p>
+                            <p class="text-[10px] text-muted-foreground mt-1 leading-relaxed" x-text="role.shortDesc"></p>
                         </div>
                     </label>
                 </template>
@@ -93,34 +93,34 @@
 
             {{-- Custom Role Title Input --}}
             <div x-show="selectedRole === 'custom'" x-transition class="space-y-1.5 pt-2">
-                <label class="text-xs font-bold text-zinc-750 flex items-center gap-1">
+                <label class="text-xs font-bold text-foreground flex items-center gap-1">
                     Custom Role Name / Title <span class="text-rose-500">*</span>
                 </label>
                 <div class="relative">
-                    <i data-lucide="shield" class="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-400"></i>
+                    <i data-lucide="shield" class="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground"></i>
                     <input type="text" name="custom_role_title" x-model="customRoleTitle" placeholder="e.g. Manager, Senior Auditor" :required="selectedRole === 'custom'" :disabled="selectedRole !== 'custom'"
-                           class="w-full pl-10 pr-4 py-3 text-xs border border-zinc-200 rounded-xl bg-zinc-50 focus:bg-white focus:ring-1 focus:ring-zinc-950 focus:border-zinc-950 focus:ring-4 focus:ring-yellow-100 focus:outline-none transition-all">
+                           class="w-full pl-10 pr-4 py-3 text-xs border border-border rounded-xl bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:ring-4 focus:ring-yellow-100 focus:outline-none transition-all">
                 </div>
-                <p class="text-[10px] text-zinc-450">Give this custom permission matrix a user-friendly name (e.g. Manager).</p>
+                <p class="text-[10px] text-muted-foreground">Give this custom permission matrix a user-friendly name (e.g. Manager).</p>
             </div>
         </div>
 
         {{-- Granular Permissions Matrix --}}
-        <div class="border-t border-zinc-150 pt-5 space-y-4">
+        <div class="border-t border-border pt-5 space-y-4">
             <div>
-                <h4 class="text-sm font-bold text-zinc-900 flex items-center gap-2">
+                <h4 class="text-sm font-bold text-foreground flex items-center gap-2">
                     <span>Granular Permissions Matrix</span>
-                    <span class="text-[10px] px-2 py-0.5 rounded-full font-bold bg-zinc-100 text-zinc-900 border border-zinc-200">
+                    <span class="text-[10px] px-2 py-0.5 rounded-full font-bold bg-muted text-foreground border border-border">
                         Interactive Scope
                     </span>
                 </h4>
-                <p class="text-xs text-zinc-500 mt-0.5">Toggle granular permissions. Changing any level will automatically switch the role to custom mode.</p>
+                <p class="text-xs text-muted-foreground mt-0.5">Toggle granular permissions. Changing any level will automatically switch the role to custom mode.</p>
             </div>
 
-            <div class="border border-zinc-200 rounded-xl overflow-hidden shadow-sm">
+            <div class="border border-border rounded-xl overflow-hidden shadow-sm">
                 <table class="w-full text-left border-collapse text-xs">
                     <thead>
-                        <tr class="bg-zinc-50/80 border-b border-zinc-200 font-bold text-zinc-650">
+                        <tr class="bg-muted/80 border-b border-border font-bold text-muted-foreground">
                             <th class="p-3 pl-4">System Section</th>
                             <th class="p-3 text-center">None</th>
                             <th class="p-3 text-center">View Only</th>
@@ -129,10 +129,10 @@
                             <th class="p-3 text-center">All Access</th>
                         </tr>
                     </thead>
-                    <tbody class="divide-y divide-zinc-100">
+                    <tbody class="divide-y divide-border">
                         <template x-for="(secLabel, secKey) in sections" :key="secKey">
-                            <tr class="hover:bg-zinc-50/40 transition-colors">
-                                <td class="p-3 pl-4 font-bold text-zinc-850" x-text="secLabel"></td>
+                            <tr class="hover:bg-muted/40 transition-colors">
+                                <td class="p-3 pl-4 font-bold text-foreground" x-text="secLabel"></td>
                                 
                                 {{-- Radio Buttons for Access Types --}}
                                 <template x-for="type in accessTypes">
@@ -153,20 +153,20 @@
         </div>
 
         {{-- Dynamic Access Scope Summary Card --}}
-        <div class="bg-zinc-50/30 border border-zinc-200 rounded-xl p-5 space-y-4">
+        <div class="bg-muted/30 border border-border rounded-xl p-5 space-y-4">
             <div class="flex items-center justify-between">
                 <div class="flex items-center gap-2">
-                    <div class="p-1.5 bg-zinc-900 text-white hover:bg-zinc-800/10 text-zinc-800 rounded-lg border border-zinc-100">
+                    <div class="p-1.5 bg-primary text-primary-foreground hover:bg-primary/90/10 text-foreground rounded-lg border border-border">
                         <i data-lucide="shield-check" class="w-4 h-4"></i>
                     </div>
-                    <h4 class="text-xs font-bold text-zinc-900 uppercase tracking-wider">Live System Access Scope</h4>
+                    <h4 class="text-xs font-bold text-foreground uppercase tracking-wider">Live System Access Scope</h4>
                 </div>
-                <span class="text-[10px] text-zinc-500 font-semibold" x-text="roles[selectedRole]?.label || 'Custom Scope'"></span>
+                <span class="text-[10px] text-muted-foreground font-semibold" x-text="roles[selectedRole]?.label || 'Custom Scope'"></span>
             </div>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 pt-2">
                 {{-- View-Only Modules --}}
-                <div class="space-y-2 bg-white p-3 border border-zinc-150 rounded-xl" x-show="getModulesByAccess('view').length > 0">
+                <div class="space-y-2 bg-card p-3 border border-border rounded-xl" x-show="getModulesByAccess('view').length > 0">
                     <span class="text-[10px] text-blue-600 font-bold flex items-center gap-1.5">
                         <span class="w-1.5 h-1.5 rounded-full bg-blue-500"></span> 👁️ View Only
                     </span>
@@ -178,7 +178,7 @@
                 </div>
 
                 {{-- Editable Modules --}}
-                <div class="space-y-2 bg-white p-3 border border-zinc-150 rounded-xl" x-show="getModulesByAccess('edit').length > 0">
+                <div class="space-y-2 bg-card p-3 border border-border rounded-xl" x-show="getModulesByAccess('edit').length > 0">
                     <span class="text-[10px] text-amber-600 font-bold flex items-center gap-1.5">
                         <span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span> ✍️ Editable
                     </span>
@@ -190,7 +190,7 @@
                 </div>
 
                 {{-- Deletable Modules --}}
-                <div class="space-y-2 bg-white p-3 border border-zinc-150 rounded-xl" x-show="getModulesByAccess('delete').length > 0">
+                <div class="space-y-2 bg-card p-3 border border-border rounded-xl" x-show="getModulesByAccess('delete').length > 0">
                     <span class="text-[10px] text-rose-600 font-bold flex items-center gap-1.5">
                         <span class="w-1.5 h-1.5 rounded-full bg-rose-500"></span> 🗑️ Deletable
                     </span>
@@ -202,7 +202,7 @@
                 </div>
 
                 {{-- Full Access Modules --}}
-                <div class="space-y-2 bg-white p-3 border border-zinc-150 rounded-xl" x-show="getModulesByAccess('all').length > 0">
+                <div class="space-y-2 bg-card p-3 border border-border rounded-xl" x-show="getModulesByAccess('all').length > 0">
                     <span class="text-[10px] text-emerald-600 font-bold flex items-center gap-1.5">
                         <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> ⚡ Full Access
                     </span>
@@ -216,17 +216,17 @@
         </div>
 
         {{-- Passwords --}}
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 border-t border-zinc-150 pt-5" x-show="!userExists" x-cloak>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 border-t border-border pt-5" x-show="!userExists" x-cloak>
             {{-- Password --}}
             <div class="space-y-1.5" x-data="{ show: false }">
-                <label class="text-xs font-bold text-zinc-700 flex items-center gap-1">
+                <label class="text-xs font-bold text-foreground flex items-center gap-1">
                     Password <span class="text-rose-500">*</span>
                 </label>
                 <div class="relative">
-                    <i data-lucide="lock" class="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-400"></i>
+                    <i data-lucide="lock" class="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground"></i>
                     <input :type="show ? 'text' : 'password'" name="password" :required="!userExists" placeholder="Min. 8 characters"
-                           class="w-full pl-10 pr-10 py-3 text-xs border border-zinc-200 rounded-xl bg-zinc-50 focus:bg-white focus:ring-1 focus:ring-zinc-950 focus:border-zinc-950 focus:ring-4 focus:ring-yellow-100 focus:outline-none transition-all">
-                    <button type="button" @click="show = !show" class="absolute right-3 top-1/2 -translate-y-1/2 text-zinc-400 hover:text-zinc-700">
+                           class="w-full pl-10 pr-10 py-3 text-xs border border-border rounded-xl bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:ring-4 focus:ring-yellow-100 focus:outline-none transition-all">
+                    <button type="button" @click="show = !show" class="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground">
                         <i :data-lucide="show ? 'eye-off' : 'eye'" class="w-4 h-4"></i>
                     </button>
                 </div>
@@ -234,14 +234,14 @@
 
             {{-- Password Confirm --}}
             <div class="space-y-1.5" x-data="{ show: false }">
-                <label class="text-xs font-bold text-zinc-750 flex items-center gap-1">
+                <label class="text-xs font-bold text-foreground flex items-center gap-1">
                     Confirm Password <span class="text-rose-500">*</span>
                 </label>
                 <div class="relative">
-                    <i data-lucide="lock" class="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-400"></i>
+                    <i data-lucide="lock" class="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground"></i>
                     <input :type="show ? 'text' : 'password'" name="password_confirmation" :required="!userExists" placeholder="Repeat password"
-                           class="w-full pl-10 pr-10 py-3 text-xs border border-zinc-200 rounded-xl bg-zinc-50 focus:bg-white focus:ring-1 focus:ring-zinc-950 focus:border-zinc-950 focus:ring-4 focus:ring-yellow-100 focus:outline-none transition-all">
-                    <button type="button" @click="show = !show" class="absolute right-3 top-1/2 -translate-y-1/2 text-zinc-400 hover:text-zinc-700">
+                           class="w-full pl-10 pr-10 py-3 text-xs border border-border rounded-xl bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:ring-4 focus:ring-yellow-100 focus:outline-none transition-all">
+                    <button type="button" @click="show = !show" class="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground">
                         <i :data-lucide="show ? 'eye-off' : 'eye'" class="w-4 h-4"></i>
                     </button>
                 </div>
@@ -249,13 +249,13 @@
         </div>
 
         {{-- Action Buttons --}}
-        <div class="flex items-center justify-end gap-3 pt-4 border-t border-zinc-150">
+        <div class="flex items-center justify-end gap-3 pt-4 border-t border-border">
             <a href="{{ route('admin.accounts.index') }}" 
-               class="px-5 py-3 text-xs font-bold text-zinc-600 border border-zinc-200 rounded-xl hover:bg-zinc-50 transition-all">
+               class="px-5 py-3 text-xs font-bold text-muted-foreground border border-border rounded-xl hover:bg-muted transition-all">
                 Cancel
             </a>
             <button type="submit" 
-                    class="px-6 py-3 bg-zinc-900 text-white hover:bg-zinc-800 hover:bg-[#e6c22f] text-black text-xs font-black rounded-xl flex items-center gap-1.5 transition-all shadow-sm">
+                    class="px-6 py-3 bg-primary text-primary-foreground hover:bg-primary/90 hover:bg-[#e6c22f] text-foreground text-xs font-black rounded-xl flex items-center gap-1.5 transition-all shadow-sm">
                 <i data-lucide="user-plus" class="w-4 h-4"></i>
                 Add Staff Member
             </button>
@@ -357,8 +357,8 @@ function createStaffPage() {
             custom: {
                 label: 'Custom Scope',
                 icon: 'sliders',
-                bgClass: 'bg-zinc-100 text-zinc-800',
-                iconClass: 'text-zinc-800',
+                bgClass: 'bg-muted text-foreground',
+                iconClass: 'text-foreground',
                 shortDesc: 'Select custom permissions for individual sections.',
                 presets: {
                     sellers: 'none', listings: 'none', categories: 'none', spec_templates: 'none', pages: 'none',

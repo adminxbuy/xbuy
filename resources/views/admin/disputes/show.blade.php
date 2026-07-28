@@ -6,7 +6,7 @@
 @section('content')
     <div class="mb-6">
         <a href="{{ route('admin.disputes') }}"
-            class="inline-flex items-center space-x-1.5 text-sm font-semibold text-zinc-500 hover:text-zinc-800">
+            class="inline-flex items-center space-x-1.5 text-sm font-semibold" style="color: var(--muted-foreground);">
             <i data-lucide="arrow-left" class="w-4 h-4"></i>
             <span>Back to Disputes list</span>
         </a>
@@ -19,37 +19,37 @@
         <div class="lg:col-span-2 flex flex-col space-y-6">
 
             <!-- Dispute Info Header Card -->
-            <div class="bg-white border border-zinc-200 rounded-xl p-6 shadow-sm">
+            <div class="rounded-xl p-6 shadow-sm" style="background: var(--card); border: 1px solid var(--border);">
                 <div class="flex items-center justify-between mb-2">
-                    <h2 class="text-xl font-bold text-zinc-900">{{ ucfirst(str_replace('_', ' ', $dispute->dispute_type)) }}
+                    <h2 class="text-xl font-bold" style="color: var(--foreground);">{{ ucfirst(str_replace('_', ' ', $dispute->dispute_type)) }}
                     </h2>
                     <div class="flex items-center gap-2">
                         @if($dispute->status === 'resolved')
                             <form action="{{ route('admin.disputes.reopen', $dispute->id) }}" method="POST">
                                 @csrf
                                 <button type="submit"
-                                    class="inline-flex items-center gap-2 bg-zinc-900 hover:bg-zinc-800 text-white font-semibold px-4 py-2 rounded-lg text-sm transition-all shadow-sm">
+                                    class="inline-flex items-center gap-2 font-semibold px-4 py-2 rounded-lg text-sm transition-all shadow-sm" style="background: var(--primary); color: var(--primary-foreground);">
                                     <i data-lucide="rotate-ccw" class="w-4 h-4"></i>
                                     <span>Reopen Dispute</span>
                                 </button>
                             </form>
                         @endif
                         <button type="button" onclick="openResolutionDrawer()"
-                            class="inline-flex items-center gap-2 bg-zinc-900 hover:bg-zinc-800 text-white font-semibold px-4 py-2 rounded-lg text-sm transition-all">
+                            class="inline-flex items-center gap-2 font-semibold px-4 py-2 rounded-lg text-sm transition-all" style="background: var(--primary); color: var(--primary-foreground);">
                             <i data-lucide="panel-right-open" class="w-4 h-4"></i>
                             <span>{{ $dispute->status === 'resolved' ? 'View Resolution Details' : 'Open Resolve Panel' }}</span>
                         </button>
                     </div>
                 </div>
-                <p class="text-xs text-zinc-500">Order: <span
-                        class="font-bold text-zinc-800">#{{ $dispute->order->order_number }}</span> | Raised:
+                <p class="text-xs" style="color: var(--muted-foreground);">Order: <span
+                        class="font-bold" style="color: var(--foreground);">#{{ $dispute->order->order_number }}</span> | Raised:
                     {{ $dispute->created_at->format('d M Y H:i') }} | Status:
                     <span class="px-2 py-0.5 text-xs rounded-full font-semibold border inline-block
                         @if($dispute->status === 'open') bg-amber-50 text-amber-705 border-amber-200/60
                         @elseif($dispute->status === 'seller_responded') bg-blue-50 text-blue-700 border-blue-200/60
-                        @elseif($dispute->status === 'under_review') bg-zinc-50 text-zinc-700 border-zinc-200
+                        @elseif($dispute->status === 'under_review') bg-muted text-foreground border-border
                         @elseif($dispute->status === 'resolved') bg-emerald-50 text-emerald-705 border-emerald-200/60
-                        @else bg-zinc-50 border-zinc-200 text-zinc-700 @endif">
+                        @else bg-muted border-border text-foreground @endif">
                         {{ ucfirst(str_replace('_', ' ', $dispute->status)) }}
                     </span>
                 </p>
@@ -57,20 +57,20 @@
                 <!-- Buyer Complaint Section -->
                 <div class="mt-6 p-4 bg-rose-50/50 border border-rose-100 rounded-xl">
                     <span class="text-xs font-semibold text-rose-800 block uppercase mb-2">Buyer Complaint</span>
-                    <p class="text-sm text-zinc-700 whitespace-pre-wrap">{{ $dispute->description }}</p>
+                    <p class="text-sm whitespace-pre-wrap" style="color: var(--foreground);">{{ $dispute->description }}</p>
                 </div>
 
                 <!-- Buyer Evidence Images (Lightbox) -->
                 @if($dispute->evidence_images && count($dispute->evidence_images) > 0)
                     <div class="mt-6">
-                        <span class="text-xs font-semibold text-zinc-600 block uppercase mb-3 flex items-center gap-2">
+                        <span class="text-xs font-semibold block uppercase mb-3 flex items-center gap-2" style="color: var(--muted-foreground);">
                             <i data-lucide="image" class="w-3.5 h-3.5"></i>
                             Buyer Evidence ({{ count($dispute->evidence_images) }} images)
                         </span>
                         <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
                             @foreach($dispute->evidence_images as $idx => $url)
                                 <button type="button" onclick="openLightbox('{{ $url }}')"
-                                    class="group block aspect-video rounded-lg overflow-hidden border border-zinc-200 bg-zinc-50 hover:border-zinc-400 hover:shadow-md transition-all cursor-pointer relative">
+                                    class="group block aspect-video rounded-lg overflow-hidden hover:shadow-md transition-all cursor-pointer relative" style="border: 1px solid var(--border); background: var(--muted);">
                                     <img src="{{ $url }}" class="w-full h-full object-cover" alt="buyer-evidence">
                                     <div
                                         class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all flex items-center justify-center cursor-pointer">
@@ -86,8 +86,8 @@
 
             <!-- Seller Response (if exists) -->
             @if($dispute->responses->where('user_id', $dispute->seller_id)->count() > 0)
-                <div class="bg-white border border-zinc-200 rounded-xl p-6 shadow-sm">
-                    <h3 class="font-bold text-zinc-800 text-sm mb-4 flex items-center gap-2">
+                <div class="rounded-xl p-6 shadow-sm" style="background: var(--card); border: 1px solid var(--border);">
+                    <h3 class="font-bold text-sm mb-4 flex items-center gap-2" style="color: var(--foreground);">
                         <i data-lucide="message-circle" class="w-4 h-4"></i>
                         Seller Response & Counter Evidence
                     </h3>
@@ -97,13 +97,13 @@
                             <div>
                                 <p class="text-xs font-semibold text-blue-700 mb-2">{{ $dispute->seller->shop_name }} •
                                     {{ $response->created_at->diffForHumans() }}</p>
-                                <p class="text-sm text-zinc-700 whitespace-pre-wrap">{{ $response->response_text }}</p>
+                                <p class="text-sm whitespace-pre-wrap" style="color: var(--foreground);">{{ $response->response_text }}</p>
 
                                 @if($response->evidence_images && count($response->evidence_images) > 0)
                                     <div class="mt-3 grid grid-cols-2 sm:grid-cols-3 gap-3">
                                         @foreach($response->evidence_images as $url)
                                             <button type="button" onclick="openLightbox('{{ $url }}')"
-                                                class="group block aspect-video rounded-lg overflow-hidden border border-blue-200 bg-blue-50 hover:border-zinc-400 transition-all cursor-pointer">
+                                                class="group block aspect-video rounded-lg overflow-hidden border border-blue-200 bg-blue-50 hover:border-ring transition-all cursor-pointer">
                                                 <img src="{{ $url }}" class="w-full h-full object-cover" alt="seller-evidence">
                                             </button>
                                         @endforeach
@@ -116,10 +116,10 @@
             @endif
 
             <!-- Chat / Response Log -->
-            <div class="bg-white border border-zinc-200 rounded-lg ring-1 ring-zinc-950/5 flex-1 flex flex-col overflow-hidden">
-                <div class="px-6 py-4 border-b border-zinc-200 bg-zinc-50/50 flex items-center justify-between">
-                    <h3 class="font-bold text-zinc-800 text-sm">Admin Chat Log</h3>
-                    <span class="px-2 py-0.5 text-[10px] bg-zinc-900 text-white rounded font-semibold">SECURED
+            <div class="rounded-lg flex-1 flex flex-col overflow-hidden" style="background: var(--card); border: 1px solid var(--border);">
+                <div class="px-6 py-4 flex items-center justify-between" style="border-bottom: 1px solid var(--border); background: var(--muted);">
+                    <h3 class="font-bold text-sm" style="color: var(--foreground);">Admin Chat Log</h3>
+                    <span class="px-2 py-0.5 text-[10px] rounded font-semibold" style="background: var(--primary); color: var(--primary-foreground);">SECURED
                         CHAT</span>
                 </div>
 
@@ -143,7 +143,7 @@
                                 @endif
                                 @if($dispute->resolution_notes)
                                     <p
-                                        class="text-xs text-emerald-800 mt-2 bg-white/60 p-2.5 rounded-xl border border-emerald-200/50 italic">
+                                        class="text-xs text-emerald-800 mt-2 bg-card/60 p-2.5 rounded-xl border border-emerald-200/50 italic">
                                         "{{ $dispute->resolution_notes }}"</p>
                                 @endif
                             </div>
@@ -152,9 +152,9 @@
 
                     @forelse($dispute->responses->where('user_id', '!=', $dispute->seller_id)->where('user_id', '!=', $dispute->buyer_id) as $resp)
                         <div class="flex items-start space-x-3.5 justify-end">
-                            <div class="max-w-[80%] rounded-xl p-4 border bg-zinc-900 border-zinc-800 text-white">
+                            <div class="max-w-[80%] rounded-xl p-4 border" style="background: var(--primary); border-color: var(--primary); color: var(--primary-foreground);">
                                 <div class="flex items-center justify-between gap-6 mb-1">
-                                    <span class="text-[10px] font-bold uppercase tracking-wider text-zinc-300">
+                                    <span class="text-[10px] font-bold uppercase tracking-wider opacity-80">
                                         {{ $resp->user->name }} (Admin)
                                     </span>
                                     <span class="text-[9px] opacity-60">{{ $resp->created_at->diffForHumans() }}</span>
@@ -165,20 +165,20 @@
                                 class="w-8 h-8 rounded-lg" alt="avatar">
                         </div>
                     @empty
-                        <p class="text-center text-zinc-400 text-sm py-8">No admin messages yet.</p>
+                        <p class="text-center text-sm py-8" style="color: var(--muted-foreground);">No admin messages yet.</p>
                     @endforelse
                 </div>
 
                 <!-- Send Response Box (Only active for open/reviewed disputes) -->
                 @if($dispute->status !== 'resolved')
-                    <div class="p-4 border-t border-zinc-200 bg-zinc-50">
+                    <div class="p-4" style="border-top: 1px solid var(--border); background: var(--muted);">
                         <form action="{{ route('admin.disputes.response', $dispute->id) }}" method="POST" class="flex gap-3">
                             @csrf
                             <input type="text" name="response_text" required placeholder="Type a message as moderator..."
-                                class="w-full px-4 py-2 border border-zinc-200 rounded-lg text-xs focus:ring-1 focus:ring-zinc-950 focus:border-zinc-950 focus:outline-none bg-white h-9">
+                                class="w-full px-4 py-2 rounded-lg text-xs focus:ring-1 focus:ring-ring focus:border-ring focus:outline-none h-9" style="border: 1px solid var(--border); background: var(--card); color: var(--foreground);">
 
                             <button type="submit"
-                                class="bg-zinc-900 hover:bg-zinc-800 text-white font-semibold px-4 rounded-lg text-xs transition-colors shrink-0 h-9">
+                                class="font-semibold px-4 rounded-lg text-xs transition-colors shrink-0 h-9" style="background: var(--primary); color: var(--primary-foreground);">
                                 <span>Send</span>
                             </button>
                         </form>
@@ -191,27 +191,26 @@
         <div class="space-y-6">
 
             <!-- Order Details Card -->
-            <div class="bg-white border border-zinc-200 rounded-xl p-6 shadow-sm">
-                <h3 class="font-bold text-zinc-800 text-lg mb-4 flex items-center gap-2">
+            <div class="rounded-xl p-6 shadow-sm" style="background: var(--card); border: 1px solid var(--border);">
+                <h3 class="font-bold text-lg mb-4 flex items-center gap-2" style="color: var(--foreground);">
                     <i data-lucide="shopping-cart" class="w-4 h-4"></i>
                     Order Details
                 </h3>
                 <div class="space-y-3.5 text-xs">
-                    <div class="flex justify-between items-center py-1.5 border-b border-zinc-100">
-                        <span class="text-zinc-500">Order Number</span>
-                        <span class="font-bold text-zinc-900">#{{ $dispute->order->order_number }}</span>
+                    <div class="flex justify-between items-center py-1.5" style="border-bottom: 1px solid var(--border);">
+                        <span style="color: var(--muted-foreground);">Order Number</span>
+                        <span class="font-bold" style="color: var(--foreground);">#{{ $dispute->order->order_number }}</span>
                     </div>
-                    <div class="flex justify-between items-center py-1.5 border-b border-zinc-100">
-                        <span class="text-zinc-500">Order Amount</span>
-                        <span class="font-bold text-zinc-900">₹{{ number_format($dispute->order->total_amount, 2) }}</span>
+                    <div class="flex justify-between items-center py-1.5" style="border-bottom: 1px solid var(--border);">
+                        <span style="color: var(--muted-foreground);">Order Amount</span>
+                        <span class="font-bold" style="color: var(--foreground);">₹{{ number_format($dispute->order->total_amount, 2) }}</span>
                     </div>
-                    <div class="flex justify-between items-center py-1.5 border-b border-zinc-100">
-                        <span class="text-zinc-500">Product Price</span>
-                        <span
-                            class="font-medium text-zinc-800 font-semibold">₹{{ number_format($dispute->order->product_amount, 2) }}</span>
+                    <div class="flex justify-between items-center py-1.5" style="border-bottom: 1px solid var(--border);">
+                        <span style="color: var(--muted-foreground);">Product Price</span>
+                        <span class="font-medium font-semibold" style="color: var(--foreground);">₹{{ number_format($dispute->order->product_amount, 2) }}</span>
                     </div>
                     <div class="flex justify-between items-center py-1.5">
-                        <span class="text-zinc-500">Escrow Held</span>
+                        <span style="color: var(--muted-foreground);">Escrow Held</span>
                         <span class="font-bold text-amber-700 bg-amber-50 px-2 py-0.5 rounded-full text-[10px] border border-amber-200">
                             ₹{{ number_format($dispute->order->escrow->amount_held ?? $dispute->order->total_amount, 2) }}
                         </span>
@@ -220,42 +219,42 @@
             </div>
 
             <!-- Parties Card -->
-            <div class="bg-white border border-zinc-200 rounded-xl p-6 shadow-sm">
-                <h3 class="font-bold text-zinc-800 text-lg mb-4 flex items-center gap-2">
+            <div class="rounded-xl p-6 shadow-sm" style="background: var(--card); border: 1px solid var(--border);">
+                <h3 class="font-bold text-lg mb-4 flex items-center gap-2" style="color: var(--foreground);">
                     <i data-lucide="users" class="w-4 h-4"></i>
                     Parties Involved
                 </h3>
                 <div class="space-y-3">
                     <div class="p-3 bg-rose-50 border border-rose-100 rounded-lg">
                         <p class="text-[10px] font-semibold text-rose-700 mb-1">Buyer</p>
-                        <p class="text-xs font-semibold text-zinc-900">{{ $dispute->buyer->name }}</p>
+                        <p class="text-xs font-semibold" style="color: var(--foreground);">{{ $dispute->buyer->name }}</p>
                     </div>
                     <div class="p-3 bg-blue-50 border border-blue-100 rounded-lg">
                         <p class="text-[10px] font-semibold text-blue-700 mb-1">Seller</p>
-                        <p class="text-xs font-semibold text-zinc-900">{{ $dispute->seller->shop_name }}</p>
+                        <p class="text-xs font-semibold" style="color: var(--foreground);">{{ $dispute->seller->shop_name }}</p>
                     </div>
                 </div>
             </div>
 
             <!-- Status Timeline -->
-            <div class="bg-white border border-zinc-200 rounded-xl p-6 shadow-sm">
-                <h3 class="font-bold text-zinc-800 text-lg mb-4 flex items-center gap-2">
+            <div class="rounded-xl p-6 shadow-sm" style="background: var(--card); border: 1px solid var(--border);">
+                <h3 class="font-bold text-lg mb-4 flex items-center gap-2" style="color: var(--foreground);">
                     <i data-lucide="clock" class="w-4 h-4"></i>
                     Timeline
                 </h3>
                 <div class="space-y-2.5 text-xs">
-                    <div class="flex justify-between items-center py-1.5 border-b border-zinc-100">
-                        <span class="text-zinc-500">Raised</span>
-                        <span class="font-medium text-zinc-800">{{ $dispute->created_at->format('d M Y H:i') }}</span>
+                    <div class="flex justify-between items-center py-1.5" style="border-bottom: 1px solid var(--border);">
+                        <span style="color: var(--muted-foreground);">Raised</span>
+                        <span class="font-medium" style="color: var(--foreground);">{{ $dispute->created_at->format('d M Y H:i') }}</span>
                     </div>
-                    <div class="flex justify-between items-center py-1.5 border-b border-zinc-100">
-                        <span class="text-zinc-500">Time Elapsed</span>
-                        <span class="font-medium text-zinc-800">{{ $dispute->time_since_raised }}</span>
+                    <div class="flex justify-between items-center py-1.5" style="border-bottom: 1px solid var(--border);">
+                        <span style="color: var(--muted-foreground);">Time Elapsed</span>
+                        <span class="font-medium" style="color: var(--foreground);">{{ $dispute->time_since_raised }}</span>
                     </div>
                     @if($dispute->resolved_at)
                         <div class="flex justify-between items-center py-1.5">
-                            <span class="text-zinc-500">Resolved</span>
-                            <span class="font-medium text-zinc-800">{{ $dispute->resolved_at->format('d M Y H:i') }}</span>
+                            <span style="color: var(--muted-foreground);">Resolved</span>
+                            <span class="font-medium" style="color: var(--foreground);">{{ $dispute->resolved_at->format('d M Y H:i') }}</span>
                         </div>
                     @endif
                 </div>
@@ -274,13 +273,13 @@
         <div class="flex-1 bg-black/40 cursor-pointer" onclick="closeResolutionDrawer()"></div>
 
         <!-- Drawer Panel -->
-        <div class="w-full max-w-2xl bg-white shadow-2xl flex flex-col overflow-hidden">
+        <div class="w-full max-w-2xl shadow-2xl flex flex-col overflow-hidden" style="background: var(--card);">
 
             <!-- Drawer Header -->
-            <div class="flex items-center justify-between px-6 py-4 border-b border-zinc-200 bg-zinc-50/50">
-                <h2 class="text-lg font-bold text-zinc-900">Resolve Dispute</h2>
+            <div class="flex items-center justify-between px-6 py-4" style="border-bottom: 1px solid var(--border); background: var(--muted);">
+                <h2 class="text-lg font-bold" style="color: var(--foreground);">Resolve Dispute</h2>
                 <button type="button" onclick="closeResolutionDrawer()"
-                    class="text-zinc-400 hover:text-zinc-650 p-2 hover:bg-zinc-100 rounded-lg transition-all">
+                    class="p-2 rounded-lg transition-all" style="color: var(--muted-foreground);">
                     <i data-lucide="x" class="w-5 h-5"></i>
                 </button>
             </div>
@@ -302,14 +301,14 @@
                             <p class="text-emerald-700 mb-3">Fault: <span
                                     class="font-bold">{{ ucfirst($dispute->fault_assigned_to) }}</span></p>
                             @if($dispute->resolution_notes)
-                                <p class="text-emerald-700 mt-3 p-2 bg-white/50 rounded border border-emerald-200">
+                                <p class="text-emerald-700 mt-3 p-2 bg-card/50 rounded border border-emerald-200">
                                     {{ $dispute->resolution_notes }}</p>
                             @endif
                             <form action="{{ route('admin.disputes.reopen', $dispute->id) }}" method="POST"
                                 class="mt-4 pt-4 border-t border-emerald-200/50">
                                 @csrf
                                 <button type="submit"
-                                    class="w-full bg-zinc-900 hover:bg-zinc-800 text-white font-semibold py-2.5 px-4 rounded-lg text-xs shadow transition-all flex items-center justify-center space-x-2">
+                                    class="w-full font-semibold py-2.5 px-4 rounded-lg text-xs shadow transition-all flex items-center justify-center space-x-2" style="background: var(--primary); color: var(--primary-foreground);">
                                     <i data-lucide="rotate-ccw" class="w-4 h-4"></i>
                                     <span>Reopen Dispute for Reinvestigation</span>
                                 </button>
@@ -323,9 +322,9 @@
 
                         <!-- Decision Field -->
                         <div>
-                            <label for="decision" class="block text-[10px] font-semibold text-zinc-500 mb-1.5 uppercase tracking-wide">Resolution Decision</label>
+                            <label for="decision" class="block text-[10px] font-semibold mb-1.5 uppercase tracking-wide" style="color: var(--muted-foreground);">Resolution Decision</label>
                             <select id="decision" name="decision" required onchange="updatePayoutPreview()"
-                                class="w-full p-2.5 border border-zinc-200 bg-white rounded-lg text-xs focus:ring-1 focus:ring-zinc-950 focus:border-zinc-950 focus:outline-none h-9">
+                                class="w-full p-2.5 rounded-lg text-xs focus:ring-1 focus:ring-ring focus:border-ring focus:outline-none h-9" style="border: 1px solid var(--border); background: var(--card); color: var(--foreground);">
                                 <option value="">Select a decision...</option>
                                 <option value="seller_favor">✓ Seller Favor (Full payout to seller)</option>
                                 <option value="buyer_favor">✓ Buyer Favor (Full refund to buyer)</option>
@@ -335,14 +334,14 @@
 
                         <!-- Refund Amount (only for partial) -->
                         <div id="refundAmountField" class="hidden">
-                            <label for="refund_amount" class="block text-[10px] font-semibold text-zinc-500 mb-1.5 uppercase tracking-wide">Buyer Refund Amount (₹)</label>
+                            <label for="refund_amount" class="block text-[10px] font-semibold mb-1.5 uppercase tracking-wide" style="color: var(--muted-foreground);">Buyer Refund Amount (₹)</label>
                             <div class="flex gap-3">
                                 <input type="number" id="refund_amount" name="refund_amount" step="0.01" min="0"
                                     max="{{ $dispute->order->escrow->amount_held ?? $dispute->order->total_amount }}"
                                     placeholder="0.00" onchange="updatePayoutPreview()"
-                                    class="flex-1 p-2.5 border border-zinc-200 bg-white rounded-lg text-xs focus:ring-1 focus:ring-zinc-950 focus:border-zinc-950 focus:outline-none h-9">
+                                    class="flex-1 p-2.5 rounded-lg text-xs focus:ring-1 focus:ring-ring focus:border-ring focus:outline-none h-9" style="border: 1px solid var(--border); background: var(--card); color: var(--foreground);">
                                 <div
-                                    class="flex items-center px-3 bg-zinc-50 border border-zinc-200 rounded-lg text-xs font-semibold text-zinc-650 h-9">
+                                    class="flex items-center px-3 rounded-lg text-xs font-semibold h-9" style="background: var(--muted); border: 1px solid var(--border); color: var(--muted-foreground);">
                                     Max:
                                     ₹{{ number_format($dispute->order->escrow->amount_held ?? $dispute->order->total_amount, 2) }}
                                 </div>
@@ -351,9 +350,9 @@
 
                         <!-- Fault Assignment -->
                         <div>
-                            <label for="fault" class="block text-[10px] font-semibold text-zinc-500 mb-1.5 uppercase tracking-wide">Fault Assigned To</label>
+                            <label for="fault" class="block text-[10px] font-semibold mb-1.5 uppercase tracking-wide" style="color: var(--muted-foreground);">Fault Assigned To</label>
                             <select id="fault" name="fault" required
-                                class="w-full p-2.5 border border-zinc-200 bg-white rounded-lg text-xs focus:ring-1 focus:ring-zinc-950 focus:border-zinc-950 focus:outline-none h-9">
+                                class="w-full p-2.5 rounded-lg text-xs focus:ring-1 focus:ring-ring focus:border-ring focus:outline-none h-9" style="border: 1px solid var(--border); background: var(--card); color: var(--foreground);">
                                 <option value="">Select fault assignment...</option>
                                 <option value="seller">Seller - Seller is at fault</option>
                                 <option value="buyer">Buyer - Buyer is at fault</option>
@@ -365,22 +364,22 @@
                         <!-- Admin Notes -->
                         <div>
                             <label for="admin_notes"
-                                class="block text-[10px] font-semibold text-zinc-500 mb-1.5 uppercase tracking-wide">Investigation Notes & Findings</label>
+                                class="block text-[10px] font-semibold mb-1.5 uppercase tracking-wide" style="color: var(--muted-foreground);">Investigation Notes & Findings</label>
                             <textarea id="admin_notes" name="admin_notes" rows="5" required
                                 placeholder="Document your investigation findings, evidence reviewed, and reasoning for this decision..."
-                                class="w-full p-2.5 border border-zinc-200 bg-white rounded-lg text-xs focus:ring-1 focus:ring-zinc-950 focus:border-zinc-950 focus:outline-none"></textarea>
+                                class="w-full p-2.5 rounded-lg text-xs focus:ring-1 focus:ring-ring focus:border-ring focus:outline-none" style="border: 1px solid var(--border); background: var(--card); color: var(--foreground);"></textarea>
                         </div>
 
                         <!-- Payout Preview -->
-                        <div id="payoutPreview" class="p-4 bg-zinc-50 border border-zinc-250/50 rounded-lg space-y-2 hidden">
-                            <p class="text-[10px] font-semibold text-zinc-500 uppercase tracking-wide">Payout Preview</p>
+                        <div id="payoutPreview" class="p-4 rounded-lg space-y-2 hidden" style="background: var(--muted); border: 1px solid var(--border);">
+                            <p class="text-[10px] font-semibold uppercase tracking-wide" style="color: var(--muted-foreground);">Payout Preview</p>
                             <div class="grid grid-cols-2 gap-4">
-                                <div class="bg-white p-3 rounded-lg border border-red-200">
-                                    <p class="text-[10px] text-zinc-500 font-semibold">Refund to Buyer</p>
+                                <div class="p-3 rounded-lg border border-red-200" style="background: var(--card);">
+                                    <p class="text-[10px] font-semibold" style="color: var(--muted-foreground);">Refund to Buyer</p>
                                     <p id="buyerPayoutPreview" class="text-base font-bold text-red-600">₹0.00</p>
                                 </div>
-                                <div class="bg-white p-3 rounded-lg border border-green-200">
-                                    <p class="text-[10px] text-zinc-500 font-semibold">Payout to Seller</p>
+                                <div class="p-3 rounded-lg border border-green-200" style="background: var(--card);">
+                                    <p class="text-[10px] font-semibold" style="color: var(--muted-foreground);">Payout to Seller</p>
                                     <p id="sellerPayoutPreview" class="text-base font-bold text-green-600">₹0.00</p>
                                 </div>
                             </div>
@@ -388,7 +387,7 @@
 
                         <!-- Submit Button -->
                         <button type="submit"
-                            class="w-full bg-zinc-900 hover:bg-zinc-800 text-white font-semibold py-2.5 px-4 rounded-lg shadow-sm transition-all flex items-center justify-center space-x-2 text-xs h-10">
+                            class="w-full font-semibold py-2.5 px-4 rounded-lg shadow-sm transition-all flex items-center justify-center space-x-2 text-xs h-10" style="background: var(--primary); color: var(--primary-foreground);">
                             <i data-lucide="check" class="w-4 h-4"></i>
                             <span>Submit Resolution</span>
                         </button>

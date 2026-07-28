@@ -6,7 +6,7 @@
 @section('content')
     <div class="mb-6">
         <a href="{{ route('admin.orders') }}"
-            class="inline-flex items-center space-x-1.5 text-sm font-semibold text-zinc-500 hover:text-zinc-800">
+            class="inline-flex items-center space-x-1.5 text-sm font-semibold text-muted-foreground hover:text-foreground">
             <i data-lucide="arrow-left" class="w-4 h-4"></i>
             <span>Back to Registry</span>
         </a>
@@ -19,12 +19,12 @@
         <div class="lg:col-span-2 space-y-6">
 
             <!-- Track Panel -->
-            <div class="bg-white border border-zinc-200 rounded-xl p-6 shadow-sm">
+            <div class="bg-card border border-border rounded-xl p-6 shadow-sm">
                 <div
-                    class="flex flex-col sm:flex-row sm:items-center sm:justify-between pb-6 border-b border-zinc-100 gap-4">
+                    class="flex flex-col sm:flex-row sm:items-center sm:justify-between pb-6 border-b border-border gap-4">
                     <div>
-                        <h2 class="text-xl font-bold text-zinc-900">Order #{{ $order->order_number }}</h2>
-                        <p class="text-xs text-zinc-500 mt-1">Placed on {{ $order->created_at->format('M d, Y H:i') }}</p>
+                        <h2 class="text-xl font-bold text-foreground">Order #{{ $order->order_number }}</h2>
+                        <p class="text-xs text-muted-foreground mt-1">Placed on {{ $order->created_at->format('M d, Y H:i') }}</p>
                     </div>
                     <div>
                         <span class="px-4 py-2 rounded-xl text-sm font-bold shadow-sm"
@@ -36,35 +36,35 @@
 
                 <!-- Tracking Timeline -->
                 <div class="pt-8 px-2 max-w-xl">
-                    <div class="relative pl-8 space-y-8 border-l border-zinc-200">
+                    <div class="relative pl-8 space-y-8 border-l border-border">
 
                         <!-- Step 1: Placed -->
                         <div class="relative">
                             <span
-                                class="absolute -left-[41px] top-0.5 w-6 h-6 bg-emerald-500 rounded-full border-4 border-white flex items-center justify-center text-white shadow-sm">
+                                class="absolute -left-[41px] top-0.5 w-6 h-6 bg-emerald-500 rounded-full border-4 border-card flex items-center justify-center text-white shadow-sm">
                                 <i data-lucide="check" class="w-3.5 h-3.5"></i>
                             </span>
-                            <h4 class="font-bold text-zinc-800 text-sm">Order Placed & Invoice Generated</h4>
-                            <p class="text-xs text-zinc-500 mt-1">{{ $order->created_at->format('M d, Y H:i') }}</p>
+                            <h4 class="font-bold text-foreground text-sm">Order Placed & Invoice Generated</h4>
+                            <p class="text-xs text-muted-foreground mt-1">{{ $order->created_at->format('M d, Y H:i') }}</p>
                         </div>
 
                         <!-- Step 2: Payment -->
                         @if($order->order_status !== 'pending_payment')
                             <div class="relative">
                                 <span
-                                    class="absolute -left-[41px] top-0.5 w-6 h-6 bg-emerald-500 rounded-full border-4 border-white flex items-center justify-center text-white shadow-sm">
+                                    class="absolute -left-[41px] top-0.5 w-6 h-6 bg-emerald-500 rounded-full border-4 border-card flex items-center justify-center text-white shadow-sm">
                                     <i data-lucide="check" class="w-3.5 h-3.5"></i>
                                 </span>
-                                <h4 class="font-bold text-zinc-800 text-sm">Payment Secured & Escrow Locked</h4>
-                                <p class="text-xs text-zinc-500 mt-1">Razorpay Ref:
+                                <h4 class="font-bold text-foreground text-sm">Payment Secured & Escrow Locked</h4>
+                                <p class="text-xs text-muted-foreground mt-1">Razorpay Ref:
                                     {{ $order->razorpay_payment_id ?: 'captured via webhook' }}</p>
                             </div>
                         @else
                             <div class="relative opacity-50">
                                 <span
-                                    class="absolute -left-[41px] top-0.5 w-6 h-6 bg-zinc-200 rounded-full border-4 border-white flex items-center justify-center text-white"></span>
-                                <h4 class="font-bold text-zinc-800 text-sm">Escrow Payment Pending</h4>
-                                <p class="text-xs text-zinc-500 mt-1">Waiting for buyer payment authorization</p>
+                                    class="absolute -left-[41px] top-0.5 w-6 h-6 bg-muted rounded-full border-4 border-card flex items-center justify-center text-muted-foreground"></span>
+                                <h4 class="font-bold text-foreground text-sm">Escrow Payment Pending</h4>
+                                <p class="text-xs text-muted-foreground mt-1">Waiting for buyer payment authorization</p>
                             </div>
                         @endif
 
@@ -72,19 +72,19 @@
                         @if(in_array($order->order_status, ['confirmed', 'label_generated', 'picked_up', 'in_transit', 'out_for_delivery', 'delivered', 'testing_period', 'completed']))
                             <div class="relative">
                                 <span
-                                    class="absolute -left-[41px] top-0.5 w-6 h-6 bg-emerald-500 rounded-full border-4 border-white flex items-center justify-center text-white shadow-sm">
+                                    class="absolute -left-[41px] top-0.5 w-6 h-6 bg-emerald-500 rounded-full border-4 border-card flex items-center justify-center text-white shadow-sm">
                                     <i data-lucide="check" class="w-3.5 h-3.5"></i>
                                 </span>
-                                <h4 class="font-bold text-zinc-800 text-sm">Shipment Prepared & Dispatched</h4>
-                                <p class="text-xs text-zinc-500 mt-1">AWB: {{ $order->shipment->awb_number ?? 'N/A' }} |
+                                <h4 class="font-bold text-foreground text-sm">Shipment Prepared & Dispatched</h4>
+                                <p class="text-xs text-muted-foreground mt-1">AWB: {{ $order->shipment->awb_number ?? 'N/A' }} |
                                     Provider: Shiprocket</p>
                             </div>
                         @else
                             <div class="relative opacity-50">
                                 <span
-                                    class="absolute -left-[41px] top-0.5 w-6 h-6 bg-zinc-200 rounded-full border-4 border-white flex items-center justify-center text-white"></span>
-                                <h4 class="font-bold text-zinc-800 text-sm">Shipment Confirmation Pending</h4>
-                                <p class="text-xs text-zinc-500 mt-1">Seller must confirm order details & generate label</p>
+                                    class="absolute -left-[41px] top-0.5 w-6 h-6 bg-muted rounded-full border-4 border-card flex items-center justify-center text-muted-foreground"></span>
+                                <h4 class="font-bold text-foreground text-sm">Shipment Confirmation Pending</h4>
+                                <p class="text-xs text-muted-foreground mt-1">Seller must confirm order details & generate label</p>
                             </div>
                         @endif
 
@@ -92,14 +92,14 @@
                         @if(in_array($order->order_status, ['testing_period', 'completed', 'disputed']))
                             <div class="relative">
                                 <span
-                                    class="absolute -left-[41px] top-0.5 w-6 h-6 bg-emerald-500 rounded-full border-4 border-white flex items-center justify-center text-white shadow-sm">
+                                    class="absolute -left-[41px] top-0.5 w-6 h-6 bg-emerald-500 rounded-full border-4 border-card flex items-center justify-center text-white shadow-sm">
                                     <i data-lucide="check" class="w-3.5 h-3.5"></i>
                                 </span>
-                                <h4 class="font-bold text-zinc-800 text-sm">Delivered & Testing Period Initiated</h4>
-                                <p class="text-xs text-zinc-500 mt-1">Delivered on:
+                                <h4 class="font-bold text-foreground text-sm">Delivered & Testing Period Initiated</h4>
+                                <p class="text-xs text-muted-foreground mt-1">Delivered on:
                                     {{ $order->delivered_at ? $order->delivered_at->format('M d, Y H:i') : 'N/A' }}</p>
                                 <p
-                                    class="text-[11px] text-zinc-700 font-semibold bg-zinc-50 border border-zinc-100 rounded-lg p-2.5 mt-2 inline-block">
+                                    class="text-[11px] text-foreground font-semibold bg-muted border border-border rounded-lg p-2.5 mt-2 inline-block">
                                     Testing Window ends at:
                                     {{ $order->testing_window_ends_at ? $order->testing_window_ends_at->format('M d, Y H:i') : 'N/A' }}
                                     ({{ $order->testing_window_remaining_hours }} hours remaining)
@@ -108,9 +108,9 @@
                         @else
                             <div class="relative opacity-50">
                                 <span
-                                    class="absolute -left-[41px] top-0.5 w-6 h-6 bg-zinc-200 rounded-full border-4 border-white flex items-center justify-center text-white"></span>
-                                <h4 class="font-bold text-zinc-800 text-sm">Delivery Verification Pending</h4>
-                                <p class="text-xs text-zinc-500 mt-1">Awaiting carrier transit webhook</p>
+                                    class="absolute -left-[41px] top-0.5 w-6 h-6 bg-muted rounded-full border-4 border-card flex items-center justify-center text-muted-foreground"></span>
+                                <h4 class="font-bold text-foreground text-sm">Delivery Verification Pending</h4>
+                                <p class="text-xs text-muted-foreground mt-1">Awaiting carrier transit webhook</p>
                             </div>
                         @endif
 
@@ -118,24 +118,24 @@
                         @if($order->order_status === 'completed')
                             <div class="relative">
                                 <span
-                                    class="absolute -left-[41px] top-0.5 w-6 h-6 bg-emerald-500 rounded-full border-4 border-white flex items-center justify-center text-white shadow-sm">
+                                    class="absolute -left-[41px] top-0.5 w-6 h-6 bg-emerald-500 rounded-full border-4 border-card flex items-center justify-center text-white shadow-sm">
                                     <i data-lucide="check" class="w-3.5 h-3.5"></i>
                                 </span>
-                                <h4 class="font-bold text-zinc-800 text-sm">Order Completed & Escrow Released</h4>
-                                <p class="text-xs text-zinc-500 mt-1">Funds transferred on:
+                                <h4 class="font-bold text-foreground text-sm">Order Completed & Escrow Released</h4>
+                                <p class="text-xs text-muted-foreground mt-1">Funds transferred on:
                                     {{ $order->completed_at ? $order->completed_at->format('M d, Y H:i') : 'N/A' }}</p>
                             </div>
                         @elseif($order->order_status === 'disputed')
                             <div class="relative">
                                 <span
-                                    class="absolute -left-[41px] top-0.5 w-6 h-6 bg-rose-600 rounded-full border-4 border-white flex items-center justify-center text-white shadow-sm animate-pulse">
+                                    class="absolute -left-[41px] top-0.5 w-6 h-6 bg-rose-600 rounded-full border-4 border-card flex items-center justify-center text-white shadow-sm animate-pulse">
                                     <i data-lucide="alert-circle" class="w-3.5 h-3.5"></i>
                                 </span>
                                 <h4 class="font-bold text-rose-700 text-sm">Escrow Blocked / Disputed</h4>
                                 <p class="text-xs text-rose-600 mt-1">Dispute raised by buyer. Funds are locked indefinitely.
                                 </p>
                                 <a href="{{ route('admin.disputes.show', $order->dispute->id) }}"
-                                    class="inline-flex items-center space-x-1 text-xs font-bold bg-rose-100 hover:bg-zinc-900 text-white hover:bg-zinc-800 text-rose-800 hover:text-black px-2.5 py-1 rounded shadow-sm transition-all mt-2">
+                                    class="inline-flex items-center space-x-1 text-xs font-bold bg-rose-100 hover:bg-primary text-primary-foreground hover:bg-primary/90 text-rose-800 hover:text-foreground px-2.5 py-1 rounded shadow-sm transition-all mt-2">
                                     <span>Go to dispute board</span>
                                     <i data-lucide="arrow-right-circle" class="w-3 h-3"></i>
                                 </a>
@@ -143,9 +143,9 @@
                         @else
                             <div class="relative opacity-50">
                                 <span
-                                    class="absolute -left-[41px] top-0.5 w-6 h-6 bg-zinc-200 rounded-full border-4 border-white flex items-center justify-center text-white"></span>
-                                <h4 class="font-bold text-zinc-800 text-sm">Order Completion & Escrow Payout</h4>
-                                <p class="text-xs text-zinc-500 mt-1">Occurs automatically after testing window close or buyer
+                                    class="absolute -left-[41px] top-0.5 w-6 h-6 bg-muted rounded-full border-4 border-card flex items-center justify-center text-muted-foreground"></span>
+                                <h4 class="font-bold text-foreground text-sm">Order Completion & Escrow Payout</h4>
+                                <p class="text-xs text-muted-foreground mt-1">Occurs automatically after testing window close or buyer
                                     manual release</p>
                             </div>
                         @endif
@@ -155,34 +155,34 @@
             </div>
 
             <!-- Product part brief -->
-            <div class="bg-white border border-zinc-200 rounded-xl p-6 shadow-sm">
-                <h3 class="font-bold text-zinc-800 text-lg mb-4">Ordered Product Listing</h3>
+            <div class="bg-card border border-border rounded-xl p-6 shadow-sm">
+                <h3 class="font-bold text-foreground text-lg mb-4">Ordered Product Listing</h3>
 
                 <div class="flex items-center space-x-4">
                     @if($order->listing->primary_image_url)
                         <img src="{{ $order->listing->primary_image_url }}"
-                            class="w-16 h-16 object-cover rounded-xl border border-zinc-200 bg-zinc-50" alt="product">
+                            class="w-16 h-16 object-cover rounded-xl border border-border bg-muted" alt="product">
                     @else
                         <div
-                            class="w-16 h-16 bg-zinc-100 border border-zinc-200 rounded-xl flex items-center justify-center text-zinc-400">
+                            class="w-16 h-16 bg-muted border border-border rounded-xl flex items-center justify-center text-muted-foreground">
                             <i data-lucide="image" class="w-6 h-6"></i>
                         </div>
                     @endif
                     <div class="flex-1 flex justify-between items-center gap-4">
                         <div>
-                            <h4 class="font-bold text-zinc-900 text-base hover:text-zinc-700 transition-colors">
+                            <h4 class="font-bold text-foreground text-base hover:text-foreground transition-colors">
                                 <a href="{{ route('admin.listings.show', $order->listing_id) }}" target="_blank"
                                     class="hover:underline">
                                     {{ $order->listing->title }}
                                 </a>
                             </h4>
-                            <p class="text-xs text-zinc-500 mt-1">Grade: <span class="font-bold text-zinc-800">Grade
+                            <p class="text-xs text-muted-foreground mt-1">Grade: <span class="font-bold text-foreground">Grade
                                     {{ $order->listing->grade }}</span> | Serial: <span
-                                    class="font-mono bg-zinc-50 px-1.5 py-0.5 rounded border border-zinc-150">{{ $order->listing->serial_number }}</span>
+                                    class="font-mono bg-muted px-1.5 py-0.5 rounded border border-border">{{ $order->listing->serial_number }}</span>
                             </p>
                         </div>
                         <a href="{{ route('admin.listings.show', $order->listing_id) }}" target="_blank"
-                            class="inline-flex items-center gap-1.5 bg-zinc-50 hover:bg-zinc-100 text-zinc-700 hover:text-yellow-805 font-bold px-3 py-2 rounded-xl text-xs border border-zinc-200/50 shadow-sm transition-all shrink-0">
+                            class="inline-flex items-center gap-1.5 bg-muted hover:bg-muted text-foreground hover:text-yellow-805 font-bold px-3 py-2 rounded-xl text-xs border border-border/50 shadow-sm transition-all shrink-0">
                             <i data-lucide="eye" class="w-4 h-4"></i>
                             <span>View Listing</span>
                         </a>
@@ -191,21 +191,21 @@
             </div>
 
             <!-- Direct Chat System (Buyer) -->
-            <div class="bg-white border border-zinc-200 rounded-xl ring-1 ring-zinc-950/5 overflow-hidden flex flex-col h-[400px]"
+            <div class="bg-card border border-border rounded-xl ring-0 overflow-hidden flex flex-col h-[400px]"
                 x-data="buyerChatManager()">
                 <!-- Chat Header -->
-                <div class="px-6 py-4 border-b border-zinc-150 bg-zinc-50/50 flex items-center justify-between">
+                <div class="px-6 py-4 border-b border-border bg-muted/50 flex items-center justify-between">
                     <div class="flex items-center space-x-2.5">
-                        <div class="w-8 h-8 rounded-full bg-zinc-900 text-white hover:bg-zinc-800/15 flex items-center justify-center text-zinc-800">
+                        <div class="w-8 h-8 rounded-full bg-primary text-primary-foreground hover:bg-primary/90/15 flex items-center justify-center text-foreground">
                             <i data-lucide="message-square" class="w-4 h-4"></i>
                         </div>
                         <div>
-                            <h3 class="font-bold text-zinc-800 text-sm">Buyer Direct Conversation</h3>
-                            <p class="text-[10px] text-zinc-400 font-medium">Chat history with {{ $order->buyer->name }}</p>
+                            <h3 class="font-bold text-foreground text-sm">Buyer Direct Conversation</h3>
+                            <p class="text-[10px] text-muted-foreground font-medium">Chat history with {{ $order->buyer->name }}</p>
                         </div>
                     </div>
                     <button type="button" @click="fetchMessages()"
-                        class="p-1.5 text-zinc-400 hover:text-zinc-700 hover:bg-zinc-100 rounded-lg transition-all focus:outline-none"
+                        class="p-1.5 text-muted-foreground hover:text-foreground hover:bg-muted rounded-lg transition-all focus:outline-none"
                         title="Refresh Chat">
                         <i data-lucide="refresh-cw" class="w-4 h-4"></i>
                     </button>
@@ -216,11 +216,11 @@
                     <template x-for="msg in messages" :key="msg.id">
                         <div class="flex flex-col" :class="msg.is_admin ? 'items-end' : 'items-start'">
                             <div class="flex items-center space-x-1 mb-1">
-                                <span class="text-[10px] font-bold text-zinc-550" x-text="msg.sender_name"></span>
-                                <span class="text-[9px] text-zinc-400" x-text="msg.time"></span>
+                                <span class="text-[10px] font-bold text-muted-foreground" x-text="msg.sender_name"></span>
+                                <span class="text-[9px] text-muted-foreground" x-text="msg.time"></span>
                             </div>
                             <div class="max-w-[75%] rounded-xl px-4 py-2.5 text-sm font-medium shadow-sm border animate-fade-in"
-                                :class="msg.is_admin ? 'bg-zinc-900 text-white hover:bg-zinc-800 text-black border-[#ffd747]/25 rounded-tr-none' : 'bg-zinc-50 text-zinc-800 border-zinc-200/60 rounded-tl-none'">
+                                :class="msg.is_admin ? 'bg-primary text-primary-foreground hover:bg-primary/90 text-primary-foreground border-[#ffd747]/25 rounded-tr-none' : 'bg-muted text-foreground border-border/60 rounded-tl-none'">
                                 <p class="whitespace-pre-wrap leading-relaxed break-words" x-text="msg.message"></p>
                             </div>
                         </div>
@@ -228,22 +228,22 @@
                     <div x-show="messages.length === 0" class="flex flex-col items-center justify-center py-12 text-center"
                         x-cloak>
                         <div
-                            class="w-10 h-10 bg-zinc-50 border border-zinc-200/60 rounded-xl flex items-center justify-center text-zinc-400 mb-2">
+                            class="w-10 h-10 bg-muted border border-border/60 rounded-xl flex items-center justify-center text-muted-foreground mb-2">
                             <i data-lucide="message-square" class="w-4 h-4"></i>
                         </div>
-                        <p class="text-xs text-zinc-500 font-semibold">No messages yet</p>
-                        <p class="text-[10px] text-zinc-400 mt-0.5">Send a message below to start the conversation with the
+                        <p class="text-xs text-muted-foreground font-semibold">No messages yet</p>
+                        <p class="text-[10px] text-muted-foreground mt-0.5">Send a message below to start the conversation with the
                             buyer.</p>
                     </div>
                 </div>
 
                 <!-- Chat Input Area -->
-                <div class="p-4 border-t border-zinc-150 bg-zinc-50/30">
+                <div class="p-4 border-t border-border bg-muted/30">
                     <form @submit.prevent="sendMessage()" class="flex gap-2">
                         <input type="text" x-model="newMessage" placeholder="Type a message to buyer..." required
-                            class="flex-1 px-4 py-2.5 border border-zinc-200 rounded-xl text-sm focus:ring-1 focus:ring-zinc-950 focus:border-zinc-950 focus:outline-none bg-white transition-all">
+                            class="flex-1 px-4 py-2.5 border border-border rounded-xl text-sm focus:ring-1 focus:ring-ring focus:border-ring focus:outline-none bg-card transition-all">
                         <button type="submit" :disabled="sending"
-                            class="bg-black hover:bg-zinc-800 disabled:bg-zinc-400 text-white font-bold px-5 py-2.5 rounded-xl text-sm shadow-sm transition-all flex items-center space-x-2">
+                            class="bg-primary hover:bg-primary/90 disabled:bg-muted text-primary-foreground font-bold px-5 py-2.5 rounded-xl text-sm shadow-sm transition-all flex items-center space-x-2">
                             <span x-show="!sending">Send</span>
                             <span x-show="sending" x-cloak>Sending...</span>
                             <i data-lucide="send" class="w-4 h-4"></i>
@@ -331,31 +331,31 @@
         <div class="space-y-6">
 
             <!-- Financial Card -->
-            <div class="bg-white border border-zinc-200 rounded-xl p-6 shadow-sm">
-                <h3 class="font-bold text-zinc-800 text-lg mb-6">Financial Ledger</h3>
+            <div class="bg-card border border-border rounded-xl p-6 shadow-sm">
+                <h3 class="font-bold text-foreground text-lg mb-6">Financial Ledger</h3>
 
                 <div class="space-y-3 text-sm">
-                    <div class="flex justify-between items-center py-1.5 border-b border-zinc-100">
-                        <span class="text-zinc-500">Product Price</span>
-                        <span class="font-medium text-zinc-800">₹{{ number_format($order->product_amount, 2) }}</span>
+                    <div class="flex justify-between items-center py-1.5 border-b border-border">
+                        <span class="text-muted-foreground">Product Price</span>
+                        <span class="font-medium text-foreground">₹{{ number_format($order->product_amount, 2) }}</span>
                     </div>
-                    <div class="flex justify-between items-center py-1.5 border-b border-zinc-100">
-                        <span class="text-zinc-500">Shipping Cost</span>
-                        <span class="font-medium text-zinc-800">₹{{ number_format($order->shipping_amount, 2) }}</span>
+                    <div class="flex justify-between items-center py-1.5 border-b border-border">
+                        <span class="text-muted-foreground">Shipping Cost</span>
+                        <span class="font-medium text-foreground">₹{{ number_format($order->shipping_amount, 2) }}</span>
                     </div>
-                    <div class="flex justify-between items-center py-2.5 border-b border-zinc-100">
-                        <span class="font-bold text-zinc-900 text-base">Total Escrow Paid</span>
-                        <span class="font-bold text-zinc-900 text-base">₹{{ number_format($order->total_amount, 2) }}</span>
+                    <div class="flex justify-between items-center py-2.5 border-b border-border">
+                        <span class="font-bold text-foreground text-base">Total Escrow Paid</span>
+                        <span class="font-bold text-foreground text-base">₹{{ number_format($order->total_amount, 2) }}</span>
                     </div>
 
-                    <div class="bg-zinc-50 p-4 border border-zinc-200 rounded-xl space-y-2 mt-4 text-xs">
-                        <div class="flex justify-between items-center text-zinc-500">
+                    <div class="bg-muted p-4 border border-border rounded-xl space-y-2 mt-4 text-xs">
+                        <div class="flex justify-between items-center text-muted-foreground">
                             <span>Platform Fee ({{ $order->commission_percent }}%)</span>
                             <span
-                                class="font-medium text-zinc-700">₹{{ number_format($order->commission_amount, 2) }}</span>
+                                class="font-medium text-foreground">₹{{ number_format($order->commission_amount, 2) }}</span>
                         </div>
                         <div
-                            class="flex justify-between items-center text-emerald-700 font-semibold border-t border-zinc-200/60 pt-2">
+                            class="flex justify-between items-center text-emerald-700 font-semibold border-t border-border/60 pt-2">
                             <span>Seller Payout Amount</span>
                             <span>₹{{ number_format($order->seller_payout_amount, 2) }}</span>
                         </div>
@@ -364,26 +364,26 @@
             </div>
 
             <!-- Shipping / Delivery Address -->
-            <div class="bg-white border border-zinc-200 rounded-xl p-6 shadow-sm">
-                <h3 class="font-bold text-zinc-800 text-lg mb-4">Delivery Address</h3>
-                <div class="text-sm text-zinc-650 space-y-1">
-                    <p class="font-bold text-zinc-800">{{ $order->delivery_address['name'] ?? 'N/A' }}</p>
-                    <p class="font-semibold text-zinc-700">{{ $order->delivery_address['phone'] ?? 'N/A' }}</p>
-                    <p class="text-zinc-500 mt-2">{{ $order->delivery_address['street'] ?? 'N/A' }}</p>
-                    <p class="text-zinc-500">{{ $order->delivery_address['city'] ?? 'N/A' }},
+            <div class="bg-card border border-border rounded-xl p-6 shadow-sm">
+                <h3 class="font-bold text-foreground text-lg mb-4">Delivery Address</h3>
+                <div class="text-sm text-muted-foreground space-y-1">
+                    <p class="font-bold text-foreground">{{ $order->delivery_address['name'] ?? 'N/A' }}</p>
+                    <p class="font-semibold text-foreground">{{ $order->delivery_address['phone'] ?? 'N/A' }}</p>
+                    <p class="text-muted-foreground mt-2">{{ $order->delivery_address['street'] ?? 'N/A' }}</p>
+                    <p class="text-muted-foreground">{{ $order->delivery_address['city'] ?? 'N/A' }},
                         {{ $order->delivery_address['state'] ?? 'N/A' }} -
                         {{ $order->delivery_address['pincode'] ?? 'N/A' }}</p>
                 </div>
             </div>
 
             <!-- Users Contact -->
-            <div class="bg-white border border-zinc-200 rounded-xl p-6 shadow-sm">
-                <h3 class="font-bold text-zinc-800 text-lg mb-4">Parties Contact</h3>
+            <div class="bg-card border border-border rounded-xl p-6 shadow-sm">
+                <h3 class="font-bold text-foreground text-lg mb-4">Parties Contact</h3>
                 <div class="space-y-4 text-xs">
                     <div>
-                        <span class="text-zinc-400 font-semibold uppercase">Buyer</span>
+                        <span class="text-muted-foreground font-semibold uppercase">Buyer</span>
                         <div class="flex items-center justify-between mt-0.5">
-                            <p class="font-bold text-zinc-800 text-sm">{{ $order->buyer->name }}</p>
+                            <p class="font-bold text-foreground text-sm">{{ $order->buyer->name }}</p>
                             @if($order->buyer->buyer_badge === 'trusted_buyer')
                                 <span
                                     class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-50 text-amber-700 border border-amber-200/60 shadow-2xs">
@@ -396,36 +396,36 @@
                                 </span>
                             @else
                                 <span
-                                    class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold bg-zinc-50 text-zinc-650 border border-zinc-200/60 shadow-2xs">
-                                    <i data-lucide="user" class="w-3.5 h-3.5 mr-1 text-zinc-400"></i> New Buyer
+                                    class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold bg-muted text-muted-foreground border border-border/60 shadow-2xs">
+                                    <i data-lucide="user" class="w-3.5 h-3.5 mr-1 text-muted-foreground"></i> New Buyer
                                 </span>
                             @endif
                         </div>
-                        <p class="text-zinc-500">{{ $order->buyer->email }}</p>
+                        <p class="text-muted-foreground">{{ $order->buyer->email }}</p>
                     </div>
-                    <div class="border-t border-zinc-100 pt-3">
-                        <span class="text-zinc-400 font-semibold uppercase">Seller Shop</span>
-                        <p class="font-bold text-zinc-800 text-sm mt-0.5">{{ $order->seller->shop_name }}</p>
-                        <p class="text-zinc-500">{{ $order->seller->user->email }}</p>
+                    <div class="border-t border-border pt-3">
+                        <span class="text-muted-foreground font-semibold uppercase">Seller Shop</span>
+                        <p class="font-bold text-foreground text-sm mt-0.5">{{ $order->seller->shop_name }}</p>
+                        <p class="text-muted-foreground">{{ $order->seller->user->email }}</p>
                     </div>
                 </div>
             </div>
 
             <!-- Invoice Actions Panel -->
-            <div class="bg-white border border-zinc-200 rounded-xl p-6 shadow-sm space-y-4">
-                <h3 class="font-bold text-zinc-800 text-sm uppercase tracking-wider flex items-center gap-1.5">
-                    <i data-lucide="file-text" class="w-4 h-4 text-zinc-500"></i> Invoice Management
+            <div class="bg-card border border-border rounded-xl p-6 shadow-sm space-y-4">
+                <h3 class="font-bold text-foreground text-sm uppercase tracking-wider flex items-center gap-1.5">
+                    <i data-lucide="file-text" class="w-4 h-4 text-muted-foreground"></i> Invoice Management
                 </h3>
                 <div class="flex flex-col gap-2">
                     <a href="{{ route('admin.orders.invoice.download', $order->id) }}"
-                        class="w-full bg-zinc-900 text-white hover:bg-zinc-800 hover:bg-[#ffd747] text-black font-semibold py-2.5 px-4 rounded-lg ring-1 ring-zinc-950/5 text-xs transition-all flex items-center justify-center space-x-2">
+                        class="w-full bg-primary text-primary-foreground hover:bg-primary/90  font-semibold py-2.5 px-4 rounded-lg ring-0 text-xs transition-all flex items-center justify-center space-x-2">
                         <i data-lucide="download" class="w-4 h-4"></i>
                         <span>Download Invoice</span>
                     </a>
                     <form action="{{ route('admin.orders.invoice.resend', $order->id) }}" method="POST">
                         @csrf
                         <button type="submit"
-                            class="w-full bg-zinc-900 hover:bg-black text-white font-semibold py-2.5 px-4 rounded-lg ring-1 ring-zinc-950/5 text-xs transition-all flex items-center justify-center space-x-2">
+                            class="w-full bg-primary hover:bg-primary text-primary-foreground font-semibold py-2.5 px-4 rounded-lg ring-0 text-xs transition-all flex items-center justify-center space-x-2">
                             <i data-lucide="mail" class="w-4 h-4"></i>
                             <span>Resend Invoice Email</span>
                         </button>

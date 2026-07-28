@@ -8,21 +8,21 @@
         <!-- Top info bar -->
         <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
             <div>
-                <p class="text-sm text-zinc-500">Define custom specifications required or highlighted for listings in each
+                <p class="text-sm text-muted-foreground">Define custom specifications required or highlighted for listings in each
                     category.</p>
             </div>
             <button @click="openAddModal()"
-                class="bg-zinc-900 text-white hover:bg-zinc-800 hover:bg-[#ffd747] text-black font-semibold py-2.5 px-5 rounded-lg ring-1 ring-zinc-950/5 border border-black/10 transition-all flex items-center space-x-2 text-sm">
+                class="bg-primary text-primary-foreground hover:bg-primary/90  font-semibold py-2.5 px-5 rounded-lg ring-0 border border-black/10 transition-all flex items-center space-x-2 text-sm">
                 <i data-lucide="plus" class="w-4 h-4"></i>
                 <span>Add Spec Field</span>
             </button>
         </div>
 
         <!-- Category selector tabs -->
-        <div class="bg-zinc-50 border border-zinc-200 rounded-xl p-2 flex flex-wrap gap-1.5">
+        <div class="bg-muted border border-border rounded-xl p-2 flex flex-wrap gap-1.5">
             @foreach($categories as $cat)
                 <button type="button" @click="activeCategory = {{ $cat->id }}"
-                    :class="activeCategory === {{ $cat->id }} ? 'bg-zinc-900 text-white hover:bg-zinc-800 text-black font-semibold shadow-sm border-black/10' : 'bg-white text-zinc-650 hover:bg-zinc-100 border-zinc-200'"
+                    :class="activeCategory === {{ $cat->id }} ? 'bg-primary text-primary-foreground hover:bg-primary/90 text-primary-foreground font-semibold shadow-sm border-black/10' : 'bg-card text-muted-foreground hover:bg-muted border-border'"
                     class="px-4 py-2 border rounded-lg text-xs transition-all focus:outline-none">
                     {{ $cat->name }}
                 </button>
@@ -30,20 +30,20 @@
         </div>
 
         <!-- Specification fields table card -->
-        <div class="bg-white border border-zinc-200 rounded-xl ring-1 ring-zinc-950/5 overflow-hidden">
-            <div class="p-5 border-b border-zinc-150 bg-zinc-50/50 flex justify-between items-center">
-                <h3 class="font-bold text-zinc-800 text-sm flex items-center">
-                    <i data-lucide="sliders" class="w-4 h-4 mr-2 text-zinc-655"></i>
+        <div class="bg-card border border-border rounded-xl ring-0 overflow-hidden">
+            <div class="p-5 border-b border-border bg-muted/50 flex justify-between items-center">
+                <h3 class="font-bold text-foreground text-sm flex items-center">
+                    <i data-lucide="sliders" class="w-4 h-4 mr-2 text-muted-foreground"></i>
                     Category Specification Fields
                 </h3>
-                <span class="text-xs text-zinc-400 font-medium" x-text="getCurrentSpecsCount() + ' fields defined'"></span>
+                <span class="text-xs text-muted-foreground font-medium" x-text="getCurrentSpecsCount() + ' fields defined'"></span>
             </div>
 
             <div class="overflow-x-auto">
                 <table class="w-full text-left border-collapse">
                     <thead>
                         <tr
-                            class="bg-zinc-50 border-b border-zinc-150 text-[11px] font-bold text-zinc-500 uppercase tracking-wider">
+                            class="bg-muted border-b border-border text-[11px] font-bold text-muted-foreground uppercase tracking-wider">
                             <th class="p-4 pl-6">Label / Key</th>
                             <th class="p-4">Input Type</th>
                             <th class="p-4">Unit</th>
@@ -53,13 +53,13 @@
                             <th class="p-4 pr-6 text-right">Actions</th>
                         </tr>
                     </thead>
-                    <tbody class="divide-y divide-zinc-200">
+                    <tbody class="divide-y divide-border">
                         <template x-for="spec in getCurrentSpecs()" :key="spec.id">
-                            <tr class="hover:bg-zinc-50/30 transition-colors text-sm text-zinc-700">
+                            <tr class="hover:bg-muted/30 transition-colors text-sm text-foreground">
                                 <!-- Label / Key -->
                                 <td class="p-4 pl-6">
-                                    <span class="font-bold text-zinc-850" x-text="spec.spec_label"></span>
-                                    <p class="text-[10px] text-zinc-400 font-mono" x-text="spec.spec_key"></p>
+                                    <span class="font-bold text-foreground" x-text="spec.spec_label"></span>
+                                    <p class="text-[10px] text-muted-foreground font-mono" x-text="spec.spec_key"></p>
                                 </td>
                                 <!-- Input Type -->
                                 <td class="p-4 capitalize">
@@ -72,7 +72,7 @@
                                     </span>
                                 </td>
                                 <!-- Unit -->
-                                <td class="p-4 font-mono text-zinc-500" x-text="spec.spec_unit || '-'"></td>
+                                <td class="p-4 font-mono text-muted-foreground" x-text="spec.spec_unit || '-'"></td>
                                 <!-- Required -->
                                 <td class="p-4">
                                     <template x-if="spec.is_required">
@@ -80,7 +80,7 @@
                                             class="text-xs font-bold text-red-650 bg-red-50 border border-red-100 px-2 py-0.5 rounded-full">Yes</span>
                                     </template>
                                     <template x-if="!spec.is_required">
-                                        <span class="text-xs text-zinc-400 px-2 py-0.5">No</span>
+                                        <span class="text-xs text-muted-foreground px-2 py-0.5">No</span>
                                     </template>
                                 </td>
                                 <!-- Highlighted -->
@@ -90,7 +90,7 @@
                                             class="text-xs font-bold text-amber-700 bg-amber-50 border border-amber-100 px-2 py-0.5 rounded-full">Yes</span>
                                     </template>
                                     <template x-if="!spec.is_highlighted">
-                                        <span class="text-xs text-zinc-400 px-2 py-0.5">No</span>
+                                        <span class="text-xs text-muted-foreground px-2 py-0.5">No</span>
                                     </template>
                                 </td>
                                 <!-- Validation Options -->
@@ -99,19 +99,19 @@
                                         <div class="flex flex-wrap gap-1 max-w-xs">
                                             <template x-for="opt in spec.options" :key="opt">
                                                 <span
-                                                    class="text-[10px] bg-zinc-100 text-zinc-650 border border-zinc-200 px-1.5 py-0.5 rounded"
+                                                    class="text-[10px] bg-muted text-muted-foreground border border-border px-1.5 py-0.5 rounded"
                                                     x-text="opt"></span>
                                             </template>
                                         </div>
                                     </template>
                                     <template x-if="spec.spec_type !== 'select'">
-                                        <span class="text-xs text-zinc-400 italic">None</span>
+                                        <span class="text-xs text-muted-foreground italic">None</span>
                                     </template>
                                 </td>
                                 <!-- Actions -->
                                 <td class="p-4 pr-6 text-right space-x-1">
                                     <button @click="openEditModal(spec)"
-                                        class="p-2 text-zinc-500 hover:text-zinc-800 hover:bg-zinc-100 rounded-xl transition-all"
+                                        class="p-2 text-muted-foreground hover:text-foreground hover:bg-muted rounded-xl transition-all"
                                         title="Edit Field">
                                         <i data-lucide="edit-3" class="w-4 h-4"></i>
                                     </button>
@@ -121,7 +121,7 @@
                                         @csrf
                                         <input type="hidden" name="_method" value="DELETE">
                                         <button type="submit"
-                                            class="p-2 text-zinc-400 hover:text-red-650 hover:bg-red-50 rounded-xl transition-all"
+                                            class="p-2 text-muted-foreground hover:text-red-650 hover:bg-red-50 rounded-xl transition-all"
                                             title="Delete Field">
                                             <i data-lucide="trash-2" class="w-4 h-4"></i>
                                         </button>
@@ -130,7 +130,7 @@
                             </tr>
                         </template>
                         <tr x-show="getCurrentSpecsCount() === 0">
-                            <td colspan="7" class="p-12 text-center text-zinc-450 italic">
+                            <td colspan="7" class="p-12 text-center text-muted-foreground italic">
                                 No specifications defined for this category. Click 'Add Spec Field' to start.
                             </td>
                         </tr>
@@ -144,10 +144,10 @@
             class="fixed inset-0 z-50 flex items-center justify-center p-4 overflow-x-hidden overflow-y-auto outline-none"
             x-cloak>
             <!-- Glassmorphism backdrop -->
-            <div class="fixed inset-0 bg-zinc-950/65 backdrop-blur-md transition-opacity" @click="closeModal()"></div>
+            <div class="fixed inset-0 bg-background/65 backdrop-blur-md transition-opacity" @click="closeModal()"></div>
 
             <!-- Modal Content Card -->
-            <div class="relative w-full max-w-lg mx-auto bg-white rounded-[28px] shadow-2xl border border-zinc-200/80 z-10 overflow-hidden"
+            <div class="relative w-full max-w-lg mx-auto bg-card rounded-[28px] shadow-2xl border border-border/80 z-10 overflow-hidden"
                 x-show="modalOpen" x-transition:enter="transition ease-out duration-350"
                 x-transition:enter-start="opacity-0 scale-95 translate-y-6"
                 x-transition:enter-end="opacity-100 scale-100 translate-y-0"
@@ -156,16 +156,16 @@
                 x-transition:leave-end="opacity-0 scale-95 translate-y-6">
 
                 <!-- Header -->
-                <div class="px-6 py-5 border-b border-zinc-150 flex items-center justify-between bg-zinc-50/50">
+                <div class="px-6 py-5 border-b border-border flex items-center justify-between bg-muted/50">
                     <div class="flex items-center space-x-2.5">
-                        <div class="w-8 h-8 rounded-lg bg-zinc-900 text-white hover:bg-zinc-800/15 flex items-center justify-center text-zinc-800">
+                        <div class="w-8 h-8 rounded-lg bg-primary text-primary-foreground hover:bg-primary/90/15 flex items-center justify-center text-foreground">
                             <i data-lucide="sliders" class="w-4 h-4"></i>
                         </div>
-                        <h4 class="font-bold text-zinc-900 text-base"
+                        <h4 class="font-bold text-foreground text-base"
                             x-text="isEdit ? 'Edit Specification Field' : 'Add Specification Field'"></h4>
                     </div>
                     <button @click="closeModal()"
-                        class="w-8 h-8 rounded-full hover:bg-zinc-100 flex items-center justify-center text-zinc-450 hover:text-zinc-800 transition-all focus:outline-none">
+                        class="w-8 h-8 rounded-full hover:bg-muted flex items-center justify-center text-muted-foreground hover:text-foreground transition-all focus:outline-none">
                         <i data-lucide="x" class="w-4.5 h-4.5"></i>
                     </button>
                 </div>
@@ -181,29 +181,29 @@
 
                     <!-- Spec Key -->
                     <div class="space-y-1.5" x-show="!isEdit">
-                        <label for="modal_key" class="block text-xs font-bold text-zinc-500 uppercase tracking-wider">Unique
+                        <label for="modal_key" class="block text-xs font-bold text-muted-foreground uppercase tracking-wider">Unique
                             Spec Key</label>
                         <input type="text" id="modal_key" name="spec_key" x-model="form.spec_key" :required="!isEdit"
                             placeholder="e.g. vram_gb, memory_type, cores"
-                            class="w-full p-3 border border-zinc-200 rounded-xl bg-zinc-50 focus:bg-white focus:ring-1 focus:ring-zinc-950 focus:border-zinc-950 focus:ring-4 focus:ring-zinc-950/15 focus:outline-none transition-all">
+                            class="w-full p-3 border border-border rounded-xl bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:ring-4 focus:ring-ring/15 focus:outline-none transition-all">
                     </div>
 
                     <!-- Spec Label -->
                     <div class="space-y-1.5">
                         <label for="modal_label"
-                            class="block text-xs font-bold text-zinc-500 uppercase tracking-wider">Display Label</label>
+                            class="block text-xs font-bold text-muted-foreground uppercase tracking-wider">Display Label</label>
                         <input type="text" id="modal_label" name="spec_label" x-model="form.spec_label" required
                             placeholder="e.g. VRAM Capacity, Memory Type, CPU Socket"
-                            class="w-full p-3 border border-zinc-200 rounded-xl bg-zinc-50 focus:bg-white focus:ring-1 focus:ring-zinc-950 focus:border-zinc-950 focus:ring-4 focus:ring-zinc-950/15 focus:outline-none transition-all">
+                            class="w-full p-3 border border-border rounded-xl bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:ring-4 focus:ring-ring/15 focus:outline-none transition-all">
                     </div>
 
                     <!-- Input Type & Unit -->
                     <div class="grid grid-cols-2 gap-4">
                         <div class="space-y-1.5">
                             <label for="modal_type"
-                                class="block text-xs font-bold text-zinc-500 uppercase tracking-wider">Value Type</label>
+                                class="block text-xs font-bold text-muted-foreground uppercase tracking-wider">Value Type</label>
                             <select id="modal_type" name="spec_type" x-model="form.spec_type" required
-                                class="w-full p-3 border border-zinc-200 rounded-xl bg-zinc-50 focus:bg-white focus:ring-1 focus:ring-zinc-950 focus:border-zinc-950 focus:ring-4 focus:ring-zinc-950/15 focus:outline-none transition-all">
+                                class="w-full p-3 border border-border rounded-xl bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:ring-4 focus:ring-ring/15 focus:outline-none transition-all">
                                 <option value="text">Text</option>
                                 <option value="number">Number</option>
                                 <option value="select">Dropdown Select</option>
@@ -213,47 +213,47 @@
 
                         <div class="space-y-1.5">
                             <label for="modal_unit"
-                                class="block text-xs font-bold text-zinc-500 uppercase tracking-wider">Unit
+                                class="block text-xs font-bold text-muted-foreground uppercase tracking-wider">Unit
                                 (Optional)</label>
                             <input type="text" id="modal_unit" name="spec_unit" x-model="form.spec_unit"
                                 placeholder="e.g. GB, MHz, W, mm"
-                                class="w-full p-3 border border-zinc-200 rounded-xl bg-zinc-50 focus:bg-white focus:ring-1 focus:ring-zinc-950 focus:border-zinc-950 focus:ring-4 focus:ring-zinc-950/15 focus:outline-none transition-all">
+                                class="w-full p-3 border border-border rounded-xl bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:ring-4 focus:ring-ring/15 focus:outline-none transition-all">
                         </div>
                     </div>
 
                     <!-- Select Dropdown Options -->
                     <div class="space-y-1.5" x-show="form.spec_type === 'select'">
                         <label for="modal_options"
-                            class="block text-xs font-bold text-zinc-500 uppercase tracking-wider">Select Options</label>
+                            class="block text-xs font-bold text-muted-foreground uppercase tracking-wider">Select Options</label>
                         <input type="text" id="modal_options" name="options" x-model="form.options"
                             placeholder="e.g. DDR3, DDR4, DDR5 (comma separated)"
-                            class="w-full p-3 border border-zinc-200 rounded-xl bg-zinc-50 focus:bg-white focus:ring-1 focus:ring-zinc-950 focus:border-zinc-950 focus:ring-4 focus:ring-zinc-950/15 focus:outline-none transition-all">
-                        <p class="text-[10px] text-zinc-400 mt-1">Provide list options separated by commas.</p>
+                            class="w-full p-3 border border-border rounded-xl bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:ring-4 focus:ring-ring/15 focus:outline-none transition-all">
+                        <p class="text-[10px] text-muted-foreground mt-1">Provide list options separated by commas.</p>
                     </div>
 
                     <!-- Toggles for Required and Highlighted -->
-                    <div class="flex items-center space-x-6 p-3 bg-zinc-50 border border-zinc-150 rounded-xl">
+                    <div class="flex items-center space-x-6 p-3 bg-muted border border-border rounded-xl">
                         <label class="flex items-center space-x-2.5 cursor-pointer">
                             <input type="checkbox" name="is_required" value="1" x-model="form.is_required"
-                                class="rounded text-[#09090b] focus:ring-zinc-950 border-zinc-300">
-                            <span class="text-xs font-semibold text-zinc-700">Required Field</span>
+                                class="rounded text-[#09090b] focus:ring-ring border-border">
+                            <span class="text-xs font-semibold text-foreground">Required Field</span>
                         </label>
 
                         <label class="flex items-center space-x-2.5 cursor-pointer">
                             <input type="checkbox" name="is_highlighted" value="1" x-model="form.is_highlighted"
-                                class="rounded text-[#09090b] focus:ring-zinc-950 border-zinc-300">
-                            <span class="text-xs font-semibold text-zinc-700">Highlight Spec (Hero area)</span>
+                                class="rounded text-[#09090b] focus:ring-ring border-border">
+                            <span class="text-xs font-semibold text-foreground">Highlight Spec (Hero area)</span>
                         </label>
                     </div>
 
                     <!-- Submit / Cancel -->
-                    <div class="pt-5 border-t border-zinc-150 flex justify-end space-x-2">
+                    <div class="pt-5 border-t border-border flex justify-end space-x-2">
                         <button type="button" @click="closeModal()"
-                            class="px-5 py-2.5 border border-zinc-200 text-zinc-700 hover:bg-zinc-50 font-semibold rounded-xl text-xs transition-all active:scale-[0.98]">
+                            class="px-5 py-2.5 border border-border text-foreground hover:bg-muted font-semibold rounded-xl text-xs transition-all active:scale-[0.98]">
                             Cancel
                         </button>
                         <button type="submit"
-                            class="px-6 py-2.5 bg-zinc-900 text-white hover:bg-zinc-800 hover:bg-[#ffd747] text-black font-semibold rounded-xl text-xs shadow-sm border border-black/10 transition-all active:scale-[0.98] hover:scale-[1.02]">
+                            class="px-6 py-2.5 bg-primary text-primary-foreground hover:bg-primary/90  font-semibold rounded-xl text-xs shadow-sm border border-black/10 transition-all active:scale-[0.98] hover:scale-[1.02]">
                             Save Field
                         </button>
                     </div>

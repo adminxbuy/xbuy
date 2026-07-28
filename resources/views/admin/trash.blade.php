@@ -45,7 +45,7 @@
         ];
         $backRoute = $backRoutes[$modelName] ?? 'admin.dashboard';
     @endphp
-    <a href="{{ route($backRoute) }}" class="flex items-center space-x-1.5 px-4 py-2 bg-zinc-100 hover:bg-zinc-200 text-zinc-700 hover:text-zinc-900 rounded-xl text-xs font-semibold transition-all border border-zinc-200 shadow-sm">
+    <a href="{{ route($backRoute) }}" class="flex items-center space-x-1.5 px-4 py-2 bg-muted hover:bg-muted text-foreground hover:text-foreground rounded-xl text-xs font-semibold transition-all border border-border shadow-sm">
         <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i>
         <span>Back to {{ $displayNames[$modelName] ?? 'List' }}</span>
     </a>
@@ -68,20 +68,20 @@
     @endif
 
     <!-- Search Bar -->
-    <div class="bg-white border border-zinc-200 rounded-xl p-4 shadow-sm flex flex-col sm:flex-row justify-between items-center gap-4">
+    <div class="bg-card border border-border rounded-xl p-4 shadow-sm flex flex-col sm:flex-row justify-between items-center gap-4">
         <form action="{{ route('admin.trash.index', $modelName) }}" method="GET" class="w-full sm:w-80 relative">
             <input type="text" name="search" value="{{ request('search') }}" placeholder="Search in trash..."
-                class="w-full pl-9 pr-4 py-2.5 border border-zinc-200 rounded-xl bg-zinc-50 focus:bg-white focus:ring-1 focus:ring-zinc-950 focus:border-zinc-950 focus:outline-none text-xs transition-all font-semibold text-zinc-700">
-            <div class="absolute left-3 top-1/2 -translate-y-1/2 text-zinc-400">
+                class="w-full pl-9 pr-4 py-2.5 border border-border rounded-xl bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:outline-none text-xs transition-all font-semibold text-foreground">
+            <div class="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground">
                 <i data-lucide="search" class="w-4 h-4"></i>
             </div>
         </form>
         @if(request('search'))
-            <a href="{{ route('admin.trash.index', $modelName) }}" class="text-xs font-bold text-zinc-500 hover:text-black transition-all">Clear Search</a>
+            <a href="{{ route('admin.trash.index', $modelName) }}" class="text-xs font-bold text-muted-foreground hover:text-foreground transition-all">Clear Search</a>
         @endif
     </div>
 
-    <div class="bg-white border border-zinc-200 rounded-xl ring-1 ring-zinc-950/5 overflow-hidden">
+    <div class="bg-card border border-border rounded-xl ring-0 overflow-hidden">
         @if($modelName === 'content')
             <!-- Special View for Content Files -->
             @php
@@ -89,16 +89,16 @@
             @endphp
 
             @if($totalFiles === 0)
-                <div class="text-center py-20 text-zinc-400">
-                    <i data-lucide="trash-2" class="w-12 h-12 mx-auto stroke-1.5 mb-3 text-zinc-300"></i>
+                <div class="text-center py-20 text-muted-foreground">
+                    <i data-lucide="trash-2" class="w-12 h-12 mx-auto stroke-1.5 mb-3 text-muted-foreground"></i>
                     <p class="text-sm font-semibold">No assets found in trash</p>
-                    <p class="text-xs text-zinc-450 mt-1">Deleted items will automatically purge after 30 days.</p>
+                    <p class="text-xs text-muted-foreground mt-1">Deleted items will automatically purge after 30 days.</p>
                 </div>
             @else
                 <div class="overflow-x-auto">
                     <table class="w-full text-left border-collapse text-xs">
                         <thead>
-                            <tr class="bg-zinc-50 border-b border-zinc-200 uppercase font-bold text-zinc-500 text-[10px] tracking-wider">
+                            <tr class="bg-muted border-b border-border uppercase font-bold text-muted-foreground text-[10px] tracking-wider">
                                 <th class="px-5 py-4">Original Name</th>
                                 <th class="px-5 py-4">Type</th>
                                 <th class="px-5 py-4 text-right">Size</th>
@@ -106,14 +106,14 @@
                                 <th class="px-5 py-4 text-right">Actions</th>
                             </tr>
                         </thead>
-                        <tbody class="divide-y divide-zinc-200">
+                        <tbody class="divide-y divide-border">
                             @foreach(['images', 'pdfs', 'videos'] as $fType)
                                 @foreach($trashedContent[$fType] as $tFile)
-                                    <tr class="hover:bg-zinc-50/50 transition-colors">
-                                        <td class="px-5 py-3.5 font-bold text-zinc-800 truncate max-w-[300px]" title="{{ $tFile['original_name'] }}">{{ $tFile['original_name'] }}</td>
-                                        <td class="px-5 py-3.5 capitalize text-zinc-550">{{ $fType }}</td>
-                                        <td class="px-5 py-3.5 text-right text-zinc-650 font-semibold">{{ $tFile['size'] }}</td>
-                                        <td class="px-5 py-3.5 text-zinc-450 font-medium">{{ date('d M Y, H:i', strtotime($tFile['deleted_at'])) }}</td>
+                                    <tr class="hover:bg-muted/50 transition-colors">
+                                        <td class="px-5 py-3.5 font-bold text-foreground truncate max-w-[300px]" title="{{ $tFile['original_name'] }}">{{ $tFile['original_name'] }}</td>
+                                        <td class="px-5 py-3.5 capitalize text-muted-foreground">{{ $fType }}</td>
+                                        <td class="px-5 py-3.5 text-right text-muted-foreground font-semibold">{{ $tFile['size'] }}</td>
+                                        <td class="px-5 py-3.5 text-muted-foreground font-medium">{{ date('d M Y, H:i', strtotime($tFile['deleted_at'])) }}</td>
                                         <td class="px-5 py-3.5 text-right flex justify-end space-x-2">
                                             <form action="{{ route('admin.content.restore') }}" method="POST">
                                                 @csrf
@@ -146,99 +146,99 @@
         @else
             <!-- General View for Database Models -->
             @if($trashedItems->isEmpty())
-                <div class="text-center py-20 text-zinc-400">
-                    <i data-lucide="trash-2" class="w-12 h-12 mx-auto stroke-1.5 mb-3 text-zinc-300"></i>
+                <div class="text-center py-20 text-muted-foreground">
+                    <i data-lucide="trash-2" class="w-12 h-12 mx-auto stroke-1.5 mb-3 text-muted-foreground"></i>
                     <p class="text-sm font-semibold">No items found in trash</p>
-                    <p class="text-xs text-zinc-450 mt-1">Deleted items will automatically purge after 30 days.</p>
+                    <p class="text-xs text-muted-foreground mt-1">Deleted items will automatically purge after 30 days.</p>
                 </div>
             @else
                 <div class="overflow-x-auto">
                     <table class="w-full text-left border-collapse text-xs">
                         <thead>
-                            <tr class="bg-zinc-50 border-b border-zinc-200 uppercase font-bold text-zinc-500 text-[10px] tracking-wider">
+                            <tr class="bg-muted border-b border-border uppercase font-bold text-muted-foreground text-[10px] tracking-wider">
                                 <th class="px-5 py-4">Item Details</th>
                                 <th class="px-5 py-4">Context / Secondary</th>
                                 <th class="px-5 py-4">Deleted At</th>
                                 <th class="px-5 py-4 text-right">Actions</th>
                             </tr>
                         </thead>
-                        <tbody class="divide-y divide-zinc-200">
+                        <tbody class="divide-y divide-border">
                             @foreach($trashedItems as $item)
-                                <tr class="hover:bg-zinc-50/50 transition-colors">
+                                <tr class="hover:bg-muted/50 transition-colors">
                                     <td class="px-5 py-3.5">
                                         @if($modelName === 'articles')
-                                            <div class="font-bold text-zinc-800 text-sm">{{ $item->title }}</div>
+                                            <div class="font-bold text-foreground text-sm">{{ $item->title }}</div>
                                         @elseif($modelName === 'sellers')
-                                            <div class="font-bold text-zinc-800 text-sm">{{ $item->shop_name }}</div>
-                                            <div class="text-[10px] text-zinc-450">{{ $item->user->name ?? 'N/A' }}</div>
+                                            <div class="font-bold text-foreground text-sm">{{ $item->shop_name }}</div>
+                                            <div class="text-[10px] text-muted-foreground">{{ $item->user->name ?? 'N/A' }}</div>
                                         @elseif($modelName === 'listings')
-                                            <div class="font-bold text-zinc-800 text-sm">{{ $item->title }}</div>
-                                            <div class="text-[10px] text-zinc-450">Grade: {{ $item->grade }}</div>
+                                            <div class="font-bold text-foreground text-sm">{{ $item->title }}</div>
+                                            <div class="text-[10px] text-muted-foreground">Grade: {{ $item->grade }}</div>
                                         @elseif($modelName === 'orders')
-                                            <div class="font-bold text-zinc-800 text-sm">#{{ $item->order_number }}</div>
+                                            <div class="font-bold text-foreground text-sm">#{{ $item->order_number }}</div>
                                         @elseif($modelName === 'disputes')
-                                            <div class="font-bold text-zinc-800 text-sm">Dispute #{{ $item->id }}</div>
-                                            <div class="text-[10px] text-zinc-450">Order #{{ $item->order->order_number ?? 'N/A' }}</div>
+                                            <div class="font-bold text-foreground text-sm">Dispute #{{ $item->id }}</div>
+                                            <div class="text-[10px] text-muted-foreground">Order #{{ $item->order->order_number ?? 'N/A' }}</div>
                                         @elseif($modelName === 'escrow' || $modelName === 'payouts')
-                                            <div class="font-bold text-zinc-800 text-sm">Escrow #{{ $item->id }}</div>
-                                            <div class="text-[10px] text-zinc-450">Order #{{ $item->order->order_number ?? 'N/A' }}</div>
+                                            <div class="font-bold text-foreground text-sm">Escrow #{{ $item->id }}</div>
+                                            <div class="text-[10px] text-muted-foreground">Order #{{ $item->order->order_number ?? 'N/A' }}</div>
                                         @elseif($modelName === 'tickets')
-                                            <div class="font-bold text-zinc-800 text-sm">{{ $item->subject }}</div>
-                                            <div class="text-[10px] text-zinc-450">Ticket #{{ $item->id }}</div>
+                                            <div class="font-bold text-foreground text-sm">{{ $item->subject }}</div>
+                                            <div class="text-[10px] text-muted-foreground">Ticket #{{ $item->id }}</div>
                                         @elseif($modelName === 'subscribers')
-                                            <div class="font-bold text-zinc-800 text-sm">{{ $item->email }}</div>
+                                            <div class="font-bold text-foreground text-sm">{{ $item->email }}</div>
                                         @elseif($modelName === 'ratings')
-                                            <div class="font-bold text-zinc-800 text-sm">Rating #{{ $item->id }} ({{ $item->rating_value ?? $item->weighted_total }} Stars)</div>
+                                            <div class="font-bold text-foreground text-sm">Rating #{{ $item->id }} ({{ $item->rating_value ?? $item->weighted_total }} Stars)</div>
                                         @elseif($modelName === 'fraud-flags')
-                                            <div class="font-bold text-zinc-800 text-sm">{{ ucfirst(str_replace('_', ' ', $item->flag_type)) }}</div>
+                                            <div class="font-bold text-foreground text-sm">{{ ucfirst(str_replace('_', ' ', $item->flag_type)) }}</div>
                                         @elseif($modelName === 'alerts')
-                                            <div class="font-bold text-zinc-800 text-sm">{{ $item->title }}</div>
+                                            <div class="font-bold text-foreground text-sm">{{ $item->title }}</div>
                                         @elseif($modelName === 'pages')
-                                            <div class="font-bold text-zinc-800 text-sm">{{ $item->title }}</div>
+                                            <div class="font-bold text-foreground text-sm">{{ $item->title }}</div>
                                         @elseif($modelName === 'page-categories')
-                                            <div class="font-bold text-zinc-800 text-sm">{{ $item->name }}</div>
+                                            <div class="font-bold text-foreground text-sm">{{ $item->name }}</div>
                                         @else
-                                            <div class="font-bold text-zinc-800 text-sm">ID: {{ $item->id }}</div>
+                                            <div class="font-bold text-foreground text-sm">ID: {{ $item->id }}</div>
                                         @endif
                                     </td>
                                     
                                     <td class="px-5 py-3.5">
                                         @if($modelName === 'articles')
-                                            <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-semibold bg-zinc-100 text-zinc-700 border border-zinc-200">
+                                            <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-semibold bg-muted text-foreground border border-border">
                                                 {{ $item->category ?: 'General' }}
                                             </span>
                                         @elseif($modelName === 'sellers')
-                                            <div class="text-zinc-600 font-medium">{{ $item->user->email ?? 'N/A' }}</div>
+                                            <div class="text-muted-foreground font-medium">{{ $item->user->email ?? 'N/A' }}</div>
                                         @elseif($modelName === 'listings')
-                                            <div class="text-zinc-800 font-bold">₹{{ number_format($item->price, 2) }}</div>
+                                            <div class="text-foreground font-bold">₹{{ number_format($item->price, 2) }}</div>
                                         @elseif($modelName === 'orders')
-                                            <div class="text-zinc-850 font-bold">₹{{ number_format($item->total_amount, 2) }}</div>
-                                            <div class="text-[10px] text-zinc-400">{{ $item->buyer->name ?? 'N/A' }}</div>
+                                            <div class="text-foreground font-bold">₹{{ number_format($item->total_amount, 2) }}</div>
+                                            <div class="text-[10px] text-muted-foreground">{{ $item->buyer->name ?? 'N/A' }}</div>
                                         @elseif($modelName === 'disputes')
-                                            <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-semibold bg-zinc-100 text-zinc-700">Status: {{ $item->status }}</span>
+                                            <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-semibold bg-muted text-foreground">Status: {{ $item->status }}</span>
                                         @elseif($modelName === 'escrow' || $modelName === 'payouts')
-                                            <div class="text-zinc-850 font-bold">₹{{ number_format($item->amount_held, 2) }}</div>
-                                            <div class="text-[10px] text-zinc-400">Seller Payout: ₹{{ number_format($item->seller_amount, 2) }}</div>
+                                            <div class="text-foreground font-bold">₹{{ number_format($item->amount_held, 2) }}</div>
+                                            <div class="text-[10px] text-muted-foreground">Seller Payout: ₹{{ number_format($item->seller_amount, 2) }}</div>
                                         @elseif($modelName === 'tickets')
-                                            <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-semibold bg-zinc-50 text-zinc-800 border border-zinc-200">{{ $item->status }}</span>
+                                            <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-semibold bg-muted text-foreground border border-border">{{ $item->status }}</span>
                                         @elseif($modelName === 'subscribers')
-                                            <span class="text-zinc-400 font-medium">Joined: {{ $item->created_at->format('d M Y') }}</span>
+                                            <span class="text-muted-foreground font-medium">Joined: {{ $item->created_at->format('d M Y') }}</span>
                                         @elseif($modelName === 'ratings')
-                                            <div class="text-zinc-500 italic max-w-xs truncate" title="{{ $item->comment }}">{{ $item->comment ?: '(No Comment)' }}</div>
+                                            <div class="text-muted-foreground italic max-w-xs truncate" title="{{ $item->comment }}">{{ $item->comment ?: '(No Comment)' }}</div>
                                         @elseif($modelName === 'fraud-flags')
-                                            <div class="text-zinc-500 font-medium">Flagged User: {{ $item->flaggedUser->name ?? 'N/A' }}</div>
+                                            <div class="text-muted-foreground font-medium">Flagged User: {{ $item->flaggedUser->name ?? 'N/A' }}</div>
                                         @elseif($modelName === 'alerts')
                                             <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-semibold bg-red-50 text-red-700 border border-red-200">Severity: {{ $item->severity }}</span>
                                         @elseif($modelName === 'pages')
-                                            <div class="text-zinc-500 font-medium">Slug: /v1/pages/{{ $item->slug }}</div>
+                                            <div class="text-muted-foreground font-medium">Slug: /v1/pages/{{ $item->slug }}</div>
                                         @elseif($modelName === 'page-categories')
-                                            <div class="text-zinc-500 font-medium">Slug: {{ $item->slug }}</div>
+                                            <div class="text-muted-foreground font-medium">Slug: {{ $item->slug }}</div>
                                         @else
-                                            <span class="text-zinc-400">N/A</span>
+                                            <span class="text-muted-foreground">N/A</span>
                                         @endif
                                     </td>
 
-                                    <td class="px-5 py-3.5 text-zinc-450 font-medium">
+                                    <td class="px-5 py-3.5 text-muted-foreground font-medium">
                                         {{ $item->deleted_at ? $item->deleted_at->format('d M Y, H:i') : 'N/A' }}
                                     </td>
 
@@ -285,7 +285,7 @@
                 </div>
 
                 @if($trashedItems->hasPages())
-                    <div class="px-5 py-4 border-t border-zinc-200 bg-zinc-50/50">
+                    <div class="px-5 py-4 border-t border-border bg-muted/50">
                         {{ $trashedItems->links() }}
                     </div>
                 @endif

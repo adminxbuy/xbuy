@@ -33,19 +33,19 @@
     @endif
 
     {{-- ── Header / Actions Row ── --}}
-    <div class="flex flex-col sm:flex-row justify-between items-stretch sm:items-center gap-4 bg-white border border-zinc-200 rounded-xl p-4 shadow-sm">
+    <div class="flex flex-col sm:flex-row justify-between items-stretch sm:items-center gap-4 bg-card border border-border rounded-xl p-4 shadow-sm">
         <div class="flex items-center gap-3">
             <div class="p-2.5 bg-rose-50 text-rose-600 rounded-xl">
                 <i data-lucide="shield-alert" class="w-5 h-5"></i>
             </div>
             <div>
-                <h4 class="font-bold text-zinc-950 text-sm">Fraud Detection Center</h4>
-                <p class="text-xs text-zinc-500">Monitor auto-detected and manually created fraud flags. Review or dismiss each case.</p>
+                <h4 class="font-bold text-foreground text-sm">Fraud Detection Center</h4>
+                <p class="text-xs text-muted-foreground">Monitor auto-detected and manually created fraud flags. Review or dismiss each case.</p>
             </div>
         </div>
         <button
             @click="showCreateModal = true"
-            class="px-4 py-2.5 bg-rose-600 hover:bg-rose-700 text-white rounded-xl text-xs font-semibold flex items-center gap-1.5 transition-all shadow-sm">
+            class="px-4 py-2.5 bg-rose-600 hover:bg-rose-700 text-primary-foreground rounded-xl text-xs font-semibold flex items-center gap-1.5 transition-all shadow-sm">
             <i data-lucide="plus" class="w-3.5 h-3.5"></i>
             Flag Manually
         </button>
@@ -63,37 +63,37 @@
         @endphp
 
         @foreach($cards as $card)
-        <div class="bg-white border border-zinc-200 rounded-xl p-4 shadow-sm flex items-center gap-3">
+        <div class="bg-card border border-border rounded-xl p-4 shadow-sm flex items-center gap-3">
             <div class="w-10 h-10 rounded-xl bg-{{ $card['color'] }}-50 text-{{ $card['color'] }}-600 flex items-center justify-center flex-shrink-0 border border-{{ $card['color'] }}-100">
                 <i data-lucide="{{ $card['icon'] }}" class="w-4 h-4"></i>
             </div>
             <div>
-                <p class="text-[10px] font-bold text-zinc-400 uppercase tracking-wider">{{ $card['label'] }}</p>
-                <p class="text-xl font-black text-zinc-900">{{ $card['value'] }}</p>
+                <p class="text-[10px] font-bold text-muted-foreground uppercase tracking-wider">{{ $card['label'] }}</p>
+                <p class="text-xl font-black text-foreground">{{ $card['value'] }}</p>
             </div>
         </div>
         @endforeach
     </div>
 
     {{-- ── Filters ── --}}
-    <div class="bg-white border border-zinc-200 rounded-xl p-4 shadow-sm">
+    <div class="bg-card border border-border rounded-xl p-4 shadow-sm">
         <form action="{{ route('admin.fraud-flags.index') }}" method="GET" class="flex flex-wrap items-end gap-4">
             {{-- Search --}}
             <div class="w-full sm:w-64 space-y-1">
-                <label class="text-[10px] font-bold text-zinc-500 uppercase tracking-wider block">Search User / Listing</label>
+                <label class="text-[10px] font-bold text-muted-foreground uppercase tracking-wider block">Search User / Listing</label>
                 <div class="relative">
-                    <i data-lucide="search" class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-400"></i>
+                    <i data-lucide="search" class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground"></i>
                     <input type="text" name="search" value="{{ request('search') }}" placeholder="User name or listing title…"
-                           class="w-full pl-9 pr-4 py-2.5 text-xs border border-zinc-200 rounded-xl bg-zinc-50 focus:bg-white focus:ring-1 focus:ring-zinc-950 focus:border-zinc-950 focus:outline-none">
+                           class="w-full pl-9 pr-4 py-2.5 text-xs border border-border rounded-xl bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:outline-none">
                 </div>
             </div>
 
             {{-- Flag Type --}}
             <div class="w-full sm:w-56 space-y-1">
-                <label class="text-[10px] font-bold text-zinc-500 uppercase tracking-wider block">Flag Type</label>
+                <label class="text-[10px] font-bold text-muted-foreground uppercase tracking-wider block">Flag Type</label>
                 <div class="relative">
                     <select name="flag_type"
-                            class="w-full p-2.5 pl-3 pr-8 text-xs border border-zinc-200 rounded-xl bg-zinc-50 focus:bg-white focus:ring-1 focus:ring-zinc-950 focus:border-zinc-950 focus:outline-none transition-all cursor-pointer font-semibold text-zinc-700 appearance-none">
+                            class="w-full p-2.5 pl-3 pr-8 text-xs border border-border rounded-xl bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:outline-none transition-all cursor-pointer font-semibold text-foreground appearance-none">
                         <option value="">All Types</option>
                         <option value="duplicate_serial"            {{ request('flag_type') === 'duplicate_serial'             ? 'selected' : '' }}>Duplicate Serial</option>
                         <option value="multiple_accounts_same_ip"   {{ request('flag_type') === 'multiple_accounts_same_ip'    ? 'selected' : '' }}>Multiple Accounts / Same IP</option>
@@ -101,7 +101,7 @@
                         <option value="rapid_listings"              {{ request('flag_type') === 'rapid_listings'               ? 'selected' : '' }}>Rapid Listings</option>
                         <option value="suspicious_buyer_pattern"    {{ request('flag_type') === 'suspicious_buyer_pattern'     ? 'selected' : '' }}>Suspicious Buyer Pattern</option>
                     </select>
-                    <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-zinc-400">
+                    <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-muted-foreground">
                         <i data-lucide="chevron-down" class="w-3.5 h-3.5"></i>
                     </div>
                 </div>
@@ -109,16 +109,16 @@
 
             {{-- Status --}}
             <div class="w-full sm:w-40 space-y-1">
-                <label class="text-[10px] font-bold text-zinc-500 uppercase tracking-wider block">Status</label>
+                <label class="text-[10px] font-bold text-muted-foreground uppercase tracking-wider block">Status</label>
                 <div class="relative">
                     <select name="status"
-                            class="w-full p-2.5 pl-3 pr-8 text-xs border border-zinc-200 rounded-xl bg-zinc-50 focus:bg-white focus:ring-1 focus:ring-zinc-950 focus:border-zinc-950 focus:outline-none transition-all cursor-pointer font-semibold text-zinc-700 appearance-none">
+                            class="w-full p-2.5 pl-3 pr-8 text-xs border border-border rounded-xl bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:outline-none transition-all cursor-pointer font-semibold text-foreground appearance-none">
                         <option value="">All Statuses</option>
                         <option value="pending"   {{ request('status') === 'pending'   ? 'selected' : '' }}>Pending</option>
                         <option value="reviewed"  {{ request('status') === 'reviewed'  ? 'selected' : '' }}>Reviewed</option>
                         <option value="dismissed" {{ request('status') === 'dismissed' ? 'selected' : '' }}>Dismissed</option>
                     </select>
-                    <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-zinc-400">
+                    <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-muted-foreground">
                         <i data-lucide="chevron-down" class="w-3.5 h-3.5"></i>
                     </div>
                 </div>
@@ -135,10 +135,10 @@
                 <input type="hidden" name="date_end" x-model="dateEnd">
 
                 <div class="space-y-1">
-                    <label class="text-[10px] font-bold text-zinc-500 uppercase tracking-wider block">Timeline / Date Range</label>
+                    <label class="text-[10px] font-bold text-muted-foreground uppercase tracking-wider block">Timeline / Date Range</label>
                     <div class="relative">
                         <select x-model="currentPreset" @change="applyPreset($event.target.value)"
-                                class="p-2.5 pl-3 pr-8 text-xs border border-zinc-200 rounded-xl bg-zinc-50 hover:bg-zinc-100 focus:bg-white focus:ring-1 focus:ring-zinc-950 focus:border-zinc-950 focus:outline-none transition-all cursor-pointer font-semibold text-zinc-700 appearance-none">
+                                class="p-2.5 pl-3 pr-8 text-xs border border-border rounded-xl bg-muted hover:bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:outline-none transition-all cursor-pointer font-semibold text-foreground appearance-none">
                             <option value="all">All Time</option>
                             <option value="today">Today</option>
                             <option value="yesterday">Yesterday</option>
@@ -148,7 +148,7 @@
                             <option value="last_month">Last Month</option>
                             <option value="custom">Custom Range</option>
                         </select>
-                        <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-zinc-400">
+                        <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-muted-foreground">
                             <i data-lucide="chevron-down" class="w-3.5 h-3.5"></i>
                         </div>
                     </div>
@@ -156,20 +156,20 @@
 
                 <div class="flex items-end gap-2" x-show="currentPreset === 'custom'">
                     <div class="space-y-1">
-                        <label class="text-[10px] font-bold text-zinc-500 uppercase tracking-wider block">From</label>
+                        <label class="text-[10px] font-bold text-muted-foreground uppercase tracking-wider block">From</label>
                         <div class="relative">
-                            <i data-lucide="calendar" class="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-zinc-400"></i>
+                            <i data-lucide="calendar" class="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-muted-foreground"></i>
                             <input type="text" x-ref="startInput" placeholder="Start Date" readonly
-                                   class="pl-9 pr-4 py-2.5 text-xs border border-zinc-200 rounded-xl bg-zinc-50 hover:bg-zinc-100 focus:bg-white focus:ring-1 focus:ring-zinc-950 focus:border-zinc-950 focus:outline-none cursor-pointer font-semibold text-zinc-750 w-32">
+                                   class="pl-9 pr-4 py-2.5 text-xs border border-border rounded-xl bg-muted hover:bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:outline-none cursor-pointer font-semibold text-foreground w-32">
                         </div>
                     </div>
-                    <span class="text-zinc-400 text-xs mb-3 flex-shrink-0">to</span>
+                    <span class="text-muted-foreground text-xs mb-3 flex-shrink-0">to</span>
                     <div class="space-y-1">
-                        <label class="text-[10px] font-bold text-zinc-500 uppercase tracking-wider block">To</label>
+                        <label class="text-[10px] font-bold text-muted-foreground uppercase tracking-wider block">To</label>
                         <div class="relative">
-                            <i data-lucide="calendar" class="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-zinc-400"></i>
+                            <i data-lucide="calendar" class="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-muted-foreground"></i>
                             <input type="text" x-ref="endInput" placeholder="End Date" readonly
-                                   class="pl-9 pr-4 py-2.5 text-xs border border-zinc-200 rounded-xl bg-zinc-50 hover:bg-zinc-100 focus:bg-white focus:ring-1 focus:ring-zinc-950 focus:border-zinc-950 focus:outline-none cursor-pointer font-semibold text-zinc-750 w-32">
+                                   class="pl-9 pr-4 py-2.5 text-xs border border-border rounded-xl bg-muted hover:bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:outline-none cursor-pointer font-semibold text-foreground w-32">
                         </div>
                     </div>
                 </div>
@@ -177,12 +177,12 @@
 
             <div class="flex items-center gap-2 pt-5">
                 <button type="submit"
-                        class="px-4 py-2.5 bg-zinc-900 text-white rounded-xl text-xs font-semibold flex items-center gap-1.5 transition-all hover:bg-zinc-700">
+                        class="px-4 py-2.5 bg-primary text-primary-foreground rounded-xl text-xs font-semibold flex items-center gap-1.5 transition-all hover:bg-primary/80">
                     <i data-lucide="filter" class="w-3.5 h-3.5"></i> Filter
                 </button>
                 @if(request()->anyFilled(['search', 'flag_type', 'status', 'date_start', 'date_end']))
                     <a href="{{ route('admin.fraud-flags.index') }}"
-                       class="px-4 py-2.5 border border-zinc-200 text-zinc-600 hover:bg-zinc-50 rounded-xl text-xs font-semibold transition-all">
+                       class="px-4 py-2.5 border border-border text-muted-foreground hover:bg-muted rounded-xl text-xs font-semibold transition-all">
                         Clear
                     </a>
                 @endif
@@ -192,8 +192,8 @@
 
 
     <!-- Collapsible Trash Bin -->
-    <div x-data="{ openTrash: false }" class="bg-zinc-50 border border-zinc-200 rounded-xl p-4 transition-all shadow-sm">
-        <button @click="openTrash = !openTrash" type="button" class="flex items-center justify-between w-full text-zinc-700 hover:text-black focus:outline-none">
+    <div x-data="{ openTrash: false }" class="bg-muted border border-border rounded-xl p-4 transition-all shadow-sm">
+        <button @click="openTrash = !openTrash" type="button" class="flex items-center justify-between w-full text-foreground hover:text-foreground focus:outline-none">
             <div class="flex items-center space-x-2 font-bold text-xs uppercase tracking-wider">
                 <i data-lucide="trash-2" class="w-4.5 h-4.5 text-red-500"></i>
                 <span>Trash Bin ({{ $trashedFlags->count() }})</span>
@@ -201,14 +201,14 @@
             <i data-lucide="chevron-down" class="w-4 h-4 transition-transform duration-200" :class="openTrash ? 'rotate-180' : ''"></i>
         </button>
         
-        <div x-show="openTrash" x-cloak class="mt-4 border-t border-zinc-200 pt-4">
+        <div x-show="openTrash" x-cloak class="mt-4 border-t border-border pt-4">
             @if($trashedFlags->isEmpty())
-                <p class="text-xs text-zinc-450 italic text-center py-4">No deleted fraud flags in trash.</p>
+                <p class="text-xs text-muted-foreground italic text-center py-4">No deleted fraud flags in trash.</p>
             @else
                 <div class="overflow-x-auto">
                     <table class="w-full text-left border-collapse text-xs">
                         <thead>
-                            <tr class="bg-zinc-100/80 uppercase font-bold text-zinc-500 border-b border-zinc-200 text-[10px]">
+                            <tr class="bg-muted/80 uppercase font-bold text-muted-foreground border-b border-border text-[10px]">
                                 <th class="px-4 py-2.5">Flag Type</th>
                                 <th class="px-4 py-2.5">Flagged User</th>
                                 <th class="px-4 py-2.5">Flagged Listing</th>
@@ -216,13 +216,13 @@
                                 <th class="px-4 py-2.5 text-right">Actions</th>
                             </tr>
                         </thead>
-                        <tbody class="divide-y divide-zinc-200">
+                        <tbody class="divide-y divide-border">
                             @foreach($trashedFlags as $tFlag)
-                                <tr class="hover:bg-zinc-100/30">
-                                    <td class="px-4 py-3 font-bold text-zinc-800">{{ str_replace('_', ' ', $tFlag->flag_type) }}</td>
-                                    <td class="px-4 py-3 text-zinc-650">{{ $tFlag->flaggedUser->name ?? 'N/A' }}</td>
-                                    <td class="px-4 py-3 text-zinc-650">{{ $tFlag->flaggedListing->title ?? 'N/A' }}</td>
-                                    <td class="px-4 py-3 text-zinc-400">{{ $tFlag->deleted_at->format('d M Y, H:i') }}</td>
+                                <tr class="hover:bg-muted/30">
+                                    <td class="px-4 py-3 font-bold text-foreground">{{ str_replace('_', ' ', $tFlag->flag_type) }}</td>
+                                    <td class="px-4 py-3 text-muted-foreground">{{ $tFlag->flaggedUser->name ?? 'N/A' }}</td>
+                                    <td class="px-4 py-3 text-muted-foreground">{{ $tFlag->flaggedListing->title ?? 'N/A' }}</td>
+                                    <td class="px-4 py-3 text-muted-foreground">{{ $tFlag->deleted_at->format('d M Y, H:i') }}</td>
                                     <td class="px-4 py-3 text-right flex justify-end space-x-2">
                                         <form action="{{ route('admin.trash.restore', ['model' => 'fraud-flags', 'id' => $tFlag->id]) }}" method="POST">
                                             @csrf
@@ -252,7 +252,7 @@
     </div>
 
     {{-- ── Flags Table ── --}}
-    <div class="bg-white border border-zinc-200 rounded-xl ring-1 ring-zinc-950/5 overflow-hidden">
+    <div class="bg-card border border-border rounded-xl ring-0 overflow-hidden">
         @forelse($flags as $flag)
             @php
                 $typeLabels = [
@@ -266,16 +266,16 @@
                 $statusConfig = [
                     'pending'   => ['badge' => 'bg-amber-100 text-amber-700',  'dot' => 'bg-amber-400'],
                     'reviewed'  => ['badge' => 'bg-blue-100 text-blue-700',    'dot' => 'bg-blue-400'],
-                    'dismissed' => ['badge' => 'bg-zinc-100 text-zinc-500',    'dot' => 'bg-zinc-300'],
+                    'dismissed' => ['badge' => 'bg-muted text-muted-foreground',    'dot' => 'bg-muted'],
                 ];
 
                 $type   = $typeLabels[$flag->flag_type]   ?? ['label' => $flag->flag_type, 'icon' => 'shield-alert', 'color' => 'zinc'];
                 $status = $statusConfig[$flag->status]    ?? $statusConfig['pending'];
             @endphp
 
-            <div class="border-b border-zinc-100 last:border-0" x-data="{ expanded: false }">
+            <div class="border-b border-border last:border-0" x-data="{ expanded: false }">
                 {{-- Main Row --}}
-                <div class="p-4 flex flex-col sm:flex-row sm:items-center gap-4 hover:bg-zinc-50/40 transition-all">
+                <div class="p-4 flex flex-col sm:flex-row sm:items-center gap-4 hover:bg-muted/40 transition-all">
 
                     {{-- Type Icon --}}
                     <div class="w-10 h-10 rounded-xl bg-{{ $type['color'] }}-50 text-{{ $type['color'] }}-600 border border-{{ $type['color'] }}-100 flex items-center justify-center flex-shrink-0">
@@ -285,15 +285,15 @@
                     {{-- Info --}}
                     <div class="flex-1 min-w-0 space-y-0.5">
                         <div class="flex flex-wrap items-center gap-2">
-                            <span class="text-xs font-bold text-zinc-900">{{ $type['label'] }}</span>
+                            <span class="text-xs font-bold text-foreground">{{ $type['label'] }}</span>
                             <span class="inline-flex items-center gap-1 text-[10px] font-bold px-2 py-0.5 rounded-full {{ $status['badge'] }}">
                                 <span class="w-1.5 h-1.5 rounded-full {{ $status['dot'] }}"></span>
                                 {{ ucfirst($flag->status) }}
                             </span>
-                            <span class="text-[10px] text-zinc-400">#{{ $flag->id }}</span>
+                            <span class="text-[10px] text-muted-foreground">#{{ $flag->id }}</span>
                         </div>
 
-                        <div class="flex flex-wrap items-center gap-x-4 gap-y-1 text-[11px] text-zinc-500 mt-1">
+                        <div class="flex flex-wrap items-center gap-x-4 gap-y-1 text-[11px] text-muted-foreground mt-1">
                             @if($flag->flaggedUser)
                                 <span class="flex items-center gap-1">
                                     <i data-lucide="user" class="w-3 h-3"></i>
@@ -323,7 +323,7 @@
                     <div class="flex items-center gap-2 flex-shrink-0">
                         {{-- Expand details --}}
                         <button @click="expanded = !expanded"
-                                class="px-3 py-1.5 border border-zinc-200 hover:bg-zinc-100 text-zinc-600 rounded-lg text-[10px] font-semibold flex items-center gap-1 transition-all">
+                                class="px-3 py-1.5 border border-border hover:bg-muted text-muted-foreground rounded-lg text-[10px] font-semibold flex items-center gap-1 transition-all">
                             <i data-lucide="eye" class="w-3.5 h-3.5"></i>
                             <span x-text="expanded ? 'Hide' : 'Details'"></span>
                         </button>
@@ -343,7 +343,7 @@
                                   onsubmit="return confirm('Dismiss this flag?')">
                                 @csrf
                                 <button type="submit"
-                                        class="px-3 py-1.5 bg-zinc-100 hover:bg-zinc-200 border border-zinc-200 text-zinc-600 rounded-lg text-[10px] font-bold flex items-center gap-1 transition-all">
+                                        class="px-3 py-1.5 bg-muted hover:bg-muted border border-border text-muted-foreground rounded-lg text-[10px] font-bold flex items-center gap-1 transition-all">
                                     <i data-lucide="x" class="w-3.5 h-3.5"></i> Dismiss
                                 </button>
                             </form>
@@ -353,31 +353,31 @@
                                   onsubmit="return confirm('Dismiss this flag?')">
                                 @csrf
                                 <button type="submit"
-                                        class="px-3 py-1.5 bg-zinc-100 hover:bg-zinc-200 border border-zinc-200 text-zinc-600 rounded-lg text-[10px] font-bold flex items-center gap-1 transition-all">
+                                        class="px-3 py-1.5 bg-muted hover:bg-muted border border-border text-muted-foreground rounded-lg text-[10px] font-bold flex items-center gap-1 transition-all">
                                     <i data-lucide="x" class="w-3.5 h-3.5"></i> Dismiss
                                 </button>
                             </form>
                         @else
-                            <span class="text-[10px] font-semibold text-zinc-400 flex items-center gap-1 bg-zinc-50 border border-zinc-200/60 px-2.5 py-1 rounded-lg">
-                                <i data-lucide="check-check" class="w-3 h-3 text-zinc-400"></i> Closed
+                            <span class="text-[10px] font-semibold text-muted-foreground flex items-center gap-1 bg-muted border border-border/60 px-2.5 py-1 rounded-lg">
+                                <i data-lucide="check-check" class="w-3 h-3 text-muted-foreground"></i> Closed
                             </span>
                         @endif
                     </div>
                 </div>
 
                 {{-- Expandable Details Panel --}}
-                <div x-show="expanded" x-collapse class="border-t border-dashed border-zinc-200 bg-zinc-50/60 px-5 py-4">
-                    <p class="text-[10px] font-bold text-zinc-400 uppercase tracking-wider mb-3 flex items-center gap-1.5">
+                <div x-show="expanded" x-collapse class="border-t border-dashed border-border bg-muted/60 px-5 py-4">
+                    <p class="text-[10px] font-bold text-muted-foreground uppercase tracking-wider mb-3 flex items-center gap-1.5">
                         <i data-lucide="info" class="w-3 h-3"></i> Flag Details
                     </p>
 
                     @if($flag->details && count($flag->details))
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                             @foreach($flag->details as $key => $value)
-                                <div class="bg-white border border-zinc-200 rounded-xl p-3">
-                                    <p class="text-[10px] font-bold text-zinc-400 uppercase tracking-wider mb-1">{{ str_replace('_', ' ', $key) }}</p>
+                                <div class="bg-card border border-border rounded-xl p-3">
+                                    <p class="text-[10px] font-bold text-muted-foreground uppercase tracking-wider mb-1">{{ str_replace('_', ' ', $key) }}</p>
                                     @if(is_array($value))
-                                        <ul class="text-xs text-zinc-700 space-y-0.5 font-mono">
+                                        <ul class="text-xs text-foreground space-y-0.5 font-mono">
                                             @foreach($value as $item)
                                                 <li class="flex items-center gap-1.5">
                                                     <span class="w-1.5 h-1.5 rounded-full bg-rose-400 flex-shrink-0"></span>
@@ -386,13 +386,13 @@
                                             @endforeach
                                         </ul>
                                     @else
-                                        <p class="text-xs text-zinc-800 font-medium font-mono break-all">{{ $value }}</p>
+                                        <p class="text-xs text-foreground font-medium font-mono break-all">{{ $value }}</p>
                                     @endif
                                 </div>
                             @endforeach
                         </div>
                     @else
-                        <p class="text-xs text-zinc-400 italic">No additional details recorded.</p>
+                        <p class="text-xs text-muted-foreground italic">No additional details recorded.</p>
                     @endif
 
                     {{-- Quick links --}}
@@ -419,8 +419,8 @@
                 <div class="w-14 h-14 rounded-xl bg-emerald-50 border border-emerald-100 flex items-center justify-center mx-auto mb-4 text-emerald-500">
                     <i data-lucide="shield-check" class="w-6 h-6"></i>
                 </div>
-                <h4 class="text-sm font-bold text-zinc-800">No Fraud Flags Found</h4>
-                <p class="text-xs text-zinc-400 mt-1 max-w-xs mx-auto">
+                <h4 class="text-sm font-bold text-foreground">No Fraud Flags Found</h4>
+                <p class="text-xs text-muted-foreground mt-1 max-w-xs mx-auto">
                     No fraud flags match your current filters.
                     @if(!request()->anyFilled(['search', 'flag_type', 'status']))
                         The system will automatically detect and list suspicious activity here.
@@ -431,7 +431,7 @@
 
         {{-- Pagination --}}
         @if($flags->hasPages())
-            <div class="px-5 py-4 border-t border-zinc-200 bg-zinc-50/50">
+            <div class="px-5 py-4 border-t border-border bg-muted/50">
                 {{ $flags->links() }}
             </div>
         @endif
@@ -448,20 +448,20 @@
          class="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm px-4"
          @keydown.escape.window="showCreateModal = false">
 
-        <div class="bg-white rounded-xl shadow-2xl w-full max-w-md"
+        <div class="bg-card rounded-xl shadow-2xl w-full max-w-md"
              @click.stop
              x-transition:enter="transition ease-out duration-200"
              x-transition:enter-start="opacity-0 scale-95"
              x-transition:enter-end="opacity-100 scale-100">
 
-            <div class="flex items-center justify-between px-6 py-4 border-b border-zinc-100">
+            <div class="flex items-center justify-between px-6 py-4 border-b border-border">
                 <div class="flex items-center gap-2">
                     <div class="p-2 bg-rose-50 text-rose-600 rounded-lg">
                         <i data-lucide="shield-alert" class="w-4 h-4"></i>
                     </div>
-                    <h3 class="text-sm font-bold text-zinc-900">Flag Manually</h3>
+                    <h3 class="text-sm font-bold text-foreground">Flag Manually</h3>
                 </div>
-                <button @click="showCreateModal = false" class="text-zinc-400 hover:text-zinc-700 transition-colors p-1 rounded-lg hover:bg-zinc-100">
+                <button @click="showCreateModal = false" class="text-muted-foreground hover:text-foreground transition-colors p-1 rounded-lg hover:bg-muted">
                     <i data-lucide="x" class="w-4 h-4"></i>
                 </button>
             </div>
@@ -471,10 +471,10 @@
 
                 {{-- Flag Type --}}
                 <div class="space-y-1.5">
-                    <label class="text-xs font-bold text-zinc-600">Flag Type <span class="text-rose-500">*</span></label>
+                    <label class="text-xs font-bold text-muted-foreground">Flag Type <span class="text-rose-500">*</span></label>
                     <div class="relative">
                         <select name="flag_type" required
-                                class="w-full p-3 pl-3 pr-8 text-xs border border-zinc-200 rounded-xl bg-zinc-50 focus:bg-white focus:ring-1 focus:ring-zinc-950 focus:border-zinc-950 focus:outline-none transition-all appearance-none font-medium text-zinc-700">
+                                class="w-full p-3 pl-3 pr-8 text-xs border border-border rounded-xl bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:outline-none transition-all appearance-none font-medium text-foreground">
                             <option value="">Select flag type…</option>
                             <option value="duplicate_serial">Duplicate Serial</option>
                             <option value="multiple_accounts_same_ip">Multiple Accounts / Same IP</option>
@@ -482,7 +482,7 @@
                             <option value="rapid_listings">Rapid Listings</option>
                             <option value="suspicious_buyer_pattern">Suspicious Buyer Pattern</option>
                         </select>
-                        <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-zinc-400">
+                        <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-muted-foreground">
                             <i data-lucide="chevron-down" class="w-3.5 h-3.5"></i>
                         </div>
                     </div>
@@ -490,28 +490,28 @@
 
                 {{-- User ID --}}
                 <div class="space-y-1.5">
-                    <label class="text-xs font-bold text-zinc-600">User ID <span class="text-zinc-400">(optional)</span></label>
+                    <label class="text-xs font-bold text-muted-foreground">User ID <span class="text-muted-foreground">(optional)</span></label>
                     <input type="number" name="flagged_user_id" placeholder="e.g. 42"
-                           class="w-full p-3 text-xs border border-zinc-200 rounded-xl bg-zinc-50 focus:bg-white focus:ring-1 focus:ring-zinc-950 focus:border-zinc-950 focus:outline-none transition-all">
+                           class="w-full p-3 text-xs border border-border rounded-xl bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:outline-none transition-all">
                 </div>
 
                 {{-- Listing ID --}}
                 <div class="space-y-1.5">
-                    <label class="text-xs font-bold text-zinc-600">Listing ID <span class="text-zinc-400">(optional)</span></label>
+                    <label class="text-xs font-bold text-muted-foreground">Listing ID <span class="text-muted-foreground">(optional)</span></label>
                     <input type="number" name="flagged_listing_id" placeholder="e.g. 17"
-                           class="w-full p-3 text-xs border border-zinc-200 rounded-xl bg-zinc-50 focus:bg-white focus:ring-1 focus:ring-zinc-950 focus:border-zinc-950 focus:outline-none transition-all">
+                           class="w-full p-3 text-xs border border-border rounded-xl bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:outline-none transition-all">
                 </div>
 
                 {{-- Note --}}
                 <div class="space-y-1.5">
-                    <label class="text-xs font-bold text-zinc-600">Admin Note <span class="text-zinc-400">(optional)</span></label>
+                    <label class="text-xs font-bold text-muted-foreground">Admin Note <span class="text-muted-foreground">(optional)</span></label>
                     <textarea name="note" rows="3" placeholder="Describe what was suspicious…"
-                              class="w-full p-3 text-xs border border-zinc-200 rounded-xl bg-zinc-50 focus:bg-white focus:ring-1 focus:ring-zinc-950 focus:border-zinc-950 focus:outline-none transition-all resize-none"></textarea>
+                              class="w-full p-3 text-xs border border-border rounded-xl bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:outline-none transition-all resize-none"></textarea>
                 </div>
 
-                <div class="flex items-center justify-end gap-3 pt-2 border-t border-zinc-100">
+                <div class="flex items-center justify-end gap-3 pt-2 border-t border-border">
                     <button type="button" @click="showCreateModal = false"
-                            class="px-4 py-2.5 text-xs font-semibold text-zinc-600 border border-zinc-200 rounded-xl hover:bg-zinc-50 transition-all">
+                            class="px-4 py-2.5 text-xs font-semibold text-muted-foreground border border-border rounded-xl hover:bg-muted transition-all">
                         Cancel
                     </button>
                     <button type="submit"
