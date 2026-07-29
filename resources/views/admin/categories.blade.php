@@ -276,14 +276,14 @@
                 <!-- Tab Headers -->
                 <div class="flex px-6 border-b border-border bg-muted">
                     <button type="button" @click="modalTab = 'basic'"
-                        :class="modalTab === 'basic' ? 'font-semibold' : '' px-4 py-3 border-b-2 text-xs uppercase tracking-wider transition-all focus:outline-none flex items-center space-x-2"
-                        :style="modalTab === 'basic' ? 'color: var(--foreground); border-color: var(--foreground);' : 'color: var(--muted-foreground); border-color: transparent;'">
+                        :class="modalTab === 'basic' ? 'font-semibold text-foreground border-foreground' : 'text-muted-foreground border-transparent'"
+                        class="px-4 py-3 border-b-2 text-xs uppercase tracking-wider transition-all focus:outline-none flex items-center space-x-2">
                         <i data-lucide="info" class="w-3.5 h-3.5"></i>
                         <span>General Info</span>
                     </button>
                     <button type="button" @click="modalTab = 'seo'"
-                        :class="modalTab === 'seo' ? 'font-semibold' : '' px-4 py-3 border-b-2 text-xs uppercase tracking-wider transition-all focus:outline-none flex items-center space-x-2"
-                        :style="modalTab === 'seo' ? 'color: var(--foreground); border-color: var(--foreground);' : 'color: var(--muted-foreground); border-color: transparent;'">
+                        :class="modalTab === 'seo' ? 'font-semibold text-foreground border-foreground' : 'text-muted-foreground border-transparent'"
+                        class="px-4 py-3 border-b-2 text-xs uppercase tracking-wider transition-all focus:outline-none flex items-center space-x-2">
                         <i data-lucide="globe" class="w-3.5 h-3.5"></i>
                         <span>SEO Meta Settings</span>
                     </button>
@@ -399,8 +399,7 @@
                                 <template
                                     x-for="icName in ['cpu', 'keyboard', 'monitor', 'wifi', 'zap', 'box', 'hard-drive', 'link', 'database', 'layers', 'shield', 'folder']">
                                     <button type="button" @click="form.icon = icName"
-                                        :class="form.icon === icName ? 'bg-primary text-primary-foreground hover:bg-primary/90 text-primary-foreground border-black/10' : 'hover:opacity-80 border-border'"
-                                        :style="form.icon !== icName ? 'background: var(--card); color: var(--muted-foreground); border: 1px solid var(--border);' : ''"
+                                        :class="form.icon === icName ? 'bg-primary text-primary-foreground hover:bg-primary/90 border-black/10' : 'bg-card text-muted-foreground hover:opacity-80 border-border'"
                                         class="py-1.5 border rounded-lg flex flex-col items-center justify-center transition-all focus:outline-none">
                                         <span class="text-[10px] font-medium" x-text="icName"></span>
                                     </button>
@@ -473,9 +472,9 @@
                 <div class="p-6 overflow-y-auto flex-1 bg-muted">
                     <template x-if="libraryImages.length === 0">
                         <div class="text-center py-12 text-muted-foreground">
-                            <i data-lucide="image-off" class="w-10 h-10 mx-auto mb-3" style="opacity: 0.4;"></i>
+                            <i data-lucide="image-off" class="w-10 h-10 mx-auto mb-3 opacity-40"></i>
                             <p class="text-xs font-semibold">No assets found in library</p>
-                            <p class="text-[10px] mt-1" style="opacity: 0.6;">Upload images to public/website_assets/images
+                            <p class="text-[10px] mt-1 opacity-60">Upload images to public/website_assets/images
                                 directory</p>
                         </div>
                     </template>

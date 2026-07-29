@@ -166,8 +166,8 @@
                                 @php
                                     $badge = $user->buyer_badge ?? 'new_buyer';
                                     [$badgeLabel, $badgeClass] = match($badge) {
-                                        'trusted_buyer' => ['Trusted Buyer', 'bg-emerald-50 text-emerald-705 border border-emerald-200/60 border-emerald-200'],
-                                        'verified_buyer' => ['Verified Buyer', 'bg-blue-50 text-blue-705 border border-blue-200/60 border-blue-200'],
+                                        'trusted_buyer' => ['Trusted Buyer', 'bg-emerald-50 text-emerald-700 border border-emerald-200/60 border-emerald-200'],
+                                        'verified_buyer' => ['Verified Buyer', 'bg-blue-50 text-blue-700 border border-blue-200/60 border-blue-200'],
                                         default => ['New Buyer', 'bg-muted text-muted-foreground border-border'],
                                     };
                                 @endphp
@@ -184,12 +184,12 @@
                             <!-- Status -->
                             <td class="p-4 text-center">
                                 @if($user->trashed())
-                                    <span class="px-2 py-0.5 text-[9px] font-bold uppercase tracking-wider rounded-full bg-rose-50 text-rose-705 border border-rose-200/60">
+                                    <span class="px-2 py-0.5 text-[9px] font-bold uppercase tracking-wider rounded-full bg-rose-50 text-rose-700 border border-rose-200/60">
                                         Deleted
                                     </span>
                                 @elseif($user->status === 'active')
                                     @if($user->is_logged_in)
-                                        <span class="px-2 py-0.5 text-[9px] font-bold uppercase tracking-wider rounded-full bg-emerald-50 text-emerald-705 border border-emerald-200/60">
+                                        <span class="px-2 py-0.5 text-[9px] font-bold uppercase tracking-wider rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200/60">
                                             Active
                                         </span>
                                     @else
@@ -202,7 +202,7 @@
                                         Suspended
                                     </span>
                                 @elseif($user->status === 'banned')
-                                    <span class="px-2 py-0.5 text-[9px] font-bold uppercase tracking-wider rounded-full bg-rose-50 text-rose-705 border border-rose-200/60">
+                                    <span class="px-2 py-0.5 text-[9px] font-bold uppercase tracking-wider rounded-full bg-rose-50 text-rose-700 border border-rose-200/60">
                                         Banned
                                     </span>
                                 @else

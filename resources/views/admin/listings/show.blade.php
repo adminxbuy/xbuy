@@ -132,10 +132,10 @@
 
                 <div class="mb-6">
                     <span class="inline-flex items-center px-2.5 py-1 text-xs rounded-full font-semibold border
-                        @if($listing->listing_status === 'pending_approval') bg-amber-50 text-amber-705 border-amber-200/60
-                        @elseif($listing->listing_status === 'active') bg-emerald-50 text-emerald-705 border-emerald-200/60
+                        @if($listing->listing_status === 'pending_approval') bg-amber-50 text-amber-700 border-amber-200/60
+                        @elseif($listing->listing_status === 'active') bg-emerald-50 text-emerald-700 border-emerald-200/60
                         @elseif($listing->listing_status === 'sold') bg-muted text-foreground border-border
-                        @else bg-rose-50 text-rose-705 border-rose-200/60 @endif">
+                        @else bg-rose-50 text-rose-700 border-rose-200/60 @endif">
                         Status: {{ ucfirst(str_replace('_', ' ', $listing->listing_status)) }}
                     </span>
 

@@ -844,7 +844,7 @@
                     <div class="grid grid-cols-3 sm:grid-cols-4 gap-4">
                         <template x-for="img in libraryImages" :key="img.url">
                             <button type="button" @click="selectLibraryImage(img.url)" 
-                                    class="group p-2 bg-card rounded-xl border border-border hover:border-foreground hover:ring-2 hover:ring-[#09090b]/20 transition-all text-left flex flex-col items-center justify-between aspect-square">
+                                    class="group p-2 bg-card rounded-xl border border-border hover:border-foreground hover:ring-2 hover:ring-foreground/20 transition-all text-left flex flex-col items-center justify-between aspect-square">
                                 <div class="w-full flex-1 flex items-center justify-center overflow-hidden rounded-lg bg-muted">
                                     <img :src="img.url" class="max-h-24 max-w-full object-contain p-1 group-hover:scale-105 transition-all">
                                 </div>

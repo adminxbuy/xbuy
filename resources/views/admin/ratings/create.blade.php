@@ -102,7 +102,7 @@
                             <span class="px-2 py-0.5 bg-muted text-foreground font-bold rounded" x-text="accuracy">5</span>
                         </div>
                         <input type="range" name="item_accuracy" id="item_accuracy" min="1" max="5" step="0.5" x-model="accuracy"
-                               class="w-full h-1.5 bg-muted rounded-lg appearance-none cursor-pointer accent-[#09090b]">
+                               class="w-full h-1.5 bg-muted rounded-lg appearance-none cursor-pointer accent-foreground">
                     </div>
 
                     <!-- Packaging Quality -->
@@ -112,7 +112,7 @@
                             <span class="px-2 py-0.5 bg-muted text-foreground font-bold rounded" x-text="packaging">5</span>
                         </div>
                         <input type="range" name="packaging" id="packaging" min="1" max="5" step="0.5" x-model="packaging"
-                               class="w-full h-1.5 bg-muted rounded-lg appearance-none cursor-pointer accent-[#09090b]">
+                               class="w-full h-1.5 bg-muted rounded-lg appearance-none cursor-pointer accent-foreground">
                     </div>
 
                     <!-- Shipping Speed -->
@@ -122,7 +122,7 @@
                             <span class="px-2 py-0.5 bg-muted text-foreground font-bold rounded" x-text="shipping">5</span>
                         </div>
                         <input type="range" name="shipping_speed" id="shipping_speed" min="1" max="5" step="0.5" x-model="shipping"
-                               class="w-full h-1.5 bg-muted rounded-lg appearance-none cursor-pointer accent-[#09090b]">
+                               class="w-full h-1.5 bg-muted rounded-lg appearance-none cursor-pointer accent-foreground">
                     </div>
 
                     <!-- Communication -->
@@ -132,7 +132,7 @@
                             <span class="px-2 py-0.5 bg-muted text-foreground font-bold rounded" x-text="communication">5</span>
                         </div>
                         <input type="range" name="communication" id="communication" min="1" max="5" step="0.5" x-model="communication"
-                               class="w-full h-1.5 bg-muted rounded-lg appearance-none cursor-pointer accent-[#09090b]">
+                               class="w-full h-1.5 bg-muted rounded-lg appearance-none cursor-pointer accent-foreground">
                     </div>
                 </div>
             </div>

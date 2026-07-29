@@ -235,13 +235,13 @@
                     <div class="flex items-center space-x-6 p-3 bg-muted border border-border rounded-xl">
                         <label class="flex items-center space-x-2.5 cursor-pointer">
                             <input type="checkbox" name="is_required" value="1" x-model="form.is_required"
-                                class="rounded text-[#09090b] focus:ring-ring border-border">
+                                class="rounded text-foreground focus:ring-ring border-border">
                             <span class="text-xs font-semibold text-foreground">Required Field</span>
                         </label>
 
                         <label class="flex items-center space-x-2.5 cursor-pointer">
                             <input type="checkbox" name="is_highlighted" value="1" x-model="form.is_highlighted"
-                                class="rounded text-[#09090b] focus:ring-ring border-border">
+                                class="rounded text-foreground focus:ring-ring border-border">
                             <span class="text-xs font-semibold text-foreground">Highlight Spec (Hero area)</span>
                         </label>
                     </div>

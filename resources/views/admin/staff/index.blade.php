@@ -5,7 +5,7 @@
 
 @section('header_actions')
     @if(Auth::user()->isSuperAdmin())
-    <a href="{{ route('admin.accounts.create') }}" class="inline-flex items-center gap-2 bg-primary text-primary-foreground hover:bg-primary/90 hover:bg-primary/90 hover:text-primary-foreground font-medium px-4 py-2.5 rounded-lg text-xs transition-all shadow-sm">
+    <a href="{{ route('admin.accounts.create') }}" class="inline-flex items-center gap-2 bg-primary text-primary-foreground hover:bg-primary/90 hover:text-primary-foreground font-medium px-4 py-2.5 rounded-lg text-xs transition-all shadow-sm">
         <i data-lucide="user-plus" class="w-3.5 h-3.5"></i>
         <span>Add Staff Account</span>
     </a>
@@ -35,7 +35,7 @@
 
     <div class="overflow-x-auto">
         <table class="w-full text-left text-sm">
-            <thead class="bg-muted text-xs uppercase tracking-widerr text-muted-foreground font-medium border-b border-border">
+            <thead class="bg-muted text-xs uppercase tracking-wider text-muted-foreground font-medium border-b border-border">
                 <tr>
                     <th class="px-6 py-4">Name</th>
                     <th class="px-6 py-4">Designation</th>
@@ -78,9 +78,9 @@
                     </td>
                     <td class="px-6 py-4">
                         <span class="px-2.5 py-1 text-[10px] rounded-full font-bold
-                            @if($member->status === 'active') bg-emerald-50 text-emerald-705 border border-emerald-200/60
+                            @if($member->status === 'active') bg-emerald-50 text-emerald-700 border border-emerald-200/60
                             @elseif($member->status === 'suspended') bg-amber-100 text-amber-800
-                            @else bg-rose-50 text-rose-705 border border-rose-200/60 @endif">
+                            @else bg-rose-50 text-rose-700 border border-rose-200/60 @endif">
                             {{ ucfirst($member->status) }}
                         </span>
                     </td>

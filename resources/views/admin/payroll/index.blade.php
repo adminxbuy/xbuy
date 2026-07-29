@@ -12,7 +12,7 @@
         @if(count($pendingStaffList) > 0)
         <form action="{{ route('admin.payroll.disburse') }}" method="POST" onsubmit="return confirm('Disburse payrolls to all pending staff members? This will send Salary Slip emails automatically.')">
             @csrf
-            <button type="submit" class="inline-flex items-center gap-2 bg-primary text-primary-foreground hover:bg-primary/90 hover:bg-primary/90 hover:text-primary-foreground font-medium px-4 py-2.5 rounded-lg text-xs transition-all shadow-sm">
+            <button type="submit" class="inline-flex items-center gap-2 bg-primary text-primary-foreground hover:bg-primary/90 hover:text-primary-foreground font-medium px-4 py-2.5 rounded-lg text-xs transition-all shadow-sm">
                 <i data-lucide="check-circle" class="w-3.5 h-3.5"></i>
                 <span>Disburse All Pending</span>
             </button>
@@ -64,7 +64,7 @@
     <div class="bg-card border border-border rounded-xl p-5 shadow-sm flex flex-col justify-between">
         <div class="flex items-center justify-between">
             <span class="text-[10px] font-bold text-muted-foreground uppercase tracking-wider block">Amendment Trigger</span>
-            <span class="text-[10px] bg-amber-50 text-amber-705 border border-amber-200/60 font-bold px-2 py-0.5 rounded-full">{{ $ordersThisMonth }}/{{ $triggerOrders }} Orders</span>
+            <span class="text-[10px] bg-amber-50 text-amber-700 border border-amber-200/60 font-bold px-2 py-0.5 rounded-full">{{ $ordersThisMonth }}/{{ $triggerOrders }} Orders</span>
         </div>
         
         <!-- Progress bar -->
@@ -94,7 +94,7 @@
 
     <div class="overflow-x-auto">
         <table class="w-full text-left text-sm">
-            <thead class="bg-muted text-xs uppercase tracking-widerr text-muted-foreground font-medium border-b border-border">
+            <thead class="bg-muted text-xs uppercase tracking-wider text-muted-foreground font-medium border-b border-border">
                 <tr>
                     <th class="px-6 py-4">Name / designation</th>
                     <th class="px-6 py-4">Orders Handled</th>
@@ -126,7 +126,7 @@
                     <td class="px-6 py-4 text-muted-foreground text-xs">
                         ₹{{ number_format($item['expenses'], 2) }}
                     </td>
-                    <td class="px-6 py-4 text-[#09090b] font-bold text-xs bg-muted">
+                    <td class="px-6 py-4 text-foreground font-semibold text-xs bg-muted">
                         ₹{{ number_format($item['net'], 2) }}
                     </td>
                     <td class="px-6 py-4">

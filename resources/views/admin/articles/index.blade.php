@@ -29,7 +29,7 @@
             </div>
         </div>
         <div class="bg-muted border border-border rounded-xl p-5 flex items-center space-x-4">
-            <div class="p-3 bg-emerald-50 text-emerald-705 border border-emerald-200/60 rounded-xl">
+            <div class="p-3 bg-emerald-50 text-emerald-700 border border-emerald-200/60 rounded-xl">
                 <i data-lucide="check-circle" class="w-6 h-6"></i>
             </div>
             <div>
@@ -38,7 +38,7 @@
             </div>
         </div>
         <div class="bg-muted border border-border rounded-xl p-5 flex items-center space-x-4">
-            <div class="p-3 bg-amber-50 text-amber-705 border border-amber-200/60 rounded-xl">
+            <div class="p-3 bg-amber-50 text-amber-700 border border-amber-200/60 rounded-xl">
                 <i data-lucide="eye" class="w-6 h-6"></i>
             </div>
             <div>

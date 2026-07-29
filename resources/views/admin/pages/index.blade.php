@@ -645,7 +645,7 @@
 
                     <div class="flex items-center space-x-2 pt-2">
                         <input type="checkbox" id="is_active" name="is_active" value="1" checked
-                            class="rounded text-[#09090b] focus:ring-ring border-border">
+                            class="rounded text-foreground focus:ring-ring border-border">
                         <label for="is_active"
                             class="text-xs font-semibold text-foreground select-none cursor-pointer">Publish Immediately
                             (Active)</label>

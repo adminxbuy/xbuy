@@ -232,7 +232,7 @@
                                                 Admin Added
                                             </span>
                                         @else
-                                            <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-50 text-emerald-705 border border-emerald-200/60">
+                                            <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-50 text-emerald-700 border border-emerald-200/60">
                                                 Self Subscribed
                                             </span>
                                         @endif
@@ -393,13 +393,13 @@
                                 </td>
                                 <td class="py-3.5 px-4">
                                     @if($camp->status === 'sent')
-                                        <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-50 text-emerald-705 border border-emerald-200/60">Sent</span>
+                                        <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-50 text-emerald-700 border border-emerald-200/60">Sent</span>
                                     @elseif($camp->status === 'scheduled')
-                                        <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold bg-blue-50 text-blue-705 border border-blue-200/60 animate-pulse">Scheduled</span>
+                                        <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold bg-blue-50 text-blue-700 border border-blue-200/60 animate-pulse">Scheduled</span>
                                     @elseif($camp->status === 'sending')
                                         <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-100 text-amber-800">Sending...</span>
                                     @elseif($camp->status === 'partial')
-                                        <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-50 text-amber-705 border border-amber-200/60">Partial</span>
+                                        <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-50 text-amber-700 border border-amber-200/60">Partial</span>
                                     @else
                                         <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold bg-red-100 text-red-800">Failed</span>
                                     @endif
@@ -729,8 +729,8 @@
                                                @change="if($el.checked) { selectedImportEmails = searchedUsers.map(u => u.email) } else { selectedImportEmails = [] }"
                                                class="rounded border-border text-primary w-3 h-3">
                                     </th>
-                                    <th class="py-2.5 px-3 uppercase tracking-widerr">User Details</th>
-                                    <th class="py-2.5 px-3 uppercase tracking-widerr">Email</th>
+                                    <th class="py-2.5 px-3 uppercase tracking-wider">User Details</th>
+                                    <th class="py-2.5 px-3 uppercase tracking-wider">Email</th>
                                 </tr>
                             </thead>
                             <tbody class="divide-y divide-border">

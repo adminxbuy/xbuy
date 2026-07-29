@@ -235,7 +235,7 @@
                 </div>
                 <div class="flex items-center justify-between">
                     <div class="flex items-center gap-1.5">
-                        <span class="w-2.5 h-2.5 rounded-sm bg-muted0 inline-block"></span>
+                        <span class="w-2.5 h-2.5 rounded-sm bg-muted inline-block"></span>
                         <span>Released</span>
                     </div>
                     <span class="font-bold text-foreground">₹{{ number_format($escrowAllocation['released'], 0) }}</span>

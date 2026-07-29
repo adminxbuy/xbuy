@@ -22,136 +22,6 @@
 
     <style>
         [x-cloak] { display: none !important; }
-        
-        :root {
-            --radius: 0.625rem;
-            --background: #ffffff;
-            --foreground: #09090b;
-            --card: #ffffff;
-            --card-foreground: #09090b;
-            --muted: #f4f4f5;
-            --muted-foreground: #71717a;
-            --border: #e4e4e7;
-            --input: #e4e4e7;
-            --ring: #a1a1aa;
-            --primary: #09090b;
-            --primary-foreground: #ffffff;
-            --destructive: #ef4444;
-            --destructive-foreground: #ffffff;
-            --sidebar-bg: #fafafa;
-            --sidebar-foreground: #09090b;
-            --sidebar-border: #f4f4f5;
-            --sidebar-accent: #f4f4f5;
-            --sidebar-accent-foreground: #09090b;
-            --sidebar-active: #09090b;
-            --sidebar-active-foreground: #ffffff;
-        }
-
-        .dark {
-            --background: #09090b;
-            --foreground: #fafafa;
-            --card: #0a0a0c;
-            --card-foreground: #fafafa;
-            --muted: #27272a;
-            --muted-foreground: #a1a1aa;
-            --border: #27272a;
-            --input: #27272a;
-            --ring: #52525b;
-            --primary: #fafafa;
-            --primary-foreground: #09090b;
-            --destructive: #f87171;
-            --destructive-foreground: #09090b;
-            --sidebar-bg: #09090b;
-            --sidebar-foreground: #fafafa;
-            --sidebar-border: #27272a;
-            --sidebar-accent: #27272a;
-            --sidebar-accent-foreground: #fafafa;
-            --sidebar-active: #fafafa;
-            --sidebar-active-foreground: #09090b;
-        }
-
-        body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            background: var(--background);
-            color: var(--foreground);
-        }
-        h1, h2, h3, h4, h5, h6 {
-            font-family: 'Outfit', sans-serif;
-        }
-
-        ::-webkit-scrollbar { width: 5px; height: 5px; }
-        ::-webkit-scrollbar-track { background: transparent; }
-        ::-webkit-scrollbar-thumb { background: #d4d4d8; border-radius: 9999px; }
-        ::-webkit-scrollbar-thumb:hover { background: #a1a1aa; }
-
-        .sidebar-nav { scrollbar-width: thin; scrollbar-color: transparent transparent; transition: scrollbar-color 0.2s; }
-        .sidebar-nav:hover { scrollbar-color: #d4d4d8 transparent; }
-        .sidebar-nav::-webkit-scrollbar { width: 4px; }
-        .sidebar-nav::-webkit-scrollbar-track { background: transparent; }
-        .sidebar-nav::-webkit-scrollbar-thumb { background: transparent; border-radius: 9999px; transition: background 0.2s; }
-        .sidebar-nav:hover::-webkit-scrollbar-thumb { background: #d4d4d8; }
-
-        .sidebar-collapsed span, .sidebar-collapsed p, .sidebar-collapsed .text-left { display: none !important; }
-        .sidebar-collapsed a { justify-content: center !important; padding-left: 0px !important; padding-right: 0px !important; }
-        .sidebar-collapsed .px-6, .sidebar-collapsed .px-4 { padding-left: 0.5rem !important; padding-right: 0.5rem !important; }
-        .sidebar-collapsed .h-14 a { justify-content: center !important; width: 100% !important; }
-        .logo-collapsed { display: none !important; }
-        .sidebar-collapsed .logo-expanded { display: none !important; }
-        .sidebar-collapsed .logo-collapsed { display: flex !important; }
-
-        .sidebar-active {
-            background: var(--sidebar-active) !important;
-            color: var(--sidebar-active-foreground) !important;
-            font-weight: 600 !important;
-        }
-        .sidebar-active i, .sidebar-active span { color: var(--sidebar-active-foreground) !important; }
-
-        .flatpickr-calendar {
-            background: var(--card) !important;
-            border: 1px solid var(--border) !important;
-            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1) !important;
-            border-radius: 0.75rem !important;
-            font-family: 'Plus Jakarta Sans', sans-serif !important;
-            padding: 4px;
-        }
-        .flatpickr-day.selected, .flatpickr-day.startRange, .flatpickr-day.endRange,
-        .flatpickr-day.selected:hover, .flatpickr-day.today:hover {
-            background: var(--primary) !important;
-            border-color: var(--primary) !important;
-            color: var(--primary-foreground) !important;
-        }
-        .flatpickr-day.today { border-color: var(--primary) !important; }
-        .flatpickr-months .flatpickr-prev-month:hover svg, .flatpickr-months .flatpickr-next-month:hover svg { fill: var(--primary) !important; }
-
-        .dark body, .dark aside, .dark header, .dark main { background-color: var(--background) !important; color: var(--foreground) !important; }
-        .dark .bg-white { background-color: var(--background) !important; }
-        .dark .bg-zinc-50, .dark .bg-zinc-100 { background-color: var(--muted) !important; }
-        .dark .text-zinc-900, .dark .text-zinc-800 { color: #fafafa !important; }
-        .dark h2, .dark h3 { color: #fafafa !important; }
-        .dark .text-zinc-600, .dark .text-zinc-500, .dark .text-zinc-400 { color: var(--muted-foreground) !important; }
-        .dark .border-zinc-200, .dark .border-zinc-100 { border-color: var(--border) !important; }
-        .dark input, .dark select, .dark textarea { background-color: #18181b !important; border-color: var(--border) !important; color: #ffffff !important; }
-        .dark .sidebar-nav a:not(.sidebar-active):hover { background-color: var(--sidebar-accent) !important; color: var(--sidebar-accent-foreground) !important; }
-        .dark .hover\:bg-zinc-100:hover, .dark .hover\:bg-zinc-50:hover { background-color: var(--muted) !important; }
-        .dark .shadcn-card { box-shadow: 0 0 0 1px rgb(250 250 250 / 0.1); }
-
-        .shadcn-card {
-            background: var(--card);
-            border-radius: 0.75rem;
-            box-shadow: 0 0 0 1px rgb(9 9 11 / 0.05);
-            overflow: hidden;
-        }
-
-        .scale-xs { font-size: 0.825rem !important; }
-        .scale-xs h1, .scale-xs h2, .scale-xs h3, .scale-xs h4, .scale-xs h5, .scale-xs h6 { font-size: calc(100% - 2px) !important; }
-        .scale-xs .text-sm { font-size: 0.75rem !important; }
-        .scale-xs .text-base { font-size: 0.875rem !important; }
-        .scale-lg { font-size: 1.05rem !important; }
-        .scale-lg .text-sm { font-size: 0.95rem !important; }
-        .scale-lg .text-base { font-size: 1.125rem !important; }
-
-        .flatpickr-inline-container .flatpickr-calendar { border: none !important; box-shadow: none !important; background: transparent !important; width: 300px !important; }
-        .flatpickr-inline-container .flatpickr-innerContainer, .flatpickr-inline-container .flatpickr-rContainer, .flatpickr-inline-container .flatpickr-days, .flatpickr-inline-container .dayContainer { width: 300px !important; min-width: 300px !important; max-width: 300px !important; }
     </style>
 
     <script>
@@ -195,7 +65,7 @@
 
     <!-- Sidebar -->
     <aside class="w-full md:w-64 md:h-screen flex-shrink-0 flex flex-col transition-all duration-300 border-b md:border-b-0 md:border-r"
-           style="background: var(--sidebar-bg); border-color: var(--sidebar-border); color: var(--sidebar-foreground);"
+           style="background: var(--sidebar); border-color: var(--sidebar-border); color: var(--sidebar-foreground);"
            :class="sidebarOpen ? (sidebarMode === 'default' ? 'block md:flex md:w-64' : 'block md:flex md:w-20 sidebar-collapsed') : 'hidden md:flex md:w-0 md:overflow-hidden md:border-r-0'">
         
         <!-- Logo -->
@@ -522,7 +392,7 @@
                             <label class="block text-xs font-semibold mb-1.5 uppercase tracking-wide" style="color: var(--muted-foreground);">Theme:</label>
                             <div class="grid grid-cols-5 gap-1 p-0.5 rounded-lg" style="background: var(--muted); border: 1px solid var(--border);">
                                 <button @click="themePreset = 'default'; localStorage.setItem('themePreset', 'default')" class="py-1 text-xs font-semibold rounded transition-all" :class="themePreset === 'default' ? 'bg-white shadow-sm text-zinc-900 border border-zinc-200' : 'hover:text-zinc-800'" style="color: var(--muted-foreground);">
-                                    <span class="w-4 h-4 rounded-full inline-block" style="background: #09090b;"></span>
+                                    <span class="w-4 h-4 rounded-full inline-block" style="background: #fdd835;"></span>
                                 </button>
                                 <button @click="themePreset = 'violet'; localStorage.setItem('themePreset', 'violet')" class="py-1 text-xs font-semibold rounded transition-all" :class="themePreset === 'violet' ? 'bg-white shadow-sm text-zinc-900 border border-zinc-200' : 'hover:text-zinc-800'" style="color: var(--muted-foreground);">
                                     <span class="w-4 h-4 rounded-full inline-block" style="background: #8b5cf6;"></span>
@@ -633,38 +503,38 @@
         </header>
 
         <!-- Main Content -->
-        <main class="flex-1 overflow-y-auto p-6" style="background: var(--background); opacity: 0.98;">
+        <main class="flex-1 overflow-y-auto p-6" style="background: var(--background);">
             <div class="mx-auto w-full transition-all duration-300" :class="layoutMode === 'full' ? 'max-w-[1600px]' : 'max-w-4xl'">
                 @if(trim(View::yieldContent('page_title', 'Overview')) !== '')
                 <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-6 gap-4">
                     <div class="flex flex-col">
-                        <h2 class="text-2xl md:text-3xl font-extrabold tracking-tight leading-none">@yield('page_title', 'Overview')</h2>
+                        <h2 class="text-page-title text-foreground">@yield('page_title', 'Overview')</h2>
                     </div>
-                    <div class="flex items-center space-x-3">
+                    <div class="flex items-center gap-2">
                         @yield('header_actions')
                     </div>
                 </div>
                 @endif
 
                 @if(session('success'))
-                    <div class="mb-6 p-4 rounded-xl flex items-center justify-between shadow-sm animate-fade-in" x-data="{ show: true }" x-show="show" style="background: #f0fdf4; border: 1px solid #bbf7d0; color: #166534;">
-                        <div class="flex items-center space-x-3">
-                            <i data-lucide="check-circle" class="w-5 h-5" style="color: #22c55e;"></i>
+                    <div class="mb-6 p-4 rounded-lg flex items-center justify-between border border-emerald-200 bg-emerald-50 text-emerald-800 dark:border-emerald-800/50 dark:bg-emerald-950/50 dark:text-emerald-200" x-data="{ show: true }" x-show="show">
+                        <div class="flex items-center gap-3">
+                            <i data-lucide="check-circle" class="w-5 h-5 text-emerald-600 dark:text-emerald-400"></i>
                             <span class="text-sm font-medium">{{ session('success') }}</span>
                         </div>
-                        <button @click="show = false" style="color: #22c55e;">
+                        <button @click="show = false" class="opacity-70 hover:opacity-100 transition-opacity">
                             <i data-lucide="x" class="w-4 h-4"></i>
                         </button>
                     </div>
                 @endif
 
                 @if(session('error'))
-                    <div class="mb-6 p-4 rounded-xl flex items-center justify-between shadow-sm" x-data="{ show: true }" x-show="show" style="background: #fef2f2; border: 1px solid #fecaca; color: #991b1b;">
-                        <div class="flex items-center space-x-3">
-                            <i data-lucide="alert-triangle" class="w-5 h-5" style="color: #ef4444;"></i>
+                    <div class="mb-6 p-4 rounded-lg flex items-center justify-between border border-rose-200 bg-rose-50 text-rose-800 dark:border-rose-800/50 dark:bg-rose-950/50 dark:text-rose-200" x-data="{ show: true }" x-show="show">
+                        <div class="flex items-center gap-3">
+                            <i data-lucide="alert-triangle" class="w-5 h-5 text-rose-600 dark:text-rose-400"></i>
                             <span class="text-sm font-medium">{{ session('error') }}</span>
                         </div>
-                        <button @click="show = false" style="color: #ef4444;">
+                        <button @click="show = false" class="opacity-70 hover:opacity-100 transition-opacity">
                             <i data-lucide="x" class="w-4 h-4"></i>
                         </button>
                     </div>

@@ -119,7 +119,7 @@
 
             <!-- Submit Button -->
             <div class="flex justify-end pt-4 border-t border-border">
-                <button type="submit" class="px-6 py-2.5 bg-primary text-primary-foreground hover:bg-primary/90 hover:bg-[#fbc02d] text-foreground font-semibold rounded-lg text-sm transition-all shadow-sm flex items-center space-x-2">
+                <button type="submit" class="px-6 py-2.5 bg-primary text-primary-foreground hover:bg-primary/90 font-semibold rounded-lg text-sm transition-all shadow-sm flex items-center space-x-2">
                     <i data-lucide="save" class="w-4 h-4"></i>
                     <span>Save Profile Changes & Request Updates</span>
                 </button>

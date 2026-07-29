@@ -27,9 +27,9 @@
                             <div class="flex items-center space-x-3">
                                 <h2 class="text-xl font-bold text-foreground">{{ $seller->user->name }}</h2>
                                 <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[11px] font-bold uppercase tracking-wider
-                                    @if($seller->status === 'active') bg-emerald-50 text-emerald-705 border border-emerald-200/60
+                                    @if($seller->status === 'active') bg-emerald-50 text-emerald-700 border border-emerald-200/60
                                     @elseif($seller->status === 'suspended') bg-amber-100 text-amber-800
-                                    @elseif($seller->status === 'banned') bg-rose-50 text-rose-705 border border-rose-200/60
+                                    @elseif($seller->status === 'banned') bg-rose-50 text-rose-700 border border-rose-200/60
                                     @else bg-muted text-foreground @endif">
                                     {{ ucfirst($seller->status) }}
                                 </span>
@@ -293,7 +293,7 @@
                                 <span class="text-[9px] text-muted-foreground" x-text="msg.time"></span>
                             </div>
                             <div class="max-w-[75%] rounded-xl px-4 py-2.5 text-sm font-medium shadow-sm border animate-fade-in"
-                                :class="msg.is_admin ? 'bg-primary text-primary-foreground hover:bg-primary/90 text-primary-foreground border-[#ffd747]/25 rounded-tr-none' : 'bg-muted text-foreground border-border/60 rounded-tl-none'">
+                                :class="msg.is_admin ? 'bg-primary text-primary-foreground border-primary/25 rounded-tr-none' : 'bg-muted text-foreground border-border/60 rounded-tl-none'">
                                 <p class="whitespace-pre-wrap leading-relaxed break-words" x-text="msg.message"></p>
                             </div>
                         </div>
@@ -407,9 +407,9 @@
 
                 <div class="mb-6">
                     <span class="px-3 py-1.5 text-xs rounded-full font-semibold inline-block
-                        @if($seller->kyc_status === 'pending') bg-amber-50 text-amber-705 border border-amber-200/60
-                        @elseif($seller->kyc_status === 'approved') bg-emerald-50 text-emerald-705 border border-emerald-200/60
-                        @else bg-rose-50 text-rose-705 border border-rose-200/60 @endif">
+                        @if($seller->kyc_status === 'pending') bg-amber-50 text-amber-700 border border-amber-200/60
+                        @elseif($seller->kyc_status === 'approved') bg-emerald-50 text-emerald-700 border border-emerald-200/60
+                        @else bg-rose-50 text-rose-700 border border-rose-200/60 @endif">
                         Current Status: {{ ucfirst($seller->kyc_status) }}
                     </span>
 
@@ -483,9 +483,9 @@
                     <div class="flex justify-between items-center">
                         <span class="text-xs font-bold text-muted-foreground uppercase tracking-wider">Account Status</span>
                         <span class="px-2.5 py-1 text-[10px] rounded-full font-bold inline-block
-                            @if($seller->status === 'active') bg-emerald-50 text-emerald-705 border border-emerald-200/60
+                            @if($seller->status === 'active') bg-emerald-50 text-emerald-700 border border-emerald-200/60
                             @elseif($seller->status === 'suspended') bg-amber-100 text-amber-800
-                            @elseif($seller->status === 'banned') bg-rose-50 text-rose-705 border border-rose-200/60
+                            @elseif($seller->status === 'banned') bg-rose-50 text-rose-700 border border-rose-200/60
                             @else bg-muted text-foreground @endif">
                             {{ ucfirst($seller->status) }}
                         </span>
@@ -557,14 +557,14 @@
                 <div>
                     @if($seller->shop_visit_verified)
                         <span
-                            class="px-3 py-1.5 text-xs rounded-full font-semibold inline-block bg-emerald-50 text-emerald-705 border border-emerald-200/60">
+                            class="px-3 py-1.5 text-xs rounded-full font-semibold inline-block bg-emerald-50 text-emerald-700 border border-emerald-200/60">
                             Status: Shop Visit Verified
                         </span>
                         <p class="text-xs text-muted-foreground mt-3 font-semibold">
                             Verified on: {{ $seller->shop_visit_date ? $seller->shop_visit_date->format('M d, Y H:i') : 'N/A' }}
                         </p>
                     @else
-                        <span class="px-3 py-1.5 text-xs rounded-full font-semibold inline-block bg-amber-50 text-amber-705 border border-amber-200/60">
+                        <span class="px-3 py-1.5 text-xs rounded-full font-semibold inline-block bg-amber-50 text-amber-700 border border-amber-200/60">
                             Status: Pending Visit Verification
                         </span>
 
@@ -643,7 +643,7 @@
 
                     <div class="flex justify-between items-center py-2">
                         <span class="text-muted-foreground">Total Sales Orders</span>
-                        <span class="font-bold text-[#111827] bg-primary text-primary-foreground hover:bg-primary/90/30 px-2 py-0.5 rounded-full text-xs">
+                        <span class="font-bold text-brand-ink bg-primary/30 px-2 py-0.5 rounded-full text-xs">
                             {{ $seller->metrics->total_orders ?? '0' }}
                         </span>
                     </div>

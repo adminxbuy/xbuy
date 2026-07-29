@@ -99,7 +99,7 @@
                         class="px-4 py-2.5 border border-border text-muted-foreground hover:bg-muted rounded-lg text-xs font-semibold transition-all">
                     <span x-text="previewMode ? 'Edit Form' : 'Preview Notice'"></span>
                 </button>
-                <button type="submit" class="bg-primary text-primary-foreground hover:bg-primary/90 hover:bg-primary/90 hover:text-primary-foreground font-medium px-6 py-2.5 rounded-lg text-xs transition-all shadow-sm flex items-center gap-1.5">
+                <button type="submit" class="bg-primary text-primary-foreground hover:bg-primary/90 hover:text-primary-foreground font-medium px-6 py-2.5 rounded-lg text-xs transition-all shadow-sm flex items-center gap-1.5">
                     <i data-lucide="send" class="w-4 h-4"></i>
                     <span>Send Dispatch</span>
                 </button>
@@ -112,7 +112,7 @@
         <div class="bg-card border border-border rounded-xl p-6 shadow-sm min-h-[400px] flex flex-col">
             <div class="border-b border-border pb-3 mb-4 flex items-center justify-between">
                 <h4 class="font-bold text-foreground text-sm">Live Dispatch Preview</h4>
-                <span class="text-[10px] bg-amber-50 text-amber-705 border border-amber-200/60 font-bold px-2 py-0.5 rounded-full">Preview</span>
+                <span class="text-[10px] bg-amber-50 text-amber-700 border border-amber-200/60 font-bold px-2 py-0.5 rounded-full">Preview</span>
             </div>
 
             <!-- Empty State Preview -->

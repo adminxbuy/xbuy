@@ -40,7 +40,7 @@
             </div>
         </div>
         <a href="{{ route('admin.accounts.create') }}"
-           class="px-4 py-2.5 bg-primary text-primary-foreground hover:bg-primary/90 hover:bg-[#e6c22f] text-foreground rounded-lg text-xs font-medium flex items-center gap-1.5 transition-all shadow-sm">
+           class="px-4 py-2.5 bg-primary text-primary-foreground hover:bg-primary/90 rounded-lg text-xs font-medium flex items-center gap-1.5 transition-all shadow-sm">
             <i data-lucide="user-plus" class="w-3.5 h-3.5"></i>
             Add Staff
         </a>
@@ -115,11 +115,11 @@
             <table class="w-full text-sm">
                 <thead>
                     <tr class="border-b border-border bg-muted">
-                        <th class="text-left px-5 py-3 text-xs font-black text-muted-foreground uppercase tracking-widerr">Staff Member</th>
-                        <th class="text-left px-4 py-3 text-xs font-black text-muted-foreground uppercase tracking-widerr">Role</th>
-                        <th class="text-left px-4 py-3 text-xs font-black text-muted-foreground uppercase tracking-widerr">Access</th>
-                        <th class="text-left px-4 py-3 text-xs font-black text-muted-foreground uppercase tracking-widerr">Joined</th>
-                        <th class="text-right px-5 py-3 text-xs font-black text-muted-foreground uppercase tracking-widerr">Actions</th>
+                        <th class="text-left px-5 py-3 text-xs font-black text-muted-foreground uppercase tracking-wider">Staff Member</th>
+                        <th class="text-left px-4 py-3 text-xs font-black text-muted-foreground uppercase tracking-wider">Role</th>
+                        <th class="text-left px-4 py-3 text-xs font-black text-muted-foreground uppercase tracking-wider">Access</th>
+                        <th class="text-left px-4 py-3 text-xs font-black text-muted-foreground uppercase tracking-wider">Joined</th>
+                        <th class="text-right px-5 py-3 text-xs font-black text-muted-foreground uppercase tracking-wider">Actions</th>
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-border">
@@ -167,7 +167,7 @@
                                         <p class="text-xs font-bold text-foreground flex items-center gap-1.5">
                                             {{ $admin->name }}
                                             @if($admin->id === Auth::id())
-                                                <span class="text-[9px] bg-amber-50 text-amber-705 border border-amber-200/60 px-1.5 py-0.5 rounded-full font-bold">You</span>
+                                                <span class="text-[9px] bg-amber-50 text-amber-700 border border-amber-200/60 px-1.5 py-0.5 rounded-full font-bold">You</span>
                                             @endif
                                         </p>
                                         <p class="text-[10px] text-muted-foreground">{{ $admin->email }}</p>

@@ -250,7 +250,7 @@
                                 <label class="flex items-center space-x-2 py-1 cursor-pointer">
                                     <input type="checkbox" name="category_ids[]" value="{{ $cat->id }}"
                                         :checked="form.category_ids.includes({{ $cat->id }})"
-                                        class="rounded text-[#09090b] focus:ring-ring border-border">
+                                        class="rounded text-foreground focus:ring-ring border-border">
                                     <span class="text-xs font-medium text-foreground">{{ $cat->name }}</span>
                                 </label>
                             @endforeach
@@ -292,9 +292,9 @@
                 <div class="p-6 overflow-y-auto flex-1 bg-muted">
                     <template x-if="libraryImages.length === 0">
                         <div class="text-center py-12 text-muted-foreground">
-                            <i data-lucide="image-off" class="w-10 h-10 mx-auto mb-3" style="opacity: 0.4;"></i>
+                            <i data-lucide="image-off" class="w-10 h-10 mx-auto mb-3 opacity-40"></i>
                             <p class="text-xs font-semibold">No assets found in library</p>
-                            <p class="text-[10px] mt-1" style="opacity: 0.6;">Upload images to public/website_assets/images
+                            <p class="text-[10px] mt-1 opacity-60">Upload images to public/website_assets/images
                                 directory</p>
                         </div>
                     </template>

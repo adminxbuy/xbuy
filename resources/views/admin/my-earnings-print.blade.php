@@ -31,7 +31,7 @@
     <!-- Header Actions -->
     <div class="no-print flex items-center justify-between bg-muted border border-border rounded-xl p-4 mb-6">
         <span class="text-xs text-muted-foreground font-semibold">Ready to save / print as PDF. If the print dialogue did not open, click the button on the right.</span>
-        <button onclick="window.print()" class="bg-primary text-primary-foreground hover:bg-primary/90 hover:bg-primary/90 hover:text-primary-foreground font-bold px-4 py-2 rounded-lg text-xs transition-all">
+        <button onclick="window.print()" class="bg-primary text-primary-foreground hover:bg-primary/90 hover:text-primary-foreground font-bold px-4 py-2 rounded-lg text-xs transition-all">
             Trigger Print Dialog
         </button>
     </div>

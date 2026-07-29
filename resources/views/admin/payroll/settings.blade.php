@@ -74,7 +74,7 @@
 
         <div class="p-4 bg-muted border border-border rounded-xl text-[11px] text-muted-foreground font-semibold space-y-1.5">
             <p class="font-bold text-foreground flex items-center gap-1.5">
-                <i data-lucide="info" class="w-4 h-4 text-[#09090b]"></i>
+                <i data-lucide="info" class="w-4 h-4 text-foreground"></i>
                 Important Notice regarding site parameters:
             </p>
             <p>1. Changing these values does not affect previously finalized / paid monthly payroll statements.</p>
@@ -82,7 +82,7 @@
         </div>
 
         <div class="flex items-center justify-end gap-3 pt-4 border-t border-border">
-            <button type="submit" class="bg-primary text-primary-foreground hover:bg-primary/90 hover:bg-primary/90 hover:text-primary-foreground font-medium px-6 py-2.5 rounded-lg text-xs transition-all shadow-sm flex items-center gap-1.5">
+            <button type="submit" class="bg-primary text-primary-foreground hover:bg-primary/90 hover:text-primary-foreground font-medium px-6 py-2.5 rounded-lg text-xs transition-all shadow-sm flex items-center gap-1.5">
                 <i data-lucide="save" class="w-4 h-4"></i>
                 <span>Save Settings</span>
             </button>

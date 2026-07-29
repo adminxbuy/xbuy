@@ -220,7 +220,7 @@
                                 <span class="text-[9px] text-muted-foreground" x-text="msg.time"></span>
                             </div>
                             <div class="max-w-[75%] rounded-xl px-4 py-2.5 text-sm font-medium shadow-sm border animate-fade-in"
-                                :class="msg.is_admin ? 'bg-primary text-primary-foreground hover:bg-primary/90 text-primary-foreground border-[#ffd747]/25 rounded-tr-none' : 'bg-muted text-foreground border-border/60 rounded-tl-none'">
+                                :class="msg.is_admin ? 'bg-primary text-primary-foreground hover:bg-primary/90 text-primary-foreground border-primary/25 rounded-tr-none' : 'bg-muted text-foreground border-border/60 rounded-tl-none'">
                                 <p class="whitespace-pre-wrap leading-relaxed break-words" x-text="msg.message"></p>
                             </div>
                         </div>

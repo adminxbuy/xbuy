@@ -279,7 +279,7 @@
                                     <h5 class="font-bold text-foreground text-sm">
                                         @if($url !== '#')
                                             <a href="{{ $url }}"
-                                                class="hover:text-[#ffd747] hover:underline flex items-center gap-1">
+                                                class="hover:text-brand-ink hover:underline flex items-center gap-1">
                                                 <span>{{ $alert->title }}</span>
                                                 <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
                                             </a>

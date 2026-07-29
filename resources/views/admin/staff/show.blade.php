@@ -31,9 +31,9 @@
             <p class="text-xs font-semibold text-muted-foreground mt-0.5">{{ $member->staffProfile->designation ?? 'Staff Member' }}</p>
             
             <span class="inline-block mt-3 px-3 py-1 text-[10px] rounded-full font-bold
-                @if($member->status === 'active') bg-emerald-50 text-emerald-705 border border-emerald-200/60
+                @if($member->status === 'active') bg-emerald-50 text-emerald-700 border border-emerald-200/60
                 @elseif($member->status === 'suspended') bg-amber-100 text-amber-800
-                @else bg-rose-50 text-rose-705 border border-rose-200/60 @endif border border-black/5">
+                @else bg-rose-50 text-rose-700 border border-rose-200/60 @endif border border-black/5">
                 {{ ucfirst($member->status) }}
             </span>
 
@@ -56,7 +56,7 @@
             
             <div class="mt-6 flex flex-col gap-2">
                 <a href="{{ route('admin.staff.notice', $member->id) }}" 
-                   class="w-full inline-flex items-center justify-center gap-1.5 bg-primary text-primary-foreground hover:bg-primary/90 hover:bg-primary/90 hover:text-primary-foreground font-bold py-2.5 rounded-xl text-xs transition-all shadow-sm">
+                   class="w-full inline-flex items-center justify-center gap-1.5 bg-primary text-primary-foreground hover:bg-primary/90 hover:text-primary-foreground font-bold py-2.5 rounded-xl text-xs transition-all shadow-sm">
                     <i data-lucide="mail-open" class="w-3.5 h-3.5"></i>
                     <span>Send Notice / Salary Slip</span>
                 </a>
@@ -128,7 +128,7 @@
                             <span class="text-sm font-bold text-foreground block tracking-widest font-mono" x-text="aadhaarMasked ? '•••• •••• ••••' : '{{ $member->staffProfile->aadhaar_number ?? 'Not Provided' }}'"></span>
                         </div>
                         @if($member->staffProfile->aadhaar_number)
-                        <button @click="aadhaarMasked = !aadhaarMasked" class="text-xs font-bold text-[#09090b] hover:text-muted-foreground bg-black/5 hover:bg-black/10 px-3 py-1.5 rounded-lg transition-all">
+                        <button @click="aadhaarMasked = !aadhaarMasked" class="text-xs font-bold text-foreground hover:text-muted-foreground bg-black/5 hover:bg-black/10 px-3 py-1.5 rounded-lg transition-all">
                             <span x-text="aadhaarMasked ? 'Reveal' : 'Hide'"></span>
                         </button>
                         @endif
@@ -141,7 +141,7 @@
                             <span class="text-sm font-bold text-foreground block tracking-widest font-mono" x-text="panMasked ? '•••••• ••••' : '{{ $member->staffProfile->pan_number ?? 'Not Provided' }}'"></span>
                         </div>
                         @if($member->staffProfile->pan_number)
-                        <button @click="panMasked = !panMasked" class="text-xs font-bold text-[#09090b] hover:text-muted-foreground bg-black/5 hover:bg-black/10 px-3 py-1.5 rounded-lg transition-all">
+                        <button @click="panMasked = !panMasked" class="text-xs font-bold text-foreground hover:text-muted-foreground bg-black/5 hover:bg-black/10 px-3 py-1.5 rounded-lg transition-all">
                             <span x-text="panMasked ? 'Reveal' : 'Hide'"></span>
                         </button>
                         @endif
@@ -166,7 +166,7 @@
                             <span class="text-sm font-bold text-foreground block tracking-widest" x-show="bankMasked">•••• •••• ••••</span>
                         </div>
                         @if($member->staffProfile->bank_account_number)
-                        <button @click="bankMasked = !bankMasked" class="text-xs font-bold text-[#09090b] hover:text-muted-foreground bg-black/5 hover:bg-black/10 px-3 py-1.5 rounded-lg transition-all">
+                        <button @click="bankMasked = !bankMasked" class="text-xs font-bold text-foreground hover:text-muted-foreground bg-black/5 hover:bg-black/10 px-3 py-1.5 rounded-lg transition-all">
                             <span x-text="bankMasked ? 'Reveal' : 'Hide'"></span>
                         </button>
                         @endif
@@ -179,7 +179,7 @@
                             <span class="text-sm font-bold text-foreground block tracking-widest" x-text="upiMasked ? '••••••••••' : '{{ $member->staffProfile->upi_id ?? 'Not Provided' }}'"></span>
                         </div>
                         @if($member->staffProfile->upi_id)
-                        <button @click="upiMasked = !upiMasked" class="text-xs font-bold text-[#09090b] hover:text-muted-foreground bg-black/5 hover:bg-black/10 px-3 py-1.5 rounded-lg transition-all">
+                        <button @click="upiMasked = !upiMasked" class="text-xs font-bold text-foreground hover:text-muted-foreground bg-black/5 hover:bg-black/10 px-3 py-1.5 rounded-lg transition-all">
                             <span x-text="upiMasked ? 'Reveal' : 'Hide'"></span>
                         </button>
                         @endif
@@ -209,7 +209,7 @@
             <!-- Month Table -->
             <div class="overflow-hidden border border-border rounded-xl">
                 <table class="w-full text-left text-sm">
-                    <thead class="bg-muted text-xs uppercase tracking-widerr text-muted-foreground font-medium border-b border-border">
+                    <thead class="bg-muted text-xs uppercase tracking-wider text-muted-foreground font-medium border-b border-border">
                         <tr>
                             <th class="px-6 py-3">Month</th>
                             <th class="px-6 py-3">Orders Count</th>
@@ -227,7 +227,7 @@
                             <td class="px-6 py-3.5 text-muted-foreground text-xs">{{ $sum['orders_count'] }} orders</td>
                             <td class="px-6 py-3.5 text-foreground text-xs">₹{{ number_format($sum['gross'], 2) }}</td>
                             <td class="px-6 py-3.5 text-muted-foreground text-xs">₹{{ number_format($sum['expenses'], 2) }}</td>
-                            <td class="px-6 py-3.5 text-[#09090b] font-bold text-xs bg-muted">₹{{ number_format($sum['net'], 2) }}</td>
+                            <td class="px-6 py-3.5 text-foreground font-bold text-xs bg-muted">₹{{ number_format($sum['net'], 2) }}</td>
                             <td class="px-6 py-3.5">
                                 <span class="px-2.5 py-0.5 text-[9px] rounded-full font-bold
                                     @if($sum['status'] === 'paid') bg-green-150 text-green-800
@@ -248,7 +248,7 @@
                             <td colspan="7" class="p-4 border-t border-b border-border">
                                 <div class="overflow-x-auto rounded-lg border border-border shadow-inner bg-card">
                                     <table class="w-full text-left text-xs">
-                                        <thead class="bg-muted text-[9px] uppercase tracking-widerr text-muted-foreground font-medium border-b border-border">
+                                        <thead class="bg-muted text-[9px] uppercase tracking-wider text-muted-foreground font-medium border-b border-border">
                                             <tr>
                                                 <th class="px-4 py-2">Order #</th>
                                                 <th class="px-4 py-2">Date</th>
@@ -268,7 +268,7 @@
                                                 <td class="px-4 py-2.5 font-semibold text-foreground">₹{{ number_format($ord->total_amount, 2) }}</td>
                                                 <td class="px-4 py-2.5 text-muted-foreground">{{ $ord->commission_percent }}%</td>
                                                 <td class="px-4 py-2.5 text-muted-foreground">₹{{ number_format($ord->expenses, 2) }}</td>
-                                                <td class="px-4 py-2.5 font-bold text-[#16a34a] text-right">₹{{ number_format($ord->net, 2) }}</td>
+                                                <td class="px-4 py-2.5 font-bold text-emerald-600 dark:text-emerald-400 text-right">₹{{ number_format($ord->net, 2) }}</td>
                                             </tr>
                                             @endforeach
                                         </tbody>
@@ -323,7 +323,7 @@
                     <div class="flex items-center gap-2 self-end md:self-center">
                         @if($notice->attachment_path)
                         <a href="{{ asset('storage/' . $notice->attachment_path) }}" target="_blank" 
-                           class="inline-flex items-center gap-1 text-xs font-bold bg-primary text-primary-foreground hover:bg-primary/90 hover:bg-primary/90 hover:text-primary-foreground px-3 py-1.5 rounded-lg transition-all shadow-sm">
+                           class="inline-flex items-center gap-1 text-xs font-bold bg-primary text-primary-foreground hover:bg-primary/90 hover:text-primary-foreground px-3 py-1.5 rounded-lg transition-all shadow-sm">
                             <i data-lucide="download" class="w-3.5 h-3.5"></i>
                             <span>View Attachment</span>
                         </a>
@@ -352,7 +352,7 @@
             <div class="relative pl-6 border-l-2 border-border space-y-6">
                 @forelse($logs as $log)
                 <div class="relative">
-                    <span class="absolute -left-[31px] top-1.5 w-2.5 h-2.5 rounded-full bg-primary text-primary-foreground hover:bg-primary/90 border-2 border-card ring-4 ring-[#09090b]/20"></span>
+                    <span class="absolute -left-[31px] top-1.5 w-2.5 h-2.5 rounded-full bg-primary text-primary-foreground hover:bg-primary/90 border-2 border-card ring-4 ring-foreground/20"></span>
                     <span class="text-[10px] text-muted-foreground font-bold block">{{ $log->created_at->format('d M, Y \a\t H:i:s') }}</span>
                     <h5 class="font-bold text-foreground text-xs mt-0.5">{{ ucwords(str_replace('_', ' ', $log->action)) }}</h5>
                     <p class="text-[11px] text-muted-foreground mt-0.5 font-medium">{{ $log->description }}</p>

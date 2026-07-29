@@ -266,7 +266,7 @@
                 Cancel
             </a>
             <button type="submit" 
-                    class="px-6 py-3 bg-primary text-primary-foreground hover:bg-primary/90 hover:bg-[#e6c22f] text-foreground text-xs font-black rounded-lg flex items-center gap-1.5 transition-all shadow-sm">
+                    class="px-6 py-3 bg-primary text-primary-foreground hover:bg-primary/90 text-xs font-black rounded-lg flex items-center gap-1.5 transition-all shadow-sm">
                 <i data-lucide="save" class="w-4 h-4"></i>
                 Save Changes
             </button>

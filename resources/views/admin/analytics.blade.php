@@ -172,11 +172,11 @@
                 <h3 class="font-bold text-foreground text-sm">Top 10 Sellers by GMV</h3>
                 <p class="text-[11px] text-muted-foreground">Ranked by total sales volume in this period</p>
             </div>
-            <i data-lucide="award" class="w-5 h-5 text-[#09090b]"></i>
+            <i data-lucide="award" class="w-5 h-5 text-foreground"></i>
         </div>
         <div class="overflow-x-auto">
             <table class="w-full text-sm">
-                <thead class="bg-muted text-xs uppercase text-muted-foreground tracking-widerr font-medium border-b border-border">
+                <thead class="bg-muted text-xs uppercase text-muted-foreground tracking-wider font-medium border-b border-border">
                     <tr>
                         <th class="px-5 py-3 text-left">Rank</th>
                         <th class="px-5 py-3 text-left">Shop Name</th>
@@ -215,7 +215,7 @@
         </div>
         <div class="overflow-x-auto">
             <table class="w-full text-sm">
-                <thead class="bg-muted text-xs uppercase text-muted-foreground tracking-widerr font-medium border-b border-border">
+                <thead class="bg-muted text-xs uppercase text-muted-foreground tracking-wider font-medium border-b border-border">
                     <tr>
                         <th class="px-5 py-3 text-left">Rank</th>
                         <th class="px-5 py-3 text-left">Shop Name</th>

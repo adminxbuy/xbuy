@@ -5,7 +5,7 @@
 
 @section('header_actions')
     <a href="{{ route('admin.my-earnings.print') }}?month_year={{ request('month_year') }}" target="_blank"
-       class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-primary text-primary-foreground hover:bg-primary/90 hover:bg-primary/90 hover:text-primary-foreground rounded-lg text-xs font-medium transition-all shadow-sm">
+       class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-primary text-primary-foreground hover:bg-primary/90 hover:text-primary-foreground rounded-lg text-xs font-medium transition-all shadow-sm">
         <i data-lucide="printer" class="w-3.5 h-3.5"></i>
         <span>Download report (PDF)</span>
     </a>
@@ -73,7 +73,7 @@
 
     <div class="overflow-x-auto">
         <table class="w-full text-left text-sm">
-            <thead class="bg-muted text-xs uppercase tracking-widerr text-muted-foreground font-medium border-b border-border">
+            <thead class="bg-muted text-xs uppercase tracking-wider text-muted-foreground font-medium border-b border-border">
                 <tr>
                     <th class="px-6 py-4">Order #</th>
                     <th class="px-6 py-4">Sale Value</th>
@@ -104,7 +104,7 @@
                     <td class="px-6 py-4 text-muted-foreground text-xs">
                         ₹{{ number_format($order->expenses, 2) }}
                     </td>
-                    <td class="px-6 py-4 text-[#16a34a] font-bold text-xs bg-emerald-500/5">
+                    <td class="px-6 py-4 text-emerald-700 dark:text-emerald-300 font-bold text-xs bg-emerald-500/5">
                         ₹{{ number_format($order->net, 2) }}
                     </td>
                     <td class="px-6 py-4 text-right text-muted-foreground text-xs">
@@ -139,7 +139,7 @@
     <div class="p-6">
         @if($salarySlips->isEmpty())
             <div class="text-center py-6 text-muted-foreground text-xs font-semibold">
-                <i data-lucide="file-text" class="w-8 h-8 mx-auto mb-2 text-muted-foreground" style="margin-left: auto; margin-right: auto;"></i>
+                <i data-lucide="file-text" class="w-8 h-8 mx-auto mb-2 text-muted-foreground"></i>
                 <p>No salary slips generated yet. Slips will appear here once disbursed by admin.</p>
             </div>
         @else
@@ -157,7 +157,7 @@
                     </div>
                     @if($slip->pdf_attachment)
                     <a href="{{ asset('storage/' . $slip->pdf_attachment) }}" target="_blank"
-                       class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-primary text-primary-foreground hover:bg-primary/90 hover:bg-primary/90 hover:text-primary-foreground rounded-lg text-xs font-bold transition-all shadow-sm">
+                       class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-primary text-primary-foreground hover:bg-primary/90 hover:text-primary-foreground rounded-lg text-xs font-bold transition-all shadow-sm">
                         <i data-lucide="download" class="w-3.5 h-3.5"></i>
                         <span>Download PDF</span>
                     </a>
