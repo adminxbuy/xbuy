@@ -437,8 +437,38 @@
 .sidebar-collapsed nav a,
 .sidebar-collapsed .h-14 a {
     justify-content: center;
+    padding-left: 0;
+    padding-right: 0;
+}
+.sidebar-collapsed nav a {
+    width: 2.5rem;
+    height: 2.5rem;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 0.5rem;
+}
+.sidebar-collapsed nav a i {
+    margin: 0;
+}
+.sidebar-collapsed nav {
     padding-left: 0.5rem;
     padding-right: 0.5rem;
+}
+.sidebar-collapsed .h-14 {
+    justify-content: center;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+}
+/* Bottom user info in collapsed mode */
+.sidebar-collapsed .px-3.py-3 {
+    padding: 0.5rem;
+    justify-content: center;
+}
+.sidebar-collapsed .px-3.py-3 > div {
+    justify-content: center;
+}
+.sidebar-collapsed .px-3.py-3 form {
+    display: none;
 }
 .logo-collapsed {
     display: none;

@@ -56,9 +56,9 @@
  @keydown.escape="searchOpen = false">
 
  <!-- Sidebar -->
- <aside class="w-full md:w-64 md:h-screen flex-shrink-0 flex flex-col transition-all duration-300 border-b md:border-b-0 md:border-r"
+ <aside class="w-full md:h-screen flex-shrink-0 flex flex-col transition-all duration-300 border-b md:border-b-0 md:border-r"
  style="background: var(--sidebar); border-color: var(--sidebar-border); color: var(--sidebar-foreground);"
- :class="sidebarOpen ? (sidebarMode === 'default' ? 'block md:flex md:w-64' : 'block md:flex md:w-20 sidebar-collapsed') : 'hidden md:flex md:w-0 md:overflow-hidden md:border-r-0'">
+ :class="sidebarOpen ? (sidebarMode === 'default' ? 'block md:flex md:w-64' : 'block md:flex md:w-16 sidebar-collapsed') : 'hidden md:flex md:w-0 md:overflow-hidden md:border-r-0'">
   <!-- Logo -->
  <div class="h-14 flex items-center justify-between px-4 border-b" style="border-color: var(--sidebar-border);">
  <a href="{{ route('admin.dashboard') }}" class="flex items-center space-x-2.5">
