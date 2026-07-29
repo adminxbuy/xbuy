@@ -401,6 +401,17 @@
 }
 
 /* Sidebar scrollbar: hidden until hover */
+
+/* Block transitions on initial page load so sidebar doesn't animate in */
+.no-transition,
+.no-transition * {
+    transition: none !important;
+}
+/* Sidebar width transition — only animates width on toggle, not on page load */
+aside:not(.no-transition) {
+    transition: width 200ms ease;
+}
+
 .sidebar-nav {
     scrollbar-width: thin;
     scrollbar-color: transparent transparent;
