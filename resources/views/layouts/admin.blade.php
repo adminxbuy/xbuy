@@ -482,7 +482,7 @@
 
  <!-- Main Content -->
  <main class="flex-1 overflow-y-auto p-6" style="background: var(--background);">
- <div class="mx-auto w-full transition-all duration-300" :class="layoutMode === 'full' ? 'max-w-[1600px]' : 'max-w-4xl'">
+ <div class="mx-auto w-full" :class="layoutMode === 'full' ? 'max-w-[1600px]' : 'max-w-4xl'">
  @if(trim(View::yieldContent('page_title', 'Overview')) !== '')
  <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-6 gap-4">
  <div class="flex flex-col">
