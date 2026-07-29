@@ -61,7 +61,7 @@
  <aside class="w-full md:h-screen flex-shrink-0 flex flex-col border-b md:border-b-0 md:border-r no-transition"
  style="background: var(--sidebar); border-color: var(--sidebar-border); color: var(--sidebar-foreground);"
  :class="sidebarOpen ? (sidebarMode === 'default' ? 'block md:flex md:w-64' : 'block md:flex md:w-16 sidebar-collapsed') : 'hidden md:flex md:w-0 md:overflow-hidden md:border-r-0'"
- x-init="setTimeout(() => $el.classList.remove('no-transition'), 50)">>
+ x-init="setTimeout(() => $el.classList.remove('no-transition'), 50)">
   <!-- Logo -->
  <div class="h-14 flex items-center justify-between px-4 border-b" style="border-color: var(--sidebar-border);">
  <a href="{{ route('admin.dashboard') }}" class="flex items-center space-x-2.5">
