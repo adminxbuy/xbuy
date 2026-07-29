@@ -53,7 +53,9 @@
  }"  :class="{ 'dark': isDark, 'scale-xs': themeScale === 'xs', 'scale-lg': themeScale === 'lg' }"
  :style="'--radius: ' + (themeRadius === 'none' ? '0px' : (themeRadius === 'sm' ? '0.25rem' : (themeRadius === 'md' ? '0.375rem' : (themeRadius === 'lg' ? '0.5rem' : '0.75rem'))))"
  :data-theme="themePreset"
- @keydown.escape="searchOpen = false">
+ @keydown.escape="searchOpen = false"
+ @keydown.window.prevent.meta.k="searchOpen = !searchOpen"
+ @keydown.window.prevent.ctrl.k="searchOpen = !searchOpen">
 
  <!-- Sidebar -->
  <aside class="w-full md:h-screen flex-shrink-0 flex flex-col transition-all duration-300 border-b md:border-b-0 md:border-r"
