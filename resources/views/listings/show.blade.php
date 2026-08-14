@@ -110,35 +110,16 @@
         <!-- Right Column: Details and Checkout Actions (Span 5) -->
         <div class="lg:col-span-5 flex flex-col justify-between">
             <div class="space-y-6">
-                <!-- Title & Tags with Wishlist -->
-                <div class="flex items-start justify-between gap-6">
-                    <div>
-                        <span class="text-xs font-bold text-zinc-400 uppercase tracking-widest">{{ $listing->brand ?? 'NVIDIA' }}</span>
-                        <h1 class="text-2xl font-extrabold text-zinc-900 tracking-tight leading-snug mt-1">{{ $listing->title }}</h1>
-                        <div class="flex items-center gap-2 text-xs font-semibold text-zinc-400 mt-2">
-                            <span class="capitalize">{{ $listing->category }}</span>
-                            <span>|</span>
-                            <span>Grade {{ $listing->grade }}</span>
-                            <span>|</span>
-                            <span class="text-indigo-600 hover:underline cursor-pointer">{{ $listing->brand ?? 'NVIDIA' }}</span>
-                        </div>
-                    </div>
-
-                    <!-- Heart / Likes Wishlist Column -->
-                    <div class="flex flex-col items-center shrink-0">
-                        <button @click="toggleLike" 
-                                class="w-12 h-12 rounded-full border border-zinc-200 hover:border-zinc-300 flex items-center justify-center transition-all bg-white shadow-sm text-zinc-650"
-                                :class="isLiked ? 'text-red-500 border-red-200' : 'text-zinc-600'">
-                            <template x-if="!isLiked">
-                                <i data-lucide="heart" class="w-5 h-5"></i>
-                            </template>
-                            <template x-if="isLiked">
-                                <i data-lucide="heart" class="w-5 h-5 text-red-500 fill-red-500"></i>
-                            </template>
-                        </button>
-                        <span class="text-[10px] font-bold text-zinc-500 mt-1 select-none">
-                            <span x-text="likesCount"></span> Likes
-                        </span>
+                <!-- Title & Tags -->
+                <div>
+                    <span class="text-xs font-bold text-zinc-400 uppercase tracking-widest">{{ $listing->brand ?? 'NVIDIA' }}</span>
+                    <h1 class="text-2xl font-extrabold text-zinc-900 tracking-tight leading-snug mt-1">{{ $listing->title }}</h1>
+                    <div class="flex items-center gap-2 text-xs font-semibold text-zinc-400 mt-2">
+                        <span class="capitalize">{{ $listing->category }}</span>
+                        <span>|</span>
+                        <span>Grade {{ $listing->grade }}</span>
+                        <span>|</span>
+                        <span class="text-indigo-600 hover:underline cursor-pointer">{{ $listing->brand ?? 'NVIDIA' }}</span>
                     </div>
                 </div>
 
