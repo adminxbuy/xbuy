@@ -335,23 +335,32 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::get('/listings', function (\Illuminate\Http\Request $request) {
-    $query = \App\Models\Listing::active()->with(['images', 'seller']);
-    
-    if ($request->has('search') && !empty($request->input('search'))) {
-        $search = $request->input('search');
-        $query->where(function($q) use ($search) {
-            $q->where('title', 'like', "%{$search}%")
-              ->orWhere('description', 'like', "%{$search}%")
-              ->orWhere('brand', 'like', "%{$search}%");
-        });
-    }
+    try {
+        $query = \App\Models\Listing::active()->with(['images', 'seller']);
+        
+        if ($request->has('search') && !empty($request->input('search'))) {
+            $search = $request->input('search');
+            $query->where(function($q) use ($search) {
+                $q->where('title', 'like', "%{$search}%")
+                  ->orWhere('description', 'like', "%{$search}%")
+                  ->orWhere('brand', 'like', "%{$search}%");
+            });
+        }
 
-    if ($request->has('category') && !empty($request->input('category'))) {
-        $query->where('category', $request->input('category'));
-    }
+        if ($request->has('category') && !empty($request->input('category'))) {
+            $query->where('category', $request->input('category'));
+        }
 
-    $listings = $query->latest()->paginate(12);
-    return view('listings.index', compact('listings'));
+        $listings = $query->latest()->paginate(12);
+        return view('listings.index', compact('listings'));
+    } catch (\Throwable $e) {
+        return response()->json([
+            'error' => $e->getMessage(),
+            'file' => $e->getFile(),
+            'line' => $e->getLine(),
+            'trace' => $e->getTraceAsString()
+        ], 500);
+    }
 })->name('listings.index');
 
 Route::get('/listings/{slug}', function (string $slug) {
