@@ -360,8 +360,17 @@ Route::get('/listings/{slug}', function (string $slug) {
 })->name('listings.show');
 
 Route::get('/run-seeds', function () {
-    \Illuminate\Support\Facades\Artisan::call('migrate:fresh', ['--seed' => true]);
-    return "Database migrated and seeded successfully!";
+    try {
+        \Illuminate\Support\Facades\Artisan::call('migrate:fresh', ['--seed' => true]);
+        return "Database migrated and seeded successfully!";
+    } catch (\Throwable $e) {
+        return response()->json([
+            'error' => $e->getMessage(),
+            'file' => $e->getFile(),
+            'line' => $e->getLine(),
+            'trace' => $e->getTraceAsString()
+        ], 500);
+    }
 });
 
 
