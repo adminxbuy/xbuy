@@ -348,6 +348,40 @@ class DatabaseSeeder extends Seeder
             $listings[] = $listing;
         }
 
+        // Create a specific, searchable RTX 4090 listing for testing
+        $rtx4090 = Listing::create([
+            'seller_id' => $sellerProfiles[0]->id,
+            'title' => 'NVIDIA GeForce RTX 4090 Founders Edition Graphics Card',
+            'slug' => 'nvidia-geforce-rtx-4090-founders-edition',
+            'description' => 'Flagship NVIDIA GeForce RTX 4090 Founders Edition GPU. 24GB GDDR6X VRAM. Tested and fully operational in pristine condition.',
+            'category' => 'gpu',
+            'grade' => 'A',
+            'serial_number' => 'SN-RTX4090FE-9999',
+            'brand' => 'NVIDIA',
+            'model_name' => 'RTX 4090 FE',
+            'price' => 150000,
+            'original_price' => 180000,
+            'manufacturer_warranty_status' => 'active',
+            'document_status' => 'full',
+            'listing_status' => 'active',
+            'shipping_type' => 'prepaid',
+            'shipping_charges' => 250.00,
+            'pickup_city' => 'Bangalore',
+            'pickup_state' => 'Karnataka',
+            'pickup_pincode' => '560001',
+            'views_count' => 150,
+        ]);
+
+        ListingImage::create([
+            'listing_id' => $rtx4090->id,
+            'image_url' => 'https://images.unsplash.com/photo-1591488320449-011701bb6704?auto=format&fit=crop&q=80&w=400',
+            'is_primary' => true,
+            'sort_order' => 0,
+        ]);
+
+        $listings[] = $rtx4090;
+
+
         // 6. Create 10 Orders with associated Escrow records
         $orderStatuses = ['payment_received', 'confirmed', 'delivered', 'testing_period', 'completed', 'disputed'];
         $soldListings = array_filter($listings, fn($l) => $l->listing_status === 'sold');
