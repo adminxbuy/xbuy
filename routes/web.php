@@ -371,7 +371,10 @@ Route::get('/listings/{slug}', function (string $slug) {
 Route::get('/run-seeds', function () {
     try {
         \Illuminate\Support\Facades\Artisan::call('migrate:fresh', ['--seed' => true]);
-        return "Database migrated and seeded successfully!";
+        \Illuminate\Support\Facades\Artisan::call('view:clear');
+        \Illuminate\Support\Facades\Artisan::call('cache:clear');
+        \Illuminate\Support\Facades\Artisan::call('config:clear');
+        return "Database migrated, seeded, and view cache cleared successfully!";
     } catch (\Throwable $e) {
         return response()->json([
             'error' => $e->getMessage(),
@@ -379,6 +382,18 @@ Route::get('/run-seeds', function () {
             'line' => $e->getLine(),
             'trace' => $e->getTraceAsString()
         ], 500);
+    }
+});
+
+Route::get('/clear', function () {
+    try {
+        \Illuminate\Support\Facades\Artisan::call('view:clear');
+        \Illuminate\Support\Facades\Artisan::call('cache:clear');
+        \Illuminate\Support\Facades\Artisan::call('config:clear');
+        \Illuminate\Support\Facades\Artisan::call('route:clear');
+        return "All caches (view, cache, config, route) cleared successfully!";
+    } catch (\Throwable $e) {
+        return "Error clearing cache: " . $e->getMessage();
     }
 });
 
