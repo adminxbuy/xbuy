@@ -334,10 +334,31 @@ Route::middleware('auth')->group(function () {
     Route::get('/dashboard/orders', [\App\Http\Controllers\UserDashboardController::class, 'showOrders'])->name('dashboard.orders');
 });
 
+Route::get('/listings', function (\Illuminate\Http\Request $request) {
+    $query = \App\Models\Listing::active()->with(['images', 'seller']);
+    
+    if ($request->has('search') && !empty($request->input('search'))) {
+        $search = $request->input('search');
+        $query->where(function($q) use ($search) {
+            $q->where('title', 'like', "%{$search}%")
+              ->orWhere('description', 'like', "%{$search}%")
+              ->orWhere('brand', 'like', "%{$search}%");
+        });
+    }
+
+    if ($request->has('category') && !empty($request->input('category'))) {
+        $query->where('category', $request->input('category'));
+    }
+
+    $listings = $query->latest()->paginate(12);
+    return view('listings.index', compact('listings'));
+})->name('listings.index');
+
 Route::get('/listings/{slug}', function (string $slug) {
     $listing = \App\Models\Listing::with(['images', 'seller.user', 'specs'])->where('slug', $slug)->firstOrFail();
     return view('listings.show', compact('listing'));
 })->name('listings.show');
+
 
 
 
