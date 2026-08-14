@@ -105,21 +105,156 @@
                     <span>More</span>
                 </button>
             </div>
+
+            <!-- Details & Description Sections -->
+            <div class="border-t border-zinc-200 mt-8 pt-8 space-y-8 pl-2">
+                <!-- Details Section -->
+                <div>
+                    <h2 class="text-xl font-bold text-zinc-900 mb-6">Details</h2>
+                    <div class="space-y-4 max-w-lg">
+                        <!-- Condition -->
+                        <div class="flex items-center text-sm">
+                            <span class="w-32 text-zinc-400 font-bold flex items-center gap-1">
+                                Condition <i data-lucide="help-circle" class="w-3.5 h-3.5 cursor-pointer"></i>
+                            </span>
+                            <span class="text-zinc-800 font-bold">Grade {{ $listing->grade }}</span>
+                        </div>
+                        
+                        <!-- Brand -->
+                        <div class="flex items-center text-sm">
+                            <span class="w-32 text-zinc-400 font-bold">Brand</span>
+                            <a href="#" class="text-indigo-600 font-bold hover:underline underline decoration-zinc-300">{{ $listing->brand ?? 'NVIDIA' }}</a>
+                        </div>
+                        
+                        <!-- Category -->
+                        <div class="flex items-start text-sm">
+                            <span class="w-32 text-zinc-400 font-bold shrink-0">Category</span>
+                            <div class="flex flex-col gap-1">
+                                <div class="flex items-center gap-2 text-indigo-600 font-bold">
+                                    <a href="#" class="hover:underline underline decoration-zinc-300 capitalize">{{ $listing->category }}</a>
+                                    <i data-lucide="chevron-right" class="w-3.5 h-3.5 text-zinc-400"></i>
+                                    <a href="#" class="hover:underline underline decoration-zinc-300 capitalize">{{ $listing->brand ?? 'NVIDIA' }}</a>
+                                </div>
+                                <a href="#" class="text-indigo-650 font-bold hover:underline underline decoration-zinc-300 text-xs">{{ $listing->title }}</a>
+                            </div>
+                        </div>
+
+                        <!-- Model -->
+                        <div class="flex items-center text-sm">
+                            <span class="w-32 text-zinc-400 font-bold flex items-center gap-1">
+                                Model <i data-lucide="help-circle" class="w-3.5 h-3.5 cursor-pointer"></i>
+                            </span>
+                            <span class="text-zinc-800 font-bold">{{ $listing->model_name ?? 'RTX 4090 FE' }}</span>
+                        </div>
+
+                        <!-- Posted Date -->
+                        <div class="flex items-center text-sm">
+                            <span class="w-32 text-zinc-400 font-bold">Posted</span>
+                            <span class="text-zinc-800 font-bold">{{ $listing->created_at->format('d/m/Y') }}</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Description Section -->
+                <div class="border-t border-zinc-150 pt-8">
+                    <h2 class="text-xl font-bold text-zinc-900 mb-4">Description</h2>
+                    <p class="text-zinc-700 text-sm leading-relaxed whitespace-pre-line">{{ $listing->description }}</p>
+                </div>
+
+                <!-- Seller Profile Section -->
+                <div class="border-t border-zinc-150 pt-8 space-y-6">
+                    <div class="flex items-center gap-4">
+                        <div class="w-16 h-16 rounded-full overflow-hidden border border-zinc-200 shadow-sm shrink-0">
+                            <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&q=80&w=100" class="w-full h-full object-cover">
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-bold text-zinc-900 hover:text-indigo-600 cursor-pointer">{{ $listing->seller ? $listing->seller->shop_name : 'Gadget Zone' }}</h3>
+                            <span class="text-xs text-zinc-400 block mt-0.5">@&#123;&#123; Str::slug($listing->seller ? $listing->seller->shop_name : 'Gadget Zone') &#125;&#125;</span>
+                            
+                            <!-- Rating and Listed Statistics -->
+                            <div class="flex items-center gap-2 mt-1.5 text-xs text-zinc-500 font-semibold">
+                                <span class="text-amber-500 flex items-center">
+                                    &#9733;&#9733;&#9733;&#9733;&#9733;
+                                </span>
+                                <span>{{ $listing->seller->metrics->star_rating ?? 4.5 }} Rating ({{ $listing->seller->metrics->total_ratings ?? 1 }} reviews)</span>
+                                <span>|</span>
+                                <span>{{ $listing->seller ? $listing->seller->listings()->count() : 5 }} listed</span>
+                                <span>|</span>
+                                <span>{{ $listing->seller->metrics->completed_orders ?? 4 }} sales</span>
+                            </div>
+
+                            <!-- Verified Badge -->
+                            <div class="flex items-center gap-1 mt-2 text-xs font-bold text-blue-600">
+                                <i data-lucide="shield-check" class="w-4 h-4 text-blue-600"></i>
+                                <span>Profile verified</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Bundle Discounts Panel -->
+                    <div class="space-y-3">
+                        <h4 class="text-sm font-bold text-zinc-900">Bundle discounts from {{ $listing->seller ? $listing->seller->shop_name : 'Gadget Zone' }}</h4>
+                        <div class="bg-purple-50 border border-purple-150 rounded-xl p-4 space-y-4 shadow-xs">
+                            <p class="text-xs text-purple-750 font-semibold">Add items from this seller to your cart to unlock discounts—plus potential savings on shipping!</p>
+                            
+                            <!-- Bundle progress timeline -->
+                            <div class="relative pt-1">
+                                <div class="h-1.5 bg-zinc-200 rounded-full w-full relative">
+                                    <div class="absolute left-0 top-1/2 -translate-y-1/2 w-4 h-4 bg-indigo-600 rounded-full border-2 border-white shadow-sm"></div>
+                                </div>
+                                <div class="flex justify-between text-[10px] text-zinc-500 font-bold mt-2">
+                                    <div class="text-left">
+                                        <span>1 item</span>
+                                        <span class="block text-zinc-400">0% off</span>
+                                    </div>
+                                    <div class="text-center">
+                                        <span>2 items</span>
+                                        <span class="block text-indigo-600">5% off</span>
+                                    </div>
+                                    <div class="text-right">
+                                        <span>3+ items</span>
+                                        <span class="block text-indigo-600">10% off</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <!-- Right Column: Details and Checkout Actions (Span 5) -->
         <div class="lg:col-span-5 flex flex-col justify-between">
             <div class="space-y-6">
-                <!-- Title & Tags -->
-                <div>
-                    <span class="text-xs font-bold text-zinc-400 uppercase tracking-widest">{{ $listing->brand ?? 'NVIDIA' }}</span>
-                    <h1 class="text-2xl font-extrabold text-zinc-900 tracking-tight leading-snug mt-1">{{ $listing->title }}</h1>
-                    <div class="flex items-center gap-2 text-xs font-semibold text-zinc-400 mt-2">
-                        <span class="capitalize">{{ $listing->category }}</span>
-                        <span>|</span>
-                        <span>Grade {{ $listing->grade }}</span>
-                        <span>|</span>
-                        <span class="text-indigo-600 hover:underline cursor-pointer">{{ $listing->brand ?? 'NVIDIA' }}</span>
+                <!-- Title & Tags with Wishlist -->
+                <div class="flex items-start justify-between gap-6">
+                    <div>
+                        <span class="text-xs font-bold text-zinc-400 uppercase tracking-widest">{{ $listing->brand ?? 'NVIDIA' }}</span>
+                        <h1 class="text-2xl font-extrabold text-zinc-900 tracking-tight leading-snug mt-1">{{ $listing->title }}</h1>
+                        <div class="flex items-center gap-2 text-xs font-semibold text-zinc-400 mt-2">
+                            <span class="capitalize">{{ $listing->category }}</span>
+                            <span>|</span>
+                            <span>Grade {{ $listing->grade }}</span>
+                            <span>|</span>
+                            <span class="text-indigo-600 hover:underline cursor-pointer">{{ $listing->brand ?? 'NVIDIA' }}</span>
+                        </div>
+                    </div>
+
+                    <!-- Heart / Likes Wishlist Column -->
+                    <div class="flex flex-col items-center shrink-0">
+                        <button @click="toggleLike" 
+                                class="w-12 h-12 rounded-full border border-zinc-200 hover:border-zinc-300 flex items-center justify-center transition-all bg-white shadow-sm text-zinc-650"
+                                :class="isLiked ? 'text-red-500 border-red-200' : 'text-zinc-600'">
+                            <template x-if="!isLiked">
+                                <i data-lucide="heart" class="w-5 h-5"></i>
+                            </template>
+                            <template x-if="isLiked">
+                                <i data-lucide="heart" class="w-5 h-5 text-red-500 fill-red-500"></i>
+                            </template>
+                        </button>
+                        <span class="text-[10px] font-bold text-zinc-500 mt-1 select-none">
+                            <span x-text="likesCount"></span> Likes
+                        </span>
                     </div>
                 </div>
 
@@ -185,6 +320,47 @@
                             <strong class="text-zinc-900 block font-bold">Buyer Protection</strong>
                             <span class="text-zinc-500 block mt-0.5">Receive your item as described, or get your money back. <a href="#" class="text-indigo-650 font-bold hover:underline">Learn more</a></span>
                         </div>
+                    </div>
+                </div>
+
+                <!-- Delivery, Payments & Sell Actions (Right Column Stack) -->
+                <div class="border-t border-zinc-150 pt-6 space-y-6">
+                    <!-- Delivery -->
+                    <div>
+                        <h4 class="text-base font-extrabold text-zinc-900 mb-3">Delivery</h4>
+                        <div class="space-y-2 text-xs font-semibold text-zinc-500">
+                            <div class="flex justify-between">
+                                <span>From</span>
+                                <span class="text-zinc-800 font-bold">{{ $listing->pickup_city }}, {{ $listing->pickup_state }}</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="flex items-center gap-1">Shipping <i data-lucide="help-circle" class="w-3.5 h-3.5 cursor-pointer"></i></span>
+                                <span class="text-zinc-800 font-bold">₹{{ number_format($listing->shipping_charges) }}</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Payment Methods -->
+                    <div class="border-t border-zinc-150 pt-6">
+                        <h4 class="text-base font-extrabold text-zinc-900 mb-3">Payment</h4>
+                        <!-- Payments Card Grid -->
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-2.5 py-1 bg-zinc-100 rounded text-[10px] font-extrabold text-zinc-600 uppercase tracking-widest border border-zinc-200">Visa</span>
+                            <span class="px-2.5 py-1 bg-zinc-100 rounded text-[10px] font-extrabold text-zinc-600 uppercase tracking-widest border border-zinc-200">MC</span>
+                            <span class="px-2.5 py-1 bg-zinc-100 rounded text-[10px] font-extrabold text-zinc-600 uppercase tracking-widest border border-zinc-200">Amex</span>
+                            <span class="px-2.5 py-1 bg-zinc-100 rounded text-[10px] font-extrabold text-zinc-650 italic border border-zinc-200">PayPal</span>
+                            <span class="px-2.5 py-1 bg-zinc-100 rounded text-[10px] font-extrabold text-blue-600 uppercase tracking-widest border border-zinc-200">UPI</span>
+                        </div>
+                        <div class="text-[10px] text-zinc-400 font-semibold">
+                            Pay in 4 payments for eligible items with <strong>PayPal</strong>
+                        </div>
+                    </div>
+
+                    <!-- Sell Yours CTA -->
+                    <div class="border-t border-zinc-150 pt-6">
+                        <button class="w-full h-11 bg-white border border-indigo-600 hover:bg-indigo-50 text-indigo-600 text-xs font-bold rounded-lg transition-all shadow-xs">
+                            Have a similar item? Sell yours
+                        </button>
                     </div>
                 </div>
             </div>
