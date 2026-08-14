@@ -84,14 +84,9 @@
             </div>
 
             <!-- Gallery Toolbar -->
-            <div class="flex items-center gap-8 pl-[16.666%] mt-5 text-sm font-bold text-zinc-500">
+            <div class="flex items-center gap-8 pl-2 mt-5 text-sm font-bold text-zinc-500">
                 <button @click="toggleLike" class="flex items-center gap-2 hover:text-indigo-600 transition-colors">
-                    <template x-if="!isLiked">
-                        <i data-lucide="heart" class="w-5 h-5"></i>
-                    </template>
-                    <template x-if="isLiked">
-                        <i data-lucide="heart" class="w-5 h-5 text-red-500 fill-red-500"></i>
-                    </template>
+                    <i data-lucide="heart" class="w-5 h-5 transition-colors" :class="isLiked ? 'text-red-500 fill-red-500' : ''"></i>
                     <span>Like (<span x-text="likesCount"></span>)</span>
                 </button>
 
