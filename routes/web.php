@@ -359,6 +359,12 @@ Route::get('/listings/{slug}', function (string $slug) {
     return view('listings.show', compact('listing'));
 })->name('listings.show');
 
+Route::get('/run-seeds', function () {
+    \Illuminate\Support\Facades\Artisan::call('migrate:fresh', ['--seed' => true]);
+    return "Database migrated and seeded successfully!";
+});
+
+
 
 
 
