@@ -221,35 +221,16 @@
         <!-- Right Column: Details and Checkout Actions (Span 5) -->
         <div class="lg:col-span-5 flex flex-col justify-between">
             <div class="space-y-6">
-                <!-- Title & Tags with Wishlist -->
-                <div class="flex items-start justify-between gap-6">
-                    <div>
-                        <span class="text-xs font-bold text-zinc-400 uppercase tracking-widest">{{ $listing->brand ?? 'NVIDIA' }}</span>
-                        <h1 class="text-2xl font-extrabold text-zinc-900 tracking-tight leading-snug mt-1">{{ $listing->title }}</h1>
-                        <div class="flex items-center gap-2 text-xs font-semibold text-zinc-400 mt-2">
-                            <span class="capitalize">{{ $listing->category }}</span>
-                            <span>|</span>
-                            <span>Grade {{ $listing->grade }}</span>
-                            <span>|</span>
-                            <span class="text-indigo-600 hover:underline cursor-pointer">{{ $listing->brand ?? 'NVIDIA' }}</span>
-                        </div>
-                    </div>
-
-                    <!-- Heart / Likes Wishlist Column -->
-                    <div class="flex flex-col items-center shrink-0">
-                        <button @click="toggleLike" 
-                                class="w-12 h-12 rounded-full border border-zinc-200 hover:border-zinc-300 flex items-center justify-center transition-all bg-white shadow-sm text-zinc-650"
-                                :class="isLiked ? 'text-red-500 border-red-200' : 'text-zinc-600'">
-                            <template x-if="!isLiked">
-                                <i data-lucide="heart" class="w-5 h-5"></i>
-                            </template>
-                            <template x-if="isLiked">
-                                <i data-lucide="heart" class="w-5 h-5 text-red-500 fill-red-500"></i>
-                            </template>
-                        </button>
-                        <span class="text-[10px] font-bold text-zinc-500 mt-1 select-none">
-                            <span x-text="likesCount"></span> Likes
-                        </span>
+                <!-- Title & Tags -->
+                <div>
+                    <span class="text-xs font-bold text-zinc-400 uppercase tracking-widest">{{ $listing->brand ?? 'NVIDIA' }}</span>
+                    <h1 class="text-2xl font-extrabold text-zinc-900 tracking-tight leading-snug mt-1">{{ $listing->title }}</h1>
+                    <div class="flex items-center gap-2 text-xs font-semibold text-zinc-400 mt-2">
+                        <span class="capitalize">{{ $listing->category }}</span>
+                        <span>|</span>
+                        <span>Grade {{ $listing->grade }}</span>
+                        <span>|</span>
+                        <span class="text-indigo-650 hover:underline cursor-pointer">{{ $listing->brand ?? 'NVIDIA' }}</span>
                     </div>
                 </div>
 
@@ -339,12 +320,25 @@
                     <div class="border-t border-zinc-150 pt-6">
                         <h4 class="text-base font-extrabold text-zinc-900 mb-3">Payment</h4>
                         <!-- Payments Card Grid -->
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="px-2.5 py-1 bg-zinc-100 rounded text-[10px] font-extrabold text-zinc-600 uppercase tracking-widest border border-zinc-200">Visa</span>
-                            <span class="px-2.5 py-1 bg-zinc-100 rounded text-[10px] font-extrabold text-zinc-600 uppercase tracking-widest border border-zinc-200">MC</span>
-                            <span class="px-2.5 py-1 bg-zinc-100 rounded text-[10px] font-extrabold text-zinc-600 uppercase tracking-widest border border-zinc-200">Amex</span>
-                            <span class="px-2.5 py-1 bg-zinc-100 rounded text-[10px] font-extrabold text-zinc-650 italic border border-zinc-200">PayPal</span>
-                            <span class="px-2.5 py-1 bg-zinc-100 rounded text-[10px] font-extrabold text-blue-600 uppercase tracking-widest border border-zinc-200">UPI</span>
+                        <div class="flex flex-wrap items-center gap-2 mb-4">
+                            <div class="h-6 w-11 bg-white border border-zinc-200 rounded flex items-center justify-center p-1 shadow-xs">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg" class="max-h-full max-w-full object-contain">
+                            </div>
+                            <div class="h-6 w-11 bg-white border border-zinc-200 rounded flex items-center justify-center p-1 shadow-xs">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" class="max-h-full max-w-full object-contain">
+                            </div>
+                            <div class="h-6 w-11 bg-white border border-zinc-200 rounded flex items-center justify-center p-1 shadow-xs">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/American_Express_logo_%282018%29.svg" class="max-h-full max-w-full object-contain">
+                            </div>
+                            <div class="h-6 w-11 bg-white border border-zinc-200 rounded flex items-center justify-center p-1 shadow-xs">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/8/85/Discover_Card_logo.svg" class="max-h-full max-w-full object-contain">
+                            </div>
+                            <div class="h-6 w-11 bg-white border border-zinc-200 rounded flex items-center justify-center p-1 shadow-xs">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg" class="max-h-full max-w-full object-contain">
+                            </div>
+                            <div class="h-6 w-11 bg-white border border-zinc-200 rounded flex items-center justify-center p-1 shadow-xs">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/e/e1/UPI-Logo-vector.svg" class="max-h-full max-w-full object-contain">
+                            </div>
                         </div>
                         <div class="text-[10px] text-zinc-400 font-semibold">
                             Pay in 4 payments for eligible items with <strong>PayPal</strong>
