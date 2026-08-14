@@ -3,7 +3,7 @@
 @section('title', $listing->seo_title)
 
 @section('content')
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+<div class="max-w-[90%] mx-auto px-4 sm:px-6 lg:px-8 py-10">
     <!-- Breadcrumbs -->
     <nav class="mb-6 flex items-center space-x-2 text-xs font-semibold text-zinc-400 uppercase tracking-wider">
         <a href="/" class="hover:text-zinc-700 transition-colors">Home</a>
