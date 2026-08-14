@@ -112,14 +112,14 @@
             <div class="space-y-6">
                 <!-- Title & Tags -->
                 <div>
-                    <span class="text-xs font-bold text-zinc-400 uppercase tracking-widest">{{ $listing->brand ? $listing->brand->name : 'L.L. Bean' }}</span>
+                    <span class="text-xs font-bold text-zinc-400 uppercase tracking-widest">{{ $listing->brand ?? 'NVIDIA' }}</span>
                     <h1 class="text-2xl font-extrabold text-zinc-900 tracking-tight leading-snug mt-1">{{ $listing->title }}</h1>
                     <div class="flex items-center gap-2 text-xs font-semibold text-zinc-400 mt-2">
                         <span class="capitalize">{{ $listing->category }}</span>
                         <span>|</span>
                         <span>Grade {{ $listing->grade }}</span>
                         <span>|</span>
-                        <span class="text-indigo-600 hover:underline cursor-pointer">{{ $listing->brand ? $listing->brand->name : 'L.L. Bean' }}</span>
+                        <span class="text-indigo-600 hover:underline cursor-pointer">{{ $listing->brand ?? 'NVIDIA' }}</span>
                     </div>
                 </div>
 

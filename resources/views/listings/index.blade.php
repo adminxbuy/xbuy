@@ -39,7 +39,7 @@
                         <!-- Card Body -->
                         <div class="p-4 space-y-2">
                             <span class="text-[10px] font-bold text-zinc-400 uppercase tracking-wider block">
-                                {{ $listing->brand ? $listing->brand->name : 'NVIDIA' }}
+                                {{ $listing->brand ?? 'NVIDIA' }}
                             </span>
                             <h3 class="text-sm font-bold text-zinc-900 group-hover:text-indigo-600 transition-colors line-clamp-2 leading-snug">
                                 {{ $listing->title }}
