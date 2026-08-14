@@ -1,0 +1,197 @@
+@extends('layouts.app')
+
+@section('title', $listing->seo_title)
+
+@section('content')
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    <!-- Breadcrumbs -->
+    <nav class="mb-6 flex items-center space-x-2 text-xs font-semibold text-zinc-400 uppercase tracking-wider">
+        <a href="/" class="hover:text-zinc-700 transition-colors">Home</a>
+        <i data-lucide="chevron-right" class="w-3.5 h-3.5 text-zinc-300"></i>
+        <a href="/listings" class="hover:text-zinc-700 transition-colors">Listings</a>
+        <i data-lucide="chevron-right" class="w-3.5 h-3.5 text-zinc-300"></i>
+        <span class="text-zinc-600">{{ $listing->title }}</span>
+    </nav>
+
+    <!-- Main Grid -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 bg-white p-6 md:p-8 rounded-2xl border border-zinc-200/50 shadow-sm"
+         x-data="{
+             images: [
+                 @foreach($listing->images as $img)
+                     '{{ $img->image_url }}',
+                 @endforeach
+                 @if($listing->images->count() < 5)
+                     @for($i = $listing->images->count(); $i < 5; $i++)
+                         '{{ $listing->primary_image_url ?? 'https://images.unsplash.com/photo-1591488320449-011701bb6704?auto=format&fit=crop&q=80&w=400' }}',
+                     @endfor
+                 @endif
+             ],
+             activeIndex: 0,
+             likesCount: 0,
+             isLiked: false,
+             nextImage() {
+                 this.activeIndex = (this.activeIndex + 1) % this.images.length;
+             },
+             prevImage() {
+                 this.activeIndex = (this.activeIndex - 1 + this.images.length) % this.images.length;
+             },
+             toggleLike() {
+                 this.isLiked = !this.isLiked;
+                 this.likesCount += this.isLiked ? 1 : -1;
+             },
+             copyShareLink() {
+                 navigator.clipboard.writeText(window.location.href);
+                 alert('Listing link copied to clipboard!');
+             }
+         }">
+        
+        <!-- Left Column: Interactive Image Gallery (Span 7) -->
+        <div class="lg:col-span-7 flex flex-col">
+            <div class="grid grid-cols-12 gap-4">
+                <!-- Vertical Thumbnails -->
+                <div class="col-span-2 flex flex-col gap-3 max-h-[480px] overflow-y-auto scrollbar-none items-center">
+                    <template x-for="(img, idx) in images" :key="idx">
+                        <div class="w-full aspect-square rounded-lg border-2 overflow-hidden cursor-pointer transition-all duration-200 hover:border-zinc-400"
+                             :class="activeIndex === idx ? 'border-indigo-600' : 'border-transparent bg-zinc-50'"
+                             @click="activeIndex = idx">
+                            <img :src="img" 
+                                 :style="idx > 0 ? 'filter: hue-rotate(' + (idx * 45) + 'deg);' : ''" 
+                                 class="w-full h-full object-cover">
+                        </div>
+                    </template>
+                    <div class="text-zinc-400 hover:text-zinc-600 cursor-pointer pt-1 transition-colors">
+                        <i data-lucide="chevron-down" class="w-5 h-5"></i>
+                    </div>
+                </div>
+
+                <!-- Main Preview Image -->
+                <div class="col-span-10 relative bg-zinc-50 rounded-xl border border-zinc-200/60 aspect-[4/3] flex items-center justify-center overflow-hidden">
+                    <!-- Left Arrow -->
+                    <button @click="prevImage" class="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/90 border border-zinc-200 hover:border-zinc-300 rounded-full flex items-center justify-center shadow-sm text-zinc-700 hover:text-indigo-600 transition-all z-10">
+                        <i data-lucide="chevron-left" class="w-5 h-5"></i>
+                    </button>
+
+                    <!-- Active Image -->
+                    <img :src="images[activeIndex]" 
+                         :style="activeIndex > 0 ? 'filter: hue-rotate(' + (activeIndex * 45) + 'deg);' : ''" 
+                         class="max-w-full max-h-full object-contain select-none transition-all duration-300">
+
+                    <!-- Right Arrow -->
+                    <button @click="nextImage" class="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/90 border border-zinc-200 hover:border-zinc-300 rounded-full flex items-center justify-center shadow-sm text-zinc-700 hover:text-indigo-600 transition-all z-10">
+                        <i data-lucide="chevron-right" class="w-5 h-5"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Gallery Toolbar -->
+            <div class="flex items-center gap-8 pl-[16.666%] mt-5 text-sm font-bold text-zinc-500">
+                <button @click="toggleLike" class="flex items-center gap-2 hover:text-indigo-600 transition-colors">
+                    <template x-if="!isLiked">
+                        <i data-lucide="heart" class="w-5 h-5"></i>
+                    </template>
+                    <template x-if="isLiked">
+                        <i data-lucide="heart" class="w-5 h-5 text-red-500 fill-red-500"></i>
+                    </template>
+                    <span>Like (<span x-text="likesCount"></span>)</span>
+                </button>
+
+                <button @click="copyShareLink" class="flex items-center gap-2 hover:text-indigo-600 transition-colors">
+                    <i data-lucide="share-2" class="w-5 h-5"></i>
+                    <span>Share</span>
+                </button>
+
+                <button class="flex items-center gap-2 hover:text-indigo-600 transition-colors">
+                    <i data-lucide="more-horizontal" class="w-5 h-5"></i>
+                    <span>More</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Right Column: Details and Checkout Actions (Span 5) -->
+        <div class="lg:col-span-5 flex flex-col justify-between">
+            <div class="space-y-6">
+                <!-- Title & Tags -->
+                <div>
+                    <span class="text-xs font-bold text-zinc-400 uppercase tracking-widest">{{ $listing->brand ? $listing->brand->name : 'L.L. Bean' }}</span>
+                    <h1 class="text-2xl font-extrabold text-zinc-900 tracking-tight leading-snug mt-1">{{ $listing->title }}</h1>
+                    <div class="flex items-center gap-2 text-xs font-semibold text-zinc-400 mt-2">
+                        <span class="capitalize">{{ $listing->category }}</span>
+                        <span>|</span>
+                        <span>Grade {{ $listing->grade }}</span>
+                        <span>|</span>
+                        <span class="text-indigo-600 hover:underline cursor-pointer">{{ $listing->brand ? $listing->brand->name : 'L.L. Bean' }}</span>
+                    </div>
+                </div>
+
+                <!-- Pricing & protection -->
+                <div class="border-t border-b border-zinc-100 py-4">
+                    <div class="flex items-baseline justify-between">
+                        <span class="text-3xl font-extrabold text-zinc-900">₹{{ number_format($listing->price) }}</span>
+                        <span class="text-xs font-semibold text-zinc-400 flex items-center gap-1">
+                            <i data-lucide="heart" class="w-3.5 h-3.5"></i> 0 Likes
+                        </span>
+                    </div>
+                    <div class="flex items-center gap-1.5 text-xs font-bold text-indigo-600 mt-1">
+                        <span>+₹85 Buyer Protection fee</span>
+                        <i data-lucide="info" class="w-3.5 h-3.5 cursor-pointer"></i>
+                    </div>
+                </div>
+
+                <!-- Purple discount banner -->
+                <div class="bg-purple-50 border border-purple-200 rounded-xl p-3.5 flex items-center justify-between text-xs text-purple-750 font-semibold shadow-sm">
+                    <span>Up to <strong class="text-purple-900 font-extrabold">10% off</strong> when you bundle items from this seller</span>
+                </div>
+
+                <!-- CTA Action Buttons -->
+                <div class="space-y-3">
+                    <div class="grid grid-cols-2 gap-3">
+                        <button class="h-11 bg-zinc-50 border border-zinc-300 hover:bg-zinc-100 text-zinc-800 text-xs font-bold rounded-lg transition-all">
+                            Make offer
+                        </button>
+                        <button class="h-11 bg-zinc-50 border border-zinc-300 hover:bg-zinc-100 text-zinc-800 text-xs font-bold rounded-lg transition-all flex items-center justify-center gap-2">
+                            <i data-lucide="shopping-cart" class="w-4 h-4"></i>
+                            Add to cart
+                        </button>
+                    </div>
+
+                    <button class="w-full h-12 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-bold rounded-lg shadow-sm transition-all">
+                        Buy now
+                    </button>
+
+                    <button class="w-full h-12 bg-zinc-900 hover:bg-black text-white text-sm font-bold rounded-lg flex items-center justify-center gap-1 transition-all shadow-sm">
+                        <span class="text-blue-400 italic">PayPal</span> Checkout
+                    </button>
+
+                    <div class="flex items-center justify-center gap-1 text-[10px] text-zinc-400 font-semibold mt-1">
+                        <span>Pay in 4 payments for eligible items with <strong>PayPal</strong></span>
+                        <i data-lucide="info" class="w-3.5 h-3.5 cursor-pointer"></i>
+                    </div>
+                </div>
+
+                <div class="text-[11px] text-zinc-400 leading-normal leading-relaxed">
+                    * By continuing to checkout, you agree to the <a href="#" class="underline hover:text-zinc-650">X-Buy Privacy Policy</a> and <a href="#" class="underline hover:text-zinc-650">Terms of Service</a>
+                </div>
+
+                <!-- Trust badges -->
+                <div class="space-y-3 pt-2">
+                    <div class="flex gap-3 bg-amber-50 border border-amber-250 p-3.5 rounded-xl text-xs">
+                        <i data-lucide="shopping-bag" class="w-5 h-5 text-amber-500 shrink-0 mt-0.5"></i>
+                        <div>
+                            <strong class="text-zinc-900 block font-bold">1 person has this item in their cart</strong>
+                            <span class="text-zinc-500 block mt-0.5">There's only one. Grab it before someone else does.</span>
+                        </div>
+                    </div>
+
+                    <div class="flex gap-3 bg-zinc-50 border border-zinc-200 p-3.5 rounded-xl text-xs">
+                        <i data-lucide="shield-check" class="w-5 h-5 text-green-600 shrink-0 mt-0.5"></i>
+                        <div>
+                            <strong class="text-zinc-900 block font-bold">Buyer Protection</strong>
+                            <span class="text-zinc-500 block mt-0.5">Receive your item as described, or get your money back. <a href="#" class="text-indigo-650 font-bold hover:underline">Learn more</a></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@endsection

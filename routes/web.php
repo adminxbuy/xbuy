@@ -334,5 +334,11 @@ Route::middleware('auth')->group(function () {
     Route::get('/dashboard/orders', [\App\Http\Controllers\UserDashboardController::class, 'showOrders'])->name('dashboard.orders');
 });
 
+Route::get('/listings/{slug}', function (string $slug) {
+    $listing = \App\Models\Listing::with(['images', 'seller.user', 'specs'])->where('slug', $slug)->firstOrFail();
+    return view('listings.show', compact('listing'));
+})->name('listings.show');
+
+
 
 
