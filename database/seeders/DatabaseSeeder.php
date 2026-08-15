@@ -301,38 +301,52 @@ class DatabaseSeeder extends Seeder
         // 5. Create only 1 Dummy Listing
         $listings = [];
 
-        // Create a specific, searchable RTX 4090 listing for testing
-        $rtx4090 = Listing::create([
+        // Create a specific, searchable INNO3D listing for testing
+        $inno3d = Listing::create([
             'seller_id' => $sellerProfiles[0]->id,
-            'title' => 'NVIDIA GeForce RTX 4090 Founders Edition Graphics Card',
-            'slug' => 'nvidia-geforce-rtx-4090-founders-edition',
-            'description' => 'Flagship NVIDIA GeForce RTX 4090 Founders Edition GPU. 24GB GDDR6X VRAM. Tested and fully operational in pristine condition.',
+            'title' => 'INNO3D GeForce GTX 1650 Super Twin X2 OC 4GB Graphics Card',
+            'slug' => 'inno3d-geforce-gtx-1650-super-twin-x2-oc-4gb',
+            'description' => 'Refurbished INNO3D GeForce GTX 1650 Super Twin X2 OC Graphics Card. Features 4GB GDDR6 VRAM, dual-fan cooling design, and compact form factor. Perfect entry-level GPU for 1080p gaming and budget builds. Fully tested, cleaned, and verified.',
             'category' => 'gpu',
-            'grade' => 'A',
-            'serial_number' => 'SN-RTX4090FE-9999',
-            'brand' => 'NVIDIA',
-            'model_name' => 'RTX 4090 FE',
-            'price' => 150000,
-            'original_price' => 180000,
-            'manufacturer_warranty_status' => 'active',
-            'document_status' => 'full',
+            'grade' => 'B',
+            'serial_number' => 'GTX1650S-4G-TWINX2',
+            'brand' => 'Inno3D',
+            'model_name' => 'GTX 1650 SUPER TWIN X2',
+            'price' => 10000,
+            'original_price' => 14000,
+            'manufacturer_warranty_status' => 'expired',
+            'document_status' => 'none',
             'listing_status' => 'active',
             'shipping_type' => 'prepaid',
-            'shipping_charges' => 250.00,
-            'pickup_city' => 'Bangalore',
-            'pickup_state' => 'Karnataka',
-            'pickup_pincode' => '560001',
-            'views_count' => 150,
+            'shipping_charges' => 85.00,
+            'pickup_city' => 'Delhi',
+            'pickup_state' => 'Delhi',
+            'pickup_pincode' => '110001',
+            'views_count' => 120,
         ]);
 
         ListingImage::create([
-            'listing_id' => $rtx4090->id,
-            'image_url' => 'https://images.unsplash.com/photo-1591488320449-011701bb6704?auto=format&fit=crop&q=80&w=400',
+            'listing_id' => $inno3d->id,
+            'image_url' => '/website_assets/images/inno3d_1.jpg',
             'is_primary' => true,
             'sort_order' => 0,
         ]);
 
-        $listings[] = $rtx4090;
+        ListingImage::create([
+            'listing_id' => $inno3d->id,
+            'image_url' => '/website_assets/images/inno3d_2.png',
+            'is_primary' => false,
+            'sort_order' => 1,
+        ]);
+
+        ListingImage::create([
+            'listing_id' => $inno3d->id,
+            'image_url' => '/website_assets/images/inno3d_3.png',
+            'is_primary' => false,
+            'sort_order' => 2,
+        ]);
+
+        $listings[] = $inno3d;
 
 
         // 6. Create 10 Orders with associated Escrow records

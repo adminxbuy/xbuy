@@ -137,11 +137,11 @@
  </div>
  <form action="{{ route('admin.content.upload') }}" method="POST" enctype="multipart/form-data" id="upload-form">
  @csrf
- <input type="hidden" name="type" :value="tab">
+ <input type="hidden" name="type" x-model="tab" value="images">
  <label class="inline-flex items-center gap-2 h-9 px-4 rounded-lg text-xs font-medium bg-primary text-primary-foreground hover:bg-primary/90 cursor-pointer transition-colors">
  <i data-lucide="upload" class="w-3.5 h-3.5"></i>
  <span>Upload</span>
- <input type="file" name="file" required class="hidden" onchange="this.closest('form').submit()">
+ <input type="file" name="files[]" multiple required class="hidden" @change="$el.form.querySelector('input[name=type]').value = tab; $el.form.submit()">
  </label>
  </form>
  </div>

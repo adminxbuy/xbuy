@@ -95,9 +95,13 @@ class ContentManagerController extends Controller
      */
     public function upload(Request $request)
     {
+        $hasMultiple = $request->hasFile('files');
+
         $validator = Validator::make($request->all(), [
             'type' => 'required|in:images,pdfs,videos',
-            'file' => 'required|file|max:20480', // Max 20MB
+            'file' => $hasMultiple ? 'nullable' : 'required|file|max:20480',
+            'files' => $hasMultiple ? 'required|array' : 'nullable',
+            'files.*' => 'file|max:20480',
         ]);
 
         if ($validator->fails()) {
@@ -105,35 +109,46 @@ class ContentManagerController extends Controller
         }
 
         $type = $request->input('type');
-        $file = $request->file('file');
+        $uploadedFiles = $hasMultiple ? $request->file('files') : [$request->file('file')];
+        $successCount = 0;
 
-        // Validate extension by type
-        $ext = strtolower($file->getClientOriginalExtension());
-        if ($type === 'images' && !in_array($ext, ['jpg', 'jpeg', 'png', 'gif', 'svg', 'webp', 'avif', 'ico'])) {
-            return back()->with('error', 'Invalid image file extension.');
-        } elseif ($type === 'pdfs' && $ext !== 'pdf') {
-            return back()->with('error', 'Only PDF files are allowed.');
-        } elseif ($type === 'videos' && !in_array($ext, ['mp4', 'webm', 'ogg', 'mov'])) {
-            return back()->with('error', 'Invalid video file extension.');
+        foreach ($uploadedFiles as $file) {
+            if (!$file) continue;
+
+            // Validate extension by type
+            $ext = strtolower($file->getClientOriginalExtension());
+            if ($type === 'images' && !in_array($ext, ['jpg', 'jpeg', 'png', 'gif', 'svg', 'webp', 'avif', 'ico'])) {
+                return back()->with('error', 'Invalid image file extension in ' . $file->getClientOriginalName());
+            } elseif ($type === 'pdfs' && $ext !== 'pdf') {
+                return back()->with('error', 'Only PDF files are allowed. Invalid: ' . $file->getClientOriginalName());
+            } elseif ($type === 'videos' && !in_array($ext, ['mp4', 'webm', 'ogg', 'mov'])) {
+                return back()->with('error', 'Invalid video file extension in ' . $file->getClientOriginalName());
+            }
+
+            $dir = public_path('website_assets/' . $type);
+            if (!File::exists($dir)) {
+                File::makeDirectory($dir, 0755, true, true);
+            }
+
+            $originalName = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
+            $cleanName = preg_replace('/[^A-Za-z0-9_\-]/', '_', $originalName);
+            $filename = $cleanName . '_' . time() . '.' . $ext;
+
+            try {
+                $file->move($dir, $filename);
+                $successCount++;
+            } catch (\Exception $e) {
+                try {
+                    copy($file->getRealPath(), $dir . '/' . $filename);
+                    @unlink($file->getRealPath());
+                    $successCount++;
+                } catch (\Exception $ex) {
+                    // Skip if failed
+                }
+            }
         }
 
-        $dir = public_path('website_assets/' . $type);
-        if (!File::exists($dir)) {
-            File::makeDirectory($dir, 0755, true, true);
-        }
-
-        $originalName = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
-        $cleanName = preg_replace('/[^A-Za-z0-9_\-]/', '_', $originalName);
-        $filename = $cleanName . '_' . time() . '.' . $ext;
-
-        try {
-            $file->move($dir, $filename);
-        } catch (\Exception $e) {
-            copy($file->getRealPath(), $dir . '/' . $filename);
-            @unlink($file->getRealPath());
-        }
-
-        return back()->with('success', 'File uploaded successfully.');
+        return back()->with('success', $successCount . ' file(s) uploaded successfully.');
     }
 
     /**
