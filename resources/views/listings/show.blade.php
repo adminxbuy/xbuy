@@ -252,15 +252,10 @@
 
                 <!-- CTA Action Buttons -->
                 <div class="space-y-3">
-                    <div class="grid grid-cols-2 gap-3">
-                        <button class="h-11 bg-zinc-50 border border-zinc-300 hover:bg-zinc-100 text-zinc-800 text-xs font-bold rounded-lg transition-all">
-                            Make offer
-                        </button>
-                        <button class="h-11 bg-zinc-50 border border-zinc-300 hover:bg-zinc-100 text-zinc-800 text-xs font-bold rounded-lg transition-all flex items-center justify-center gap-2">
-                            <i data-lucide="shopping-cart" class="w-4 h-4"></i>
-                            Add to cart
-                        </button>
-                    </div>
+                    <button class="w-full h-11 bg-zinc-50 border border-zinc-300 hover:bg-zinc-100 text-zinc-800 text-xs font-bold rounded-lg transition-all flex items-center justify-center gap-2">
+                        <i data-lucide="shopping-cart" class="w-4 h-4"></i>
+                        Add to cart
+                    </button>
 
                     <button class="w-full h-12 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-bold rounded-lg shadow-sm transition-all">
                         Buy now
