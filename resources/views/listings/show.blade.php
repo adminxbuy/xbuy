@@ -102,7 +102,7 @@
             </div>
 
             <!-- Details & Description Sections -->
-            <div class="border-t border-zinc-200 mt-8 pt-8 space-y-8 pl-2">
+            <div class="mt-8 pt-8 space-y-8 pl-2">
                 <!-- Details Section -->
                 <div>
                     <h2 class="text-xl font-bold text-zinc-900 mb-6">Details</h2>
@@ -151,13 +151,13 @@
                 </div>
 
                 <!-- Description Section -->
-                <div class="border-t border-zinc-150 pt-8">
+                <div class="pt-8">
                     <h2 class="text-xl font-bold text-zinc-900 mb-4">Description</h2>
                     <p class="text-zinc-700 text-sm leading-relaxed whitespace-pre-line">{{ $listing->description }}</p>
                 </div>
 
                 <!-- Seller Profile Section -->
-                <div class="border-t border-zinc-150 pt-8 space-y-6">
+                <div class="pt-8 space-y-6">
                     <div class="flex items-center gap-4">
                         <div class="w-16 h-16 rounded-full overflow-hidden border border-zinc-200 shadow-sm shrink-0">
                             <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&q=80&w=100" class="w-full h-full object-cover">
@@ -295,7 +295,7 @@
                 </div>
 
                 <!-- Delivery, Payments & Sell Actions (Right Column Stack) -->
-                <div class="border-t border-zinc-150 pt-6 space-y-6">
+                <div class="pt-6 space-y-6">
                     <!-- Delivery -->
                     <div>
                         <h4 class="text-base font-extrabold text-zinc-900 mb-3">Delivery</h4>
@@ -312,7 +312,7 @@
                     </div>
 
                     <!-- Payment Methods -->
-                    <div class="border-t border-zinc-150 pt-6">
+                    <div class="pt-6">
                         <h4 class="text-base font-extrabold text-zinc-900 mb-3">Payment</h4>
                         <!-- Payments Card Grid -->
                         <div class="flex flex-wrap items-center gap-2 mb-4">
@@ -341,7 +341,7 @@
                     </div>
 
                     <!-- Sell Yours CTA -->
-                    <div class="border-t border-zinc-150 pt-6">
+                    <div class="pt-6">
                         <button class="w-full h-11 bg-white border border-indigo-600 hover:bg-indigo-50 text-indigo-600 text-xs font-bold rounded-lg transition-all shadow-xs">
                             Have a similar item? Sell yours
                         </button>
