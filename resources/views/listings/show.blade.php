@@ -224,7 +224,7 @@
                 <!-- Title & Tags -->
                 <div>
                     <span class="text-xs font-bold text-zinc-400 uppercase tracking-widest">{{ $listing->brand ?? 'NVIDIA' }}</span>
-                    <h1 class="text-2xl font-extrabold text-zinc-900 tracking-tight leading-snug mt-1">{{ $listing->title }}</h1>
+                    <h1 class="text-2xl font-bold text-zinc-900 tracking-tight leading-snug mt-1">{{ $listing->title }}</h1>
                     <div class="flex items-center gap-2 text-xs font-semibold text-zinc-400 mt-2">
                         <span class="capitalize">{{ $listing->category }}</span>
                         <span>|</span>

@@ -23,7 +23,7 @@
  color: #18181b;
  }
  h1, h2, h3, h4, h5, h6 {
- font-family: 'Cabinet Grotesk', sans-serif;
+ font-family: 'Satoshi', sans-serif;
  }
  .scrollbar-none {
  -ms-overflow-style: none;
