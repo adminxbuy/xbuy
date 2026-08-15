@@ -298,55 +298,8 @@ class DatabaseSeeder extends Seeder
             ]);
         }
 
-        // 5. Create 20 Listings (mixed active/sold/pending)
+        // 5. Create only 1 Dummy Listing
         $listings = [];
-        for ($i = 1; $i <= 20; $i++) {
-            $cat = $categories[array_rand($categories)];
-            $brand = $brands[array_rand($brands)];
-            $grade = ['A', 'B', 'C'][array_rand(['A', 'B', 'C'])];
-            $price = rand(15, 120) * 500;
-            $seller = $sellerProfiles[array_rand($sellerProfiles)];
-
-            $status = 'active';
-            if ($i == 1 || $i == 2) {
-                $status = 'pending_approval';
-            } elseif ($i >= 15) {
-                $status = 'sold';
-            }
-
-            $listing = Listing::create([
-                'seller_id' => $seller->id,
-                'title' => "Refurbished {$brand} " . strtoupper($cat) . " Grade {$grade}",
-                'slug' => Str::slug("Refurbished {$brand} " . strtoupper($cat) . " Grade {$grade}") . '-' . Str::lower(Str::random(5)),
-                'description' => "Fully tested and clean component in working condition. Ideal for gaming and workstation builds. Includes serial code verification.",
-                'category' => $cat,
-                'grade' => $grade,
-                'serial_number' => 'SN-' . strtoupper(Str::random(12)),
-                'brand' => $brand,
-                'model_name' => 'Model-' . rand(100, 999),
-                'price' => $price,
-                'original_price' => $price * 1.4,
-                'manufacturer_warranty_status' => rand(0, 1) ? 'expired' : 'none',
-                'document_status' => 'full',
-                'listing_status' => $status,
-                'shipping_type' => 'prepaid',
-                'shipping_charges' => 150.00,
-                'pickup_city' => 'Bangalore',
-                'pickup_state' => 'Karnataka',
-                'pickup_pincode' => '560001',
-                'views_count' => rand(10, 150),
-            ]);
-
-            // Add Listing image
-            ListingImage::create([
-                'listing_id' => $listing->id,
-                'image_url' => "https://images.unsplash.com/photo-1591488320449-011701bb6704?auto=format&fit=crop&q=80&w=400",
-                'is_primary' => true,
-                'sort_order' => 0,
-            ]);
-
-            $listings[] = $listing;
-        }
 
         // Create a specific, searchable RTX 4090 listing for testing
         $rtx4090 = Listing::create([
