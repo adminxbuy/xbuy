@@ -258,7 +258,7 @@
                         Buy now
                     </button>
 
-                    <button class="w-full h-12 bg-blue-600 hover:bg-blue-700 text-white text-sm font-bold rounded-lg flex items-center justify-center gap-1 transition-all shadow-sm">
+                    <button class="w-full h-12 bg-zinc-900 hover:bg-black text-white text-sm font-bold rounded-lg flex items-center justify-center gap-1 transition-all shadow-sm">
                         <span class="font-extrabold tracking-wide">Razorpay</span> Checkout
                     </button>
 
