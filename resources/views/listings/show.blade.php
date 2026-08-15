@@ -258,13 +258,13 @@
                         Buy now
                     </button>
 
-                    <button class="w-full h-12 bg-zinc-900 hover:bg-black text-white text-sm font-bold rounded-lg flex items-center justify-center gap-1 transition-all shadow-sm">
-                        <span class="text-blue-400 italic">PayPal</span> Checkout
+                    <button class="w-full h-12 bg-blue-600 hover:bg-blue-700 text-white text-sm font-bold rounded-lg flex items-center justify-center gap-1 transition-all shadow-sm">
+                        <span class="font-extrabold tracking-wide">Razorpay</span> Checkout
                     </button>
 
                     <div class="flex items-center justify-center gap-1 text-[10px] text-zinc-400 font-semibold mt-1">
-                        <span>Pay in 4 payments for eligible items with <strong>PayPal</strong></span>
-                        <i data-lucide="info" class="w-3.5 h-3.5 cursor-pointer"></i>
+                        <span>Secured by <strong>Razorpay</strong> (UPI, Cards, Netbanking)</span>
+                        <i data-lucide="shield-check" class="w-3.5 h-3.5 text-green-600"></i>
                     </div>
                 </div>
 
@@ -326,14 +326,14 @@
                                 <img src="https://upload.wikimedia.org/wikipedia/commons/8/85/Discover_Card_logo.svg" class="max-h-full max-w-full object-contain">
                             </div>
                             <div class="h-6 w-11 bg-white border border-zinc-200 rounded flex items-center justify-center p-1 shadow-xs">
-                                <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg" class="max-h-full max-w-full object-contain">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/8/89/Razorpay_logo.svg" class="max-h-full max-w-full object-contain">
                             </div>
                             <div class="h-6 w-11 bg-white border border-zinc-200 rounded flex items-center justify-center p-1 shadow-xs">
                                 <img src="https://upload.wikimedia.org/wikipedia/commons/e/e1/UPI-Logo-vector.svg" class="max-h-full max-w-full object-contain">
                             </div>
                         </div>
                         <div class="text-[10px] text-zinc-400 font-semibold">
-                            Pay in 4 payments for eligible items with <strong>PayPal</strong>
+                            Secured by <strong>Razorpay</strong>
                         </div>
                     </div>
 
