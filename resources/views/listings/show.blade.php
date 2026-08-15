@@ -223,25 +223,26 @@
             <div class="space-y-6">
                 <!-- Title & Tags -->
                 <div>
-                    <span class="text-xs font-bold text-zinc-400 uppercase tracking-widest">{{ $listing->brand ?? 'NVIDIA' }}</span>
-                    <h1 class="text-2xl font-bold text-zinc-900 tracking-tight leading-snug mt-1">{{ $listing->title }}</h1>
-                    <div class="flex items-center gap-2 text-xs font-semibold text-zinc-400 mt-2">
+                    <h1 class="text-2xl font-bold text-zinc-950 tracking-tight leading-snug">{{ $listing->title }}</h1>
+                    <div class="flex items-center gap-2 text-sm font-normal text-zinc-500 mt-1.5">
                         <span class="capitalize">{{ $listing->category }}</span>
                         <span>|</span>
                         <span>Grade {{ $listing->grade }}</span>
                         <span>|</span>
-                        <span class="text-indigo-650 hover:underline cursor-pointer">{{ $listing->brand ?? 'NVIDIA' }}</span>
+                        <span>{{ $listing->brand ?? 'ASUS' }}</span>
                     </div>
                 </div>
 
                 <!-- Pricing & protection -->
-                <div class="py-4">
+                <div class="pt-2 pb-4">
                     <div class="flex items-baseline">
-                        <span class="text-3xl font-extrabold text-zinc-900">₹{{ number_format($listing->price) }}</span>
+                        <span class="text-3xl font-bold text-zinc-950 tracking-tight">₹{{ number_format($listing->price) }}</span>
                     </div>
-                    <div class="flex items-center gap-1.5 text-xs font-bold text-indigo-650 mt-1">
+                    <div class="flex items-center gap-1.5 text-sm font-normal text-zinc-700 mt-1">
                         <span>+₹85 Buyer Protection fee</span>
-                        <i data-lucide="info" class="w-3.5 h-3.5 cursor-pointer"></i>
+                        <div class="w-4 h-4 rounded-full bg-blue-50 border border-blue-200 flex items-center justify-center shrink-0">
+                            <i data-lucide="shield-check" class="w-2.5 h-2.5 text-blue-600"></i>
+                        </div>
                     </div>
                 </div>
 

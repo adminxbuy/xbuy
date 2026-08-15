@@ -6,8 +6,10 @@
  <meta name="csrf-token" content="{{ csrf_token() }}">
  <title>@yield('title') | {{ \App\Models\SiteSetting::getVal('platform_name', 'X-Buy') }}</title>
  <link rel="icon" type="image/x-icon" href="{{ \App\Models\SiteSetting::getVal('website_favicon', '/favicon.ico') }}">
-  <!-- Fontshare Fonts (Cabinet Grotesk & Satoshi) -->
- <link href="https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@500,700,800&f[]=satoshi@300,400,500,600,700&display=swap" rel="stylesheet">
+  <!-- Google Fonts (Inter) -->
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+ <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+ <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <!-- Tailwind CSS (Vite) -->
  @vite(['resources/css/frontend.css', 'resources/js/app.js'])
   <!-- Lucide Icons -->
@@ -18,12 +20,12 @@
  display: none !important;
  }
  body {
- font-family: 'Satoshi', sans-serif;
+ font-family: 'Inter', sans-serif;
  background-color: #fafafa;
  color: #18181b;
  }
  h1, h2, h3, h4, h5, h6 {
- font-family: 'Satoshi', sans-serif;
+ font-family: 'Inter', sans-serif;
  }
  .scrollbar-none {
  -ms-overflow-style: none;
