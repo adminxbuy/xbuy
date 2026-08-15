@@ -301,52 +301,59 @@ class DatabaseSeeder extends Seeder
         // 5. Create only 1 Dummy Listing
         $listings = [];
 
-        // Create a specific, searchable INNO3D listing for testing
-        $inno3d = Listing::create([
+        // Create a specific, searchable ASUS RX 6600 listing for testing
+        $asusrx6600 = Listing::create([
             'seller_id' => $sellerProfiles[0]->id,
-            'title' => 'INNO3D GeForce GTX 1650 Super Twin X2 OC 4GB Graphics Card',
-            'slug' => 'inno3d-geforce-gtx-1650-super-twin-x2-oc-4gb',
-            'description' => 'Refurbished INNO3D GeForce GTX 1650 Super Twin X2 OC Graphics Card. Features 4GB GDDR6 VRAM, dual-fan cooling design, and compact form factor. Perfect entry-level GPU for 1080p gaming and budget builds. Fully tested, cleaned, and verified.',
+            'title' => 'ASUS Dual Radeon RX 6600 8GB GDDR6 Graphics Card',
+            'slug' => 'asus-dual-radeon-rx-6600-8gb',
+            'description' => 'Refurbished ASUS Dual Radeon RX 6600 8GB Graphics Card. Features AMD RDNA 2 architecture, 8GB GDDR6 memory, dual Axial-tech fan design, and a protective backplate. Ideal for high-framerate 1080p gaming and budget-friendly streaming builds. Tested, cleaned, and fully operational in excellent condition.',
             'category' => 'gpu',
-            'grade' => 'B',
-            'serial_number' => 'GTX1650S-4G-TWINX2',
-            'brand' => 'Inno3D',
-            'model_name' => 'GTX 1650 SUPER TWIN X2',
-            'price' => 10000,
-            'original_price' => 14000,
+            'grade' => 'A',
+            'serial_number' => 'SN-ASUSRX6600-DUAL',
+            'brand' => 'ASUS',
+            'model_name' => 'ASUS Dual RX 6600',
+            'price' => 18500,
+            'original_price' => 26000,
             'manufacturer_warranty_status' => 'expired',
             'document_status' => 'none',
             'listing_status' => 'active',
             'shipping_type' => 'prepaid',
-            'shipping_charges' => 85.00,
-            'pickup_city' => 'Delhi',
-            'pickup_state' => 'Delhi',
-            'pickup_pincode' => '110001',
-            'views_count' => 120,
+            'shipping_charges' => 120.00,
+            'pickup_city' => 'Mumbai',
+            'pickup_state' => 'Maharashtra',
+            'pickup_pincode' => '400001',
+            'views_count' => 145,
         ]);
 
         ListingImage::create([
-            'listing_id' => $inno3d->id,
-            'image_url' => '/website_assets/images/inno3d_1.jpg',
+            'listing_id' => $asusrx6600->id,
+            'image_url' => '/website_assets/images/image_2026-08-15_13-42-28_1786781939.png',
             'is_primary' => true,
             'sort_order' => 0,
         ]);
 
         ListingImage::create([
-            'listing_id' => $inno3d->id,
-            'image_url' => '/website_assets/images/inno3d_2.png',
+            'listing_id' => $asusrx6600->id,
+            'image_url' => '/website_assets/images/image_2026-08-15_13-42-28__2__1786781939.png',
             'is_primary' => false,
             'sort_order' => 1,
         ]);
 
         ListingImage::create([
-            'listing_id' => $inno3d->id,
-            'image_url' => '/website_assets/images/inno3d_3.png',
+            'listing_id' => $asusrx6600->id,
+            'image_url' => '/website_assets/images/image_2026-08-15_13-42-28__3__1786781939.png',
             'is_primary' => false,
             'sort_order' => 2,
         ]);
 
-        $listings[] = $inno3d;
+        ListingImage::create([
+            'listing_id' => $asusrx6600->id,
+            'image_url' => '/website_assets/images/image_2026-08-15_13-42-28__4__1786781939.png',
+            'is_primary' => false,
+            'sort_order' => 3,
+        ]);
+
+        $listings[] = $asusrx6600;
 
 
         // 6. Create 10 Orders with associated Escrow records
