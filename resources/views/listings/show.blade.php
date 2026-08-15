@@ -235,7 +235,7 @@
                 </div>
 
                 <!-- Pricing & protection -->
-                <div class="border-t border-b border-zinc-150 py-4">
+                <div class="py-4">
                     <div class="flex items-baseline">
                         <span class="text-3xl font-extrabold text-zinc-900">₹{{ number_format($listing->price) }}</span>
                     </div>
