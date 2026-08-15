@@ -246,10 +246,6 @@
                     </div>
                 </div>
 
-                <!-- Purple discount banner -->
-                <div class="bg-purple-50 border border-purple-150 rounded-xl p-3.5 flex items-center justify-between text-xs text-purple-750 font-semibold shadow-xs">
-                    <span>Up to <strong class="text-purple-900 font-extrabold">10% off</strong> when you bundle items from this seller</span>
-                </div>
 
                 <!-- CTA Action Buttons -->
                 <div class="space-y-3">
