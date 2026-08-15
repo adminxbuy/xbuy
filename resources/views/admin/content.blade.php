@@ -15,6 +15,10 @@
 @endsection
 
 @section('content')
+<script id="files-json" type="application/json">
+    {!! json_encode($content) !!}
+</script>
+
 <div x-data="{  tab: 'images',
  viewMode: 'grid',
  searchQuery: '',
@@ -44,7 +48,12 @@
  if (!this.searchQuery) return files;
  return files.filter(f => f.name.toLowerCase().includes(this.searchQuery.toLowerCase()));
  },
- content: @json($content)
+ content: JSON.parse(document.getElementById('files-json').textContent),
+ uploadFiles() {
+     this.$nextTick(() => {
+         document.getElementById('upload-form').submit();
+     });
+ }
 }" class="space-y-4">
 
  <!-- Stats Cards -->
@@ -137,11 +146,11 @@
  </div>
  <form action="{{ route('admin.content.upload') }}" method="POST" enctype="multipart/form-data" id="upload-form">
  @csrf
- <input type="hidden" name="type" x-model="tab" value="images">
+ <input type="hidden" name="type" :value="tab">
  <label class="inline-flex items-center gap-2 h-9 px-4 rounded-lg text-xs font-medium bg-primary text-primary-foreground hover:bg-primary/90 cursor-pointer transition-colors">
  <i data-lucide="upload" class="w-3.5 h-3.5"></i>
  <span>Upload</span>
- <input type="file" name="files[]" multiple required class="hidden" @change="$el.form.querySelector('input[name=type]').value = tab; $el.form.submit()">
+ <input type="file" name="files[]" multiple required class="hidden" @change="uploadFiles()">
  </label>
  </form>
  </div>
