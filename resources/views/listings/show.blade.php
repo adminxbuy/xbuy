@@ -273,19 +273,19 @@
                 </div>
 
                 <!-- Trust badges -->
-                <div class="space-y-3 pt-2">
-                    <div class="flex gap-3 bg-amber-50 border border-amber-250 p-3.5 rounded-xl text-xs">
-                        <i data-lucide="shopping-bag" class="w-5 h-5 text-amber-500 shrink-0 mt-0.5"></i>
+                <div class="space-y-5 pt-3">
+                    <div class="flex gap-3 text-sm">
+                        <i data-lucide="shopping-cart" class="w-5 h-5 text-zinc-500 shrink-0 mt-0.5"></i>
                         <div>
-                            <strong class="text-zinc-900 block font-bold">1 person has this item in their cart</strong>
+                            <strong class="text-zinc-950 block font-bold">1 person has this item in their cart</strong>
                             <span class="text-zinc-500 block mt-0.5">There's only one. Grab it before someone else does.</span>
                         </div>
                     </div>
 
-                    <div class="flex gap-3 bg-zinc-50 border border-zinc-200 p-3.5 rounded-xl text-xs">
-                        <i data-lucide="shield-check" class="w-5 h-5 text-green-600 shrink-0 mt-0.5"></i>
+                    <div class="flex gap-3 text-sm">
+                        <i data-lucide="shield-check" class="w-5 h-5 text-zinc-500 shrink-0 mt-0.5"></i>
                         <div>
-                            <strong class="text-zinc-900 block font-bold">Buyer Protection</strong>
+                            <strong class="text-zinc-950 block font-bold">Buyer Protection</strong>
                             <span class="text-zinc-500 block mt-0.5">Receive your item as described, or get your money back. <a href="#" class="text-indigo-650 font-bold hover:underline">Learn more</a></span>
                         </div>
                     </div>
