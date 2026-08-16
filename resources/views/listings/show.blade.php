@@ -29,6 +29,8 @@
              activeIndex: 0,
              likesCount: 0,
              isLiked: false,
+             toastMessage: '',
+             showToast: false,
              nextImage() {
                  this.activeIndex = (this.activeIndex + 1) % this.images.length;
              },
@@ -41,7 +43,9 @@
              },
              copyShareLink() {
                  navigator.clipboard.writeText(window.location.href);
-                 alert('Listing link copied to clipboard!');
+                 this.toastMessage = 'Listing link copied to clipboard!';
+                 this.showToast = true;
+                 setTimeout(() => { this.showToast = false; }, 2000);
              }
          }">
         
@@ -336,6 +340,20 @@
                 </div>
             </div>
         </div>
+    </div>
+
+    <!-- Modern Floating Toast Notification -->
+    <div x-show="showToast" 
+         x-transition:enter="transition ease-out duration-300"
+         x-transition:enter-start="opacity-0 translate-y-4"
+         x-transition:enter-end="opacity-100 translate-y-0"
+         x-transition:leave="transition ease-in duration-200"
+         x-transition:leave-start="opacity-100 translate-y-0"
+         x-transition:leave-end="opacity-0 translate-y-4"
+         x-cloak
+         class="fixed bottom-6 right-6 z-50 bg-zinc-900 text-white text-xs font-semibold px-4 py-3 rounded-xl shadow-lg border border-zinc-800 flex items-center gap-2">
+        <i data-lucide="check" class="w-4 h-4 text-green-500"></i>
+        <span x-text="toastMessage"></span>
     </div>
 </div>
 @endsection
