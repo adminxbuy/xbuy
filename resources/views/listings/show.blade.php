@@ -85,19 +85,9 @@
 
             <!-- Gallery Toolbar -->
             <div class="flex items-center gap-8 pl-2 mt-5 text-sm font-bold text-zinc-500">
-                <button @click="toggleLike" class="flex items-center gap-2 hover:text-indigo-600 transition-colors">
-                    <i data-lucide="heart" class="w-5 h-5 transition-colors" :class="isLiked ? 'text-red-500 fill-red-500' : ''"></i>
-                    <span>Like (<span x-text="likesCount"></span>)</span>
-                </button>
-
                 <button @click="copyShareLink" class="flex items-center gap-2 hover:text-indigo-600 transition-colors">
                     <i data-lucide="share-2" class="w-5 h-5"></i>
                     <span>Share</span>
-                </button>
-
-                <button class="flex items-center gap-2 hover:text-indigo-600 transition-colors">
-                    <i data-lucide="more-horizontal" class="w-5 h-5"></i>
-                    <span>More</span>
                 </button>
             </div>
 
