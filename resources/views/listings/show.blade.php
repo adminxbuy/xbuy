@@ -3,7 +3,60 @@
 @section('title', $listing->seo_title)
 
 @section('content')
-<div class="max-w-[90%] mx-auto px-4 sm:px-6 lg:px-8 py-10">
+<div class="max-w-[90%] mx-auto px-4 sm:px-6 lg:px-8 py-10"
+     x-data="{
+         images: [
+             @foreach($listing->images as $img)
+                 '{{ $img->image_url }}',
+             @endforeach
+             @if($listing->images->count() < 5)
+                 @for($i = $listing->images->count(); $i < 5; $i++)
+                     '{{ $listing->primary_image_url ?? 'https://images.unsplash.com/photo-1591488320449-011701bb6704?auto=format&fit=crop&q=80&w=400' }}',
+                 @endfor
+             @endif
+         ],
+         activeIndex: 0,
+         likesCount: 0,
+         isLiked: false,
+         toastMessage: '',
+         showToast: false,
+         showShareModal: false,
+         nextImage() {
+             this.activeIndex = (this.activeIndex + 1) % this.images.length;
+         },
+         prevImage() {
+             this.activeIndex = (this.activeIndex - 1 + this.images.length) % this.images.length;
+         },
+         toggleLike() {
+             this.isLiked = !this.isLiked;
+             this.likesCount += this.isLiked ? 1 : -1;
+         },
+         copyShareLink() {
+             navigator.clipboard.writeText(window.location.href);
+             this.toastMessage = 'Listing link copied to clipboard!';
+             this.showToast = true;
+             setTimeout(() => { this.showToast = false; }, 2000);
+         },
+         shareTo(platform) {
+             const url = encodeURIComponent(window.location.href);
+             const text = encodeURIComponent(document.title);
+             let shareUrl = '';
+             if (platform === 'facebook') {
+                 shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${url}`;
+             } else if (platform === 'messenger') {
+                 shareUrl = `https://www.facebook.com/dialog/send?link=${url}&app_id=291494419107518&redirect_uri=${url}`;
+             } else if (platform === 'x') {
+                 shareUrl = `https://twitter.com/intent/tweet?url=${url}&text=${text}`;
+             } else if (platform === 'pinterest') {
+                 shareUrl = `https://pinterest.com/pin/create/button/?url=${url}&description=${text}`;
+             } else if (platform === 'whatsapp') {
+                 shareUrl = `https://api.whatsapp.com/send?text=${text}%20${url}`;
+             } else if (platform === 'email') {
+                 shareUrl = `mailto:?subject=${text}&body=${url}`;
+             }
+             window.open(shareUrl, '_blank');
+         }
+     }">
     <!-- Breadcrumbs -->
     <nav class="mb-6 flex items-center space-x-2 text-xs font-semibold text-zinc-400 uppercase tracking-wider">
         <a href="/" class="hover:text-zinc-700 transition-colors">Home</a>
@@ -14,60 +67,7 @@
     </nav>
 
     <!-- Main Grid -->
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8"
-         x-data="{
-             images: [
-                 @foreach($listing->images as $img)
-                     '{{ $img->image_url }}',
-                 @endforeach
-                 @if($listing->images->count() < 5)
-                     @for($i = $listing->images->count(); $i < 5; $i++)
-                         '{{ $listing->primary_image_url ?? 'https://images.unsplash.com/photo-1591488320449-011701bb6704?auto=format&fit=crop&q=80&w=400' }}',
-                     @endfor
-                 @endif
-             ],
-             activeIndex: 0,
-             likesCount: 0,
-             isLiked: false,
-             toastMessage: '',
-             showToast: false,
-             showShareModal: false,
-             nextImage() {
-                 this.activeIndex = (this.activeIndex + 1) % this.images.length;
-             },
-             prevImage() {
-                 this.activeIndex = (this.activeIndex - 1 + this.images.length) % this.images.length;
-             },
-             toggleLike() {
-                 this.isLiked = !this.isLiked;
-                 this.likesCount += this.isLiked ? 1 : -1;
-             },
-             copyShareLink() {
-                 navigator.clipboard.writeText(window.location.href);
-                 this.toastMessage = 'Listing link copied to clipboard!';
-                 this.showToast = true;
-                 setTimeout(() => { this.showToast = false; }, 2000);
-             },
-             shareTo(platform) {
-                 const url = encodeURIComponent(window.location.href);
-                 const text = encodeURIComponent(document.title);
-                 let shareUrl = '';
-                 if (platform === 'facebook') {
-                     shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${url}`;
-                 } else if (platform === 'messenger') {
-                     shareUrl = `https://www.facebook.com/dialog/send?link=${url}&app_id=291494419107518&redirect_uri=${url}`;
-                 } else if (platform === 'x') {
-                     shareUrl = `https://twitter.com/intent/tweet?url=${url}&text=${text}`;
-                 } else if (platform === 'pinterest') {
-                     shareUrl = `https://pinterest.com/pin/create/button/?url=${url}&description=${text}`;
-                 } else if (platform === 'whatsapp') {
-                     shareUrl = `https://api.whatsapp.com/send?text=${text}%20${url}`;
-                 } else if (platform === 'email') {
-                     shareUrl = `mailto:?subject=${text}&body=${url}`;
-                 }
-                 window.open(shareUrl, '_blank');
-             }
-         }">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
         
         <!-- Left Column: Interactive Image Gallery (Span 7) -->
         <div class="lg:col-span-7 flex flex-col">
