@@ -210,34 +210,7 @@
                         </div>
                     </div>
 
-                    <!-- Bundle Discounts Panel -->
-                    <div class="space-y-3">
-                        <h4 class="text-sm font-bold text-zinc-900">Bundle discounts from {{ $listing->seller ? $listing->seller->shop_name : 'Gadget Zone' }}</h4>
-                        <div class="bg-purple-50 border border-purple-150 rounded-xl p-4 space-y-4 shadow-xs">
-                            <p class="text-xs text-purple-750 font-semibold">Add items from this seller to your cart to unlock discounts—plus potential savings on shipping!</p>
-                            
-                            <!-- Bundle progress timeline -->
-                            <div class="relative pt-1">
-                                <div class="h-1.5 bg-zinc-200 rounded-full w-full relative">
-                                    <div class="absolute left-0 top-1/2 -translate-y-1/2 w-4 h-4 bg-indigo-600 rounded-full border-2 border-white shadow-sm"></div>
-                                </div>
-                                <div class="flex justify-between text-[10px] text-zinc-500 font-bold mt-2">
-                                    <div class="text-left">
-                                        <span>1 item</span>
-                                        <span class="block text-zinc-400">0% off</span>
-                                    </div>
-                                    <div class="text-center">
-                                        <span>2 items</span>
-                                        <span class="block text-indigo-600">5% off</span>
-                                    </div>
-                                    <div class="text-right">
-                                        <span>3+ items</span>
-                                        <span class="block text-indigo-600">10% off</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+
                 </div>
             </div>
         </div>
