@@ -183,7 +183,7 @@
                 <!-- Seller Profile Section -->
                 <div class="pt-8 space-y-6">
                     <div class="flex items-center gap-4">
-                        <div class="w-16 h-16 rounded-full overflow-hidden border border-zinc-200 shadow-sm shrink-0">
+                        <div class="w-20 h-20 rounded-full overflow-hidden border border-zinc-200 shadow-sm shrink-0">
                             <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&q=80&w=100" class="w-full h-full object-cover">
                         </div>
                         <div>
