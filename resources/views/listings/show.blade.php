@@ -422,6 +422,66 @@
         </div>
     </div>
 
+    <!-- Similar Products Section -->
+    @if(isset($similarListings) && $similarListings->count() > 0)
+        <div class="mt-16 pt-12 border-t border-zinc-200/50">
+            <h2 class="text-xl font-bold text-zinc-950 mb-6">Similar Products</h2>
+            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6">
+                @foreach($similarListings as $similar)
+                    <a href="{{ route('listings.show', $similar->slug) }}" class="group block bg-white rounded-xl overflow-hidden hover:shadow-xs transition-all duration-300 flex flex-col justify-between">
+                        <div>
+                            <!-- Image Container -->
+                            <div class="aspect-square bg-zinc-50 border border-zinc-200/60 rounded-2xl flex items-center justify-center overflow-hidden relative">
+                                <img src="{{ $similar->primary_image_url ?? 'https://images.unsplash.com/photo-1591488320449-011701bb6704?auto=format&fit=crop&q=80&w=400' }}" 
+                                     alt="{{ $similar->title }}"
+                                     class="w-full h-full object-cover group-hover:scale-103 transition-transform duration-300 select-none">
+                                
+                                @if(rand(0, 1))
+                                    <span class="absolute top-2.5 left-2.5 bg-orange-600 text-white text-[9px] font-bold px-1.5 py-0.5 rounded shadow-xs uppercase tracking-wider">
+                                        Trending
+                                    </span>
+                                @endif
+
+                                <span class="absolute bottom-2.5 left-2.5 bg-white/95 border border-zinc-200/80 text-zinc-800 text-[10px] font-bold px-1.5 py-0.5 rounded-lg shadow-xs flex items-center gap-0.5">
+                                    <span>{{ number_format(4.0 + (rand(1, 9) / 10), 1) }}</span>
+                                    <svg class="w-3 h-3 text-emerald-600 fill-current" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                                </span>
+                            </div>
+
+                            <!-- Card Info -->
+                            <div class="pt-3 space-y-1">
+                                <h3 class="text-xs font-bold text-zinc-950 line-clamp-1 leading-snug group-hover:text-indigo-600 transition-colors">
+                                    {{ $similar->title }}
+                                </h3>
+                                
+                                @php
+                                    $discountPct = rand(10, 45);
+                                    $origPrice = $similar->price / (1 - ($discountPct / 100));
+                                @endphp
+                                <div class="text-[10px] font-bold text-emerald-600">
+                                    {{ $discountPct }}% OFF
+                                </div>
+                                
+                                <div class="flex items-center gap-1.5">
+                                    <span class="text-[10px] text-zinc-400 line-through">₹{{ number_format($origPrice) }}</span>
+                                    <span class="text-xs font-bold text-zinc-950">₹{{ number_format($similar->price) }}</span>
+                                </div>
+                                
+                                <div class="text-[9px] font-semibold text-blue-600">
+                                    ₹{{ number_format($similar->price * 0.95) }} with Bank offer
+                                </div>
+                                
+                                <div class="text-[9px] text-zinc-400">
+                                    Get it by <strong class="text-zinc-650 font-bold">{{ now()->addDays(rand(2, 5))->format('d M') }}</strong>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                @endforeach
+            </div>
+        </div>
+    @endif
+
     <!-- Modern Floating Toast Notification -->
     <div x-show="showToast" 
          x-transition:enter="transition ease-out duration-300"

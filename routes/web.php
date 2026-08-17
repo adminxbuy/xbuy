@@ -365,7 +365,13 @@ Route::get('/listings', function (\Illuminate\Http\Request $request) {
 
 Route::get('/listings/{slug}', function (string $slug) {
     $listing = \App\Models\Listing::with(['images', 'seller.user', 'specs'])->where('slug', $slug)->firstOrFail();
-    return view('listings.show', compact('listing'));
+    $similarListings = \App\Models\Listing::active()->with(['images', 'seller'])
+        ->where('category', $listing->category)
+        ->where('id', '!=', $listing->id)
+        ->latest()
+        ->take(5)
+        ->get();
+    return view('listings.show', compact('listing', 'similarListings'));
 })->name('listings.show');
 
 Route::get('/run-seeds', function () {
