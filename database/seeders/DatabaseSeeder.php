@@ -355,6 +355,76 @@ class DatabaseSeeder extends Seeder
 
         $listings[] = $asusrx6600;
 
+        // Seed 4 additional GPU listings for Similar Products section
+        $dummyGpus = [
+            [
+                'title' => 'MSI GeForce RTX 3050 VENTUS 2X 8G OC',
+                'slug' => 'msi-geforce-rtx-3050-ventus-2x-8g',
+                'description' => 'MSI GeForce RTX 3050 Ventus 2x graphics card with dual fan cooling, 8GB GDDR6 VRAM, Ray Tracing support. Perfect for modern games.',
+                'price' => 23409,
+                'original_price' => 33999,
+                'primary_img' => 'https://images.unsplash.com/photo-1591488320449-011701bb6704?auto=format&fit=crop&q=80&w=400',
+            ],
+            [
+                'title' => 'AMD Sapphire Pulse Radeon RX 6600 8GB',
+                'slug' => 'amd-sapphire-pulse-radeon-rx-6600-8gb',
+                'description' => 'Sapphire Pulse Radeon RX 6600 graphics card, 8GB memory, high performance cooling, RDNA 2 architecture.',
+                'price' => 23129,
+                'original_price' => 25839,
+                'primary_img' => 'https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?auto=format&fit=crop&q=80&w=400',
+            ],
+            [
+                'title' => 'ASUS Dual NVIDIA Geforce RTX 3060 12GB',
+                'slug' => 'asus-dual-nvidia-geforce-rtx-3060-12gb',
+                'description' => 'ASUS Dual RTX 3060 with 12GB high-speed GDDR6 VRAM. Great for streaming, content creation and 1080p ultra gaming.',
+                'price' => 26500,
+                'original_price' => 35000,
+                'primary_img' => 'https://images.unsplash.com/photo-1587202372775-e229f172b9d7?auto=format&fit=crop&q=80&w=400',
+            ],
+            [
+                'title' => 'GIGABYTE GeForce RTX 3060 Ti Gaming OC 8G',
+                'slug' => 'gigabyte-geforce-rtx-3060-ti-gaming-oc-8g',
+                'description' => 'Gigabyte GeForce RTX 3060 Ti with Windforce triple fans, 8GB memory. Premium performance model.',
+                'price' => 34999,
+                'original_price' => 85500,
+                'primary_img' => 'https://images.unsplash.com/photo-1591488320449-011701bb6704?auto=format&fit=crop&q=80&w=400',
+            ]
+        ];
+
+        foreach ($dummyGpus as $index => $dg) {
+            $dl = Listing::create([
+                'seller_id' => $sellerProfiles[($index + 1) % count($sellerProfiles)]->id,
+                'title' => $dg['title'],
+                'slug' => $dg['slug'],
+                'description' => $dg['description'],
+                'category' => 'gpu',
+                'grade' => 'A',
+                'serial_number' => 'SN-DGPU-' . $index,
+                'brand' => 'ASUS',
+                'model_name' => $dg['title'],
+                'price' => $dg['price'],
+                'original_price' => $dg['original_price'],
+                'manufacturer_warranty_status' => 'expired',
+                'document_status' => 'none',
+                'listing_status' => 'active',
+                'shipping_type' => 'prepaid',
+                'shipping_charges' => 120.00,
+                'pickup_city' => 'Bangalore',
+                'pickup_state' => 'Karnataka',
+                'pickup_pincode' => '560001',
+                'views_count' => rand(50, 200),
+            ]);
+
+            ListingImage::create([
+                'listing_id' => $dl->id,
+                'image_url' => $dg['primary_img'],
+                'is_primary' => true,
+                'sort_order' => 0,
+            ]);
+
+            $listings[] = $dl;
+        }
+
 
         // 6. Create 10 Orders with associated Escrow records
         $orderStatuses = ['payment_received', 'confirmed', 'delivered', 'testing_period', 'completed', 'disputed'];
