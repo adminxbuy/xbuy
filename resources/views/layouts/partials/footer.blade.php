@@ -32,8 +32,8 @@
                 </ul>
             </div>
 
-            <!-- Column 3: Support (lg:col-span-2.5) -->
-            <div class="lg:col-span-3 space-y-4">
+            <!-- Column 3: Support (lg:col-span-2) -->
+            <div class="lg:col-span-2 space-y-4">
                 <h4 class="text-zinc-950 text-xs font-bold uppercase tracking-widest">Support</h4>
                 <ul class="space-y-2.5 text-sm text-zinc-800">
                     <li><a href="#" class="hover:text-black transition-colors">Contact Us</a></li>
@@ -57,8 +57,8 @@
                 </ul>
             </div>
 
-            <!-- Column 5: Right Side Integrations (lg:col-span-3) -->
-            <div class="lg:col-span-3 space-y-6">
+            <!-- Column 5: Right Side Integrations (lg:col-span-4) -->
+            <div class="lg:col-span-4 space-y-6">
                 <!-- We Accept -->
                 <div class="space-y-3">
                     <h4 class="text-zinc-950 text-xs font-bold uppercase tracking-widest">We Accept</h4>
@@ -104,7 +104,6 @@
                 <div class="space-y-3">
                     <h4 class="text-zinc-950 text-xs font-bold uppercase tracking-widest">Get The App</h4>
                     <div class="flex flex-col gap-2">
-                        <a href="#" class="inline-block"><img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg" class="h-9 w-auto"></a>
                         <a href="#" class="inline-block"><img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" class="h-[38px] w-auto"></a>
                     </div>
                 </div>
@@ -114,8 +113,7 @@
         <!-- Middle Section: Brand Logo -->
         <div class="py-8 flex items-center justify-between">
             <div class="flex items-center space-x-2">
-                <span class="font-extrabold text-3xl text-zinc-950 tracking-tight">{{ \App\Models\SiteSetting::getVal('platform_name', 'X-Buy') }}</span>
-                <span class="w-2 h-2 rounded-full bg-zinc-950"></span>
+                <img src="/website_assets/images/logo_1780233010.png" class="h-10 w-auto object-contain" alt="X-Buy">
             </div>
             <div class="text-xs text-zinc-800 font-medium">
                 Your Premium Electronics & Components Marketplace
