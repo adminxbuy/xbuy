@@ -63,20 +63,20 @@
                 <div class="space-y-3">
                     <h4 class="text-zinc-950 text-xs font-bold uppercase tracking-widest">We Accept</h4>
                     <div class="flex flex-wrap gap-2">
-                        <div class="h-6 w-11 bg-white border border-zinc-200 rounded flex items-center justify-center p-1">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg" class="max-h-full max-w-full object-contain opacity-90">
+                        <div class="h-7 w-14 bg-white border border-zinc-200 rounded flex items-center justify-center p-1">
+                            <img src="/website_assets/images/visa.png" class="max-h-full max-w-full object-contain">
                         </div>
-                        <div class="h-6 w-11 bg-white border border-zinc-200 rounded flex items-center justify-center p-1">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" class="max-h-full max-w-full object-contain">
+                        <div class="h-7 w-14 bg-white border border-zinc-200 rounded flex items-center justify-center p-1">
+                            <img src="/website_assets/images/mastercard.png" class="max-h-full max-w-full object-contain">
                         </div>
-                        <div class="h-6 w-11 bg-white border border-zinc-200 rounded flex items-center justify-center p-1">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/American_Express_logo_%282018%29.svg" class="max-h-full max-w-full object-contain">
+                        <div class="h-7 w-14 bg-white border border-zinc-200 rounded flex items-center justify-center p-1">
+                            <img src="/website_assets/images/american-express.png" class="max-h-full max-w-full object-contain">
                         </div>
-                        <div class="h-6 w-11 bg-white border border-zinc-200 rounded flex items-center justify-center p-1">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/8/89/Razorpay_logo.svg" class="max-h-full max-w-full object-contain">
+                        <div class="h-7 w-14 bg-white border border-zinc-200 rounded flex items-center justify-center p-1">
+                            <img src="/website_assets/images/razorpay.png" class="max-h-full max-w-full object-contain">
                         </div>
-                        <div class="h-6 w-11 bg-white border border-zinc-200 rounded flex items-center justify-center p-1">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/e/e1/UPI-Logo-vector.svg" class="max-h-full max-w-full object-contain opacity-90">
+                        <div class="h-7 w-14 bg-white border border-zinc-200 rounded flex items-center justify-center p-1">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/e/e1/UPI-Logo-vector.svg" class="max-h-full max-w-full object-contain">
                         </div>
                     </div>
                 </div>
