@@ -130,7 +130,7 @@
                 <a href="#" class="hover:text-black transition-colors">Cookie Preferences</a>
             </div>
             <div class="text-center md:text-right">
-                <span>Made with &hearts; in India</span>
+                <span>Made by <a href="https://code4sh.com/" target="_blank" class="font-bold text-zinc-950 hover:underline">code4sh</a></span>
             </div>
         </div>
 
