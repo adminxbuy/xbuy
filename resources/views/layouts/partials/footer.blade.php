@@ -1,5 +1,5 @@
 <!-- Global Footer Component (Mercari Style, X-Buy Yellow Color) -->
-<footer class="bg-[#fdd835] text-zinc-900 mt-auto border-none" style="padding-top: 64px !important; padding-bottom: 48px !important; border: none !important;">
+<footer class="bg-[#fdd835] text-zinc-900 mt-auto border-none" style="padding-top: 64px !important; padding-bottom: 2px !important; border: none !important;">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         <!-- Top Section: Links & Accents -->
@@ -111,9 +111,9 @@
         </div>
 
         <!-- Middle Section: Brand Logo -->
-        <div class="py-8 flex items-center justify-between">
+        <div class="pt-12 pb-6 flex items-center justify-between">
             <div class="flex items-center space-x-2">
-                <img src="/website_assets/images/logo_1780233010.png" class="h-10 w-auto object-contain" alt="X-Buy">
+                <img src="/website_assets/images/logo_1780233010.png" class="h-13 w-auto object-contain" alt="X-Buy" style="height: 52px !important;">
             </div>
             <div class="text-xs text-zinc-800 font-medium">
                 Your Premium Electronics & Components Marketplace
@@ -121,7 +121,7 @@
         </div>
 
         <!-- Bottom Section: Sub-footer Copyright & Policies -->
-        <div class="pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-zinc-800">
+        <div class="pt-4 pb-1 flex flex-col md:flex-row items-center justify-between gap-4 text-[11px] text-zinc-800">
             <div class="flex flex-wrap items-center justify-center md:justify-start gap-x-6 gap-y-2">
                 <span>Copyright &copy; {{ date('Y') }} {{ \App\Models\SiteSetting::getVal('platform_name', 'X-Buy') }} Inc.</span>
                 <a href="#" class="hover:text-black transition-colors">Privacy Policy</a>
