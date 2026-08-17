@@ -3,7 +3,7 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         <!-- Top Section: Links & Accents -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 pb-12">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 pb-8">
             
             <!-- Column 1: Shop (lg:col-span-2) -->
             <div class="lg:col-span-2 space-y-4">
@@ -110,10 +110,10 @@
             </div>
         </div>
 
-        <!-- Middle Section: Brand Logo -->
-        <div class="pt-12 pb-6 flex items-center justify-between">
+        <!-- Middle Section: Brand Logo (With margins and spacing) -->
+        <div class="mt-8 pt-8 pb-4 flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-zinc-900/10">
             <div class="flex items-center space-x-2">
-                <img src="/website_assets/images/logo_1780233010.png" class="h-13 w-auto object-contain" alt="X-Buy" style="height: 52px !important;">
+                <img src="/website_assets/images/logo_1780233010.png" class="h-14 w-auto object-contain" alt="X-Buy" style="height: 56px !important;">
             </div>
             <div class="text-xs text-zinc-800 font-medium">
                 Your Premium Electronics & Components Marketplace
@@ -121,7 +121,7 @@
         </div>
 
         <!-- Bottom Section: Sub-footer Copyright & Policies -->
-        <div class="pt-4 pb-1 flex flex-col md:flex-row items-center justify-between gap-4 text-[11px] text-zinc-800">
+        <div class="pt-4 pb-0 flex flex-col md:flex-row items-center justify-between gap-4 text-[11px] text-zinc-800">
             <div class="flex flex-wrap items-center justify-center md:justify-start gap-x-6 gap-y-2">
                 <span>Copyright &copy; {{ date('Y') }} {{ \App\Models\SiteSetting::getVal('platform_name', 'X-Buy') }} Inc.</span>
                 <a href="#" class="hover:text-black transition-colors">Privacy Policy</a>
