@@ -188,7 +188,7 @@
                         </div>
                         <div>
                             <h3 class="text-lg font-bold text-zinc-900 hover:text-indigo-600 cursor-pointer">{{ $listing->seller ? $listing->seller->shop_name : 'Gadget Zone' }}</h3>
-                            <span class="text-xs text-zinc-400 block mt-0.5">@&#123;&#123; Str::slug($listing->seller ? $listing->seller->shop_name : 'Gadget Zone') &#125;&#125;</span>
+                            <span class="text-xs text-zinc-400 block mt-0.5">&#64;{{ Str::slug($listing->seller ? $listing->seller->shop_name : 'Gadget Zone') }}</span>
                             
                             <!-- Rating and Listed Statistics -->
                             <div class="flex items-center gap-2 mt-1.5 text-xs text-zinc-500 font-semibold">
