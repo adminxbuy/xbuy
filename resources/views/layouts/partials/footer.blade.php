@@ -1,0 +1,133 @@
+<!-- Global Footer Component (Mercari Style, X-Buy Primary Colors) -->
+<footer class="bg-zinc-950 text-white mt-auto pt-16 pb-8 border-t border-zinc-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <!-- Top Section: Links & Accents -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 pb-12 border-b border-zinc-900">
+            
+            <!-- Column 1: Shop (lg:col-span-2) -->
+            <div class="lg:col-span-2 space-y-4">
+                <h4 class="text-[#fdd835] text-xs font-bold uppercase tracking-widest">Shop</h4>
+                <ul class="space-y-2.5 text-sm text-zinc-400">
+                    <li><a href="/listings" class="hover:text-white transition-colors">Trending</a></li>
+                    <li><a href="/listings" class="hover:text-white transition-colors">Brands</a></li>
+                    <li><a href="/listings" class="hover:text-white transition-colors">Categories</a></li>
+                    <li><a href="/listings" class="hover:text-white transition-colors">Deals</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">How it works</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">Gift card exchange</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">Coupons and Promotions</a></li>
+                    <li><a href="/register" class="hover:text-white transition-colors">Create an account</a></li>
+                </ul>
+            </div>
+
+            <!-- Column 2: Sell (lg:col-span-2) -->
+            <div class="lg:col-span-2 space-y-4">
+                <h4 class="text-[#fdd835] text-xs font-bold uppercase tracking-widest">Sell</h4>
+                <ul class="space-y-2.5 text-sm text-zinc-400">
+                    <li><a href="/dashboard/listings/create" class="hover:text-white transition-colors">How to sell</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">Packaging</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">Shipping</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">Getting paid</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">Authenticate</a></li>
+                </ul>
+            </div>
+
+            <!-- Column 3: Support (lg:col-span-2.5) -->
+            <div class="lg:col-span-3 space-y-4">
+                <h4 class="text-[#fdd835] text-xs font-bold uppercase tracking-widest">Support</h4>
+                <ul class="space-y-2.5 text-sm text-zinc-400">
+                    <li><a href="#" class="hover:text-white transition-colors">Contact Us</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">Help Center</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">Service Status</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">Marketplace Guidelines</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">Safety Guidelines</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">Buyer Protection</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">Seller Protection</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">Refunds and Returns</a></li>
+                </ul>
+            </div>
+
+            <!-- Column 4: Company & Policies (lg:col-span-2) -->
+            <div class="lg:col-span-2 space-y-4">
+                <h4 class="text-[#fdd835] text-xs font-bold uppercase tracking-widest">Company & Policies</h4>
+                <ul class="space-y-2.5 text-sm text-zinc-400">
+                    <li><a href="#" class="hover:text-white transition-colors">About Us</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">Careers</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">Policy Center</a></li>
+                </ul>
+            </div>
+
+            <!-- Column 5: Right Side Integrations (lg:col-span-3) -->
+            <div class="lg:col-span-3 space-y-6">
+                <!-- We Accept -->
+                <div class="space-y-3">
+                    <h4 class="text-[#fdd835] text-xs font-bold uppercase tracking-widest">We Accept</h4>
+                    <div class="flex flex-wrap gap-2">
+                        <div class="h-6 w-11 bg-zinc-900 border border-zinc-800 rounded flex items-center justify-center p-1">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg" class="max-h-full max-w-full object-contain invert opacity-80">
+                        </div>
+                        <div class="h-6 w-11 bg-zinc-900 border border-zinc-800 rounded flex items-center justify-center p-1">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" class="max-h-full max-w-full object-contain">
+                        </div>
+                        <div class="h-6 w-11 bg-zinc-900 border border-zinc-800 rounded flex items-center justify-center p-1">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/American_Express_logo_%282018%29.svg" class="max-h-full max-w-full object-contain">
+                        </div>
+                        <div class="h-6 w-11 bg-zinc-900 border border-zinc-800 rounded flex items-center justify-center p-1">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/8/89/Razorpay_logo.svg" class="max-h-full max-w-full object-contain">
+                        </div>
+                        <div class="h-6 w-11 bg-zinc-900 border border-zinc-800 rounded flex items-center justify-center p-1">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/e/e1/UPI-Logo-vector.svg" class="max-h-full max-w-full object-contain invert opacity-80">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Find Us On -->
+                <div class="space-y-3">
+                    <h4 class="text-[#fdd835] text-xs font-bold uppercase tracking-widest">Find Us On</h4>
+                    <div class="flex items-center gap-4 text-zinc-400">
+                        <a href="#" class="hover:text-[#fdd835] transition-colors"><i data-lucide="facebook" class="w-5 h-5"></i></a>
+                        <a href="#" class="hover:text-[#fdd835] transition-colors"><i data-lucide="twitter" class="w-5 h-5"></i></a>
+                        <a href="#" class="hover:text-[#fdd835] transition-colors"><i data-lucide="instagram" class="w-5 h-5"></i></a>
+                        <a href="#" class="hover:text-[#fdd835] transition-colors"><i data-lucide="youtube" class="w-5 h-5"></i></a>
+                        <a href="#" class="hover:text-[#fdd835] transition-colors"><i data-lucide="mail" class="w-5 h-5"></i></a>
+                    </div>
+                </div>
+
+                <!-- Get The App -->
+                <div class="space-y-3">
+                    <h4 class="text-[#fdd835] text-xs font-bold uppercase tracking-widest">Get The App</h4>
+                    <div class="flex flex-col gap-2">
+                        <a href="#" class="inline-block"><img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg" class="h-9 w-auto"></a>
+                        <a href="#" class="inline-block"><img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" class="h-[38px] w-auto"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Middle Section: Brand Logo -->
+        <div class="py-8 border-b border-zinc-900 flex items-center justify-between">
+            <div class="flex items-center space-x-2">
+                <span class="font-extrabold text-3xl text-white tracking-tight">{{ \App\Models\SiteSetting::getVal('platform_name', 'X-Buy') }}</span>
+                <span class="w-2 h-2 rounded-full bg-[#fdd835]"></span>
+            </div>
+            <div class="text-xs text-zinc-500 font-medium">
+                Your Premium Electronics & Components Marketplace
+            </div>
+        </div>
+
+        <!-- Bottom Section: Sub-footer Copyright & Policies -->
+        <div class="pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-zinc-500">
+            <div class="flex flex-wrap items-center justify-center md:justify-start gap-x-6 gap-y-2">
+                <span>Copyright &copy; {{ date('Y') }} {{ \App\Models\SiteSetting::getVal('platform_name', 'X-Buy') }} Inc.</span>
+                <a href="#" class="hover:text-zinc-300 transition-colors">Privacy Policy</a>
+                <a href="#" class="hover:text-zinc-300 transition-colors">Terms of Service</a>
+                <a href="#" class="hover:text-zinc-300 transition-colors">Licenses / Disclosures</a>
+                <a href="#" class="hover:text-zinc-300 transition-colors">Cookie Preferences</a>
+            </div>
+            <div class="text-center md:text-right">
+                <span>Made with &hearts; in India</span>
+            </div>
+        </div>
+
+    </div>
+</footer>

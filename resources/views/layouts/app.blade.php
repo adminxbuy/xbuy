@@ -46,6 +46,9 @@
  @yield('content')
  </main>
 
+ <!-- Global Footer -->
+ @include('layouts.partials.footer')
+
 
  <!-- Initialize Lucide Icons -->
  <script>
