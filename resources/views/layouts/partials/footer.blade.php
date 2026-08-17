@@ -64,13 +64,13 @@
                     <h4 class="text-zinc-950 text-xs font-bold uppercase tracking-widest">We Accept</h4>
                     <div class="flex flex-wrap gap-2">
                         <div class="h-7 w-14 bg-white border border-zinc-200 rounded flex items-center justify-center p-1">
-                            <img src="/website_assets/images/visa.png" class="max-h-full max-w-full object-contain">
+                            <img src="/website_assets/images/visa_1786947202.svg" class="max-h-full max-w-full object-contain">
                         </div>
                         <div class="h-7 w-14 bg-white border border-zinc-200 rounded flex items-center justify-center p-1">
-                            <img src="/website_assets/images/mastercard.png" class="max-h-full max-w-full object-contain">
+                            <img src="/website_assets/images/mastercard_1786947202.svg" class="max-h-full max-w-full object-contain">
                         </div>
                         <div class="h-7 w-14 bg-white border border-zinc-200 rounded flex items-center justify-center p-1">
-                            <img src="/website_assets/images/american-express.png" class="max-h-full max-w-full object-contain">
+                            <img src="/website_assets/images/american-express_1786947202.svg" class="max-h-full max-w-full object-contain">
                         </div>
                         <div class="h-7 w-14 bg-white border border-zinc-200 rounded flex items-center justify-center p-1">
                             <img src="/website_assets/images/razorpay.png" class="max-h-full max-w-full object-contain">
