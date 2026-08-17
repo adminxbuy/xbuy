@@ -1,5 +1,5 @@
 <!-- Global Footer Component (Mercari Style, X-Buy Yellow Color) -->
-<footer class="bg-[#fdd835] text-zinc-900 mt-auto pt-24 pb-12 border-none">
+<footer class="bg-[#fdd835] text-zinc-900 mt-auto border-none" style="padding-top: 64px !important; padding-bottom: 48px !important; border: none !important;">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         <!-- Top Section: Links & Accents -->
