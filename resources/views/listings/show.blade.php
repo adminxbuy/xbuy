@@ -104,15 +104,25 @@
                     <button @click="nextImage" class="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/90 border border-zinc-200 hover:border-zinc-300 rounded-full flex items-center justify-center shadow-sm text-zinc-700 hover:text-indigo-600 transition-all z-10">
                         <i data-lucide="chevron-right" class="w-5 h-5"></i>
                     </button>
-                </div>
-            </div>
 
-            <!-- Gallery Toolbar -->
-            <div class="flex items-center gap-8 pl-2 mt-5 text-sm font-bold text-zinc-500">
-                <button @click="showShareModal = true" class="flex items-center gap-2 hover:text-indigo-600 transition-colors">
-                    <i data-lucide="share-2" class="w-5 h-5"></i>
-                    <span>Share</span>
-                </button>
+                    <!-- Floating Action Buttons (Wishlist & Share) -->
+                    <div class="absolute top-4 right-4 flex flex-col gap-2.5 z-20">
+                        <!-- Wishlist Button -->
+                        <button @click="toggleLike" class="w-10 h-10 bg-white hover:bg-zinc-50 border border-zinc-200/80 rounded-xl flex items-center justify-center shadow-xs transition-all duration-200">
+                            <svg class="w-5 h-5 transition-colors duration-200" :class="isLiked ? 'text-red-500 fill-red-500 stroke-red-500' : 'text-zinc-700'" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" />
+                                <path x-show="!isLiked" d="M16 16h6M19 13v6" />
+                            </svg>
+                        </button>
+                        <!-- Share Button -->
+                        <button @click="showShareModal = true" class="w-10 h-10 bg-white hover:bg-zinc-50 border border-zinc-200/80 rounded-xl flex items-center justify-center shadow-xs transition-all duration-200">
+                            <svg class="w-5 h-5 text-zinc-700" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="m22 2-7 20-4-9-9-4Z" />
+                                <path d="M22 2 11 13" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
             </div>
 
             <!-- Details & Description Sections -->
