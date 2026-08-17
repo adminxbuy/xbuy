@@ -111,7 +111,7 @@
         </div>
 
         <!-- Middle Section: Brand Logo (With margins and spacing) -->
-        <div class="mt-8 pt-8 pb-4 flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-zinc-900/10">
+        <div class="mt-8 pt-8 pb-4 flex flex-col sm:flex-row items-center justify-between gap-4">
             <div class="flex items-center space-x-2">
                 <img src="/website_assets/images/logo_1780233010.png" class="h-14 w-auto object-contain" alt="X-Buy" style="height: 56px !important;">
             </div>
@@ -130,7 +130,7 @@
                 <a href="#" class="hover:text-black transition-colors">Cookie Preferences</a>
             </div>
             <div class="text-center md:text-right">
-                <span>Made by <a href="https://code4sh.com/" target="_blank" class="font-bold text-zinc-950 hover:underline">code4sh</a></span>
+                <span>Made by <a href="https://code4sh.com/" target="_blank" class="relative z-10 font-bold text-zinc-950 hover:underline inline-block cursor-pointer">code4sh</a></span>
             </div>
         </div>
 
