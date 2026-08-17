@@ -426,7 +426,7 @@
     @if(isset($similarListings) && $similarListings->count() > 0)
         <div class="mt-16 pt-12 border-t border-zinc-200/50">
             <h2 class="text-xl font-bold text-zinc-950 mb-6">Similar Products</h2>
-            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6">
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 max-w-5xl">
                 @foreach($similarListings as $similar)
                     <a href="{{ route('listings.show', $similar->slug) }}" class="group block bg-white rounded-xl overflow-hidden hover:shadow-xs transition-all duration-300 flex flex-col justify-between">
                         <div>
