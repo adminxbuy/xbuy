@@ -84,12 +84,19 @@
                 <!-- Find Us On -->
                 <div class="space-y-3">
                     <h4 class="text-zinc-950 text-xs font-bold uppercase tracking-widest">Find Us On</h4>
-                    <div class="flex items-center gap-4 text-zinc-900">
-                        <a href="#" class="hover:text-black transition-colors"><i data-lucide="facebook" class="w-5 h-5"></i></a>
-                        <a href="#" class="hover:text-black transition-colors"><i data-lucide="twitter" class="w-5 h-5"></i></a>
-                        <a href="#" class="hover:text-black transition-colors"><i data-lucide="instagram" class="w-5 h-5"></i></a>
-                        <a href="#" class="hover:text-black transition-colors"><i data-lucide="youtube" class="w-5 h-5"></i></a>
-                        <a href="#" class="hover:text-black transition-colors"><i data-lucide="mail" class="w-5 h-5"></i></a>
+                    <div class="flex items-center gap-3.5">
+                        <a href="#" class="hover:opacity-85 transition-opacity">
+                            <img src="/website_assets/images/Facebook.png" class="w-5 h-5 object-contain rounded-full">
+                        </a>
+                        <a href="#" class="hover:opacity-85 transition-opacity">
+                            <img src="/website_assets/images/X_logo.jpg" class="w-5 h-5 object-contain rounded-xs">
+                        </a>
+                        <a href="#" class="hover:opacity-85 transition-opacity">
+                            <img src="/website_assets/images/Instagram.png" class="w-5 h-5 object-contain rounded-xs">
+                        </a>
+                        <a href="#" class="hover:opacity-85 transition-opacity">
+                            <img src="/website_assets/images/YouTube.png" class="w-5 h-5 object-contain">
+                        </a>
                     </div>
                 </div>
 
