@@ -21,7 +21,7 @@
  }
  body {
  font-family: 'Inter', sans-serif;
- background-color: #fafafa;
+ background-color: #ffffff;
  color: #18181b;
  }
  h1, h2, h3, h4, h5, h6 {
@@ -36,7 +36,7 @@
  }
  </style>
 </head>
-<body class="min-h-screen flex flex-col bg-zinc-50 text-zinc-900 selection:bg-yellow-200">
+<body class="min-h-screen flex flex-col bg-white text-zinc-900 selection:bg-yellow-200">
 
  <!-- Global Header -->
  @include('layouts.partials.header')
