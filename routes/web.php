@@ -403,6 +403,20 @@ Route::get('/clear', function () {
     }
 });
 
+Route::get('/p/{slug}', function (string $slug) {
+    try {
+        $page = \App\Models\Page::where('slug', $slug)->first();
+        if (!$page || !$page->is_active) {
+            $title = ucwords(str_replace('-', ' ', $slug));
+            return view('pages.soon', compact('title'));
+        }
+        return view('pages.show', compact('page'));
+    } catch (\Throwable $e) {
+        $title = ucwords(str_replace('-', ' ', $slug));
+        return view('pages.soon', compact('title'));
+    }
+})->name('pages.show');
+
 
 
 

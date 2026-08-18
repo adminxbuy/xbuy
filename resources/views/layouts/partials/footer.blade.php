@@ -12,10 +12,10 @@
                     <li><a href="/listings" class="hover:text-black transition-colors">Trending</a></li>
                     <li><a href="/listings" class="hover:text-black transition-colors">Brands</a></li>
                     <li><a href="/listings" class="hover:text-black transition-colors">Categories</a></li>
-                    <li><a href="/listings" class="hover:text-black transition-colors">Deals</a></li>
-                    <li><a href="#" class="hover:text-black transition-colors">How it works</a></li>
-                    <li><a href="#" class="hover:text-black transition-colors">Gift card exchange</a></li>
-                    <li><a href="#" class="hover:text-black transition-colors">Coupons and Promotions</a></li>
+                    <li><a href="/p/deals" class="hover:text-black transition-colors">Deals</a></li>
+                    <li><a href="/p/how-it-works" class="hover:text-black transition-colors">How it works</a></li>
+                    <li><a href="/p/gift-card-exchange" class="hover:text-black transition-colors">Gift card exchange</a></li>
+                    <li><a href="/p/coupons-and-promotions" class="hover:text-black transition-colors">Coupons and Promotions</a></li>
                     <li><a href="/register" class="hover:text-black transition-colors">Create an account</a></li>
                 </ul>
             </div>
@@ -25,10 +25,10 @@
                 <h4 class="text-zinc-950 text-xs font-bold uppercase tracking-widest">Sell</h4>
                 <ul class="space-y-2.5 text-sm text-zinc-800">
                     <li><a href="/dashboard/listings/create" class="hover:text-black transition-colors">How to sell</a></li>
-                    <li><a href="#" class="hover:text-black transition-colors">Packaging</a></li>
-                    <li><a href="#" class="hover:text-black transition-colors">Shipping</a></li>
-                    <li><a href="#" class="hover:text-black transition-colors">Getting paid</a></li>
-                    <li><a href="#" class="hover:text-black transition-colors">Authenticate</a></li>
+                    <li><a href="/p/packaging" class="hover:text-black transition-colors">Packaging</a></li>
+                    <li><a href="/p/shipping" class="hover:text-black transition-colors">Shipping</a></li>
+                    <li><a href="/p/getting-paid" class="hover:text-black transition-colors">Getting paid</a></li>
+                    <li><a href="/p/authenticate" class="hover:text-black transition-colors">Authenticate</a></li>
                 </ul>
             </div>
 
@@ -36,14 +36,14 @@
             <div class="lg:col-span-2 space-y-4">
                 <h4 class="text-zinc-950 text-xs font-bold uppercase tracking-widest">Support</h4>
                 <ul class="space-y-2.5 text-sm text-zinc-800">
-                    <li><a href="#" class="hover:text-black transition-colors">Contact Us</a></li>
-                    <li><a href="#" class="hover:text-black transition-colors">Help Center</a></li>
-                    <li><a href="#" class="hover:text-black transition-colors">Service Status</a></li>
-                    <li><a href="#" class="hover:text-black transition-colors">Marketplace Guidelines</a></li>
-                    <li><a href="#" class="hover:text-black transition-colors">Safety Guidelines</a></li>
-                    <li><a href="#" class="hover:text-black transition-colors">Buyer Protection</a></li>
-                    <li><a href="#" class="hover:text-black transition-colors">Seller Protection</a></li>
-                    <li><a href="#" class="hover:text-black transition-colors">Refunds and Returns</a></li>
+                    <li><a href="/p/contact-us" class="hover:text-black transition-colors">Contact Us</a></li>
+                    <li><a href="/p/faqs" class="hover:text-black transition-colors">Help Center</a></li>
+                    <li><a href="/p/service-status" class="hover:text-black transition-colors">Service Status</a></li>
+                    <li><a href="/p/seller-guidelines" class="hover:text-black transition-colors">Marketplace Guidelines</a></li>
+                    <li><a href="/p/safety-guidelines" class="hover:text-black transition-colors">Safety Guidelines</a></li>
+                    <li><a href="/p/buyer-protection" class="hover:text-black transition-colors">Buyer Protection</a></li>
+                    <li><a href="/p/seller-guidelines" class="hover:text-black transition-colors">Seller Protection</a></li>
+                    <li><a href="/p/refund-policy" class="hover:text-black transition-colors">Refunds and Returns</a></li>
                 </ul>
             </div>
 
@@ -51,9 +51,9 @@
             <div class="lg:col-span-2 space-y-4">
                 <h4 class="text-zinc-950 text-xs font-bold uppercase tracking-widest">Company & Policies</h4>
                 <ul class="space-y-2.5 text-sm text-zinc-800">
-                    <li><a href="#" class="hover:text-black transition-colors">About Us</a></li>
-                    <li><a href="#" class="hover:text-black transition-colors">Careers</a></li>
-                    <li><a href="#" class="hover:text-black transition-colors">Policy Center</a></li>
+                    <li><a href="/p/about-us" class="hover:text-black transition-colors">About Us</a></li>
+                    <li><a href="/p/careers" class="hover:text-black transition-colors">Careers</a></li>
+                    <li><a href="/p/escrow-policy" class="hover:text-black transition-colors">Policy Center</a></li>
                 </ul>
             </div>
 
@@ -124,10 +124,10 @@
         <div class="pt-4 pb-0 flex flex-col md:flex-row items-center justify-between gap-4 text-[11px] text-zinc-800">
             <div class="flex flex-wrap items-center justify-center md:justify-start gap-x-6 gap-y-2">
                 <span>Copyright &copy; {{ date('Y') }} {{ \App\Models\SiteSetting::getVal('platform_name', 'X-Buy') }} Inc.</span>
-                <a href="#" class="hover:text-black transition-colors">Privacy Policy</a>
-                <a href="#" class="hover:text-black transition-colors">Terms of Service</a>
-                <a href="#" class="hover:text-black transition-colors">Licenses / Disclosures</a>
-                <a href="#" class="hover:text-black transition-colors">Cookie Preferences</a>
+                <a href="/p/privacy-policy" class="hover:text-black transition-colors">Privacy Policy</a>
+                <a href="/p/terms-of-service" class="hover:text-black transition-colors">Terms of Service</a>
+                <a href="/p/licenses-and-disclosures" class="hover:text-black transition-colors">Licenses / Disclosures</a>
+                <a href="/p/cookie-preferences" class="hover:text-black transition-colors">Cookie Preferences</a>
             </div>
             <div class="text-center md:text-right">
                 <span>Made by <a href="https://code4sh.com/" target="_blank" class="relative z-10 font-bold text-zinc-950 hover:underline inline-block cursor-pointer">code4sh</a></span>
