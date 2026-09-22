@@ -46,7 +46,7 @@
  $backRoute = $backRoutes[$modelName] ?? 'admin.dashboard';
  @endphp
  <a href="{{ route($backRoute) }}" class="flex items-center space-x-1.5 px-4 py-2 bg-card hover:bg-muted text-foreground hover:text-foreground rounded-lg text-xs font-semibold transition-all border border-border">
- <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i>
+ <i data-lucide="arrow-left" class="size-3.5"></i>
  <span>Back to {{ $displayNames[$modelName] ?? 'List' }}</span>
  </a>
 @endsection
@@ -73,7 +73,7 @@
  <input type="text" name="search" value="{{ request('search') }}" placeholder="Search in trash..."
  class="w-full pl-9 pr-4 py-2.5 border border-border rounded-lg bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:outline-none text-xs transition-all font-semibold text-foreground">
  <div class="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground">
- <i data-lucide="search" class="w-4 h-4"></i>
+ <i data-lucide="search" class="size-4"></i>
  </div>
  </form>
  @if(request('search'))
@@ -98,7 +98,7 @@
  <div class="overflow-x-auto">
  <table class="w-full text-left border-collapse text-xs">
  <thead>
- <tr class="bg-muted border-b border-border uppercase font-bold text-muted-foreground text-[10px] tracking-wider">
+ <tr>
  <th class="px-5 py-4">Original Name</th>
  <th class="px-5 py-4">Type</th>
  <th class="px-5 py-4 text-right">Size</th>
@@ -119,7 +119,7 @@
  @csrf
  <input type="hidden" name="path" value="{{ $tFile['url'] }}">
  <button type="submit" class="px-3 py-1.5 bg-card text-foreground border border-border hover:bg-muted rounded-lg font-medium text-[10px] uppercase flex items-center space-x-1 transition-all">
- <i data-lucide="rotate-ccw" class="w-3.5 h-3.5"></i>
+ <i data-lucide="rotate-ccw" class="size-3.5"></i>
  <span>Restore</span>
  </button>
  </form>
@@ -129,7 +129,7 @@
  @method('DELETE')
  <input type="hidden" name="path" value="{{ $tFile['url'] }}">
  <button type="submit" class="px-3 py-1.5 bg-muted text-foreground border border-border hover:bg-border rounded-xl font-bold text-[10px] uppercase flex items-center space-x-1 transition-all">
- <i data-lucide="trash" class="w-3.5 h-3.5"></i>
+ <i data-lucide="trash" class="size-3.5"></i>
  <span>Delete Forever</span>
  </button>
  </form>
@@ -155,7 +155,7 @@
  <div class="overflow-x-auto">
  <table class="w-full text-left border-collapse text-xs">
  <thead>
- <tr class="bg-muted border-b border-border uppercase font-bold text-muted-foreground text-[10px] tracking-wider">
+ <tr>
  <th class="px-5 py-4">Item Details</th>
  <th class="px-5 py-4">Context / Secondary</th>
  <th class="px-5 py-4">Deleted At</th>
@@ -167,38 +167,38 @@
  <tr class="hover:bg-muted transition-colors">
  <td class="px-5 py-3.5">
  @if($modelName === 'articles')
- <div class="font-bold text-foreground text-sm">{{ $item->title }}</div>
+ <div class="text-sm font-semibold text-foreground">{{ $item->title }}</div>
  @elseif($modelName === 'sellers')
- <div class="font-bold text-foreground text-sm">{{ $item->shop_name }}</div>
+ <div class="text-sm font-semibold text-foreground">{{ $item->shop_name }}</div>
  <div class="text-[10px] text-muted-foreground">{{ $item->user->name ?? 'N/A' }}</div>
  @elseif($modelName === 'listings')
- <div class="font-bold text-foreground text-sm">{{ $item->title }}</div>
+ <div class="text-sm font-semibold text-foreground">{{ $item->title }}</div>
  <div class="text-[10px] text-muted-foreground">Grade: {{ $item->grade }}</div>
  @elseif($modelName === 'orders')
- <div class="font-bold text-foreground text-sm">#{{ $item->order_number }}</div>
+ <div class="text-sm font-semibold text-foreground">#{{ $item->order_number }}</div>
  @elseif($modelName === 'disputes')
- <div class="font-bold text-foreground text-sm">Dispute #{{ $item->id }}</div>
+ <div class="text-sm font-semibold text-foreground">Dispute #{{ $item->id }}</div>
  <div class="text-[10px] text-muted-foreground">Order #{{ $item->order->order_number ?? 'N/A' }}</div>
  @elseif($modelName === 'escrow' || $modelName === 'payouts')
- <div class="font-bold text-foreground text-sm">Escrow #{{ $item->id }}</div>
+ <div class="text-sm font-semibold text-foreground">Escrow #{{ $item->id }}</div>
  <div class="text-[10px] text-muted-foreground">Order #{{ $item->order->order_number ?? 'N/A' }}</div>
  @elseif($modelName === 'tickets')
- <div class="font-bold text-foreground text-sm">{{ $item->subject }}</div>
+ <div class="text-sm font-semibold text-foreground">{{ $item->subject }}</div>
  <div class="text-[10px] text-muted-foreground">Ticket #{{ $item->id }}</div>
  @elseif($modelName === 'subscribers')
- <div class="font-bold text-foreground text-sm">{{ $item->email }}</div>
+ <div class="text-sm font-semibold text-foreground">{{ $item->email }}</div>
  @elseif($modelName === 'ratings')
- <div class="font-bold text-foreground text-sm">Rating #{{ $item->id }} ({{ $item->rating_value ?? $item->weighted_total }} Stars)</div>
+ <div class="text-sm font-semibold text-foreground">Rating #{{ $item->id }} ({{ $item->rating_value ?? $item->weighted_total }} Stars)</div>
  @elseif($modelName === 'fraud-flags')
- <div class="font-bold text-foreground text-sm">{{ ucfirst(str_replace('_', ' ', $item->flag_type)) }}</div>
+ <div class="text-sm font-semibold text-foreground">{{ ucfirst(str_replace('_', ' ', $item->flag_type)) }}</div>
  @elseif($modelName === 'alerts')
- <div class="font-bold text-foreground text-sm">{{ $item->title }}</div>
+ <div class="text-sm font-semibold text-foreground">{{ $item->title }}</div>
  @elseif($modelName === 'pages')
- <div class="font-bold text-foreground text-sm">{{ $item->title }}</div>
+ <div class="text-sm font-semibold text-foreground">{{ $item->title }}</div>
  @elseif($modelName === 'page-categories')
- <div class="font-bold text-foreground text-sm">{{ $item->name }}</div>
+ <div class="text-sm font-semibold text-foreground">{{ $item->name }}</div>
  @else
- <div class="font-bold text-foreground text-sm">ID: {{ $item->id }}</div>
+ <div class="text-sm font-semibold text-foreground">ID: {{ $item->id }}</div>
  @endif
  </td>
   <td class="px-5 py-3.5">
@@ -253,7 +253,7 @@
  <form action="{{ $restoreRoute === 'admin.trash.restore' ? route($restoreRoute, ['model' => $modelName, 'id' => $item->id]) : route($restoreRoute, $item->id) }}" method="POST">
  @csrf
  <button type="submit" class="px-3 py-1.5 bg-card text-foreground border border-border hover:bg-muted rounded-lg font-medium text-[10px] uppercase flex items-center space-x-1 transition-all">
- <i data-lucide="rotate-ccw" class="w-3.5 h-3.5"></i>
+ <i data-lucide="rotate-ccw" class="size-3.5"></i>
  <span>Restore</span>
  </button>
  </form>
@@ -271,7 +271,7 @@
  @csrf
  @method('DELETE')
  <button type="submit" class="px-3 py-1.5 bg-muted text-foreground border border-border hover:bg-border rounded-xl font-bold text-[10px] uppercase flex items-center space-x-1 transition-all">
- <i data-lucide="trash" class="w-3.5 h-3.5"></i>
+ <i data-lucide="trash" class="size-3.5"></i>
  <span>Delete Forever</span>
  </button>
  </form>

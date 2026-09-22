@@ -76,7 +76,7 @@
  <option value="custom">Custom Range</option>
  </select>
  <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-muted-foreground">
- <i data-lucide="chevron-down" class="w-3.5 h-3.5"></i>
+ <i data-lucide="chevron-down" class="size-3.5"></i>
  </div>
  </div>
  </div>
@@ -118,7 +118,7 @@
  <div class="overflow-x-auto">
  <table class="w-full text-left border-collapse text-sm">
  <thead>
- <tr class="bg-muted border-b border-border text-[11px] font-bold text-muted-foreground uppercase tracking-wider">
+ <tr>
  <th class="p-4 pl-6">Buyer Name</th>
  <th class="p-4">Email</th>
  <th class="p-4">Phone</th>
@@ -258,9 +258,9 @@
  <!-- Modal Card -->
  <div class="relative w-full max-w-md mx-auto bg-card rounded-[24px] shadow-2xl border border-border z-10 overflow-hidden"  x-show="actionModalOpen" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 scale-95" x-transition:enter-end="opacity-100 scale-100">
   <div class="px-6 py-5 border-b border-border flex items-center justify-between bg-muted">
- <h4 class="font-bold text-foreground text-sm" x-text="actionType === 'suspend' ? 'Suspend User' : 'Ban User'"></h4>
+ <h4 class="text-sm font-semibold text-foreground" x-text="actionType === 'suspend' ? 'Suspend User' : 'Ban User'"></h4>
  <button @click="closeActionModal()" class="text-muted-foreground hover:text-foreground focus:outline-none">
- <i data-lucide="x" class="w-4 h-4"></i>
+ <i data-lucide="x" class="size-4"></i>
  </button>
  </div>
 
@@ -296,9 +296,9 @@
  <!-- Modal Card -->
  <div class="relative w-full max-w-lg mx-auto bg-card rounded-[24px] shadow-2xl border border-border z-10 overflow-hidden"  x-show="kycModalOpen" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 scale-95" x-transition:enter-end="opacity-100 scale-100">
   <div class="px-6 py-5 border-b border-border flex items-center justify-between bg-muted">
- <h4 class="font-bold text-foreground text-sm">KYC & Wallet Verification Details</h4>
+ <h4 class="text-sm font-semibold text-foreground">KYC & Wallet Verification Details</h4>
  <button @click="closeKycModal()" class="text-muted-foreground hover:text-foreground focus:outline-none">
- <i data-lucide="x" class="w-4 h-4"></i>
+ <i data-lucide="x" class="size-4"></i>
  </button>
  </div>
 

@@ -5,11 +5,11 @@
 
 @section('header_actions')
  <a href="{{ route('admin.trash.index', 'articles') }}" class="inline-flex items-center gap-2 h-9 px-4 rounded-lg text-xs font-medium border border-border bg-background hover:bg-muted text-foreground transition-colors">
- <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
+ <i data-lucide="trash-2" class="size-3.5"></i>
  <span>Trash ({{ $trashedArticles->count() }})</span>
  </a>
  <a href="{{ route('admin.articles.create') }}" class="inline-flex items-center gap-2 h-9 px-4 rounded-lg text-xs font-medium bg-primary text-primary-foreground hover:bg-primary/90 transition-colors">
- <i data-lucide="plus" class="w-3.5 h-3.5"></i>
+ <i data-lucide="plus" class="size-3.5"></i>
  <span>Write Article</span>
  </a>
 @endsection
@@ -21,7 +21,7 @@
  <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
  <div class="bg-muted border border-border rounded-xl p-5 flex items-center space-x-4">
  <div class="p-3 bg-muted text-foreground rounded-xl">
- <i data-lucide="book-open" class="w-6 h-6"></i>
+ <i data-lucide="book-open" class="size-6"></i>
  </div>
  <div>
  <p class="text-xs font-semibold text-muted-foreground uppercase tracking-wide">Total Articles</p>
@@ -30,7 +30,7 @@
  </div>
  <div class="bg-muted border border-border rounded-xl p-5 flex items-center space-x-4">
  <div class="p-3 bg-muted text-foreground border border-border/60 rounded-xl">
- <i data-lucide="check-circle" class="w-6 h-6"></i>
+ <i data-lucide="check-circle" class="size-6"></i>
  </div>
  <div>
  <p class="text-xs font-semibold text-muted-foreground uppercase tracking-wide">Published</p>
@@ -39,7 +39,7 @@
  </div>
  <div class="bg-muted border border-border rounded-xl p-5 flex items-center space-x-4">
  <div class="p-3 bg-muted text-foreground border border-border/60 rounded-xl">
- <i data-lucide="eye" class="w-6 h-6"></i>
+ <i data-lucide="eye" class="size-6"></i>
  </div>
  <div>
  <p class="text-xs font-semibold text-muted-foreground uppercase tracking-wide">Total Article Views</p>
@@ -111,7 +111,7 @@
  <div class="overflow-x-auto">
  <table class="w-full text-left border-collapse">
  <thead>
- <tr class="bg-muted border-b border-border">
+ <tr>
  <th class="py-4 px-5 w-12 text-center">
  <input type="checkbox" x-model="selectAll"  @change="if(selectAll) { selectedIds = @json($articles->pluck('id')->toArray()) } else { selectedIds = [] }"
  class="rounded border-border text-primary focus:ring-ring w-4 h-4">
@@ -139,7 +139,7 @@
  <img src="{{ $article->cover_image }}" class="w-full h-full object-cover">
  @else
  <div class="w-full h-full flex items-center justify-center text-muted-foreground bg-muted">
- <i data-lucide="image" class="w-4 h-4"></i>
+ <i data-lucide="image" class="size-4"></i>
  </div>
  @endif
  </div>

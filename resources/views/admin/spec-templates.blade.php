@@ -13,7 +13,7 @@
  </div>
  <button @click="openAddModal()"
  class="bg-primary text-primary-foreground hover:bg-primary/90 font-semibold py-2.5 px-5 rounded-lg ring-0 border border-black/10 transition-all flex items-center space-x-2 text-sm">
- <i data-lucide="plus" class="w-4 h-4"></i>
+ <i data-lucide="plus" class="size-4"></i>
  <span>Add Spec Field</span>
  </button>
  </div>
@@ -113,7 +113,7 @@
  <button @click="openEditModal(spec)"
  class="p-2 text-muted-foreground hover:text-foreground hover:bg-muted rounded-lg transition-all"
  title="Edit Field">
- <i data-lucide="edit-3" class="w-4 h-4"></i>
+ <i data-lucide="edit-3" class="size-4"></i>
  </button>
 
  <form :action="'/admin/spec-templates/' + spec.id" method="POST" class="inline"
@@ -123,7 +123,7 @@
  <button type="submit"
  class="p-2 text-muted-foreground hover:text-destructive hover:bg-muted rounded-xl transition-all"
  title="Delete Field">
- <i data-lucide="trash-2" class="w-4 h-4"></i>
+ <i data-lucide="trash-2" class="size-4"></i>
  </button>
  </form>
  </td>
@@ -159,7 +159,7 @@
  <div class="px-6 py-5 border-b border-border flex items-center justify-between bg-muted">
  <div class="flex items-center space-x-2.5">
  <div class="w-8 h-8 rounded-lg bg-primary text-primary-foreground hover:bg-primary/90/15 flex items-center justify-center text-foreground">
- <i data-lucide="sliders" class="w-4 h-4"></i>
+ <i data-lucide="sliders" class="size-4"></i>
  </div>
  <h4 class="font-bold text-foreground text-base"
  x-text="isEdit ? 'Edit Specification Field' : 'Add Specification Field'"></h4>

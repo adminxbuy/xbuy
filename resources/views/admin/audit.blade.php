@@ -6,7 +6,7 @@
 @section('content')
 <div class="bg-card border border-border rounded-xl ring-0 overflow-hidden mb-6">
  <div class="px-6 py-5 border-b border-border bg-muted flex justify-between items-center">
- <h3 class="font-bold text-foreground text-sm">Security Audit Log Registry</h3>
+ <h3 class="text-sm font-semibold text-foreground">Security Audit Log Registry</h3>
  <span class="text-xs text-muted-foreground">Total Activity Tracks logged</span>
  </div>
 
@@ -14,35 +14,35 @@
  <div class="overflow-x-auto">
  <table class="w-full text-left border-collapse">
  <thead>
- <tr class="bg-muted text-[10px] uppercase font-bold text-muted-foreground border-b border-border">
- <th class="px-6 py-4">Admin Name</th>
- <th class="px-6 py-4">Action Event</th>
- <th class="px-6 py-4">Description details</th>
- <th class="px-6 py-4">IP Address</th>
- <th class="px-6 py-4">Timestamp</th>
+ <tr>
+ <th class="h-10 px-4 align-middle text-xs font-medium text-muted-foreground bg-muted/40 uppercase tracking-wider border-b border-border">Admin Name</th>
+ <th class="h-10 px-4 align-middle text-xs font-medium text-muted-foreground bg-muted/40 uppercase tracking-wider border-b border-border">Action Event</th>
+ <th class="h-10 px-4 align-middle text-xs font-medium text-muted-foreground bg-muted/40 uppercase tracking-wider border-b border-border">Description details</th>
+ <th class="h-10 px-4 align-middle text-xs font-medium text-muted-foreground bg-muted/40 uppercase tracking-wider border-b border-border">IP Address</th>
+ <th class="h-10 px-4 align-middle text-xs font-medium text-muted-foreground bg-muted/40 uppercase tracking-wider border-b border-border">Timestamp</th>
  </tr>
  </thead>
  <tbody class="divide-y divide-border text-sm">
  @forelse($logs as $log)
- <tr class="hover:bg-muted transition-all">
- <td class="px-6 py-4 font-semibold text-foreground">
+ <tr class="border-b border-border transition-colors last:border-0 hover:bg-muted/50">
+ <td class="p-4 align-middle text-sm font-semibold text-foreground border-b border-border/60">
  {{ $log->admin->name }}
  </td>
- <td class="px-6 py-4">
+ <td class="p-4 align-middle text-sm text-foreground border-b border-border/60">
  <span class="px-2 py-0.5 rounded font-mono text-xs font-semibold uppercase bg-muted text-foreground">
  {{ $log->action }}
  </span>
  </td>
- <td class="px-6 py-4 text-muted-foreground truncate max-w-[300px]">{{ $log->details }}</td>
- <td class="px-6 py-4 font-mono text-muted-foreground text-xs">{{ $log->ip_address }}</td>
- <td class="px-6 py-4 text-muted-foreground">{{ $log->created_at->format('M d, Y H:i:s') }}</td>
+ <td class="p-4 align-middle text-sm text-muted-foreground border-b border-border/60 truncate max-w-[300px]">{{ $log->details }}</td>
+ <td class="p-4 align-middle text-xs font-mono text-muted-foreground border-b border-border/60">{{ $log->ip_address }}</td>
+ <td class="p-4 align-middle text-sm text-muted-foreground border-b border-border/60">{{ $log->created_at->format('M d, Y H:i:s') }}</td>
  </tr>
  @empty
  <tr>
  <td colspan="5" class="px-6 py-16 text-center">
  <div class="flex flex-col items-center justify-center">
  <div class="w-12 h-12 bg-muted rounded-xl flex items-center justify-center text-muted-foreground mb-3 border border-border/50 ">
- <i data-lucide="file-text" class="w-5 h-5"></i>
+ <i data-lucide="file-text" class="size-5"></i>
  </div>
  <h4 class="text-sm font-bold text-foreground">No Audit Logs Found</h4>
  <p class="text-xs text-muted-foreground mt-1 max-w-xs mx-auto">There are no administrative audit logs recorded in the database.</p>

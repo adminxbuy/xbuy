@@ -7,7 +7,7 @@
  <div class="mb-6">
  <a href="{{ route('admin.disputes') }}"
  class="inline-flex items-center space-x-1.5 text-sm font-semibold text-muted-foreground">
- <i data-lucide="arrow-left" class="w-4 h-4"></i>
+ <i data-lucide="arrow-left" class="size-4"></i>
  <span>Back to Disputes list</span>
  </a>
  </div>
@@ -29,14 +29,14 @@
  @csrf
  <button type="submit"
  class="inline-flex items-center gap-2 font-semibold px-4 py-2 rounded-lg text-sm transition-all bg-primary text-primary-foreground">
- <i data-lucide="rotate-ccw" class="w-4 h-4"></i>
+ <i data-lucide="rotate-ccw" class="size-4"></i>
  <span>Reopen Dispute</span>
  </button>
  </form>
  @endif
  <button type="button" onclick="openResolutionDrawer()"
  class="inline-flex items-center gap-2 font-semibold px-4 py-2 rounded-lg text-sm transition-all bg-primary text-primary-foreground">
- <i data-lucide="panel-right-open" class="w-4 h-4"></i>
+ <i data-lucide="panel-right-open" class="size-4"></i>
  <span>{{ $dispute->status === 'resolved' ? 'View Resolution Details' : 'Open Resolve Panel' }}</span>
  </button>
  </div>
@@ -64,7 +64,7 @@
  @if($dispute->evidence_images && count($dispute->evidence_images) > 0)
  <div class="mt-6">
  <span class="text-xs font-semibold block uppercase mb-3 flex items-center gap-2 text-muted-foreground">
- <i data-lucide="image" class="w-3.5 h-3.5"></i>
+ <i data-lucide="image" class="size-3.5"></i>
  Buyer Evidence ({{ count($dispute->evidence_images) }} images)
  </span>
  <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
@@ -88,7 +88,7 @@
  @if($dispute->responses->where('user_id', $dispute->seller_id)->count() > 0)
  <div class="rounded-xl p-6 bg-card text-card-foreground border border-border">
  <h3 class="font-bold text-sm mb-4 flex items-center gap-2 text-foreground">
- <i data-lucide="message-circle" class="w-4 h-4"></i>
+ <i data-lucide="message-circle" class="size-4"></i>
  Seller Response & Counter Evidence
  </h3>
 
@@ -193,7 +193,7 @@
  <!-- Order Details Card -->
  <div class="rounded-xl p-6 bg-card text-card-foreground border border-border">
  <h3 class="font-bold text-lg mb-4 flex items-center gap-2 text-foreground">
- <i data-lucide="shopping-cart" class="w-4 h-4"></i>
+ <i data-lucide="shopping-cart" class="size-4"></i>
  Order Details
  </h3>
  <div class="space-y-3.5 text-xs">
@@ -221,7 +221,7 @@
  <!-- Parties Card -->
  <div class="rounded-xl p-6 bg-card text-card-foreground border border-border">
  <h3 class="font-bold text-lg mb-4 flex items-center gap-2 text-foreground">
- <i data-lucide="users" class="w-4 h-4"></i>
+ <i data-lucide="users" class="size-4"></i>
  Parties Involved
  </h3>
  <div class="space-y-3">
@@ -239,7 +239,7 @@
  <!-- Status Timeline -->
  <div class="rounded-xl p-6 bg-card text-card-foreground border border-border">
  <h3 class="font-bold text-lg mb-4 flex items-center gap-2 text-foreground">
- <i data-lucide="clock" class="w-4 h-4"></i>
+ <i data-lucide="clock" class="size-4"></i>
  Timeline
  </h3>
  <div class="space-y-2.5 text-xs">
@@ -280,7 +280,7 @@
  <h2 class="text-lg font-bold text-foreground">Resolve Dispute</h2>
  <button type="button" onclick="closeResolutionDrawer()"
  class="p-2 rounded-lg transition-all text-muted-foreground">
- <i data-lucide="x" class="w-5 h-5"></i>
+ <i data-lucide="x" class="size-5"></i>
  </button>
  </div>
 
@@ -293,7 +293,7 @@
  <div
  class="p-4 bg-muted border border-border text-foreground/60 rounded-xl text-sm font-semibold">
  <p class="font-bold text-foreground mb-2 flex items-center gap-2">
- <i data-lucide="check-circle" class="w-5 h-5"></i>
+ <i data-lucide="check-circle" class="size-5"></i>
  This dispute has already been resolved
  </p>
  <p class="text-foreground mb-3">Decision: <span
@@ -309,7 +309,7 @@
  @csrf
  <button type="submit"
  class="w-full font-semibold py-2.5 px-4 rounded-lg text-xs shadow transition-all flex items-center justify-center space-x-2 bg-primary text-primary-foreground">
- <i data-lucide="rotate-ccw" class="w-4 h-4"></i>
+ <i data-lucide="rotate-ccw" class="size-4"></i>
  <span>Reopen Dispute for Reinvestigation</span>
  </button>
  </form>
@@ -388,7 +388,7 @@
  <!-- Submit Button -->
  <button type="submit"
  class="w-full font-semibold py-2.5 px-4 rounded-lg transition-all flex items-center justify-center space-x-2 text-xs h-10 bg-primary text-primary-foreground">
- <i data-lucide="check" class="w-4 h-4"></i>
+ <i data-lucide="check" class="size-4"></i>
  <span>Submit Resolution</span>
  </button>
  </form>

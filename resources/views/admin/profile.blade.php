@@ -8,7 +8,7 @@
  <div class="bg-card border border-border rounded-xl p-6 ">
  <div class="flex items-center space-x-3 mb-6">
  <div class="w-10 h-10 bg-muted rounded-xl flex items-center justify-center text-muted-foreground border border-border">
- <i data-lucide="user-cog" class="w-5 h-5"></i>
+ <i data-lucide="user-cog" class="size-5"></i>
  </div>
  <div>
  <h3 class="text-lg font-bold text-foreground leading-tight">My Profile Settings</h3>
@@ -22,7 +22,7 @@
  <!-- Left Column: Personal Information -->
  <div class="space-y-5">
  <h4 class="text-xs font-bold uppercase tracking-wider text-muted-foreground border-b border-border pb-2 flex items-center space-x-1.5">
- <i data-lucide="info" class="w-3.5 h-3.5"></i>
+ <i data-lucide="info" class="size-3.5"></i>
  <span>Personal Information</span>
  </h4>
 
@@ -81,7 +81,7 @@
  <!-- Right Column: Financial & Bank Details -->
  <div class="space-y-5">
  <h4 class="text-xs font-bold uppercase tracking-wider text-muted-foreground border-b border-border pb-2 flex items-center space-x-1.5">
- <i data-lucide="wallet" class="w-3.5 h-3.5"></i>
+ <i data-lucide="wallet" class="size-3.5"></i>
  <span>Payment & Bank Details</span>
  </h4>
 
@@ -112,7 +112,7 @@
  <!-- Submit Button -->
  <div class="flex justify-end pt-4 border-t border-border">
  <button type="submit" class="px-6 py-2.5 bg-primary text-primary-foreground hover:bg-primary/90 font-semibold rounded-lg text-sm transition-all flex items-center space-x-2">
- <i data-lucide="save" class="w-4 h-4"></i>
+ <i data-lucide="save" class="size-4"></i>
  <span>Save Profile Changes & Request Updates</span>
  </button>
  </div>
@@ -123,7 +123,7 @@
  <div class="bg-card border border-border rounded-xl p-6 mt-6">
  <div class="flex items-center space-x-3 mb-6">
  <div class="w-10 h-10 bg-muted rounded-xl flex items-center justify-center text-muted-foreground border border-border">
- <i data-lucide="history" class="w-5 h-5"></i>
+ <i data-lucide="history" class="size-5"></i>
  </div>
  <div>
  <h3 class="text-lg font-bold text-foreground leading-tight">Change Request Records</h3>

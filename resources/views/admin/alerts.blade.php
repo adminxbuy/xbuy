@@ -20,7 +20,7 @@
  <i data-lucide="bell" class="w-5 h-5 animate-pulse"></i>
  </div>
  <div>
- <h4 class="font-bold text-foreground text-sm">Alerts Workspace</h4>
+ <h4 class="text-sm font-semibold text-foreground">Alerts Workspace</h4>
  <p class="text-xs text-muted-foreground">Manage real-time system notifications and administration events.</p>
  </div>
  </div>
@@ -31,7 +31,7 @@
  @csrf
  <button type="submit"
  class="w-full sm:w-auto px-4 py-2 border border-border hover:bg-muted text-foreground rounded-lg text-xs font-semibold flex items-center justify-center gap-1.5 transition-all">
- <i data-lucide="check-square" class="w-3.5 h-3.5"></i>
+ <i data-lucide="check-square" class="size-3.5"></i>
  <span>Mark All as Read</span>
  </button>
  </form>
@@ -43,7 +43,7 @@
  @csrf
  <button type="submit"
  class="w-full sm:w-auto px-4 py-2 bg-muted hover:bg-muted text-foreground rounded-lg text-xs font-semibold flex items-center justify-center gap-1.5 transition-all">
- <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
+ <i data-lucide="trash-2" class="size-3.5"></i>
  <span>Clear All Alerts</span>
  </button>
  </form>
@@ -80,7 +80,7 @@
  </select>
  <div
  class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-muted-foreground">
- <i data-lucide="chevron-down" class="w-3.5 h-3.5"></i>
+ <i data-lucide="chevron-down" class="size-3.5"></i>
  </div>
  </div>
  </div>
@@ -112,7 +112,7 @@
  </select>
  <div
  class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-muted-foreground">
- <i data-lucide="chevron-down" class="w-3.5 h-3.5"></i>
+ <i data-lucide="chevron-down" class="size-3.5"></i>
  </div>
  </div>
  </div>
@@ -195,7 +195,7 @@
  @csrf
  <button type="submit"
  class="px-2 py-1 bg-muted text-foreground border border-emerald-250 hover:bg-muted rounded-lg font-medium text-[10px] uppercase flex items-center space-x-1">
- <i data-lucide="rotate-ccw" class="w-3.5 h-3.5"></i>
+ <i data-lucide="rotate-ccw" class="size-3.5"></i>
  <span>Restore</span>
  </button>
  </form>
@@ -208,7 +208,7 @@
  @method('DELETE')
  <button type="submit"
  class="px-2 py-1 bg-muted text-foreground border border-red-250 hover:bg-muted rounded-lg font-bold text-[10px] uppercase flex items-center space-x-1">
- <i data-lucide="trash" class="w-3.5 h-3.5"></i>
+ <i data-lucide="trash" class="size-3.5"></i>
  <span>Delete Forever</span>
  </button>
  </form>
@@ -270,18 +270,18 @@
  <!-- Alert Icon -->
  <div
  class="w-10 h-10 rounded-xl border flex items-center justify-center flex-shrink-0 {{ $colorClass }}">
- <i data-lucide="{{ $iconName }}" class="w-5 h-5"></i>
+ <i data-lucide="{{ $iconName }}" class="size-5"></i>
  </div>
 
  <!-- Alert Message -->
  <div class="space-y-1">
  <div class="flex flex-wrap items-center gap-2">
- <h5 class="font-bold text-foreground text-sm">
+ <h5 class="text-sm font-semibold text-foreground">
  @if($url !== '#')
  <a href="{{ $url }}"
  class="hover:text-brand-ink hover:underline flex items-center gap-1">
  <span>{{ $alert->title }}</span>
- <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+ <i data-lucide="external-link" class="size-3.5"></i>
  </a>
  @else
  {{ $alert->title }}
@@ -322,7 +322,7 @@
  <div class="p-16 text-center">
  <div
  class="w-12 h-12 rounded-xl bg-muted border border-border/60 flex items-center justify-center mx-auto mb-3 text-muted-foreground">
- <i data-lucide="bell-off" class="w-5 h-5"></i>
+ <i data-lucide="bell-off" class="size-5"></i>
  </div>
  <h4 class="text-sm font-bold text-foreground">No Alerts Found</h4>
  <p class="text-xs text-muted-foreground mt-1 max-w-xs mx-auto">There are no administrative system alerts

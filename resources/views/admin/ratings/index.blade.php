@@ -34,7 +34,7 @@
  </div>
  </div>
  <div class="p-3 bg-muted text-muted-foreground rounded-xl">
- <i data-lucide="star" class="w-6 h-6"></i>
+ <i data-lucide="star" class="size-6"></i>
  </div>
  </div>
 
@@ -46,7 +46,7 @@
  <span class="text-xs text-muted-foreground block mt-2">Aggregated across all suppliers</span>
  </div>
  <div class="p-3 bg-muted text-muted-foreground rounded-xl">
- <i data-lucide="message-square" class="w-6 h-6"></i>
+ <i data-lucide="message-square" class="size-6"></i>
  </div>
  </div>
 
@@ -103,10 +103,10 @@
  <div class="bg-card border border-border rounded-xl p-5 ">
  <form action="{{ route('admin.ratings') }}" method="GET" class="space-y-4">
  <div class="flex flex-wrap items-center justify-between gap-4">
- <h4 class="font-bold text-foreground text-sm">Rating Filters</h4>
+ <h4 class="text-sm font-semibold text-foreground">Rating Filters</h4>
  <a href="{{ route('admin.ratings.create') }}"
  class="px-4 py-2 bg-primary text-primary-foreground hover:bg-primary/90 rounded-lg text-xs font-medium flex items-center gap-2 transition-all ">
- <i data-lucide="plus" class="w-4 h-4"></i>
+ <i data-lucide="plus" class="size-4"></i>
  <span>Add Manual Rating</span>
  </a>
  </div>
@@ -140,7 +140,7 @@
  </select>
  <div
  class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-muted-foreground">
- <i data-lucide="chevron-down" class="w-3.5 h-3.5"></i>
+ <i data-lucide="chevron-down" class="size-3.5"></i>
  </div>
  </div>
  </div>
@@ -160,7 +160,7 @@
  </select>
  <div
  class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-muted-foreground">
- <i data-lucide="chevron-down" class="w-3.5 h-3.5"></i>
+ <i data-lucide="chevron-down" class="size-3.5"></i>
  </div>
  </div>
  </div>
@@ -180,7 +180,7 @@
  </select>
  <div
  class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-muted-foreground">
- <i data-lucide="chevron-down" class="w-3.5 h-3.5"></i>
+ <i data-lucide="chevron-down" class="size-3.5"></i>
  </div>
  </div>
  </div>
@@ -201,7 +201,7 @@
  </select>
  <div
  class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-muted-foreground">
- <i data-lucide="chevron-down" class="w-3.5 h-3.5"></i>
+ <i data-lucide="chevron-down" class="size-3.5"></i>
  </div>
  </div>
  </div>
@@ -269,7 +269,7 @@
  @csrf
  <button type="submit"
  class="px-2 py-1 bg-muted text-foreground border border-emerald-250 hover:bg-muted rounded-lg font-medium text-[10px] uppercase flex items-center space-x-1">
- <i data-lucide="rotate-ccw" class="w-3.5 h-3.5"></i>
+ <i data-lucide="rotate-ccw" class="size-3.5"></i>
  <span>Restore</span>
  </button>
  </form>
@@ -282,7 +282,7 @@
  @method('DELETE')
  <button type="submit"
  class="px-2 py-1 bg-muted text-foreground border border-red-250 hover:bg-muted rounded-lg font-bold text-[10px] uppercase flex items-center space-x-1">
- <i data-lucide="trash" class="w-3.5 h-3.5"></i>
+ <i data-lucide="trash" class="size-3.5"></i>
  <span>Delete Forever</span>
  </button>
  </form>
@@ -364,7 +364,7 @@
  <td class="py-4 px-6">
  <div class="flex items-center gap-1.5">
  <span
- class="font-bold text-foreground text-sm">{{ number_format($rating->weighted_total, 2) }}</span>
+ class="text-sm font-semibold text-foreground">{{ number_format($rating->weighted_total, 2) }}</span>
  <div class="flex items-center text-yellow-400">
  <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>
  </div>
@@ -391,7 +391,7 @@
  <a href="{{ route('admin.ratings.edit', $rating->id) }}"
  class="inline-flex items-center justify-center w-8 h-8 rounded-lg border border-border text-muted-foreground hover:text-foreground hover:bg-muted transition-all"
  title="Edit rating metrics">
- <i data-lucide="edit" class="w-4 h-4"></i>
+ <i data-lucide="edit" class="size-4"></i>
  </a>
  <form action="{{ route('admin.ratings.destroy', $rating->id) }}" method="POST"
  class="inline"
@@ -401,7 +401,7 @@
  <button type="submit"
  class="inline-flex items-center justify-center w-8 h-8 rounded-lg border border-border hover:border-border text-destructive hover:bg-muted transition-all"
  title="Delete rating">
- <i data-lucide="trash" class="w-4 h-4"></i>
+ <i data-lucide="trash" class="size-4"></i>
  </button>
  </form>
  </td>
@@ -411,7 +411,7 @@
  <td colspan="8" class="p-16 text-center">
  <div
  class="w-12 h-12 rounded-xl bg-muted border border-border/60 flex items-center justify-center mx-auto mb-3 text-muted-foreground">
- <i data-lucide="star-off" class="w-5 h-5"></i>
+ <i data-lucide="star-off" class="size-5"></i>
  </div>
  <h4 class="text-sm font-bold text-foreground">No Ratings Found</h4>
  <p class="text-xs text-muted-foreground mt-1 max-w-xs mx-auto">There are no customer/system ratings

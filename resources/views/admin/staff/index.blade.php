@@ -6,7 +6,7 @@
 @section('header_actions')
  @if(Auth::user()->isSuperAdmin())
  <a href="{{ route('admin.accounts.create') }}" class="inline-flex items-center gap-2 bg-primary text-primary-foreground hover:bg-primary/90 hover:text-primary-foreground font-medium px-4 py-2.5 rounded-lg text-xs transition-all ">
- <i data-lucide="user-plus" class="w-3.5 h-3.5"></i>
+ <i data-lucide="user-plus" class="size-3.5"></i>
  <span>Add Staff Account</span>
  </a>
  @endif
@@ -85,12 +85,12 @@
  </td>
  <td class="px-6 py-4 text-right whitespace-nowrap space-x-1">
  <a href="{{ route('admin.staff.show', $member->id) }}"  class="inline-flex items-center gap-1 text-xs font-bold bg-muted hover:bg-primary text-primary-foreground hover:bg-primary/90 text-foreground px-3 py-1.5 rounded-lg transition-all border border-border">
- <i data-lucide="eye" class="w-3.5 h-3.5"></i>
+ <i data-lucide="eye" class="size-3.5"></i>
  <span>Profile</span>
  </a>
 
  <a href="{{ route('admin.staff.notice', $member->id) }}"  class="inline-flex items-center gap-1 text-xs font-bold bg-muted hover:bg-muted text-foreground px-3 py-1.5 rounded-lg transition-all border border-blue-100">
- <i data-lucide="mail" class="w-3.5 h-3.5"></i>
+ <i data-lucide="mail" class="size-3.5"></i>
  <span>Send Notice</span>
  </a>
 
@@ -100,7 +100,7 @@
  @csrf
  <button type="submit" onclick="return confirm('Are you sure you want to suspend this staff account?')"
  class="inline-flex items-center gap-1 text-xs font-bold bg-muted hover:bg-muted text-foreground px-3 py-1.5 rounded-lg transition-all border border-amber-100">
- <i data-lucide="pause" class="w-3.5 h-3.5"></i>
+ <i data-lucide="pause" class="size-3.5"></i>
  <span>Suspend</span>
  </button>
  </form>
@@ -111,7 +111,7 @@
  @csrf
  <button type="submit" onclick="return confirm('Are you sure you want to terminate this staff account? This will restrict all dashboard access.')"
  class="inline-flex items-center gap-1 text-xs font-bold bg-muted hover:bg-muted text-foreground px-3 py-1.5 rounded-lg transition-all border border-rose-100">
- <i data-lucide="user-x" class="w-3.5 h-3.5"></i>
+ <i data-lucide="user-x" class="size-3.5"></i>
  <span>Terminate</span>
  </button>
  </form>
@@ -124,7 +124,7 @@
  <td colspan="8" class="px-6 py-12 text-center">
  <div class="flex flex-col items-center justify-center">
  <div class="w-10 h-10 bg-muted rounded-xl flex items-center justify-center text-muted-foreground mb-2 border border-border">
- <i data-lucide="users" class="w-5 h-5"></i>
+ <i data-lucide="users" class="size-5"></i>
  </div>
  <h4 class="text-xs font-bold text-foreground">No Staff Found</h4>
  <p class="text-[11px] text-muted-foreground mt-0.5">Try searching with a different term.</p>

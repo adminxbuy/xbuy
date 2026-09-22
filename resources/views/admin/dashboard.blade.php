@@ -46,7 +46,7 @@
  <x-ui.button as="a" :href="route('admin.dashboard')" variant="outline" size="sm">Reset</x-ui.button>
  @endif
  <x-ui.button type="button" onclick="window.location.reload()" size="sm">
- <i data-lucide="refresh-cw" class="w-3.5 h-3.5"></i>
+ <i data-lucide="refresh-cw" class="size-3.5"></i>
  <span>Refresh</span>
  </x-ui.button>
  </form>
@@ -102,7 +102,7 @@
  <p class="text-xs text-muted-foreground">Distribution of active inventory by category class.</p>
  </div>
  <x-ui.button variant="outline" size="sm">
- <i data-lucide="share" class="w-3.5 h-3.5"></i> Export
+ <i data-lucide="share" class="size-3.5"></i> Export
  </x-ui.button>
  </div>
 
@@ -200,7 +200,7 @@
  <p class="text-xs text-muted-foreground">Escrow dispute tickets assigned to admin.</p>
  </div>
  <x-ui.button as="a" :href="route('admin.disputes')" variant="outline" size="sm">
- View All <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+ View All <i data-lucide="arrow-right" class="size-3.5"></i>
  </x-ui.button>
  </div>
 
@@ -267,7 +267,7 @@
  <div class="flex items-center justify-between">
  <h3 class="text-section-title">Recent Orders</h3>
  <x-ui.button as="a" :href="route('admin.orders')" variant="outline" size="sm">
- View All <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+ View All <i data-lucide="arrow-right" class="size-3.5"></i>
  </x-ui.button>
  </div>
 
@@ -320,7 +320,7 @@
  <p class="text-xs text-muted-foreground">Buyer support requests escalated to admin.</p>
  </div>
  <x-ui.button as="a" :href="route('admin.tickets')" variant="outline" size="sm">
- View All <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+ View All <i data-lucide="arrow-right" class="size-3.5"></i>
  </x-ui.button>
  </div>
 
@@ -373,7 +373,7 @@
  <td colspan="7" class="px-6 py-12 text-center text-muted-foreground">
  <div class="flex flex-col items-center justify-center space-y-2">
  <div class="w-10 h-10 rounded-lg flex items-center justify-center bg-muted text-muted-foreground">
- <i data-lucide="help-circle" class="w-5 h-5"></i>
+ <i data-lucide="help-circle" class="size-5"></i>
  </div>
  <h4 class="text-sm font-semibold text-foreground">No Support Tickets</h4>
  <p class="text-xs text-muted-foreground">All requests are fully settled.</p>

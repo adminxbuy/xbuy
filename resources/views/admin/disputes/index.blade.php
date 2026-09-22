@@ -51,7 +51,7 @@
  <option value="custom">Custom Range</option>
  </select>
  <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-muted-foreground">
- <i data-lucide="chevron-down" class="w-3.5 h-3.5"></i>
+ <i data-lucide="chevron-down" class="size-3.5"></i>
  </div>
  </div>
  </div>
@@ -182,7 +182,7 @@
  <td colspan="8" class="px-6 py-12 text-center">
  <div class="flex flex-col items-center justify-center">
  <div class="w-10 h-10 rounded-lg flex items-center justify-center mb-2 bg-muted text-muted-foreground border border-border">
- <i data-lucide="alert-triangle" class="w-4 h-4"></i>
+ <i data-lucide="alert-triangle" class="size-4"></i>
  </div>
  <h4 class="text-xs font-semibold text-foreground">No Disputes Found</h4>
  <p class="text-[10px] mt-0.5 max-w-xs mx-auto text-muted-foreground">There are no escrow dispute claims matching your query filters.</p>

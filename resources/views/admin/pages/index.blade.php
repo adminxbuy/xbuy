@@ -14,12 +14,12 @@
  <div class="flex items-center space-x-3">
  <button @click="openCategoryModal()"
  class="bg-card hover:bg-muted text-foreground font-semibold py-2.5 px-5 rounded-lg ring-0 border border-border transition-all flex items-center space-x-2 text-sm">
- <i data-lucide="folder-plus" class="w-4 h-4"></i>
+ <i data-lucide="folder-plus" class="size-4"></i>
  <span>Create Parent Category</span>
  </button>
  <button @click="openAddModal()"
  class="bg-primary text-primary-foreground hover:bg-primary/90 font-semibold py-2.5 px-5 rounded-lg ring-0 border border-black/10 transition-all flex items-center space-x-2 text-sm">
- <i data-lucide="plus" class="w-4 h-4"></i>
+ <i data-lucide="plus" class="size-4"></i>
  <span>Create New Page</span>
  </button>
  </div>
@@ -33,13 +33,13 @@
  <button type="button" @click="tab = 'hierarchy'"
  :class="tab === 'hierarchy' ? 'bg-card border border-border text-foreground font-bold' : 'text-muted-foreground hover:text-foreground border-transparent'"
  class="flex-1 py-2 rounded-lg text-xs uppercase tracking-wider transition-all focus:outline-none flex items-center justify-center space-x-2">
- <i data-lucide="layout-grid" class="w-4 h-4"></i>
+ <i data-lucide="layout-grid" class="size-4"></i>
  <span>Drag & Drop Footer Builder</span>
  </button>
  <button type="button" @click="tab = 'table'"
  :class="tab === 'table' ? 'bg-card border border-border text-foreground font-bold' : 'text-muted-foreground hover:text-foreground border-transparent'"
  class="flex-1 py-2 rounded-lg text-xs uppercase tracking-wider transition-all focus:outline-none flex items-center justify-center space-x-2">
- <i data-lucide="list" class="w-4 h-4"></i>
+ <i data-lucide="list" class="size-4"></i>
  <span>All Pages Table</span>
  </button>
  <button type="button" @click="tab = 'trash'"
@@ -67,7 +67,7 @@
  <div class="flex items-center space-x-3 flex-1 cursor-pointer" @click="expanded = !expanded">
  <span
  class="cursor-move handle-category p-1 text-muted-foreground hover:text-foreground transition-colors">
- <i data-lucide="grip-vertical" class="w-4 h-4"></i>
+ <i data-lucide="grip-vertical" class="size-4"></i>
  </span>
  <i data-lucide="chevron-right" class="w-4 h-4 text-muted-foreground transition-transform duration-200"
  :class="expanded ? 'rotate-90' : ''"></i>
@@ -84,7 +84,7 @@
  @method('DELETE')
  <button type="submit"
  class="p-1 text-muted-foreground hover:text-destructive hover:bg-muted rounded-lg transition-colors">
- <i data-lucide="trash-2" class="w-4 h-4"></i>
+ <i data-lucide="trash-2" class="size-4"></i>
  </button>
  </form>
  </div>
@@ -113,7 +113,7 @@
   <!-- Three dots button -->
  <button type="button" @click="dropdownOpen = !dropdownOpen"
  class="p-1.5 text-muted-foreground hover:text-foreground hover:bg-muted rounded-lg transition-all focus:outline-none">
- <i data-lucide="more-vertical" class="w-4 h-4"></i>
+ <i data-lucide="more-vertical" class="size-4"></i>
  </button>
 
  <!-- Dropdown Menu -->
@@ -169,7 +169,7 @@
  <div class="bg-card border border-border rounded-xl p-6 ">
  <div class="flex items-center space-x-2 mb-1">
  <i data-lucide="alert-circle" class="w-4 h-4 text-muted-foreground"></i>
- <h3 class="font-bold text-foreground text-sm">Uncategorized Pages</h3>
+ <h3 class="text-sm font-semibold text-foreground">Uncategorized Pages</h3>
  </div>
  <p class="text-xs text-muted-foreground mb-4 font-medium">These pages are not in the footer columns. Drag them into
  any of the expanded Parent Category boxes above to add them to that column.</p>
@@ -196,7 +196,7 @@
   <!-- Three dots button -->
  <button type="button" @click="dropdownOpen = !dropdownOpen"
  class="p-1 text-muted-foreground hover:text-foreground hover:bg-muted rounded-lg transition-all focus:outline-none">
- <i data-lucide="more-vertical" class="w-3.5 h-3.5"></i>
+ <i data-lucide="more-vertical" class="size-3.5"></i>
  </button>
 
  <!-- Dropdown Menu -->
@@ -254,7 +254,7 @@
  <input type="text" x-model="searchQuery" placeholder="Search pages by title or slug..."
  class="w-full pl-9 pr-4 py-2 border border-border rounded-lg bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:ring-2 focus:ring-ring/50 focus:outline-none text-sm transition-all">
  <div class="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground">
- <i data-lucide="search" class="w-4 h-4"></i>
+ <i data-lucide="search" class="size-4"></i>
  </div>
  </div>
  <div class="text-xs text-muted-foreground font-medium" x-text="filteredPages().length + ' pages found'"></div>
@@ -409,7 +409,7 @@
  @method('DELETE')
  <button type="submit"
  class="p-1.5 text-muted-foreground hover:text-muted-foreground rounded-lg hover:bg-muted transition-colors">
- <i data-lucide="trash-2" class="w-4 h-4"></i>
+ <i data-lucide="trash-2" class="size-4"></i>
  </button>
  </form>
  </div>
@@ -573,7 +573,7 @@
  <div class="px-6 py-5 border-b border-border flex items-center justify-between bg-muted">
  <div class="flex items-center space-x-2.5">
  <div class="w-8 h-8 rounded-lg bg-primary text-primary-foreground hover:bg-primary/90/15 flex items-center justify-center text-foreground">
- <i data-lucide="file-text" class="w-4 h-4"></i>
+ <i data-lucide="file-text" class="size-4"></i>
  </div>
  <h4 class="font-bold text-foreground text-base">Create New Custom Page</h4>
  </div>

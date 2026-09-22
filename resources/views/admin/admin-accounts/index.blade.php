@@ -32,16 +32,16 @@
  <div class="flex flex-col sm:flex-row justify-between items-stretch sm:items-center gap-4 bg-card border border-border rounded-xl p-4 ">
  <div class="flex items-center gap-3">
  <div class="p-2.5 bg-muted text-foreground rounded-xl border border-border">
- <i data-lucide="users-round" class="w-5 h-5"></i>
+ <i data-lucide="users-round" class="size-5"></i>
  </div>
  <div>
- <h4 class="font-bold text-foreground text-sm">Staff Management</h4>
+ <h4 class="text-sm font-semibold text-foreground">Staff Management</h4>
  <p class="text-xs text-muted-foreground">Create, update roles, and revoke staff access. Only Super Admins can manage this section.</p>
  </div>
  </div>
  <a href="{{ route('admin.accounts.create') }}"
  class="px-4 py-2.5 bg-primary text-primary-foreground hover:bg-primary/90 rounded-lg text-xs font-medium flex items-center gap-1.5 transition-all ">
- <i data-lucide="user-plus" class="w-3.5 h-3.5"></i>
+ <i data-lucide="user-plus" class="size-3.5"></i>
  Add Staff
  </a>
  </div>
@@ -63,7 +63,7 @@
  <a href="{{ route('admin.accounts.index', ['admin_role' => $roleKey]) }}"
  class="bg-card border {{ request('admin_role') === $roleKey ? 'border-primary ring-2 ring-primary/20' : 'border-border' }} rounded-xl p-3 hover:shadow-md transition-all flex flex-col items-center gap-2 text-center">
  <div class="w-9 h-9 rounded-xl bg-{{ $rc['color'] }}-50 text-{{ $rc['color'] }}-600 flex items-center justify-center border border-{{ $rc['color'] }}-100">
- <i data-lucide="{{ $rc['icon'] }}" class="w-4 h-4"></i>
+ <i data-lucide="{{ $rc['icon'] }}" class="size-4"></i>
  </div>
  <div>
  <p class="text-[10px] font-bold text-muted-foreground">{{ $rc['label'] }}</p>
@@ -94,13 +94,13 @@
  @endforeach
  </select>
  <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-muted-foreground">
- <i data-lucide="chevron-down" class="w-3.5 h-3.5"></i>
+ <i data-lucide="chevron-down" class="size-3.5"></i>
  </div>
  </div>
  </div>
  <div class="flex items-center gap-2 pt-5">
  <button type="submit" class="px-4 py-2.5 bg-primary text-primary-foreground rounded-lg text-xs font-semibold flex items-center gap-1.5 hover:bg-primary/80 transition-all">
- <i data-lucide="filter" class="w-3.5 h-3.5"></i> Filter
+ <i data-lucide="filter" class="size-3.5"></i> Filter
  </button>
  @if(request()->anyFilled(['search','admin_role']))
  <a href="{{ route('admin.accounts.index') }}" class="px-4 py-2.5 border border-border text-muted-foreground hover:bg-muted rounded-lg text-xs font-semibold transition-all">Clear</a>
@@ -193,7 +193,7 @@
  {{-- Edit Role --}}
  <a href="{{ route('admin.accounts.edit', $admin->id) }}"
  class="px-3 py-1.5 bg-muted hover:bg-muted border border-border text-foreground rounded-lg text-[10px] font-bold flex items-center gap-1 transition-all">
- <i data-lucide="pencil" class="w-3.5 h-3.5"></i> Edit
+ <i data-lucide="pencil" class="size-3.5"></i> Edit
  </a>
 
  {{-- Revoke Access --}}
@@ -202,7 +202,7 @@
  @csrf @method('DELETE')
  <button type="submit"
  class="px-3 py-1.5 bg-muted hover:bg-muted border border-border text-foreground rounded-lg text-[10px] font-medium flex items-center gap-1 transition-all">
- <i data-lucide="user-x" class="w-3.5 h-3.5"></i> Revoke
+ <i data-lucide="user-x" class="size-3.5"></i> Revoke
  </button>
  </form>
  @else
@@ -215,7 +215,7 @@
  <tr>
  <td colspan="5" class="py-16 text-center">
  <div class="w-12 h-12 rounded-xl bg-muted border border-border flex items-center justify-center mx-auto mb-3 text-muted-foreground">
- <i data-lucide="users-round" class="w-5 h-5"></i>
+ <i data-lucide="users-round" class="size-5"></i>
  </div>
  <h4 class="text-sm font-bold text-foreground">No Staff Accounts Found</h4>
  <p class="text-xs text-muted-foreground mt-1">No staff members match your current filters.</p>

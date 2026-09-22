@@ -17,7 +17,7 @@
  <!-- Card 1: Total Held -->
  <div class="rounded-xl p-5 flex flex-col gap-2 border border-border bg-card">
  <div class="flex items-center justify-between">
- <div class="p-2 bg-muted text-foreground rounded-xl"><i data-lucide="lock" class="w-5 h-5"></i></div>
+ <div class="p-2 bg-muted text-foreground rounded-xl"><i data-lucide="lock" class="size-5"></i></div>
  <span class="text-[10px] font-bold px-2 py-0.5 rounded-full border bg-muted text-foreground border-border/60">{{ $summary['count_held'] }} held</span>
  </div>
  <h3 class="text-2xl font-bold text-foreground">₹{{ number_format($summary['total_held'], 2) }}</h3>
@@ -26,21 +26,21 @@
 
  <!-- Card 2: Due Today -->
  <div class="rounded-xl p-5 flex flex-col gap-2 border border-border bg-card">
- <div class="p-2 rounded-xl w-fit bg-muted text-foreground/60"><i data-lucide="clock" class="w-5 h-5"></i></div>
+ <div class="p-2 rounded-xl w-fit bg-muted text-foreground/60"><i data-lucide="clock" class="size-5"></i></div>
  <h3 class="text-2xl font-bold text-foreground">₹{{ number_format($summary['due_today'], 2) }}</h3>
  <p class="text-[10px] font-bold uppercase tracking-wider text-muted-foreground">Due Today</p>
  </div>
 
  <!-- Card 3: Overdue -->
  <div class="rounded-xl p-5 flex flex-col gap-2 border border-border bg-card">
- <div class="p-2 rounded-xl w-fit bg-muted text-foreground/60"><i data-lucide="alert-circle" class="w-5 h-5"></i></div>
+ <div class="p-2 rounded-xl w-fit bg-muted text-foreground/60"><i data-lucide="alert-circle" class="size-5"></i></div>
  <h3 class="text-2xl font-bold text-foreground">₹{{ number_format($summary['overdue'], 2) }}</h3>
  <p class="text-[10px] font-bold uppercase tracking-wider text-muted-foreground">Overdue Release</p>
  </div>
 
  <!-- Card 4: Disputed Amount -->
  <div class="rounded-xl p-5 flex flex-col gap-2 border border-border bg-card">
- <div class="p-2 rounded-xl w-fit bg-muted text-foreground/60"><i data-lucide="help-circle" class="w-5 h-5"></i></div>
+ <div class="p-2 rounded-xl w-fit bg-muted text-foreground/60"><i data-lucide="help-circle" class="size-5"></i></div>
  <h3 class="text-2xl font-bold text-foreground">₹{{ number_format($summary['total_disputed'], 2) }}</h3>
  <p class="text-[10px] font-bold uppercase tracking-wider text-muted-foreground">Disputed Amount</p>
  </div>
@@ -86,7 +86,7 @@
  <option value="custom">Custom Range</option>
  </select>
  <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-muted-foreground">
- <i data-lucide="chevron-down" class="w-3.5 h-3.5"></i>
+ <i data-lucide="chevron-down" class="size-3.5"></i>
  </div>
  </div>
  </div>
@@ -190,7 +190,7 @@
  <a href="{{ route('admin.orders.show', $escrow->order_id) }}" target="_blank" @click.stop
  class="inline-flex items-center justify-center p-1 rounded-lg transition-all shrink-0 border border-border bg-muted text-muted-foreground hover:bg-muted"
  title="View Full Order Details">
- <i data-lucide="eye" class="w-3.5 h-3.5"></i>
+ <i data-lucide="eye" class="size-3.5"></i>
  </a>
  @endif
  </div>
@@ -363,7 +363,7 @@
  <div class="px-6 py-5 border-b flex items-center justify-between border-border bg-muted">
  <h4 class="font-bold text-sm text-foreground">Partial Escrow Release</h4>
  <button @click="closePartialModal()" class="hover:text-foreground focus:outline-none text-muted-foreground">
- <i data-lucide="x" class="w-4 h-4"></i>
+ <i data-lucide="x" class="size-4"></i>
  </button>
  </div>
 

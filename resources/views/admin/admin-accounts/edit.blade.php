@@ -11,7 +11,7 @@
  {{-- Back Link & Page Title --}}
  <div class="flex items-center justify-between">
  <a href="{{ route('admin.accounts.index') }}"  class="inline-flex items-center gap-2 text-xs font-bold text-muted-foreground hover:text-foreground bg-card border border-border hover:border-border px-3 py-2 rounded-xl transition-all ">
- <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i>
+ <i data-lucide="arrow-left" class="size-3.5"></i>
  Back to List
  </a>
  <span class="text-xs text-muted-foreground font-medium">Update system permissions or change access passwords</span>
@@ -84,7 +84,7 @@
  :class="selectedRole === key ? 'border-primary bg-muted ring-1 ring-primary' : 'border-border bg-card'">
  <div class="flex items-center justify-between">
  <div class="p-2 rounded-xl" :class="role.bgClass">
- <i :data-lucide="role.icon" class="w-4 h-4" :class="role.iconClass"></i>
+ <i :data-lucide="role.icon" class="size-4" :class="role.iconClass"></i>
  </div>
  <input type="radio" name="admin_role" :value="key" required x-model="selectedRole" @change="onRoleChange(key)" class="text-yellow-500 focus:ring-ring">
  </div>
@@ -125,7 +125,7 @@
  <div class="border border-border rounded-xl overflow-hidden ">
  <table class="w-full text-left border-collapse text-xs">
  <thead>
- <tr class="bg-muted border-b border-border font-bold text-muted-foreground">
+ <tr>
  <th class="p-3 pl-4">System Section</th>
  <th class="p-3 text-center">None</th>
  <th class="p-3 text-center">View Only</th>
@@ -159,7 +159,7 @@
  <div class="flex items-center justify-between">
  <div class="flex items-center gap-2">
  <div class="p-1.5 bg-primary text-primary-foreground hover:bg-primary/90/10 text-foreground rounded-lg border border-border">
- <i data-lucide="shield-check" class="w-4 h-4"></i>
+ <i data-lucide="shield-check" class="size-4"></i>
  </div>
  <h4 class="text-xs font-bold text-foreground uppercase tracking-wider">Live System Access Scope</h4>
  </div>
@@ -233,7 +233,7 @@
  <input :type="show ? 'text' : 'password'" name="password" placeholder="Leave blank to keep current"
  class="w-full pl-10 pr-10 py-3 text-xs border border-border rounded-lg bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:ring-2 focus:ring-ring/50 focus:outline-none transition-all">
  <button type="button" @click="show = !show" class="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground">
- <i :data-lucide="show ? 'eye-off' : 'eye'" class="w-4 h-4"></i>
+ <i :data-lucide="show ? 'eye-off' : 'eye'" class="size-4"></i>
  </button>
  </div>
  </div>
@@ -246,7 +246,7 @@
  <input :type="show ? 'text' : 'password'" name="password_confirmation" placeholder="Repeat new password"
  class="w-full pl-10 pr-10 py-3 text-xs border border-border rounded-lg bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:ring-2 focus:ring-ring/50 focus:outline-none transition-all">
  <button type="button" @click="show = !show" class="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground">
- <i :data-lucide="show ? 'eye-off' : 'eye'" class="w-4 h-4"></i>
+ <i :data-lucide="show ? 'eye-off' : 'eye'" class="size-4"></i>
  </button>
  </div>
  </div>
@@ -259,7 +259,7 @@
  Cancel
  </a>
  <button type="submit"  class="px-6 py-3 bg-primary text-primary-foreground hover:bg-primary/90 text-xs font-black rounded-lg flex items-center gap-1.5 transition-all ">
- <i data-lucide="save" class="w-4 h-4"></i>
+ <i data-lucide="save" class="size-4"></i>
  Save Changes
  </button>
  </div>

@@ -6,7 +6,7 @@
 @section('header_actions')
  <a href="{{ route('admin.my-earnings.print') }}?month_year={{ request('month_year') }}" target="_blank"
  class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-primary text-primary-foreground hover:bg-primary/90 hover:text-primary-foreground rounded-lg text-xs font-medium transition-all ">
- <i data-lucide="printer" class="w-3.5 h-3.5"></i>
+ <i data-lucide="printer" class="size-3.5"></i>
  <span>Download report (PDF)</span>
  </a>
 @endsection
@@ -20,7 +20,7 @@
  <div class="flex items-center justify-between">
  <span class="text-[10px] font-bold text-muted-foreground uppercase tracking-wider block">This Month Earnings</span>
  <div class="p-2 bg-muted text-muted-foreground rounded-lg">
- <i data-lucide="trending-up" class="w-4 h-4"></i>
+ <i data-lucide="trending-up" class="size-4"></i>
  </div>
  </div>
  <h3 class="text-2xl font-bold text-foreground mt-3">₹{{ number_format($thisMonthEarned, 2) }}</h3>
@@ -32,7 +32,7 @@
  <div class="flex items-center justify-between">
  <span class="text-[10px] font-bold text-muted-foreground uppercase tracking-wider block">Last Month Earnings</span>
  <div class="p-2 bg-muted text-muted-foreground rounded-lg border border-border">
- <i data-lucide="wallet" class="w-4 h-4"></i>
+ <i data-lucide="wallet" class="size-4"></i>
  </div>
  </div>
  <h3 class="text-2xl font-bold text-foreground mt-3">₹{{ number_format($lastMonthEarned, 2) }}</h3>
@@ -44,7 +44,7 @@
  <div class="flex items-center justify-between">
  <span class="text-[10px] font-bold text-muted-foreground uppercase tracking-wider block">Total Earning All Time</span>
  <div class="p-2 bg-muted text-muted-foreground rounded-lg">
- <i data-lucide="award" class="w-4 h-4"></i>
+ <i data-lucide="award" class="size-4"></i>
  </div>
  </div>
  <h3 class="text-2xl font-bold text-foreground mt-3">₹{{ number_format($totalEarned, 2) }}</h3>
@@ -115,7 +115,7 @@
  <td colspan="7" class="px-6 py-12 text-center">
  <div class="flex flex-col items-center justify-center">
  <div class="w-10 h-10 bg-muted rounded-xl flex items-center justify-center text-muted-foreground mb-2 border border-border">
- <i data-lucide="shopping-bag" class="w-5 h-5"></i>
+ <i data-lucide="shopping-bag" class="size-5"></i>
  </div>
  <h4 class="text-xs font-bold text-foreground">No Orders Found</h4>
  <p class="text-[11px] text-muted-foreground mt-0.5">You have not been assigned any orders in this cycle.</p>
@@ -147,7 +147,7 @@
  <div class="border border-border rounded-xl p-4 bg-muted hover:bg-muted transition-all flex items-center justify-between gap-4">
  <div class="flex items-center gap-3">
  <div class="p-2 bg-muted text-muted-foreground rounded-lg border border-border">
- <i data-lucide="file-text" class="w-4 h-4"></i>
+ <i data-lucide="file-text" class="size-4"></i>
  </div>
  <div>
  <h4 class="font-bold text-foreground text-xs">{{ $slip->subject }}</h4>
@@ -157,7 +157,7 @@
  @if($slip->pdf_attachment)
  <a href="{{ asset('storage/' . $slip->pdf_attachment) }}" target="_blank"
  class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-primary text-primary-foreground hover:bg-primary/90 hover:text-primary-foreground rounded-lg text-xs font-bold transition-all ">
- <i data-lucide="download" class="w-3.5 h-3.5"></i>
+ <i data-lucide="download" class="size-3.5"></i>
  <span>Download PDF</span>
  </a>
  @endif

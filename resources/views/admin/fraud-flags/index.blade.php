@@ -36,17 +36,17 @@
  <div class="flex flex-col sm:flex-row justify-between items-stretch sm:items-center gap-4 bg-card border border-border rounded-xl p-4 ">
  <div class="flex items-center gap-3">
  <div class="p-2.5 bg-muted text-rose-600 rounded-xl">
- <i data-lucide="shield-alert" class="w-5 h-5"></i>
+ <i data-lucide="shield-alert" class="size-5"></i>
  </div>
  <div>
- <h4 class="font-bold text-foreground text-sm">Fraud Detection Center</h4>
+ <h4 class="text-sm font-semibold text-foreground">Fraud Detection Center</h4>
  <p class="text-xs text-muted-foreground">Monitor auto-detected and manually created fraud flags. Review or dismiss each case.</p>
  </div>
  </div>
  <button
  @click="showCreateModal = true"
  class="px-4 py-2.5 bg-rose-600 hover:bg-rose-700 text-primary-foreground rounded-lg text-xs font-semibold flex items-center gap-1.5 transition-all ">
- <i data-lucide="plus" class="w-3.5 h-3.5"></i>
+ <i data-lucide="plus" class="size-3.5"></i>
  Flag Manually
  </button>
  </div>
@@ -65,7 +65,7 @@
  @foreach($cards as $card)
  <div class="bg-card border border-border rounded-xl p-4 flex items-center gap-3">
  <div class="w-10 h-10 rounded-xl bg-{{ $card['color'] }}-50 text-{{ $card['color'] }}-600 flex items-center justify-center flex-shrink-0 border border-{{ $card['color'] }}-100">
- <i data-lucide="{{ $card['icon'] }}" class="w-4 h-4"></i>
+ <i data-lucide="{{ $card['icon'] }}" class="size-4"></i>
  </div>
  <div>
  <p class="text-[10px] font-bold text-muted-foreground uppercase tracking-wider">{{ $card['label'] }}</p>
@@ -102,7 +102,7 @@
  <option value="suspicious_buyer_pattern" {{ request('flag_type') === 'suspicious_buyer_pattern' ? 'selected' : '' }}>Suspicious Buyer Pattern</option>
  </select>
  <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-muted-foreground">
- <i data-lucide="chevron-down" class="w-3.5 h-3.5"></i>
+ <i data-lucide="chevron-down" class="size-3.5"></i>
  </div>
  </div>
  </div>
@@ -119,7 +119,7 @@
  <option value="dismissed" {{ request('status') === 'dismissed' ? 'selected' : '' }}>Dismissed</option>
  </select>
  <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-muted-foreground">
- <i data-lucide="chevron-down" class="w-3.5 h-3.5"></i>
+ <i data-lucide="chevron-down" class="size-3.5"></i>
  </div>
  </div>
  </div>
@@ -149,7 +149,7 @@
  <option value="custom">Custom Range</option>
  </select>
  <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-muted-foreground">
- <i data-lucide="chevron-down" class="w-3.5 h-3.5"></i>
+ <i data-lucide="chevron-down" class="size-3.5"></i>
  </div>
  </div>
  </div>
@@ -178,7 +178,7 @@
  <div class="flex items-center gap-2 pt-5">
  <button type="submit"
  class="px-4 py-2.5 bg-primary text-primary-foreground rounded-lg text-xs font-semibold flex items-center gap-1.5 transition-all hover:bg-primary/80">
- <i data-lucide="filter" class="w-3.5 h-3.5"></i> Filter
+ <i data-lucide="filter" class="size-3.5"></i> Filter
  </button>
  @if(request()->anyFilled(['search', 'flag_type', 'status', 'date_start', 'date_end']))
  <a href="{{ route('admin.fraud-flags.index') }}"
@@ -207,7 +207,7 @@
  <div class="overflow-x-auto">
  <table class="w-full text-left border-collapse text-xs">
  <thead>
- <tr class="bg-muted uppercase font-bold text-muted-foreground border-b border-border text-[10px]">
+ <tr>
  <th class="px-4 py-2.5">Flag Type</th>
  <th class="px-4 py-2.5">Flagged User</th>
  <th class="px-4 py-2.5">Flagged Listing</th>
@@ -226,7 +226,7 @@
  <form action="{{ route('admin.trash.restore', ['model' => 'fraud-flags', 'id' => $tFlag->id]) }}" method="POST">
  @csrf
  <button type="submit" class="px-2 py-1 bg-muted text-foreground border border-emerald-250 hover:bg-muted rounded-lg font-medium text-[10px] uppercase flex items-center space-x-1">
- <i data-lucide="rotate-ccw" class="w-3.5 h-3.5"></i>
+ <i data-lucide="rotate-ccw" class="size-3.5"></i>
  <span>Restore</span>
  </button>
  </form>
@@ -235,7 +235,7 @@
  @csrf
  @method('DELETE')
  <button type="submit" class="px-2 py-1 bg-muted text-foreground border border-red-250 hover:bg-muted rounded-lg font-bold text-[10px] uppercase flex items-center space-x-1">
- <i data-lucide="trash" class="w-3.5 h-3.5"></i>
+ <i data-lucide="trash" class="size-3.5"></i>
  <span>Delete Forever</span>
  </button>
  </form>
@@ -278,7 +278,7 @@
 
  {{-- Type Icon --}}
  <div class="w-10 h-10 rounded-xl bg-{{ $type['color'] }}-50 text-{{ $type['color'] }}-600 border border-{{ $type['color'] }}-100 flex items-center justify-center flex-shrink-0">
- <i data-lucide="{{ $type['icon'] }}" class="w-4 h-4"></i>
+ <i data-lucide="{{ $type['icon'] }}" class="size-4"></i>
  </div>
 
  {{-- Info --}}
@@ -323,7 +323,7 @@
  {{-- Expand details --}}
  <button @click="expanded = !expanded"
  class="px-3 py-1.5 border border-border hover:bg-muted text-muted-foreground rounded-lg text-[10px] font-semibold flex items-center gap-1 transition-all">
- <i data-lucide="eye" class="w-3.5 h-3.5"></i>
+ <i data-lucide="eye" class="size-3.5"></i>
  <span x-text="expanded ? 'Hide' : 'Details'"></span>
  </button>
 
@@ -333,7 +333,7 @@
  @csrf
  <button type="submit"
  class="px-3 py-1.5 bg-muted hover:bg-muted border border-border text-foreground rounded-lg text-[10px] font-bold flex items-center gap-1 transition-all">
- <i data-lucide="check" class="w-3.5 h-3.5"></i> Review
+ <i data-lucide="check" class="size-3.5"></i> Review
  </button>
  </form>
 
@@ -343,7 +343,7 @@
  @csrf
  <button type="submit"
  class="px-3 py-1.5 bg-muted hover:bg-muted border border-border text-muted-foreground rounded-lg text-[10px] font-medium flex items-center gap-1 transition-all">
- <i data-lucide="x" class="w-3.5 h-3.5"></i> Dismiss
+ <i data-lucide="x" class="size-3.5"></i> Dismiss
  </button>
  </form>
  @elseif($flag->status === 'reviewed')
@@ -353,7 +353,7 @@
  @csrf
  <button type="submit"
  class="px-3 py-1.5 bg-muted hover:bg-muted border border-border text-muted-foreground rounded-lg text-[10px] font-medium flex items-center gap-1 transition-all">
- <i data-lucide="x" class="w-3.5 h-3.5"></i> Dismiss
+ <i data-lucide="x" class="size-3.5"></i> Dismiss
  </button>
  </form>
  @else
@@ -416,7 +416,7 @@
  @empty
  <div class="p-16 text-center">
  <div class="w-14 h-14 rounded-xl bg-muted border border-emerald-100 flex items-center justify-center mx-auto mb-4 text-muted-foreground">
- <i data-lucide="shield-check" class="w-6 h-6"></i>
+ <i data-lucide="shield-check" class="size-6"></i>
  </div>
  <h4 class="text-sm font-bold text-foreground">No Fraud Flags Found</h4>
  <p class="text-xs text-muted-foreground mt-1 max-w-xs mx-auto">
@@ -456,12 +456,12 @@
  <div class="flex items-center justify-between px-6 py-4 border-b border-border">
  <div class="flex items-center gap-2">
  <div class="p-2 bg-muted text-rose-600 rounded-lg">
- <i data-lucide="shield-alert" class="w-4 h-4"></i>
+ <i data-lucide="shield-alert" class="size-4"></i>
  </div>
  <h3 class="text-sm font-bold text-foreground">Flag Manually</h3>
  </div>
  <button @click="showCreateModal = false" class="text-muted-foreground hover:text-foreground transition-colors p-1 rounded-lg hover:bg-muted">
- <i data-lucide="x" class="w-4 h-4"></i>
+ <i data-lucide="x" class="size-4"></i>
  </button>
  </div>
 
@@ -482,7 +482,7 @@
  <option value="suspicious_buyer_pattern">Suspicious Buyer Pattern</option>
  </select>
  <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-muted-foreground">
- <i data-lucide="chevron-down" class="w-3.5 h-3.5"></i>
+ <i data-lucide="chevron-down" class="size-3.5"></i>
  </div>
  </div>
  </div>
@@ -515,7 +515,7 @@
  </button>
  <button type="submit"
  class="px-5 py-2.5 bg-rose-600 hover:bg-rose-700 text-white text-xs font-medium rounded-lg flex items-center gap-1.5 transition-all ">
- <i data-lucide="flag" class="w-3.5 h-3.5"></i>
+ <i data-lucide="flag" class="size-3.5"></i>
  Create Flag
  </button>
  </div>

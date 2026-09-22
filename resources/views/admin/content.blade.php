@@ -9,7 +9,7 @@
  $totalFiles = count($content['images']) + count($content['pdfs']) + count($content['videos']);
  @endphp
  <a href="{{ route('admin.trash.index', 'content') }}" class="inline-flex items-center gap-2 h-9 px-4 rounded-lg text-xs font-medium border border-border bg-background hover:bg-muted text-foreground transition-colors">
- <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
+ <i data-lucide="trash-2" class="size-3.5"></i>
  <span>Trash ({{ $totalTrashedFiles }})</span>
  </a>
 @endsection
@@ -65,7 +65,7 @@
  <p class="text-2xl font-bold text-foreground mt-1">{{ $totalFiles }}</p>
  </div>
  <div class="p-2.5 rounded-lg bg-muted text-muted-foreground">
- <i data-lucide="files" class="w-5 h-5"></i>
+ <i data-lucide="files" class="size-5"></i>
  </div>
  </div>
  </div>
@@ -76,7 +76,7 @@
  <p class="text-2xl font-bold text-foreground mt-1">{{ count($content['images']) }}</p>
  </div>
  <div class="p-2.5 rounded-lg bg-muted text-muted-foreground">
- <i data-lucide="image" class="w-5 h-5"></i>
+ <i data-lucide="image" class="size-5"></i>
  </div>
  </div>
  </div>
@@ -87,7 +87,7 @@
  <p class="text-2xl font-bold text-foreground mt-1">{{ count($content['pdfs']) }}</p>
  </div>
  <div class="p-2.5 rounded-lg bg-muted text-muted-foreground">
- <i data-lucide="file-text" class="w-5 h-5"></i>
+ <i data-lucide="file-text" class="size-5"></i>
  </div>
  </div>
  </div>
@@ -98,7 +98,7 @@
  <p class="text-2xl font-bold text-foreground mt-1">{{ count($content['videos']) }}</p>
  </div>
  <div class="p-2.5 rounded-lg bg-muted text-muted-foreground">
- <i data-lucide="video" class="w-5 h-5"></i>
+ <i data-lucide="video" class="size-5"></i>
  </div>
  </div>
  </div>
@@ -110,21 +110,21 @@
  <div class="flex items-center gap-1 p-1 bg-muted rounded-lg w-fit">
  <button @click="tab = 'images'; selectedFiles = []"  :class="tab === 'images' ? 'bg-background text-foreground ' : 'text-muted-foreground hover:text-foreground'"
  class="px-4 py-2 text-xs font-medium rounded-md transition-all flex items-center gap-2">
- <i data-lucide="image" class="w-3.5 h-3.5"></i>
+ <i data-lucide="image" class="size-3.5"></i>
  Images
  <span class="text-[10px] px-1.5 py-0.5 rounded-full bg-muted text-muted-foreground">{{ count($content['images']) }}</span>
  </button>
  <button @click="tab = 'pdfs'; selectedFiles = []"
  :class="tab === 'pdfs' ? 'bg-background text-foreground ' : 'text-muted-foreground hover:text-foreground'"
  class="px-4 py-2 text-xs font-medium rounded-md transition-all flex items-center gap-2">
- <i data-lucide="file-text" class="w-3.5 h-3.5"></i>
+ <i data-lucide="file-text" class="size-3.5"></i>
  PDFs
  <span class="text-[10px] px-1.5 py-0.5 rounded-full bg-muted text-muted-foreground">{{ count($content['pdfs']) }}</span>
  </button>
  <button @click="tab = 'videos'; selectedFiles = []"
  :class="tab === 'videos' ? 'bg-background text-foreground ' : 'text-muted-foreground hover:text-foreground'"
  class="px-4 py-2 text-xs font-medium rounded-md transition-all flex items-center gap-2">
- <i data-lucide="video" class="w-3.5 h-3.5"></i>
+ <i data-lucide="video" class="size-3.5"></i>
  Videos
  <span class="text-[10px] px-1.5 py-0.5 rounded-full bg-muted text-muted-foreground">{{ count($content['videos']) }}</span>
  </button>
@@ -138,17 +138,17 @@
  </div>
  <div class="flex items-center gap-1 p-1 bg-muted rounded-lg">
  <button @click="viewMode = 'grid'" :class="viewMode === 'grid' ? 'bg-background text-foreground ' : 'text-muted-foreground'" class="p-1.5 rounded-md transition-all">
- <i data-lucide="grid-3x3" class="w-4 h-4"></i>
+ <i data-lucide="grid-3x3" class="size-4"></i>
  </button>
  <button @click="viewMode = 'list'" :class="viewMode === 'list' ? 'bg-background text-foreground ' : 'text-muted-foreground'" class="p-1.5 rounded-md transition-all">
- <i data-lucide="list" class="w-4 h-4"></i>
+ <i data-lucide="list" class="size-4"></i>
  </button>
  </div>
  <form action="{{ route('admin.content.upload') }}" method="POST" enctype="multipart/form-data" id="upload-form">
  @csrf
  <input type="hidden" name="type" :value="tab">
  <label class="inline-flex items-center gap-2 h-9 px-4 rounded-lg text-xs font-medium bg-primary text-primary-foreground hover:bg-primary/90 cursor-pointer transition-colors">
- <i data-lucide="upload" class="w-3.5 h-3.5"></i>
+ <i data-lucide="upload" class="size-3.5"></i>
  <span>Upload</span>
  <input type="file" name="files[]" multiple required class="hidden" @change="uploadFiles()">
  </label>
@@ -229,7 +229,7 @@
  </button>
  <button type="button" @click="triggerDelete('{{ $file['url'] }}', '{{ $file['name'] }}')"
  class="h-7 w-7 inline-flex items-center justify-center rounded-md text-muted-foreground hover:text-destructive hover:bg-destructive/10 transition-colors">
- <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
+ <i data-lucide="trash-2" class="size-3.5"></i>
  </button>
  </div>
  </div>
@@ -273,11 +273,11 @@
  <div class="flex items-center justify-end gap-1">
  <button type="button" @click="copyToClipboard('{{ $file['url'] }}', '{{ $file['name'] }}')"
  class="h-7 w-7 inline-flex items-center justify-center rounded-md text-muted-foreground hover:text-foreground hover:bg-muted transition-colors">
- <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+ <i data-lucide="copy" class="size-3.5"></i>
  </button>
  <button type="button" @click="triggerDelete('{{ $file['url'] }}', '{{ $file['name'] }}')"
  class="h-7 w-7 inline-flex items-center justify-center rounded-md text-muted-foreground hover:text-destructive hover:bg-destructive/10 transition-colors">
- <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
+ <i data-lucide="trash-2" class="size-3.5"></i>
  </button>
  </div>
  </td>

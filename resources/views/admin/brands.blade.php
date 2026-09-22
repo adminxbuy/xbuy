@@ -13,7 +13,7 @@
  </div>
  <button @click="openAddModal()"
  class="bg-primary text-primary-foreground hover:bg-primary/90 font-semibold py-2.5 px-5 rounded-lg ring-0 border border-black/10 transition-all flex items-center space-x-2 text-sm">
- <i data-lucide="plus" class="w-4 h-4"></i>
+ <i data-lucide="plus" class="size-4"></i>
  <span>Add New Brand</span>
  </button>
  </div>
@@ -25,7 +25,7 @@
  <input type="text" x-model="searchQuery" placeholder="Search brands..."
  class="w-full pl-9 pr-4 py-2 rounded-lg focus:ring-1 focus:ring-ring focus:border-ring focus:ring-2 focus:ring-ring/50 focus:outline-none text-sm transition-all bg-card border border-border text-foreground">
  <div class="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground">
- <i data-lucide="search" class="w-4 h-4"></i>
+ <i data-lucide="search" class="size-4"></i>
  </div>
  </div>
 
@@ -76,7 +76,7 @@
  </template>
  <template x-if="!brand.logo">
  <div class="text-muted-foreground">
- <i data-lucide="image" class="w-5 h-5"></i>
+ <i data-lucide="image" class="size-5"></i>
  </div>
  </template>
  </div>
@@ -115,7 +115,7 @@
  <td class="p-4 pr-6 text-right space-x-1">
  <button @click="openEditModal(brand)"
  class="p-2 hover:opacity-70 rounded-xl transition-all text-muted-foreground" title="Edit Brand">
- <i data-lucide="edit-3" class="w-4 h-4"></i>
+ <i data-lucide="edit-3" class="size-4"></i>
  </button>
 
  <template x-if="brand.listings_count === 0 || !brand.listings_count">
@@ -126,14 +126,14 @@
  <button type="submit"
  class="p-2 text-muted-foreground hover:text-destructive hover:bg-muted rounded-xl transition-all"
  title="Delete Brand">
- <i data-lucide="trash-2" class="w-4 h-4"></i>
+ <i data-lucide="trash-2" class="size-4"></i>
  </button>
  </form>
  </template>
  <template x-if="brand.listings_count > 0">
  <button disabled class="p-2 text-muted-foreground cursor-not-allowed"
  title="Cannot delete: contains active listings">
- <i data-lucide="trash-2" class="w-4 h-4"></i>
+ <i data-lucide="trash-2" class="size-4"></i>
  </button>
  </template>
  </td>
@@ -169,7 +169,7 @@
  <div class="px-6 py-5 flex items-center justify-between bg-muted border-b border-border">
  <div class="flex items-center space-x-2.5">
  <div class="w-8 h-8 rounded-lg flex items-center justify-center bg-primary text-primary-foreground">
- <i data-lucide="tag" class="w-4 h-4"></i>
+ <i data-lucide="tag" class="size-4"></i>
  </div>
  <h4 class="font-bold text-base text-foreground" x-text="isEdit ? 'Edit Brand' : 'Add New Brand'"></h4>
  </div>
@@ -208,7 +208,7 @@
  </template>
  <template x-if="!form.logo">
  <div class="text-muted-foreground">
- <i data-lucide="image" class="w-6 h-6"></i>
+ <i data-lucide="image" class="size-6"></i>
  </div>
  </template>
  </div>
@@ -216,12 +216,12 @@
  <div class="flex flex-wrap gap-2">
  <button type="button" @click="openLibrary('brand_logo')"
  class="px-3 py-1.5 hover:opacity-80 rounded-lg text-xs font-semibold transition-all flex items-center space-x-1 bg-muted border border-border text-muted-foreground">
- <i data-lucide="image" class="w-3.5 h-3.5"></i>
+ <i data-lucide="image" class="size-3.5"></i>
  <span>Choose from Library</span>
  </button>
  <label
  class="px-3 py-1.5 bg-primary text-primary-foreground hover:bg-primary/90 rounded-lg text-xs font-semibold cursor-pointer transition-all flex items-center space-x-1">
- <i data-lucide="upload" class="w-3.5 h-3.5"></i>
+ <i data-lucide="upload" class="size-3.5"></i>
  <span>Upload File</span>
  <input type="file" name="logo" accept="image/*" class="hidden"
  @change="form.logo = URL.createObjectURL($event.target.files[0]); document.getElementById('selected_brand_logo_path').value = ''">
@@ -229,7 +229,7 @@
  <template x-if="form.logo">
  <button type="button" @click="removeImage()"
  class="px-3 py-1.5 bg-muted hover:bg-muted text-destructive rounded-lg text-xs font-semibold transition-all flex items-center space-x-1">
- <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
+ <i data-lucide="trash-2" class="size-3.5"></i>
  <span>Remove</span>
  </button>
  </template>
@@ -285,7 +285,7 @@
  </div>
  <button type="button" @click="libraryOpen = false"
  class="focus:outline-none text-muted-foreground">
- <i data-lucide="x" class="w-5 h-5"></i>
+ <i data-lucide="x" class="size-5"></i>
  </button>
  </div>
  <!-- Modal Body -->

@@ -94,7 +94,7 @@
  ['id' => 'smtp', 'label' => 'SMTP', 'icon' => 'mail']
  ] as $tInfo)
  <button type="button" @click="tab = '{{ $tInfo['id'] }}'"  :class="tab === '{{ $tInfo['id'] }}' ? 'border-foreground font-semibold text-foreground' : 'border-transparent text-muted-foreground hover:text-foreground'"  class="px-4 py-2.5 border-b-2 text-xs uppercase tracking-wider transition-all focus:outline-none flex items-center space-x-1.5 whitespace-nowrap">
- <i data-lucide="{{ $tInfo['icon'] }}" class="w-3.5 h-3.5"></i>
+ <i data-lucide="{{ $tInfo['icon'] }}" class="size-3.5"></i>
  <span>{{ $tInfo['label'] }}</span>
  </button>
  @endforeach
@@ -173,17 +173,17 @@
  <div class="flex-1 space-y-2">
  <div class="flex flex-wrap gap-2">
  <button type="button" @click="openLibrary('logo')" class="px-3 py-1.5 bg-muted hover:bg-muted text-foreground rounded-lg text-xs font-semibold border border-border transition-all flex items-center space-x-1">
- <i data-lucide="image" class="w-3.5 h-3.5"></i>
+ <i data-lucide="image" class="size-3.5"></i>
  <span>Choose from Library</span>
  </button>
  <label class="px-3 py-1.5 bg-primary text-primary-foreground hover:bg-primary/90 rounded-lg text-xs font-semibold cursor-pointer transition-all flex items-center space-x-1">
- <i data-lucide="upload" class="w-3.5 h-3.5"></i>
+ <i data-lucide="upload" class="size-3.5"></i>
  <span>Upload File</span>
  <input type="file" name="website_logo" accept="image/*" class="hidden" @change="currentLogo = URL.createObjectURL($event.target.files[0]); document.getElementById('selected_logo_path').value = ''">
  </label>
  <template x-if="currentLogo">
  <button type="button" @click="removeImage('logo')" class="px-3 py-1.5 bg-muted hover:bg-muted text-destructive rounded-lg text-xs font-semibold transition-all flex items-center space-x-1">
- <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
+ <i data-lucide="trash-2" class="size-3.5"></i>
  <span>Remove</span>
  </button>
  </template>
@@ -209,17 +209,17 @@
  <div class="flex-1 space-y-2">
  <div class="flex flex-wrap gap-2">
  <button type="button" @click="openLibrary('favicon')" class="px-3 py-1.5 bg-muted hover:bg-muted text-foreground rounded-lg text-xs font-semibold border border-border transition-all flex items-center space-x-1">
- <i data-lucide="image" class="w-3.5 h-3.5"></i>
+ <i data-lucide="image" class="size-3.5"></i>
  <span>Choose from Library</span>
  </button>
  <label class="px-3 py-1.5 bg-primary text-primary-foreground hover:bg-primary/90 rounded-lg text-xs font-semibold cursor-pointer transition-all flex items-center space-x-1">
- <i data-lucide="upload" class="w-3.5 h-3.5"></i>
+ <i data-lucide="upload" class="size-3.5"></i>
  <span>Upload File</span>
  <input type="file" name="website_favicon" accept="image/x-icon,image/png,image/gif" class="hidden" @change="currentFavicon = URL.createObjectURL($event.target.files[0]); document.getElementById('selected_favicon_path').value = ''">
  </label>
  <template x-if="currentFavicon">
  <button type="button" @click="removeImage('favicon')" class="px-3 py-1.5 bg-muted hover:bg-muted text-destructive rounded-lg text-xs font-semibold transition-all flex items-center space-x-1">
- <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
+ <i data-lucide="trash-2" class="size-3.5"></i>
  <span>Remove</span>
  </button>
  </template>
@@ -466,7 +466,7 @@
  @if($setting = $settings->firstWhere('key', 'playstore_url'))
  <div class="space-y-1.5">
  <label class="block text-xs font-bold text-muted-foreground uppercase tracking-wider flex items-center gap-1.5">
- <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="currentColor"><path d="M3.18 23.76c.3.17.65.19.97.07l12.4-7.16-2.67-2.67-10.7 9.76zm-1.18-21.5v19.48l10.81-9.74L2 2.26zm19.34 8.74L18.9 8.76 16.06 11.6 18.9 14.43l2.46-1.43c.7-.41.7-1.5 0-1.9zM4.15.17L16.55 7.33l-2.67 2.67L3.18.24C2.86.1 2.5.13 2.22.31L4.15.17z"/></svg>
+ <svg class="size-3.5" viewBox="0 0 24 24" fill="currentColor"><path d="M3.18 23.76c.3.17.65.19.97.07l12.4-7.16-2.67-2.67-10.7 9.76zm-1.18-21.5v19.48l10.81-9.74L2 2.26zm19.34 8.74L18.9 8.76 16.06 11.6 18.9 14.43l2.46-1.43c.7-.41.7-1.5 0-1.9zM4.15.17L16.55 7.33l-2.67 2.67L3.18.24C2.86.1 2.5.13 2.22.31L4.15.17z"/></svg>
  Play Store URL
  </label>
  {!! $renderInput($setting, 'text', 'https://play.google.com/store/apps/details?id=com.yourapp') !!}
@@ -786,7 +786,7 @@
  <h3 class="text-sm font-bold text-foreground uppercase tracking-wider">Select from Asset Library</h3>
  </div>
  <button type="button" @click="libraryOpen = false" class="text-muted-foreground hover:text-muted-foreground focus:outline-none">
- <i data-lucide="x" class="w-5 h-5"></i>
+ <i data-lucide="x" class="size-5"></i>
  </button>
  </div>
  <!-- Modal Body -->

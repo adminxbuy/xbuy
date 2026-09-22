@@ -8,7 +8,7 @@
  <!-- Back button link -->
  <div class="mb-5">
  <a href="{{ route('admin.ratings') }}" class="inline-flex items-center gap-1.5 text-xs font-semibold text-muted-foreground hover:text-foreground transition-colors">
- <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i>
+ <i data-lucide="arrow-left" class="size-3.5"></i>
  <span>Back to Ratings Workspace</span>
  </a>
  </div>
@@ -17,10 +17,10 @@
  <div class="bg-card border border-border rounded-xl p-6 md:p-8 " x-data="{  accuracy: {{ $rating->item_accuracy }},  packaging: {{ $rating->packaging }},  shipping: {{ $rating->shipping_speed }},  communication: {{ $rating->communication }},  get average() {  return ((parseFloat(this.accuracy) + parseFloat(this.packaging) + parseFloat(this.shipping) + parseFloat(this.communication)) / 4).toFixed(2);  }  }">
  <div class="flex items-center gap-3 border-b border-border pb-5 mb-6">
  <div class="p-2.5 bg-muted text-muted-foreground rounded-xl">
- <i data-lucide="edit-3" class="w-5 h-5"></i>
+ <i data-lucide="edit-3" class="size-5"></i>
  </div>
  <div>
- <h4 class="font-bold text-foreground text-sm">Override Rating #{{ $rating->id }}</h4>
+ <h4 class="text-sm font-semibold text-foreground">Override Rating #{{ $rating->id }}</h4>
  <p class="text-xs text-muted-foreground font-medium">Manually edit and recalculate rating scores for this transaction.</p>
  </div>
  </div>
@@ -56,7 +56,7 @@
  <option value="auto" {{ $rating->rating_type === 'auto' ? 'selected' : '' }}>Automatic (System Generated)</option>
  </select>
  <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-muted-foreground">
- <i data-lucide="chevron-down" class="w-4 h-4"></i>
+ <i data-lucide="chevron-down" class="size-4"></i>
  </div>
  </div>
  </div>
@@ -126,7 +126,7 @@
  <div class="space-y-1.5 pt-2">
  <label for="review_text" class="text-xs font-bold text-muted-foreground uppercase tracking-wider block">Review Comments</label>
  <textarea name="review_text" id="review_text" rows="4" placeholder="Enter comments or reason for override here..."
- class="w-full p-3 text-xs border border-border rounded-lg bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:outline-none transition-all @error('review_text') border-red-500 @enderror">{{ old('review_text', $rating->review_text) }}</textarea>
+ class="w-full p-3 text-xs border border-border rounded-lg bg-muted focus:bg-card focus:ring-1 focus:ring-ring focus:border-ring focus:outline-none transition-all @error('review_text') border-destructive/50 @enderror">{{ old('review_text', $rating->review_text) }}</textarea>
  @error('review_text')
  <p class="text-muted-foreground text-[10px] font-semibold mt-1">{{ $message }}</p>
  @enderror

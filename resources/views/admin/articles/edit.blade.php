@@ -10,7 +10,7 @@
  <!-- Back Button -->
  <div class="mb-6">
  <a href="{{ route('admin.articles.index') }}" class="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors">
- <i data-lucide="arrow-left" class="w-4 h-4"></i>
+ <i data-lucide="arrow-left" class="size-4"></i>
  <span>Back to Articles</span>
  </a>
  </div>

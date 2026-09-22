@@ -5,7 +5,7 @@
 
 @section('header_actions')
  <a href="{{ route('admin.trash.index', 'sellers') }}" class="flex items-center space-x-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all border bg-muted text-foreground border-border/60">
- <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
+ <i data-lucide="trash-2" class="size-3.5"></i>
  <span>Trash ({{ $trashedSellers->count() }})</span>
  </a>
 @endsection

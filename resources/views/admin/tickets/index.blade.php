@@ -68,7 +68,7 @@
  <option value="custom">Custom Range</option>
  </select>
  <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-muted-foreground">
- <i data-lucide="chevron-down" class="w-3.5 h-3.5"></i>
+ <i data-lucide="chevron-down" class="size-3.5"></i>
  </div>
  </div>
  </div>
@@ -131,16 +131,16 @@
  <div class="overflow-x-auto">
  <table class="w-full text-left border-collapse">
  <thead>
- <tr class="bg-muted text-[10px] uppercase font-bold text-muted-foreground border-b border-border">
+ <tr>
  <th class="px-6 py-4 w-12 text-center">
  <input type="checkbox" x-model="selectAll" @change="if(selectAll) { selectedIds = {{ $tickets->pluck('id')->toJson() }} } else { selectedIds = [] }" class="w-4 h-4 rounded border-border text-foreground focus:ring-black">
  </th>
- <th class="px-6 py-4">ID</th>
- <th class="px-6 py-4">Buyer Info</th>
- <th class="px-6 py-4">Subject</th>
- <th class="px-6 py-4">Message</th>
- <th class="px-6 py-4">Time Raised</th>
- <th class="px-6 py-4">Status</th>
+ <th class="h-10 px-4 align-middle text-xs font-medium text-muted-foreground bg-muted/40 uppercase tracking-wider border-b border-border">ID</th>
+ <th class="h-10 px-4 align-middle text-xs font-medium text-muted-foreground bg-muted/40 uppercase tracking-wider border-b border-border">Buyer Info</th>
+ <th class="h-10 px-4 align-middle text-xs font-medium text-muted-foreground bg-muted/40 uppercase tracking-wider border-b border-border">Subject</th>
+ <th class="h-10 px-4 align-middle text-xs font-medium text-muted-foreground bg-muted/40 uppercase tracking-wider border-b border-border">Message</th>
+ <th class="h-10 px-4 align-middle text-xs font-medium text-muted-foreground bg-muted/40 uppercase tracking-wider border-b border-border">Time Raised</th>
+ <th class="h-10 px-4 align-middle text-xs font-medium text-muted-foreground bg-muted/40 uppercase tracking-wider border-b border-border">Status</th>
  <th class="px-6 py-4 text-right">Update Status</th>
  </tr>
  </thead>
@@ -181,7 +181,7 @@
  @elseif($ticket->status === 'resolved') bg-muted text-foreground border border-border/60 border border-border
  @else bg-muted text-foreground @endif">
  @if($ticket->status === 'open')
- <span class="w-1.5 h-1.5 rounded-full bg-red-500 mr-1.5 animate-pulse"></span>
+ <span class="w-1.5 h-1.5 rounded-full bg-destructive/80 mr-1.5 animate-pulse"></span>
  @elseif($ticket->status === 'in_progress')
  <span class="w-1.5 h-1.5 rounded-full bg-amber-500 mr-1.5"></span>
  @elseif($ticket->status === 'resolved')
@@ -206,7 +206,7 @@
  <td colspan="8" class="px-6 py-16 text-center">
  <div class="flex flex-col items-center justify-center">
  <div class="w-12 h-12 bg-muted rounded-xl flex items-center justify-center text-muted-foreground mb-3 border border-border/50 ">
- <i data-lucide="help-circle" class="w-5 h-5"></i>
+ <i data-lucide="help-circle" class="size-5"></i>
  </div>
  <h4 class="text-sm font-bold text-foreground">No Tickets Found</h4>
  <p class="text-xs text-muted-foreground mt-1 max-w-xs mx-auto">There are no support tickets matching your filters.</p>

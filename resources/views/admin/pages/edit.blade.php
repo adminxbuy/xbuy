@@ -11,7 +11,7 @@
  @method('DELETE')
  <button type="submit"
  class="px-3.5 py-2 bg-muted hover:bg-muted text-destructive font-semibold rounded-xl text-xs transition-all flex items-center space-x-1.5 border border-border">
- <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
+ <i data-lucide="trash-2" class="size-3.5"></i>
  <span>Delete Page</span>
  </button>
  </form>

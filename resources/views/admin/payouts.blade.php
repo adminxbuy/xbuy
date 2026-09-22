@@ -17,7 +17,7 @@
  <!-- Card 1: Released This Month -->
  <div class="rounded-xl p-5 flex flex-col gap-2 bg-card border border-border">
  <div class="p-2 bg-muted text-foreground rounded-xl w-fit/60"><i data-lucide="wallet"
- class="w-5 h-5"></i></div>
+ class="size-5"></i></div>
  <h3 class="text-2xl font-bold text-foreground">₹{{ number_format($releasedThisMonth, 2) }}</h3>
  <p class="text-[10px] font-bold uppercase tracking-wider text-muted-foreground">Released This Month</p>
  </div>
@@ -25,14 +25,14 @@
  <!-- Card 2: Total Commission Earned -->
  <div class="rounded-xl p-5 flex flex-col gap-2 bg-card border border-border">
  <div class="p-2 rounded-xl w-fit bg-primary text-primary-foreground"><i data-lucide="percent"
- class="w-5 h-5"></i></div>
+ class="size-5"></i></div>
  <h3 class="text-2xl font-bold text-foreground">₹{{ number_format($totalCommission, 2) }}</h3>
  <p class="text-[10px] font-bold uppercase tracking-wider text-muted-foreground">Total Commission Earned</p>
  </div>
 
  <!-- Card 3: Average Payout Amount -->
  <div class="rounded-xl p-5 flex flex-col gap-2 bg-card border border-border">
- <div class="p-2 bg-muted text-foreground rounded-xl w-fit/60"><i data-lucide="bar-chart-2" class="w-5 h-5"></i>
+ <div class="p-2 bg-muted text-foreground rounded-xl w-fit/60"><i data-lucide="bar-chart-2" class="size-5"></i>
  </div>
  <h3 class="text-2xl font-bold text-foreground">₹{{ number_format($avgPayout, 2) }}</h3>
  <p class="text-[10px] font-bold uppercase tracking-wider text-muted-foreground">Average Payout Amount</p>
@@ -76,7 +76,7 @@
  </select>
  <div
  class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-muted-foreground">
- <i data-lucide="chevron-down" class="w-3.5 h-3.5"></i>
+ <i data-lucide="chevron-down" class="size-3.5"></i>
  </div>
  </div>
  </div>
@@ -118,7 +118,7 @@
  <div class="border-t md:border-t-0 md:border-l border-border pt-4 md:pt-0 md:pl-4 flex items-end">
  <a href="{{ route('admin.payouts.export', request()->query()) }}"
  class="w-full md:w-auto font-semibold py-2.5 px-5 rounded-lg ring-0 transition-all flex items-center justify-center space-x-2 text-xs bg-primary text-primary-foreground">
- <i data-lucide="download" class="w-4 h-4"></i>
+ <i data-lucide="download" class="size-4"></i>
  <span>Export CSV</span>
  </a>
  </div>

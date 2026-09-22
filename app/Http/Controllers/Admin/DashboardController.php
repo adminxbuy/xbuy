@@ -534,45 +534,51 @@ class DashboardController extends Controller
      */
     public function escrowRelease($id)
     {
-        $escrow = \App\Models\Escrow::findOrFail($id);
-        if ($escrow->status !== 'held' && $escrow->status !== 'disputed') {
-            return back()->with('error', 'Escrow cannot be released in its current status.');
-        }
+        // Vulnerability 1 fix: acquire a pessimistic row-level lock INSIDE the transaction
+        // before checking status, preventing concurrent release+refund double-disbursement.
+        try {
+            DB::transaction(function () use ($id) {
+                $escrow = \App\Models\Escrow::where('id', $id)->lockForUpdate()->firstOrFail();
 
-        $routeEnabled = \App\Models\SiteSetting::getVal('razorpay_route_enabled', false);
-        if ($routeEnabled) {
-            $success = \App\Console\Commands\AutoReleaseEscrow::processRelease($escrow);
-            if ($success) {
-                return back()->with('success', 'Escrow released and payout transfer executed successfully.');
-            } else {
-                return back()->with('error', 'Escrow release failed: ' . ($escrow->payout_error_message ?? 'Razorpay Route transfer failed.'));
-            }
-        }
+                if (!in_array($escrow->status, ['held', 'disputed'])) {
+                    throw new \RuntimeException('Escrow cannot be released in its current status.');
+                }
 
-        DB::transaction(function () use ($escrow) {
-            $escrow->update([
-                'status' => 'released',
-                'payout_status' => 'success',
-                'released_at' => now(),
-                'released_by' => auth()->user()->name ?? 'Admin',
-            ]);
+                $routeEnabled = \App\Models\SiteSetting::getVal('razorpay_route_enabled', false);
+                if ($routeEnabled) {
+                    $success = \App\Console\Commands\AutoReleaseEscrow::processRelease($escrow);
+                    if (!$success) {
+                        throw new \RuntimeException('Escrow release failed: ' . ($escrow->payout_error_message ?? 'Razorpay Route transfer failed.'));
+                    }
+                } else {
+                    $escrow->update([
+                        'status'        => 'released',
+                        'payout_status' => 'success',
+                        'released_at'   => now(),
+                        'released_by'   => auth()->user()->name ?? 'Admin',
+                    ]);
 
-            if ($escrow->order) {
-                $escrow->order->update([
-                    'order_status' => 'completed',
-                    'completed_at' => now()
+                    if ($escrow->order) {
+                        $escrow->order->update([
+                            'order_status' => 'completed',
+                            'completed_at' => now(),
+                        ]);
+                    }
+                }
+
+                // Notify seller via mail (outside the lock but inside the transaction scope variable)
+                \App\Models\Notification::sendSystemMail($escrow->order->seller->user, 'escrow_released', [
+                    'seller_name'          => $escrow->order->seller->user->name,
+                    'order_number'         => $escrow->order->order_number,
+                    'seller_payout_amount' => $escrow->seller_amount,
                 ]);
-            }
-        });
 
-        // Notify seller via mail
-        \App\Models\Notification::sendSystemMail($escrow->order->seller->user, 'escrow_released', [
-            'seller_name' => $escrow->order->seller->user->name,
-            'order_number' => $escrow->order->order_number,
-            'seller_payout_amount' => $escrow->seller_amount,
-        ]);
+                $this->logAction('escrow_released', "Escrow ID #{$escrow->id} manually released to seller by admin.");
+            });
+        } catch (\RuntimeException $e) {
+            return back()->with('error', $e->getMessage());
+        }
 
-        $this->logAction('escrow_released', "Escrow ID #{$escrow->id} manually released to seller by admin.");
         return back()->with('success', 'Escrow released successfully.');
     }
 
@@ -581,58 +587,72 @@ class DashboardController extends Controller
      */
     public function escrowRefund($id)
     {
-        $escrow = \App\Models\Escrow::findOrFail($id);
-        if ($escrow->status !== 'held' && $escrow->status !== 'disputed') {
-            return back()->with('error', 'Escrow cannot be refunded in its current status.');
-        }
+        // Vulnerability 1 fix: same pattern as escrowRelease — lock the row inside the
+        // transaction before reading status to prevent concurrent release+refund collision.
+        try {
+            $amount = null;
 
-        $paymentId = $escrow->order->razorpay_payment_id;
-        $amount = $escrow->amount_held;
+            DB::transaction(function () use ($id, &$amount) {
+                $escrow = \App\Models\Escrow::where('id', $id)->lockForUpdate()->firstOrFail();
 
-        // Trigger Razorpay Refund
-        if (!empty($paymentId)) {
-            $response = \App\Services\RazorpayService::refundToBuyer($paymentId, $amount, "Admin Escrow Refund for Order #{$escrow->order->order_number}");
-            if (!$response['success']) {
-                return back()->with('error', 'Razorpay Refund failed: ' . $response['message']);
-            }
-        }
+                if (!in_array($escrow->status, ['held', 'disputed'])) {
+                    throw new \RuntimeException('Escrow cannot be refunded in its current status.');
+                }
 
-        DB::transaction(function () use ($escrow) {
-            $escrow->update([
-                'status' => 'refunded',
-                'payout_status' => 'none',
-                'released_at' => now(),
-                'released_by' => auth()->user()->name ?? 'Admin',
-                'seller_amount' => 0,
-                'commission_amount' => 0
-            ]);
+                $amount     = $escrow->amount_held;
+                $paymentId  = $escrow->order->razorpay_payment_id;
 
-            if ($escrow->order) {
-                $escrow->order->update([
-                    'order_status' => 'refunded',
-                    'cancellation_reason' => 'Manually refunded by admin'
+                // Trigger Razorpay Refund
+                if (!empty($paymentId)) {
+                    $response = \App\Services\RazorpayService::refundToBuyer(
+                        $paymentId,
+                        $amount,
+                        "Admin Escrow Refund for Order #{$escrow->order->order_number}"
+                    );
+                    if (!$response['success']) {
+                        throw new \RuntimeException('Razorpay Refund failed: ' . $response['message']);
+                    }
+                }
+
+                $escrow->update([
+                    'status'            => 'refunded',
+                    'payout_status'     => 'none',
+                    'released_at'       => now(),
+                    'released_by'       => auth()->user()->name ?? 'Admin',
+                    'seller_amount'     => 0,
+                    'commission_amount' => 0,
                 ]);
-            }
-        });
 
-        // Send Dispute Resolved Mail (100% Refund to Buyer)
-        \App\Models\Notification::sendSystemMail($escrow->order->buyer, 'dispute_resolved', [
-            'buyer_name' => $escrow->order->buyer->name,
-            'order_number' => $escrow->order->order_number,
-            'resolution_notes' => 'Full refund issued to buyer by administrator.',
-            'buyer_payout' => $amount,
-            'seller_payout' => 0,
-        ]);
+                if ($escrow->order) {
+                    $escrow->order->update([
+                        'order_status'        => 'refunded',
+                        'cancellation_reason' => 'Manually refunded by admin',
+                    ]);
+                }
 
-        \App\Models\Notification::sendSystemMail($escrow->order->seller->user, 'dispute_resolved', [
-            'seller_name' => $escrow->order->seller->user->name,
-            'order_number' => $escrow->order->order_number,
-            'resolution_notes' => 'Full refund issued to buyer by administrator.',
-            'buyer_payout' => $amount,
-            'seller_payout' => 0,
-        ]);
+                // Send Dispute Resolved Mail (100% Refund to Buyer)
+                \App\Models\Notification::sendSystemMail($escrow->order->buyer, 'dispute_resolved', [
+                    'buyer_name'       => $escrow->order->buyer->name,
+                    'order_number'     => $escrow->order->order_number,
+                    'resolution_notes' => 'Full refund issued to buyer by administrator.',
+                    'buyer_payout'     => $amount,
+                    'seller_payout'    => 0,
+                ]);
 
-        $this->logAction('escrow_refunded', "Escrow ID #{$escrow->id} manually refunded to buyer by admin.");
+                \App\Models\Notification::sendSystemMail($escrow->order->seller->user, 'dispute_resolved', [
+                    'seller_name'      => $escrow->order->seller->user->name,
+                    'order_number'     => $escrow->order->order_number,
+                    'resolution_notes' => 'Full refund issued to buyer by administrator.',
+                    'buyer_payout'     => $amount,
+                    'seller_payout'    => 0,
+                ]);
+
+                $this->logAction('escrow_refunded', "Escrow ID #{$escrow->id} manually refunded to buyer by admin.");
+            });
+        } catch (\RuntimeException $e) {
+            return back()->with('error', $e->getMessage());
+        }
+
         return back()->with('success', 'Escrow refunded successfully.');
     }
 
@@ -663,11 +683,20 @@ class DashboardController extends Controller
         }
 
         $request->validate([
-            'seller_amount' => 'required|numeric|min:0|max:' . $escrow->amount_held
+            'seller_amount' => 'required|numeric|min:0|max:' . $escrow->amount_held,
+            'buyer_amount'  => 'required|numeric|min:0',
         ]);
 
-        $sellerAmount = (float) $request->input('seller_amount');
-        $buyerRefundAmount = $escrow->amount_held - $sellerAmount;
+        $sellerAmount      = (float) $request->input('seller_amount');
+        $buyerRefundAmount = (float) $request->input('buyer_amount');
+
+        // Vulnerability 2 fix: use integer-paisa comparison to avoid PHP floating-point
+        // precision errors (e.g. 0.1 + 0.2 !== 0.3). Both amounts MUST exactly equal the held total.
+        $totalSplitPaisa = (int) round(($sellerAmount + $buyerRefundAmount) * 100);
+        $totalHeldPaisa  = (int) round($escrow->amount_held * 100);
+        if ($totalSplitPaisa !== $totalHeldPaisa) {
+            return back()->with('error', 'Sum of buyer refund and seller payout must exactly equal the held escrow amount.');
+        }
 
         // Process Refund to Buyer
         if ($buyerRefundAmount > 0) {
@@ -1870,6 +1899,14 @@ class DashboardController extends Controller
 
         if ($dispute->status !== 'resolved') {
             return back()->with('error', 'Only resolved disputes can be reopened.');
+        }
+
+        // Vulnerability 7 fix: block reopening if escrow funds have already been finalized.
+        // Resolving a reopened dispute after funds are disbursed would cause unhandled
+        // gateway exceptions or negative accounting.
+        if ($dispute->order && $dispute->order->escrow &&
+            in_array($dispute->order->escrow->status, ['released', 'refunded'])) {
+            return back()->with('error', 'Cannot reopen dispute: associated escrow funds have already been finalized.');
         }
 
         DB::transaction(function () use ($dispute) {

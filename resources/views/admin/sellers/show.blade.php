@@ -7,7 +7,7 @@
  <div class="mb-6">
  <a href="{{ route('admin.sellers') }}"
  class="inline-flex items-center space-x-1.5 text-sm font-semibold text-muted-foreground hover:text-foreground">
- <i data-lucide="arrow-left" class="w-4 h-4"></i>
+ <i data-lucide="arrow-left" class="size-4"></i>
  <span>Back to Directory</span>
  </a>
  </div>
@@ -215,8 +215,8 @@
  <button type="button" @click="showBankAcc = !showBankAcc"
  class="ml-2.5 p-1.5 text-muted-foreground hover:text-foreground hover:bg-muted rounded-lg transition-all focus:outline-none"
  title="Toggle Account Number View">
- <i data-lucide="eye" x-show="!showBankAcc" class="w-4 h-4"></i>
- <i data-lucide="eye-off" x-show="showBankAcc" class="w-4 h-4" x-cloak></i>
+ <i data-lucide="eye" x-show="!showBankAcc" class="size-4"></i>
+ <i data-lucide="eye-off" x-show="showBankAcc" class="size-4" x-cloak></i>
  </button>
  @endif
  </div>
@@ -231,8 +231,8 @@
  <button type="button" @click="showIfsc = !showIfsc"
  class="ml-2.5 p-1.5 text-muted-foreground hover:text-foreground hover:bg-muted rounded-lg transition-all focus:outline-none"
  title="Toggle IFSC View">
- <i data-lucide="eye" x-show="!showIfsc" class="w-4 h-4"></i>
- <i data-lucide="eye-off" x-show="showIfsc" class="w-4 h-4" x-cloak></i>
+ <i data-lucide="eye" x-show="!showIfsc" class="size-4"></i>
+ <i data-lucide="eye-off" x-show="showIfsc" class="size-4" x-cloak></i>
  </button>
  @endif
  </div>
@@ -252,8 +252,8 @@
  <button type="button" @click="showUpi = !showUpi"
  class="ml-2.5 p-1.5 text-muted-foreground hover:text-foreground hover:bg-muted rounded-lg transition-all focus:outline-none"
  title="Toggle UPI View">
- <i data-lucide="eye" x-show="!showUpi" class="w-4 h-4"></i>
- <i data-lucide="eye-off" x-show="showUpi" class="w-4 h-4" x-cloak></i>
+ <i data-lucide="eye" x-show="!showUpi" class="size-4"></i>
+ <i data-lucide="eye-off" x-show="showUpi" class="size-4" x-cloak></i>
  </button>
  @endif
  </div>
@@ -270,17 +270,17 @@
  <div class="px-6 py-4 border-b border-border bg-muted flex items-center justify-between">
  <div class="flex items-center space-x-2.5">
  <div class="w-8 h-8 rounded-full bg-primary text-primary-foreground hover:bg-primary/90/15 flex items-center justify-center text-foreground">
- <i data-lucide="message-square" class="w-4 h-4"></i>
+ <i data-lucide="message-square" class="size-4"></i>
  </div>
  <div>
- <h3 class="font-bold text-foreground text-sm">Direct Conversation</h3>
+ <h3 class="text-sm font-semibold text-foreground">Direct Conversation</h3>
  <p class="text-[10px] text-muted-foreground font-medium">Chat history with {{ $seller->user->name }}</p>
  </div>
  </div>
  <button type="button" @click="fetchMessages()"
  class="p-1.5 text-muted-foreground hover:text-foreground hover:bg-muted rounded-lg transition-all focus:outline-none"
  title="Refresh Chat">
- <i data-lucide="refresh-cw" class="w-4 h-4"></i>
+ <i data-lucide="refresh-cw" class="size-4"></i>
  </button>
  </div>
 
@@ -302,7 +302,7 @@
  x-cloak>
  <div
  class="w-10 h-10 bg-muted border border-border/60 rounded-xl flex items-center justify-center text-muted-foreground mb-2">
- <i data-lucide="message-square" class="w-4 h-4"></i>
+ <i data-lucide="message-square" class="size-4"></i>
  </div>
  <p class="text-xs text-muted-foreground font-semibold">No messages yet</p>
  <p class="text-[10px] text-muted-foreground mt-0.5">Send a message below to start the conversation.</p>
@@ -318,7 +318,7 @@
  class="bg-primary hover:bg-primary/90 disabled:bg-muted text-primary-foreground font-medium px-5 py-2.5 rounded-lg text-sm transition-all flex items-center space-x-2">
  <span x-show="!sending">Send</span>
  <span x-show="sending" x-cloak>Sending...</span>
- <i data-lucide="send" class="w-4 h-4"></i>
+ <i data-lucide="send" class="size-4"></i>
  </button>
  </form>
  </div>
@@ -428,14 +428,14 @@
  <input type="hidden" name="status" value="approved">
  <button type="submit"
  class="w-full bg-primary text-primary-foreground hover:bg-primary/90 font-semibold py-3 px-4 rounded-lg ring-0 border border-black/10 transition-all flex items-center justify-center space-x-2">
- <i data-lucide="check" class="w-4 h-4"></i>
+ <i data-lucide="check" class="size-4"></i>
  <span>Approve Documents</span>
  </button>
  </form>
 
  <button @click="rejecting = true" x-show="!rejecting"
  class="w-full bg-muted hover:bg-muted text-foreground hover:text-foreground font-semibold py-3 px-4 rounded-lg transition-all border border-border hover:border-border flex items-center justify-center space-x-2">
- <i data-lucide="x" class="w-4 h-4"></i>
+ <i data-lucide="x" class="size-4"></i>
  <span>Reject Documents</span>
  </button>
 
@@ -588,7 +588,7 @@
  <a href="{{ route('admin.ratings', ['seller_id' => $seller->id]) }}"
  class="text-xs text-yellow-650 hover:text-foreground hover:underline font-bold flex items-center gap-1 transition-all">
  <span>Inspect Ratings</span>
- <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+ <i data-lucide="external-link" class="size-3.5"></i>
  </a>
  </div>
 

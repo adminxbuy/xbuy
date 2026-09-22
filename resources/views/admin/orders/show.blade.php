@@ -7,7 +7,7 @@
  <div class="mb-6">
  <a href="{{ route('admin.orders') }}"
  class="inline-flex items-center space-x-1.5 text-sm font-semibold text-muted-foreground hover:text-foreground">
- <i data-lucide="arrow-left" class="w-4 h-4"></i>
+ <i data-lucide="arrow-left" class="size-4"></i>
  <span>Back to Registry</span>
  </a>
  </div>
@@ -42,9 +42,9 @@
  <div class="relative">
  <span
  class="absolute -left-[41px] top-0.5 w-6 h-6 bg-emerald-500 rounded-full border-4 border-card flex items-center justify-center text-white ">
- <i data-lucide="check" class="w-3.5 h-3.5"></i>
+ <i data-lucide="check" class="size-3.5"></i>
  </span>
- <h4 class="font-bold text-foreground text-sm">Order Placed & Invoice Generated</h4>
+ <h4 class="text-sm font-semibold text-foreground">Order Placed & Invoice Generated</h4>
  <p class="text-xs text-muted-foreground mt-1">{{ $order->created_at->format('M d, Y H:i') }}</p>
  </div>
 
@@ -53,9 +53,9 @@
  <div class="relative">
  <span
  class="absolute -left-[41px] top-0.5 w-6 h-6 bg-emerald-500 rounded-full border-4 border-card flex items-center justify-center text-white ">
- <i data-lucide="check" class="w-3.5 h-3.5"></i>
+ <i data-lucide="check" class="size-3.5"></i>
  </span>
- <h4 class="font-bold text-foreground text-sm">Payment Secured & Escrow Locked</h4>
+ <h4 class="text-sm font-semibold text-foreground">Payment Secured & Escrow Locked</h4>
  <p class="text-xs text-muted-foreground mt-1">Razorpay Ref:
  {{ $order->razorpay_payment_id ?: 'captured via webhook' }}</p>
  </div>
@@ -63,7 +63,7 @@
  <div class="relative opacity-50">
  <span
  class="absolute -left-[41px] top-0.5 w-6 h-6 bg-muted rounded-full border-4 border-card flex items-center justify-center text-muted-foreground"></span>
- <h4 class="font-bold text-foreground text-sm">Escrow Payment Pending</h4>
+ <h4 class="text-sm font-semibold text-foreground">Escrow Payment Pending</h4>
  <p class="text-xs text-muted-foreground mt-1">Waiting for buyer payment authorization</p>
  </div>
  @endif
@@ -73,9 +73,9 @@
  <div class="relative">
  <span
  class="absolute -left-[41px] top-0.5 w-6 h-6 bg-emerald-500 rounded-full border-4 border-card flex items-center justify-center text-white ">
- <i data-lucide="check" class="w-3.5 h-3.5"></i>
+ <i data-lucide="check" class="size-3.5"></i>
  </span>
- <h4 class="font-bold text-foreground text-sm">Shipment Prepared & Dispatched</h4>
+ <h4 class="text-sm font-semibold text-foreground">Shipment Prepared & Dispatched</h4>
  <p class="text-xs text-muted-foreground mt-1">AWB: {{ $order->shipment->awb_number ?? 'N/A' }} |
  Provider: Shiprocket</p>
  </div>
@@ -83,7 +83,7 @@
  <div class="relative opacity-50">
  <span
  class="absolute -left-[41px] top-0.5 w-6 h-6 bg-muted rounded-full border-4 border-card flex items-center justify-center text-muted-foreground"></span>
- <h4 class="font-bold text-foreground text-sm">Shipment Confirmation Pending</h4>
+ <h4 class="text-sm font-semibold text-foreground">Shipment Confirmation Pending</h4>
  <p class="text-xs text-muted-foreground mt-1">Seller must confirm order details & generate label</p>
  </div>
  @endif
@@ -93,9 +93,9 @@
  <div class="relative">
  <span
  class="absolute -left-[41px] top-0.5 w-6 h-6 bg-emerald-500 rounded-full border-4 border-card flex items-center justify-center text-white ">
- <i data-lucide="check" class="w-3.5 h-3.5"></i>
+ <i data-lucide="check" class="size-3.5"></i>
  </span>
- <h4 class="font-bold text-foreground text-sm">Delivered & Testing Period Initiated</h4>
+ <h4 class="text-sm font-semibold text-foreground">Delivered & Testing Period Initiated</h4>
  <p class="text-xs text-muted-foreground mt-1">Delivered on:
  {{ $order->delivered_at ? $order->delivered_at->format('M d, Y H:i') : 'N/A' }}</p>
  <p
@@ -109,7 +109,7 @@
  <div class="relative opacity-50">
  <span
  class="absolute -left-[41px] top-0.5 w-6 h-6 bg-muted rounded-full border-4 border-card flex items-center justify-center text-muted-foreground"></span>
- <h4 class="font-bold text-foreground text-sm">Delivery Verification Pending</h4>
+ <h4 class="text-sm font-semibold text-foreground">Delivery Verification Pending</h4>
  <p class="text-xs text-muted-foreground mt-1">Awaiting carrier transit webhook</p>
  </div>
  @endif
@@ -119,9 +119,9 @@
  <div class="relative">
  <span
  class="absolute -left-[41px] top-0.5 w-6 h-6 bg-emerald-500 rounded-full border-4 border-card flex items-center justify-center text-white ">
- <i data-lucide="check" class="w-3.5 h-3.5"></i>
+ <i data-lucide="check" class="size-3.5"></i>
  </span>
- <h4 class="font-bold text-foreground text-sm">Order Completed & Escrow Released</h4>
+ <h4 class="text-sm font-semibold text-foreground">Order Completed & Escrow Released</h4>
  <p class="text-xs text-muted-foreground mt-1">Funds transferred on:
  {{ $order->completed_at ? $order->completed_at->format('M d, Y H:i') : 'N/A' }}</p>
  </div>
@@ -129,9 +129,9 @@
  <div class="relative">
  <span
  class="absolute -left-[41px] top-0.5 w-6 h-6 bg-rose-600 rounded-full border-4 border-card flex items-center justify-center text-white animate-pulse">
- <i data-lucide="alert-circle" class="w-3.5 h-3.5"></i>
+ <i data-lucide="alert-circle" class="size-3.5"></i>
  </span>
- <h4 class="font-bold text-foreground text-sm">Escrow Blocked / Disputed</h4>
+ <h4 class="text-sm font-semibold text-foreground">Escrow Blocked / Disputed</h4>
  <p class="text-xs text-rose-600 mt-1">Dispute raised by buyer. Funds are locked indefinitely.
  </p>
  <a href="{{ route('admin.disputes.show', $order->dispute->id) }}"
@@ -144,7 +144,7 @@
  <div class="relative opacity-50">
  <span
  class="absolute -left-[41px] top-0.5 w-6 h-6 bg-muted rounded-full border-4 border-card flex items-center justify-center text-muted-foreground"></span>
- <h4 class="font-bold text-foreground text-sm">Order Completion & Escrow Payout</h4>
+ <h4 class="text-sm font-semibold text-foreground">Order Completion & Escrow Payout</h4>
  <p class="text-xs text-muted-foreground mt-1">Occurs automatically after testing window close or buyer
  manual release</p>
  </div>
@@ -165,7 +165,7 @@
  @else
  <div
  class="w-16 h-16 bg-muted border border-border rounded-xl flex items-center justify-center text-muted-foreground">
- <i data-lucide="image" class="w-6 h-6"></i>
+ <i data-lucide="image" class="size-6"></i>
  </div>
  @endif
  <div class="flex-1 flex justify-between items-center gap-4">
@@ -183,7 +183,7 @@
  </div>
  <a href="{{ route('admin.listings.show', $order->listing_id) }}" target="_blank"
  class="inline-flex items-center gap-1.5 bg-muted hover:bg-muted text-foreground hover:text-yellow-805 font-bold px-3 py-2 rounded-xl text-xs border border-border/50 transition-all shrink-0">
- <i data-lucide="eye" class="w-4 h-4"></i>
+ <i data-lucide="eye" class="size-4"></i>
  <span>View Listing</span>
  </a>
  </div>
@@ -197,17 +197,17 @@
  <div class="px-6 py-4 border-b border-border bg-muted flex items-center justify-between">
  <div class="flex items-center space-x-2.5">
  <div class="w-8 h-8 rounded-full bg-primary text-primary-foreground hover:bg-primary/90/15 flex items-center justify-center text-foreground">
- <i data-lucide="message-square" class="w-4 h-4"></i>
+ <i data-lucide="message-square" class="size-4"></i>
  </div>
  <div>
- <h3 class="font-bold text-foreground text-sm">Buyer Direct Conversation</h3>
+ <h3 class="text-sm font-semibold text-foreground">Buyer Direct Conversation</h3>
  <p class="text-[10px] text-muted-foreground font-medium">Chat history with {{ $order->buyer->name }}</p>
  </div>
  </div>
  <button type="button" @click="fetchMessages()"
  class="p-1.5 text-muted-foreground hover:text-foreground hover:bg-muted rounded-lg transition-all focus:outline-none"
  title="Refresh Chat">
- <i data-lucide="refresh-cw" class="w-4 h-4"></i>
+ <i data-lucide="refresh-cw" class="size-4"></i>
  </button>
  </div>
 
@@ -229,7 +229,7 @@
  x-cloak>
  <div
  class="w-10 h-10 bg-muted border border-border/60 rounded-xl flex items-center justify-center text-muted-foreground mb-2">
- <i data-lucide="message-square" class="w-4 h-4"></i>
+ <i data-lucide="message-square" class="size-4"></i>
  </div>
  <p class="text-xs text-muted-foreground font-semibold">No messages yet</p>
  <p class="text-[10px] text-muted-foreground mt-0.5">Send a message below to start the conversation with the
@@ -246,7 +246,7 @@
  class="bg-primary hover:bg-primary/90 disabled:bg-muted text-primary-foreground font-medium px-5 py-2.5 rounded-lg text-sm transition-all flex items-center space-x-2">
  <span x-show="!sending">Send</span>
  <span x-show="sending" x-cloak>Sending...</span>
- <i data-lucide="send" class="w-4 h-4"></i>
+ <i data-lucide="send" class="size-4"></i>
  </button>
  </form>
  </div>
@@ -383,7 +383,7 @@
  <div>
  <span class="text-muted-foreground font-semibold uppercase">Buyer</span>
  <div class="flex items-center justify-between mt-0.5">
- <p class="font-bold text-foreground text-sm">{{ $order->buyer->name }}</p>
+ <p class="text-sm font-semibold text-foreground">{{ $order->buyer->name }}</p>
  @if($order->buyer->buyer_badge === 'trusted_buyer')
  <span
  class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold bg-muted text-foreground border border-border/60 shadow-2xs">
@@ -419,14 +419,14 @@
  <div class="flex flex-col gap-2">
  <a href="{{ route('admin.orders.invoice.download', $order->id) }}"
  class="w-full bg-primary text-primary-foreground hover:bg-primary/90 font-semibold py-2.5 px-4 rounded-lg ring-0 text-xs transition-all flex items-center justify-center space-x-2">
- <i data-lucide="download" class="w-4 h-4"></i>
+ <i data-lucide="download" class="size-4"></i>
  <span>Download Invoice</span>
  </a>
  <form action="{{ route('admin.orders.invoice.resend', $order->id) }}" method="POST">
  @csrf
  <button type="submit"
  class="w-full bg-primary hover:bg-primary text-primary-foreground font-semibold py-2.5 px-4 rounded-lg ring-0 text-xs transition-all flex items-center justify-center space-x-2">
- <i data-lucide="mail" class="w-4 h-4"></i>
+ <i data-lucide="mail" class="size-4"></i>
  <span>Resend Invoice Email</span>
  </button>
  </form>

@@ -6,14 +6,14 @@
 @section('header_actions')
  <div class="flex items-center gap-2">
  <a href="{{ route('admin.payroll.settings') }}" class="inline-flex items-center gap-1.5 px-3 py-2.5 bg-muted hover:bg-muted text-foreground hover:text-foreground rounded-lg text-xs font-medium transition-all border border-border ">
- <i data-lucide="settings" class="w-3.5 h-3.5"></i>
+ <i data-lucide="settings" class="size-3.5"></i>
  <span>Payroll Settings</span>
  </a>
  @if(count($pendingStaffList) > 0)
  <form action="{{ route('admin.payroll.disburse') }}" method="POST" onsubmit="return confirm('Disburse payrolls to all pending staff members? This will send Salary Slip emails automatically.')">
  @csrf
  <button type="submit" class="inline-flex items-center gap-2 bg-primary text-primary-foreground hover:bg-primary/90 hover:text-primary-foreground font-medium px-4 py-2.5 rounded-lg text-xs transition-all ">
- <i data-lucide="check-circle" class="w-3.5 h-3.5"></i>
+ <i data-lucide="check-circle" class="size-3.5"></i>
  <span>Disburse All Pending</span>
  </button>
  </form>
@@ -29,7 +29,7 @@
  <div class="flex items-center justify-between">
  <span class="text-[10px] font-bold text-muted-foreground uppercase tracking-wider block">Total Pending (This Month)</span>
  <div class="p-2 bg-muted text-muted-foreground rounded-lg">
- <i data-lucide="wallet" class="w-4 h-4"></i>
+ <i data-lucide="wallet" class="size-4"></i>
  </div>
  </div>
  <h3 class="text-2xl font-bold text-foreground mt-3">₹{{ number_format($totalPendingThisMonth, 2) }}</h3>
@@ -41,7 +41,7 @@
  <div class="flex items-center justify-between">
  <span class="text-[10px] font-bold text-muted-foreground uppercase tracking-wider block">Total Staff Count</span>
  <div class="p-2 bg-muted text-muted-foreground rounded-lg">
- <i data-lucide="users" class="w-4 h-4"></i>
+ <i data-lucide="users" class="size-4"></i>
  </div>
  </div>
  <h3 class="text-2xl font-bold text-foreground mt-3">{{ $staffCount }}</h3>
@@ -53,7 +53,7 @@
  <div class="flex items-center justify-between">
  <span class="text-[10px] font-bold text-muted-foreground uppercase tracking-wider block">Orders (This Month)</span>
  <div class="p-2 bg-muted text-muted-foreground rounded-lg">
- <i data-lucide="shopping-bag" class="w-4 h-4"></i>
+ <i data-lucide="shopping-bag" class="size-4"></i>
  </div>
  </div>
  <h3 class="text-2xl font-bold text-foreground mt-3">{{ $ordersThisMonth }}</h3>
@@ -137,7 +137,7 @@
  <a href="{{ route('admin.staff.show', $item['staff']->id) }}?tab=earnings"
  class="inline-flex items-center gap-1 text-xs font-bold bg-muted hover:bg-primary text-primary-foreground hover:bg-primary/90 text-foreground px-3 py-1.5 rounded-lg transition-all border border-border">
  <span>Inspect Earnings</span>
- <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+ <i data-lucide="arrow-right" class="size-3.5"></i>
  </a>
  </td>
  </tr>

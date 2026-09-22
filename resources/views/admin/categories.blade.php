@@ -18,7 +18,7 @@
  </a>
  <button @click="openAddModal()"
  class="bg-primary text-primary-foreground hover:bg-primary/90 font-semibold py-2.5 px-5 rounded-lg ring-0 border border-black/10 transition-all flex items-center space-x-2 text-sm">
- <i data-lucide="plus" class="w-4 h-4"></i>
+ <i data-lucide="plus" class="size-4"></i>
  <span>Add New Category</span>
  </button>
  </div>
@@ -53,7 +53,7 @@
  @if($category->image)
  <img src="{{ $category->image }}" class="object-cover w-full h-full">
  @else
- <i data-lucide="{{ $category->icon ?: 'folder' }}" class="w-4 h-4"></i>
+ <i data-lucide="{{ $category->icon ?: 'folder' }}" class="size-4"></i>
  @endif
  </div>
 
@@ -72,11 +72,11 @@
  <div class="flex items-center rounded-lg p-0.5 bg-muted border border-border">
  <button @click="moveUp('parent', {{ $category->id }})"
  class="p-1 hover:opacity-70 rounded transition-all focus:outline-none text-muted-foreground">
- <i data-lucide="arrow-up" class="w-3.5 h-3.5"></i>
+ <i data-lucide="arrow-up" class="size-3.5"></i>
  </button>
  <button @click="moveDown('parent', {{ $category->id }})"
  class="p-1 hover:opacity-70 rounded transition-all focus:outline-none text-muted-foreground">
- <i data-lucide="arrow-down" class="w-3.5 h-3.5"></i>
+ <i data-lucide="arrow-down" class="size-3.5"></i>
  </button>
  </div>
 
@@ -92,7 +92,7 @@
  <div x-data="{ openMenu: false }" class="relative inline-block text-left">
  <button @click="openMenu = !openMenu" @click.away="openMenu = false"
  class="p-2 hover:opacity-70 rounded-xl transition-all focus:outline-none text-muted-foreground" title="More Actions">
- <i data-lucide="more-vertical" class="w-4 h-4"></i>
+ <i data-lucide="more-vertical" class="size-4"></i>
  </button>
 
  <div x-show="openMenu" x-cloak
@@ -104,7 +104,7 @@
  x-transition:leave-start="transform opacity-100 scale-100"
  x-transition:leave-end="transform opacity-0 scale-95">
  <div class="px-1 py-1 space-y-0.5">
- <a href="{{ env('FRONTEND_URL', 'http://localhost:3000') }}/categories/{{ $category->slug }}"
+ <a href="{{ config('app.frontend_url', 'http://localhost:3000') }}/categories/{{ $category->slug }}"
  target="_blank"
  class="flex items-center px-3 py-2 text-xs font-semibold hover:opacity-70 rounded-lg transition-colors text-muted-foreground">
  <i data-lucide="external-link" class="w-3.5 h-3.5 mr-2 text-muted-foreground"></i>
@@ -182,7 +182,7 @@
  <div x-data="{ openMenu: false }" class="relative inline-block text-left">
  <button @click="openMenu = !openMenu" @click.away="openMenu = false"
  class="p-1.5 hover:opacity-70 rounded-lg transition-all focus:outline-none text-muted-foreground" title="More Actions">
- <i data-lucide="more-vertical" class="w-3.5 h-3.5"></i>
+ <i data-lucide="more-vertical" class="size-3.5"></i>
  </button>
 
  <div x-show="openMenu" x-cloak
@@ -194,7 +194,7 @@
  x-transition:leave-start="transform opacity-100 scale-100"
  x-transition:leave-end="transform opacity-0 scale-95">
  <div class="px-1 py-1 space-y-0.5">
- <a href="{{ env('FRONTEND_URL', 'http://localhost:3000') }}/categories/{{ $sub->slug }}"
+ <a href="{{ config('app.frontend_url', 'http://localhost:3000') }}/categories/{{ $sub->slug }}"
  target="_blank"
  class="flex items-center px-3 py-2 text-xs font-semibold hover:opacity-70 rounded-lg transition-colors text-muted-foreground">
  <i data-lucide="external-link" class="w-3.5 h-3.5 mr-2 text-muted-foreground"></i>
@@ -234,7 +234,7 @@
  <div class="p-12 text-center">
  <div
  class="w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-3 bg-muted text-muted-foreground">
- <i data-lucide="folder-x" class="w-6 h-6"></i>
+ <i data-lucide="folder-x" class="size-6"></i>
  </div>
  <p class="text-sm font-semibold text-foreground">No categories found</p>
  <p class="text-xs mt-1 text-muted-foreground">Get started by creating your first category.</p>
@@ -263,7 +263,7 @@
  <div class="px-6 py-5 flex items-center justify-between bg-muted border-b border-border">
  <div class="flex items-center space-x-2.5">
  <div class="w-8 h-8 rounded-lg flex items-center justify-center bg-primary text-primary-foreground">
- <i data-lucide="folder-tree" class="w-4 h-4"></i>
+ <i data-lucide="folder-tree" class="size-4"></i>
  </div>
  <h4 class="font-bold text-base text-foreground" x-text="isEdit ? 'Edit Category' : 'Add New Category'"></h4>
  </div>
@@ -278,13 +278,13 @@
  <button type="button" @click="modalTab = 'basic'"
  :class="modalTab === 'basic' ? 'font-semibold text-foreground border-foreground' : 'text-muted-foreground border-transparent'"
  class="px-4 py-3 border-b-2 text-xs uppercase tracking-wider transition-all focus:outline-none flex items-center space-x-2">
- <i data-lucide="info" class="w-3.5 h-3.5"></i>
+ <i data-lucide="info" class="size-3.5"></i>
  <span>General Info</span>
  </button>
  <button type="button" @click="modalTab = 'seo'"
  :class="modalTab === 'seo' ? 'font-semibold text-foreground border-foreground' : 'text-muted-foreground border-transparent'"
  class="px-4 py-3 border-b-2 text-xs uppercase tracking-wider transition-all focus:outline-none flex items-center space-x-2">
- <i data-lucide="globe" class="w-3.5 h-3.5"></i>
+ <i data-lucide="globe" class="size-3.5"></i>
  <span>SEO Meta Settings</span>
  </button>
  </div>
@@ -335,7 +335,7 @@
  </template>
  <template x-if="!form.image">
  <div class="text-muted-foreground">
- <i data-lucide="image" class="w-6 h-6"></i>
+ <i data-lucide="image" class="size-6"></i>
  </div>
  </template>
  </div>
@@ -343,12 +343,12 @@
  <div class="flex flex-wrap gap-2">
  <button type="button" @click="openLibrary('category_image')"
  class="px-3 py-1.5 hover:opacity-80 rounded-lg text-xs font-semibold transition-all flex items-center space-x-1 bg-muted border border-border text-muted-foreground">
- <i data-lucide="image" class="w-3.5 h-3.5"></i>
+ <i data-lucide="image" class="size-3.5"></i>
  <span>Choose from Library</span>
  </button>
  <label
  class="px-3 py-1.5 bg-primary text-primary-foreground hover:bg-primary/90 rounded-lg text-xs font-semibold cursor-pointer transition-all flex items-center space-x-1">
- <i data-lucide="upload" class="w-3.5 h-3.5"></i>
+ <i data-lucide="upload" class="size-3.5"></i>
  <span>Upload File</span>
  <input type="file" name="image" accept="image/*" class="hidden"
  @change="form.image = URL.createObjectURL($event.target.files[0]); document.getElementById('selected_category_image_path').value = ''">
@@ -356,7 +356,7 @@
  <template x-if="form.image">
  <button type="button" @click="removeImage()"
  class="px-3 py-1.5 bg-muted hover:bg-muted text-destructive rounded-lg text-xs font-semibold transition-all flex items-center space-x-1">
- <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
+ <i data-lucide="trash-2" class="size-3.5"></i>
  <span>Remove</span>
  </button>
  </template>
@@ -378,7 +378,7 @@
  placeholder="cpu, keyboard, zap"
  class="w-full pl-9 pr-3 p-3 rounded-lg focus:ring-1 focus:border-ring focus:ring-2 focus:ring-ring/50 focus:outline-none transition-all bg-muted border border-border text-foreground">
  <div class="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground">
- <i data-lucide="tag" class="w-4 h-4"></i>
+ <i data-lucide="tag" class="size-4"></i>
  </div>
  </div>
  </div>
@@ -465,7 +465,7 @@
  </div>
  <button type="button" @click="libraryOpen = false"
  class="focus:outline-none text-muted-foreground">
- <i data-lucide="x" class="w-5 h-5"></i>
+ <i data-lucide="x" class="size-5"></i>
  </button>
  </div>
  <!-- Modal Body -->

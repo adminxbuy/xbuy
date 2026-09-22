@@ -5,7 +5,7 @@
 
 @section('header_actions')
  <a href="{{ route('admin.staff.show', $member->id) }}" class="flex items-center space-x-1.5 px-3 py-1.5 bg-muted hover:bg-muted text-foreground hover:text-foreground rounded-lg text-xs font-semibold transition-all border border-border ">
- <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i>
+ <i data-lucide="arrow-left" class="size-3.5"></i>
  <span>Back to Profile</span>
  </a>
 @endsection
@@ -98,7 +98,7 @@
  <span x-text="previewMode ? 'Edit Form' : 'Preview Notice'"></span>
  </button>
  <button type="submit" class="bg-primary text-primary-foreground hover:bg-primary/90 hover:text-primary-foreground font-medium px-6 py-2.5 rounded-lg text-xs transition-all flex items-center gap-1.5">
- <i data-lucide="send" class="w-4 h-4"></i>
+ <i data-lucide="send" class="size-4"></i>
  <span>Send Dispatch</span>
  </button>
  </div>
@@ -109,7 +109,7 @@
  <div class="lg:col-span-1 space-y-6">
  <div class="bg-card border border-border rounded-xl p-6 min-h-[400px] flex flex-col">
  <div class="border-b border-border pb-3 mb-4 flex items-center justify-between">
- <h4 class="font-bold text-foreground text-sm">Live Dispatch Preview</h4>
+ <h4 class="text-sm font-semibold text-foreground">Live Dispatch Preview</h4>
  <span class="text-[10px] bg-muted text-foreground border border-border/60 font-bold px-2 py-0.5 rounded-full">Preview</span>
  </div>
 

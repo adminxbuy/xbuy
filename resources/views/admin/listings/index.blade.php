@@ -42,7 +42,7 @@
  </div>
  <a href="{{ route('admin.trash.index', 'listings') }}"
  class="inline-flex items-center gap-2 px-4 py-2 border border-border rounded-lg bg-card hover:bg-muted hover:border-border text-muted-foreground hover:text-muted-foreground text-xs font-semibold transition-all">
- <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
+ <i data-lucide="trash-2" class="size-3.5"></i>
  Trash
  @if($trashedListings->count())
  <span class="bg-muted text-muted-foreground text-[10px] font-bold px-1.5 py-0.5 rounded-full">{{ $trashedListings->count() }}</span>
@@ -302,7 +302,7 @@
  'active' => ['dot' => 'bg-emerald-500', 'text' => 'text-foreground', 'bg' => 'bg-muted', 'border' => 'border-border', 'label' => 'Active'],
  'pending_approval' => ['dot' => 'bg-primary', 'text' => 'text-foreground', 'bg' => 'bg-muted', 'border' => 'border-border', 'label' => 'Pending'],
  'paused' => ['dot' => 'bg-blue-400', 'text' => 'text-foreground', 'bg' => 'bg-muted', 'border' => 'border-border', 'label' => 'Paused'],
- 'rejected' => ['dot' => 'bg-red-500', 'text' => 'text-foreground', 'bg' => 'bg-muted', 'border' => 'border-border', 'label' => 'Rejected'],
+ 'rejected' => ['dot' => 'bg-destructive/80', 'text' => 'text-foreground', 'bg' => 'bg-muted', 'border' => 'border-border', 'label' => 'Rejected'],
  'sold' => ['dot' => 'bg-violet-500', 'text' => 'text-foreground', 'bg' => 'bg-muted', 'border' => 'border-border', 'label' => 'Sold'],
  default => ['dot' => 'bg-muted-foreground/40', 'text' => 'text-muted-foreground', 'bg' => 'bg-muted', 'border' => 'border-border', 'label' => ucfirst($listing->listing_status)],
  };
@@ -323,7 +323,7 @@
  class="w-9 h-9 rounded-lg object-cover border border-border shrink-0 bg-muted">
  @else
  <div class="w-9 h-9 rounded-lg bg-muted border border-border flex items-center justify-center text-muted-foreground shrink-0">
- <i data-lucide="image" class="w-3.5 h-3.5"></i>
+ <i data-lucide="image" class="size-3.5"></i>
  </div>
  @endif
  <div class="min-w-0">
@@ -394,7 +394,7 @@
  <div class="relative flex justify-end" x-data="{ menuOpen: false }">
  <button @click.stop="menuOpen = !menuOpen"
  class="w-8 h-8 flex items-center justify-center rounded-md hover:bg-muted text-muted-foreground hover:text-foreground transition-all">
- <i data-lucide="ellipsis" class="w-4 h-4"></i>
+ <i data-lucide="ellipsis" class="size-4"></i>
  </button>
 
  {{-- Dropdown --}}
@@ -476,7 +476,7 @@
  <td colspan="9" class="px-4 py-20 text-center">
  <div class="flex flex-col items-center gap-3">
  <div class="w-12 h-12 rounded-xl bg-muted border border-border flex items-center justify-center text-muted-foreground">
- <i data-lucide="package-open" class="w-6 h-6"></i>
+ <i data-lucide="package-open" class="size-6"></i>
  </div>
  <div>
  <p class="text-sm font-semibold text-foreground">No listings found</p>
@@ -619,7 +619,7 @@
  <h3 class="text-sm font-bold text-foreground leading-snug" x-text="listing?.title ?? 'Listing Details'"></h3>
  </div>
  <button @click="close()" class="p-1.5 text-muted-foreground hover:text-foreground hover:bg-muted rounded-lg transition-all shrink-0">
- <i data-lucide="x" class="w-4 h-4"></i>
+ <i data-lucide="x" class="size-4"></i>
  </button>
  </div>
 
@@ -765,7 +765,7 @@
  <input type="hidden" name="status" value="active">
  <button type="submit"
  class="w-full flex items-center justify-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-medium py-2.5 rounded-lg transition-all">
- <i data-lucide="check-circle" class="w-4 h-4"></i> Approve Listing
+ <i data-lucide="check-circle" class="size-4"></i> Approve Listing
  </button>
  </form>
  </template>
@@ -774,7 +774,7 @@
  <template x-if="['pending_approval','active','paused'].includes(listing?.listing_status) && !rejecting">
  <button @click="rejecting = true"
  class="w-full flex items-center justify-center gap-2 bg-card border border-border hover:border-border hover:bg-muted text-muted-foreground hover:text-foreground text-xs font-bold py-2.5 rounded-xl transition-all">
- <i data-lucide="x-circle" class="w-4 h-4"></i> Reject Listing
+ <i data-lucide="x-circle" class="size-4"></i> Reject Listing
  </button>
  </template>
 
@@ -791,7 +791,7 @@
  <button type="button" @click="rejecting = false"
  class="flex-1 bg-card border border-border text-muted-foreground text-xs font-semibold py-2.5 rounded-xl hover:bg-muted transition-all">Cancel</button>
  <button type="submit"
- class="flex-1 bg-red-600 hover:bg-red-700 text-white text-xs font-bold py-2.5 rounded-xl transition-all">Confirm Reject</button>
+ class="flex-1 bg-destructive hover:bg-destructive/90 text-white text-xs font-bold py-2.5 rounded-xl transition-all">Confirm Reject</button>
  </div>
  </form>
  </template>
@@ -802,7 +802,7 @@
  <input type="hidden" name="_token" :value="listing?.csrf">
  <button type="submit"
  class="w-full flex items-center justify-center gap-2 bg-card border border-border hover:border-border hover:bg-muted text-muted-foreground hover:text-foreground text-xs font-bold py-2.5 rounded-xl transition-all">
- <i data-lucide="pause-circle" class="w-4 h-4"></i>
+ <i data-lucide="pause-circle" class="size-4"></i>
  <span x-text="listing?.listing_status === 'paused' ? 'Reactivate Listing' : 'Pause Listing'"></span>
  </button>
  </form>
@@ -815,7 +815,7 @@
  <input type="hidden" name="status" value="sold">
  <button type="submit"
  class="w-full flex items-center justify-center gap-2 bg-card border border-border hover:border-border hover:bg-muted text-muted-foreground hover:text-foreground text-xs font-bold py-2.5 rounded-xl transition-all">
- <i data-lucide="badge-check" class="w-4 h-4"></i> Mark as Sold
+ <i data-lucide="badge-check" class="size-4"></i> Mark as Sold
  </button>
  </form>
  </template>
@@ -827,7 +827,7 @@
  <input type="hidden" name="status" value="pending_approval">
  <button type="submit"
  class="w-full flex items-center justify-center gap-2 bg-card border border-border hover:border-border hover:bg-muted text-muted-foreground hover:text-foreground text-xs font-medium py-2.5 rounded-lg transition-all">
- <i data-lucide="rotate-ccw" class="w-4 h-4"></i> Move to Pending Review
+ <i data-lucide="rotate-ccw" class="size-4"></i> Move to Pending Review
  </button>
  </form>
  </template>
@@ -839,7 +839,7 @@
  <input type="hidden" name="status" value="active">
  <button type="submit"
  class="w-full flex items-center justify-center gap-2 bg-muted border border-border hover:bg-muted text-foreground text-xs font-medium py-2.5 rounded-lg transition-all">
- <i data-lucide="check-circle" class="w-4 h-4"></i> Reactivate Listing
+ <i data-lucide="check-circle" class="size-4"></i> Reactivate Listing
  </button>
  </form>
  </template>

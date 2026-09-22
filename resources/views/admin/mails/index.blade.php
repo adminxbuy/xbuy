@@ -162,7 +162,7 @@
  </form>
 
  <button type="button" @click="showAddModal = true" class="bg-primary text-primary-foreground hover:bg-primary/90 font-medium py-2 px-5 rounded-lg text-xs flex items-center space-x-1.5 shrink-0 transition-all shadow-md">
- <i data-lucide="plus-circle" class="w-4 h-4"></i>
+ <i data-lucide="plus-circle" class="size-4"></i>
  <span>Add Subscriber</span>
  </button>
  </div>
@@ -190,7 +190,7 @@
  <div class="overflow-x-auto">
  <table class="w-full text-left border-collapse">
  <thead>
- <tr class="bg-muted border-b border-border">
+ <tr>
  <th class="py-3.5 px-4 w-10 text-center">
  <input type="checkbox" x-model="selectAll"  @change="if(selectAll) { selectedIds = @json($subscribers->pluck('id')->toArray()) } else { selectedIds = [] }"
  class="rounded border-border text-primary w-3.5 h-3.5">
@@ -245,7 +245,7 @@
  @csrf
  @method('DELETE')
  <button type="submit" class="text-muted-foreground hover:text-destructive p-1 hover:bg-muted rounded-lg">
- <i data-lucide="trash" class="w-4 h-4"></i>
+ <i data-lucide="trash" class="size-4"></i>
  </button>
  </form>
  </td>
@@ -338,7 +338,7 @@
  </div>
 
  <button type="submit" onclick="return confirm('Confirm campaign submission? If scheduled, it will queue for auto-delivery.');"  class="w-full bg-primary text-primary-foreground hover:bg-primary/90 font-medium py-2.5 rounded-lg text-sm transition-all shadow-md flex items-center justify-center space-x-2">
- <i data-lucide="send" class="w-4 h-4"></i>
+ <i data-lucide="send" class="size-4"></i>
  <span>Submit Broadcast Campaign</span>
  </button>
  </div>
@@ -353,7 +353,7 @@
  <div class="overflow-x-auto">
  <table class="w-full text-left border-collapse">
  <thead>
- <tr class="bg-muted border-b border-border">
+ <tr>
  <th class="py-3.5 px-4 text-xs font-medium text-muted-foreground uppercase tracking-wider">Campaign Subject</th>
  <th class="py-3.5 px-4 text-xs font-medium text-muted-foreground uppercase tracking-wider">Target Group</th>
  <th class="py-3.5 px-4 text-xs font-medium text-muted-foreground uppercase tracking-wider">Alert Type</th>
@@ -434,7 +434,7 @@
   <button type="button" @click="activeSubTemplate = 'layout'"
  :class="activeSubTemplate === 'layout' ? 'bg-primary text-primary-foreground hover:bg-primary/90 text-primary-foreground font-semibold ' : 'text-muted-foreground hover:bg-muted'"
  class="w-full text-left px-3 py-2 rounded-lg text-xs flex items-center gap-2 transition-all">
- <i data-lucide="layout" class="w-4 h-4"></i>
+ <i data-lucide="layout" class="size-4"></i>
  <span>Shared Header / Footer</span>
  </button>
   @foreach([
@@ -452,7 +452,7 @@
  <button type="button" @click="activeSubTemplate = '{{ $key }}'"
  :class="activeSubTemplate === '{{ $key }}' ? 'bg-primary text-primary-foreground hover:bg-primary/90 text-primary-foreground font-semibold ' : 'text-muted-foreground hover:bg-muted'"
  class="w-full text-left px-3 py-2 rounded-lg text-xs flex items-center gap-2 transition-all">
- <i data-lucide="file-text" class="w-4 h-4"></i>
+ <i data-lucide="file-text" class="size-4"></i>
  <span>{{ $title }}</span>
  </button>
  @endforeach
@@ -603,7 +603,7 @@
  <!-- Save footer bar -->
  <div class="pt-5 border-t border-border flex justify-end">
  <button type="submit" class="bg-primary text-primary-foreground hover:bg-primary/90 font-semibold py-2.5 px-6 rounded-lg ring-0 transition-all text-xs flex items-center gap-2">
- <i data-lucide="check-circle" class="w-4 h-4"></i>
+ <i data-lucide="check-circle" class="size-4"></i>
  <span>Save Email Templates</span>
  </button>
  </div>
@@ -638,7 +638,7 @@
  <span>Add New Subscribers</span>
  </h3>
  <button type="button" @click="showAddModal = false" class="text-muted-foreground hover:text-foreground p-1 rounded-lg hover:bg-muted transition-all">
- <i data-lucide="x" class="w-5 h-5"></i>
+ <i data-lucide="x" class="size-5"></i>
  </button>
  </div>
   <!-- Modal Tabs -->
@@ -700,7 +700,7 @@
  <div class="border border-border rounded-xl overflow-hidden bg-muted max-h-[200px] overflow-y-auto">
  <table class="w-full text-left text-xs border-collapse">
  <thead>
- <tr class="bg-muted border-b border-border text-[10px] font-bold text-muted-foreground">
+ <tr>
  <th class="py-2.5 px-3 w-8 text-center">
  <input type="checkbox"  @change="if($el.checked) { selectedImportEmails = searchedUsers.map(u => u.email) } else { selectedImportEmails = [] }"
  class="rounded border-border text-primary w-3 h-3">

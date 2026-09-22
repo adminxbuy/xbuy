@@ -11,10 +11,10 @@
  <input type="hidden" name="days" value="custom">
  <div class="flex items-center gap-3">
  <div class="p-2 bg-muted text-muted-foreground rounded-xl">
- <i data-lucide="calendar-range" class="w-5 h-5"></i>
+ <i data-lucide="calendar-range" class="size-5"></i>
  </div>
  <div>
- <h4 class="font-bold text-foreground text-sm">Select Analytics Period</h4>
+ <h4 class="text-sm font-semibold text-foreground">Select Analytics Period</h4>
  <p class="text-xs text-muted-foreground">Current range: {{ $start->format('d M Y') }} - {{ $end->format('d M Y') }}</p>
  </div>
  </div>
@@ -42,7 +42,7 @@
  <option value="custom">Custom Range</option>
  </select>
  <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-muted-foreground">
- <i data-lucide="chevron-down" class="w-3.5 h-3.5"></i>
+ <i data-lucide="chevron-down" class="size-3.5"></i>
  </div>
  </div>
  </div>
@@ -73,9 +73,9 @@
  {{-- Card 1: GMV --}}
  <div class="bg-card border border-border rounded-xl p-5 flex flex-col gap-2 relative overflow-hidden group hover:shadow-md transition-all">
  <div class="flex items-center justify-between">
- <div class="p-2.5 bg-muted text-muted-foreground rounded-xl w-fit"><i data-lucide="indian-rupee" class="w-5 h-5"></i></div>
+ <div class="p-2.5 bg-muted text-muted-foreground rounded-xl w-fit"><i data-lucide="indian-rupee" class="size-5"></i></div>
  <span class="text-xs font-bold flex items-center gap-1 {{ $gmvChange >= 0 ? 'text-muted-foreground' : 'text-rose-600' }}">
- <i data-lucide="{{ $gmvChange >= 0 ? 'trending-up' : 'trending-down' }}" class="w-3.5 h-3.5"></i>
+ <i data-lucide="{{ $gmvChange >= 0 ? 'trending-up' : 'trending-down' }}" class="size-3.5"></i>
  {{ $gmvChange >= 0 ? '+' : '' }}{{ $gmvChange }}%
  </span>
  </div>
@@ -86,9 +86,9 @@
  {{-- Card 2: Orders --}}
  <div class="bg-card border border-border rounded-xl p-5 flex flex-col gap-2 relative overflow-hidden group hover:shadow-md transition-all">
  <div class="flex items-center justify-between">
- <div class="p-2.5 bg-muted text-muted-foreground rounded-xl w-fit"><i data-lucide="shopping-bag" class="w-5 h-5"></i></div>
+ <div class="p-2.5 bg-muted text-muted-foreground rounded-xl w-fit"><i data-lucide="shopping-bag" class="size-5"></i></div>
  <span class="text-xs font-bold flex items-center gap-1 {{ $ordersChange >= 0 ? 'text-muted-foreground' : 'text-rose-600' }}">
- <i data-lucide="{{ $ordersChange >= 0 ? 'trending-up' : 'trending-down' }}" class="w-3.5 h-3.5"></i>
+ <i data-lucide="{{ $ordersChange >= 0 ? 'trending-up' : 'trending-down' }}" class="size-3.5"></i>
  {{ $ordersChange >= 0 ? '+' : '' }}{{ $ordersChange }}%
  </span>
  </div>
@@ -99,9 +99,9 @@
  {{-- Card 3: Commission --}}
  <div class="bg-card border border-border rounded-xl p-5 flex flex-col gap-2 relative overflow-hidden group hover:shadow-md transition-all">
  <div class="flex items-center justify-between">
- <div class="p-2.5 bg-muted text-muted-foreground rounded-xl w-fit"><i data-lucide="percent" class="w-5 h-5"></i></div>
+ <div class="p-2.5 bg-muted text-muted-foreground rounded-xl w-fit"><i data-lucide="percent" class="size-5"></i></div>
  <span class="text-xs font-bold flex items-center gap-1 {{ $commissionChange >= 0 ? 'text-muted-foreground' : 'text-rose-600' }}">
- <i data-lucide="{{ $commissionChange >= 0 ? 'trending-up' : 'trending-down' }}" class="w-3.5 h-3.5"></i>
+ <i data-lucide="{{ $commissionChange >= 0 ? 'trending-up' : 'trending-down' }}" class="size-3.5"></i>
  {{ $commissionChange >= 0 ? '+' : '' }}{{ $commissionChange }}%
  </span>
  </div>
@@ -112,9 +112,9 @@
  {{-- Card 4: Avg Order Value --}}
  <div class="bg-card border border-border rounded-xl p-5 flex flex-col gap-2 relative overflow-hidden group hover:shadow-md transition-all">
  <div class="flex items-center justify-between">
- <div class="p-2.5 bg-muted text-muted-foreground rounded-xl w-fit"><i data-lucide="bar-chart-2" class="w-5 h-5"></i></div>
+ <div class="p-2.5 bg-muted text-muted-foreground rounded-xl w-fit"><i data-lucide="bar-chart-2" class="size-5"></i></div>
  <span class="text-xs font-bold flex items-center gap-1 {{ $aovChange >= 0 ? 'text-muted-foreground' : 'text-rose-600' }}">
- <i data-lucide="{{ $aovChange >= 0 ? 'trending-up' : 'trending-down' }}" class="w-3.5 h-3.5"></i>
+ <i data-lucide="{{ $aovChange >= 0 ? 'trending-up' : 'trending-down' }}" class="size-3.5"></i>
  {{ $aovChange >= 0 ? '+' : '' }}{{ $aovChange }}%
  </span>
  </div>
@@ -127,7 +127,7 @@
 <div class="bg-card border border-border rounded-xl p-6 mb-6">
  <div class="flex items-center justify-between mb-4">
  <div>
- <h3 class="font-bold text-foreground text-sm">GMV Trend</h3>
+ <h3 class="text-sm font-semibold text-foreground">GMV Trend</h3>
  <p class="text-xs text-muted-foreground">Gross Merchandise Value trend over the selected period</p>
  </div>
  </div>
@@ -141,7 +141,7 @@
  {{-- Category Breakdown Bar Chart --}}
  <div class="bg-card border border-border rounded-xl p-6 ">
  <div>
- <h3 class="font-bold text-foreground text-sm">Category Breakdown</h3>
+ <h3 class="text-sm font-semibold text-foreground">Category Breakdown</h3>
  <p class="text-xs text-muted-foreground mb-4">GMV generated per listing category</p>
  </div>
  <div class="h-64">
@@ -152,7 +152,7 @@
  {{-- Order Status Pie Chart --}}
  <div class="bg-card border border-border rounded-xl p-6 ">
  <div>
- <h3 class="font-bold text-foreground text-sm">Order Status Breakdown</h3>
+ <h3 class="text-sm font-semibold text-foreground">Order Status Breakdown</h3>
  <p class="text-xs text-muted-foreground mb-4">Distribution of statuses for orders in this period</p>
  </div>
  <div class="h-64 flex justify-center items-center">
@@ -169,7 +169,7 @@
  <div class="bg-card border border-border rounded-xl ring-0 overflow-hidden">
  <div class="px-5 py-4 border-b border-border flex items-center justify-between bg-muted">
  <div>
- <h3 class="font-bold text-foreground text-sm">Top 10 Sellers by GMV</h3>
+ <h3 class="text-sm font-semibold text-foreground">Top 10 Sellers by GMV</h3>
  <p class="text-[11px] text-muted-foreground">Ranked by total sales volume in this period</p>
  </div>
  <i data-lucide="award" class="w-5 h-5 text-foreground"></i>
@@ -178,21 +178,21 @@
  <table class="w-full text-sm">
  <thead class="bg-muted text-xs uppercase text-muted-foreground tracking-wider font-medium border-b border-border">
  <tr>
- <th class="px-5 py-3 text-left">Rank</th>
- <th class="px-5 py-3 text-left">Shop Name</th>
- <th class="px-5 py-3 text-right">Orders</th>
- <th class="px-5 py-3 text-right">Total GMV</th>
+ <th class="h-10 px-4 align-middle text-xs font-medium text-muted-foreground bg-muted/40 uppercase tracking-wider border-b border-border text-left">Rank</th>
+ <th class="h-10 px-4 align-middle text-xs font-medium text-muted-foreground bg-muted/40 uppercase tracking-wider border-b border-border text-left">Shop Name</th>
+ <th class="h-10 px-4 align-middle text-xs font-medium text-muted-foreground bg-muted/40 uppercase tracking-wider border-b border-border text-right">Orders</th>
+ <th class="h-10 px-4 align-middle text-xs font-medium text-muted-foreground bg-muted/40 uppercase tracking-wider border-b border-border text-right">Total GMV</th>
  </tr>
  </thead>
  <tbody class="divide-y divide-border">
  @forelse($topSellersGmv as $index => $sellerGmv)
  <tr class="hover:bg-muted">
- <td class="px-5 py-3.5 text-xs font-bold text-muted-foreground">#{{ $index + 1 }}</td>
- <td class="px-5 py-3.5 text-xs font-semibold text-foreground">
+ <td class="p-4 align-middle text-sm text-muted-foreground border-b border-border/60">#{{ $index + 1 }}</td>
+ <td class="p-4 align-middle text-sm text-foreground border-b border-border/60 font-semibold">
  {{ $sellerGmv->seller->shop_name ?? 'Unknown Shop' }}
  </td>
- <td class="px-5 py-3.5 text-right text-xs text-muted-foreground">{{ $sellerGmv->order_count }}</td>
- <td class="px-5 py-3.5 text-right text-xs font-bold text-foreground">₹{{ number_format($sellerGmv->gmv, 0) }}</td>
+ <td class="p-4 align-middle text-sm text-muted-foreground border-b border-border/60 text-right">{{ $sellerGmv->order_count }}</td>
+ <td class="p-4 align-middle text-sm text-foreground border-b border-border/60 text-right font-bold">₹{{ number_format($sellerGmv->gmv, 0) }}</td>
  </tr>
  @empty
  <tr>
@@ -208,7 +208,7 @@
  <div class="bg-card border border-border rounded-xl ring-0 overflow-hidden">
  <div class="px-5 py-4 border-b border-border flex items-center justify-between bg-muted">
  <div>
- <h3 class="font-bold text-foreground text-sm">Top 10 Sellers by Rating</h3>
+ <h3 class="text-sm font-semibold text-foreground">Top 10 Sellers by Rating</h3>
  <p class="text-[11px] text-muted-foreground">Overall ratings from verified transactions</p>
  </div>
  <i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-current"></i>
@@ -217,21 +217,21 @@
  <table class="w-full text-sm">
  <thead class="bg-muted text-xs uppercase text-muted-foreground tracking-wider font-medium border-b border-border">
  <tr>
- <th class="px-5 py-3 text-left">Rank</th>
- <th class="px-5 py-3 text-left">Shop Name</th>
- <th class="px-5 py-3 text-right">Reviews</th>
- <th class="px-5 py-3 text-right">Rating</th>
+ <th class="h-10 px-4 align-middle text-xs font-medium text-muted-foreground bg-muted/40 uppercase tracking-wider border-b border-border text-left">Rank</th>
+ <th class="h-10 px-4 align-middle text-xs font-medium text-muted-foreground bg-muted/40 uppercase tracking-wider border-b border-border text-left">Shop Name</th>
+ <th class="h-10 px-4 align-middle text-xs font-medium text-muted-foreground bg-muted/40 uppercase tracking-wider border-b border-border text-right">Reviews</th>
+ <th class="h-10 px-4 align-middle text-xs font-medium text-muted-foreground bg-muted/40 uppercase tracking-wider border-b border-border text-right">Rating</th>
  </tr>
  </thead>
  <tbody class="divide-y divide-border">
  @forelse($topSellersRating as $index => $sellerRating)
  <tr class="hover:bg-muted">
- <td class="px-5 py-3.5 text-xs font-bold text-muted-foreground">#{{ $index + 1 }}</td>
- <td class="px-5 py-3.5 text-xs font-semibold text-foreground">
+ <td class="p-4 align-middle text-sm text-muted-foreground border-b border-border/60">#{{ $index + 1 }}</td>
+ <td class="p-4 align-middle text-sm text-foreground border-b border-border/60 font-semibold">
  {{ $sellerRating->shop_name }}
  </td>
- <td class="px-5 py-3.5 text-right text-xs text-muted-foreground">{{ $sellerRating->ratings_count }}</td>
- <td class="px-5 py-3.5 text-right text-xs">
+ <td class="p-4 align-middle text-sm text-muted-foreground border-b border-border/60 text-right">{{ $sellerRating->ratings_count }}</td>
+ <td class="p-4 align-middle text-sm text-foreground border-b border-border/60 text-right">
  @if($sellerRating->ratings_avg_weighted_total)
  <div class="flex items-center justify-end gap-1.5 font-bold text-foreground">
  <i data-lucide="star" class="w-3.5 h-3.5 text-yellow-400 fill-yellow-400"></i>
@@ -257,7 +257,7 @@
 <div class="bg-card border border-border rounded-xl p-6 ">
  <div class="flex items-center justify-between mb-4">
  <div>
- <h3 class="font-bold text-foreground text-sm">Dispute Rate Trend</h3>
+ <h3 class="text-sm font-semibold text-foreground">Dispute Rate Trend</h3>
  <p class="text-xs text-muted-foreground">Daily dispute percentage with a standard 5% limit threshold</p>
  </div>
  </div>

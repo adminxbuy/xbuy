@@ -5,7 +5,7 @@
 
 @section('header_actions')
  <a href="{{ route('admin.trash.index', 'orders') }}" class="flex items-center space-x-1.5 px-4 py-2 rounded-lg text-xs font-bold transition-all border bg-muted text-foreground border-border/60">
- <i data-lucide="trash-2" class="w-4 h-4"></i>
+ <i data-lucide="trash-2" class="size-4"></i>
  <span>Trash ({{ $trashedOrders->count() }})</span>
  </a>
 @endsection
@@ -204,8 +204,8 @@
  </td>
  <td class="px-5 py-3.5 text-right" @click.stop>
  <div class="flex items-center justify-end gap-1.5">
- <a href="{{ route('admin.orders.invoice.download', $order->id) }}" class="inline-flex items-center justify-center w-8 h-8 rounded-lg transition-all border border-border text-muted-foreground" title="Download Invoice"><i data-lucide="download" class="w-4 h-4"></i></a>
- <button @click="open({{ json_encode($payload) }})" class="inline-flex items-center gap-1.5 text-xs font-bold px-3 py-1.5 rounded-lg transition-all bg-primary text-primary-foreground">Track <i data-lucide="panels-right-open" class="w-3.5 h-3.5"></i></button>
+ <a href="{{ route('admin.orders.invoice.download', $order->id) }}" class="inline-flex items-center justify-center w-8 h-8 rounded-lg transition-all border border-border text-muted-foreground" title="Download Invoice"><i data-lucide="download" class="size-4"></i></a>
+ <button @click="open({{ json_encode($payload) }})" class="inline-flex items-center gap-1.5 text-xs font-bold px-3 py-1.5 rounded-lg transition-all bg-primary text-primary-foreground">Track <i data-lucide="panels-right-open" class="size-3.5"></i></button>
  </div>
  </td>
  </tr>
@@ -239,8 +239,8 @@
  <p class="text-xs mt-0.5 text-muted-foreground" x-text="'Placed ' + (order?.created_at ?? '')"></p>
  </div>
  <div class="flex items-center gap-2">
- <a :href="order?.show_url" class="inline-flex items-center gap-1.5 px-3 py-1.5 font-bold text-xs rounded-lg transition-all bg-primary text-primary-foreground"><span>Full Details</span><i data-lucide="external-link" class="w-3.5 h-3.5"></i></a>
- <button @click="close()" class="p-2 rounded-lg transition-all text-muted-foreground"><i data-lucide="x" class="w-5 h-5"></i></button>
+ <a :href="order?.show_url" class="inline-flex items-center gap-1.5 px-3 py-1.5 font-bold text-xs rounded-lg transition-all bg-primary text-primary-foreground"><span>Full Details</span><i data-lucide="external-link" class="size-3.5"></i></a>
+ <button @click="close()" class="p-2 rounded-lg transition-all text-muted-foreground"><i data-lucide="x" class="size-5"></i></button>
  </div>
  </div>
 
@@ -321,8 +321,8 @@
  <div>
  <p class="text-xs font-bold uppercase tracking-wider mb-3 text-muted-foreground">Invoice & Email</p>
  <div class="rounded-xl p-4 space-y-2.5 border border-border bg-card">
- <a :href="order?.invoice_download_url" class="w-full font-semibold py-2 px-3 rounded-lg text-xs transition-all flex items-center justify-center space-x-1.5 bg-primary text-primary-foreground"><i data-lucide="download" class="w-4 h-4"></i><span>Download Invoice</span></a>
- <form :action="order?.invoice_resend_url" method="POST" class="w-full"><input type="hidden" name="_token" :value="order?.csrf"><button type="submit" class="w-full font-semibold py-2 px-3 rounded-lg text-xs transition-all flex items-center justify-center space-x-1.5 border border-border text-foreground"><i data-lucide="mail" class="w-4 h-4"></i><span>Resend Invoice Email</span></button></form>
+ <a :href="order?.invoice_download_url" class="w-full font-semibold py-2 px-3 rounded-lg text-xs transition-all flex items-center justify-center space-x-1.5 bg-primary text-primary-foreground"><i data-lucide="download" class="size-4"></i><span>Download Invoice</span></a>
+ <form :action="order?.invoice_resend_url" method="POST" class="w-full"><input type="hidden" name="_token" :value="order?.csrf"><button type="submit" class="w-full font-semibold py-2 px-3 rounded-lg text-xs transition-all flex items-center justify-center space-x-1.5 border border-border text-foreground"><i data-lucide="mail" class="size-4"></i><span>Resend Invoice Email</span></button></form>
  </div>
  </div>
 

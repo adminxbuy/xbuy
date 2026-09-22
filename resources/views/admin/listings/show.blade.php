@@ -7,13 +7,13 @@
  <div class="mb-6 flex items-center justify-between">
  <a href="{{ route('admin.listings') }}"
  class="inline-flex items-center space-x-1.5 text-sm font-semibold text-muted-foreground hover:text-foreground">
- <i data-lucide="arrow-left" class="w-4 h-4"></i>
+ <i data-lucide="arrow-left" class="size-4"></i>
  <span>Back to Directory</span>
  </a>
  @if($listing->listing_number)
  <span
  class="inline-flex items-center gap-2 bg-blue-600 text-white text-xs font-bold font-mono px-3 py-1.5 rounded-lg ">
- <i data-lucide="hash" class="w-3.5 h-3.5"></i>
+ <i data-lucide="hash" class="size-3.5"></i>
  {{ $listing->listing_number }}
  </span>
  @endif
@@ -153,14 +153,14 @@
  <input type="hidden" name="status" value="active">
  <button type="submit"
  class="w-full bg-primary text-primary-foreground hover:bg-primary/90 font-semibold py-2.5 px-4 rounded-lg transition-all flex items-center justify-center space-x-2 text-xs">
- <i data-lucide="check" class="w-3.5 h-3.5"></i>
+ <i data-lucide="check" class="size-3.5"></i>
  <span>Approve Listing</span>
  </button>
  </form>
 
  <button @click="rejecting = true" x-show="!rejecting"
  class="w-full bg-muted hover:bg-muted text-foreground hover:text-foreground font-semibold py-2.5 px-4 rounded-lg transition-all border border-border/50 hover:border-border/60 flex items-center justify-center space-x-2 text-xs">
- <i data-lucide="x" class="w-3.5 h-3.5"></i>
+ <i data-lucide="x" class="size-3.5"></i>
  <span>Reject Listing</span>
  </button>
 
@@ -202,7 +202,7 @@
  <div class="space-y-3.5 text-xs">
  <div class="flex justify-between items-center py-1.5 border-b border-border">
  <span class="text-muted-foreground">Listing Price</span>
- <span class="font-bold text-foreground text-sm">₹{{ number_format($listing->price, 2) }}</span>
+ <span class="text-sm font-semibold text-foreground">₹{{ number_format($listing->price, 2) }}</span>
  </div>
  @if($listing->original_price)
  <div class="flex justify-between items-center py-1.5 border-b border-border">

@@ -168,7 +168,7 @@
  {{-- Credit Score / API Gateway health notification widget --}}
  <div class="rounded-xl border border-border bg-muted p-4 flex items-start gap-3">
  <div class="w-8 h-8 rounded-lg bg-card border border-border flex items-center justify-center text-muted-foreground shrink-0">
- <i data-lucide="check-circle" class="w-4 h-4"></i>
+ <i data-lucide="check-circle" class="size-4"></i>
  </div>
  <div class="space-y-1 min-w-0 flex-1">
  <h4 class="text-xs font-bold text-foreground">Razorpay Payout Connection status</h4>

@@ -5,7 +5,7 @@
 
 @section('header_actions')
  <a href="{{ route('admin.staff.directory') }}" class="flex items-center space-x-1.5 px-3 py-1.5 bg-muted hover:bg-muted text-foreground hover:text-foreground rounded-lg text-xs font-semibold transition-all border border-border ">
- <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i>
+ <i data-lucide="arrow-left" class="size-3.5"></i>
  <span>Back to Directory</span>
  </a>
 @endsection
@@ -51,7 +51,7 @@
  </div>
   <div class="mt-6 flex flex-col gap-2">
  <a href="{{ route('admin.staff.notice', $member->id) }}"  class="w-full inline-flex items-center justify-center gap-1.5 bg-primary text-primary-foreground hover:bg-primary/90 hover:text-primary-foreground font-bold py-2.5 rounded-xl text-xs transition-all ">
- <i data-lucide="mail-open" class="w-3.5 h-3.5"></i>
+ <i data-lucide="mail-open" class="size-3.5"></i>
  <span>Send Notice / Salary Slip</span>
  </a>
  </div>
@@ -64,22 +64,22 @@
  <div class="bg-muted p-1.5 rounded-xl flex flex-wrap gap-1 mb-6 border border-border">
  <button @click="activeTab = 'profile'"  :class="activeTab === 'profile' ? 'bg-card text-foreground font-bold ' : 'text-muted-foreground hover:text-foreground font-semibold'"
  class="flex-1 px-4 py-2.5 rounded-xl text-xs transition-all flex items-center justify-center gap-2">
- <i data-lucide="user" class="w-4 h-4"></i>
+ <i data-lucide="user" class="size-4"></i>
  <span>Profile Info</span>
  </button>
  <button @click="activeTab = 'earnings'"  :class="activeTab === 'earnings' ? 'bg-card text-foreground font-bold ' : 'text-muted-foreground hover:text-foreground font-semibold'"
  class="flex-1 px-4 py-2.5 rounded-xl text-xs transition-all flex items-center justify-center gap-2">
- <i data-lucide="wallet" class="w-4 h-4"></i>
+ <i data-lucide="wallet" class="size-4"></i>
  <span>Earnings History</span>
  </button>
  <button @click="activeTab = 'notices'"  :class="activeTab === 'notices' ? 'bg-card text-foreground font-bold ' : 'text-muted-foreground hover:text-foreground font-semibold'"
  class="flex-1 px-4 py-2.5 rounded-xl text-xs transition-all flex items-center justify-center gap-2">
- <i data-lucide="clipboard-list" class="w-4 h-4"></i>
+ <i data-lucide="clipboard-list" class="size-4"></i>
  <span>Notices Sent</span>
  </button>
  <button @click="activeTab = 'logs'"  :class="activeTab === 'logs' ? 'bg-card text-foreground font-bold ' : 'text-muted-foreground hover:text-foreground font-semibold'"
  class="flex-1 px-4 py-2.5 rounded-xl text-xs transition-all flex items-center justify-center gap-2">
- <i data-lucide="history" class="w-4 h-4"></i>
+ <i data-lucide="history" class="size-4"></i>
  <span>Activity Log</span>
  </button>
  </div>
@@ -107,7 +107,7 @@
 
  <!-- Identity verification masked -->
  <div class="space-y-4 border-b border-border pb-6">
- <h4 class="font-bold text-foreground text-sm">Government Issued IDs</h4>
+ <h4 class="text-sm font-semibold text-foreground">Government Issued IDs</h4>
   <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
  <!-- Aadhaar -->
  <div class="p-4 bg-muted rounded-xl border border-border flex items-center justify-between">
@@ -139,7 +139,7 @@
 
  <!-- Bank / UPI payment details -->
  <div class="space-y-4">
- <h4 class="font-bold text-foreground text-sm">Disbursement Details (Bank & UPI)</h4>
+ <h4 class="text-sm font-semibold text-foreground">Disbursement Details (Bank & UPI)</h4>
 
  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
  <!-- Bank Account Info -->
@@ -268,7 +268,7 @@
  <td colspan="7" class="px-6 py-12 text-center">
  <div class="flex flex-col items-center justify-center">
  <div class="w-10 h-10 bg-muted rounded-xl flex items-center justify-center text-muted-foreground mb-2 border border-border">
- <i data-lucide="wallet" class="w-5 h-5"></i>
+ <i data-lucide="wallet" class="size-5"></i>
  </div>
  <h4 class="text-xs font-bold text-foreground">No Earnings Recorded</h4>
  <p class="text-[11px] text-muted-foreground mt-0.5">This staff member hasn't handled any commissionable orders yet.</p>
@@ -293,7 +293,7 @@
  <div class="border border-border rounded-xl p-4 bg-muted hover:bg-muted transition-all flex flex-col md:flex-row md:items-center md:justify-between gap-4">
  <div class="flex items-start gap-3">
  <div class="p-2 rounded-lg bg-muted text-muted-foreground border border-yellow-250">
- <i data-lucide="{{ $notice->type === 'Salary Slip' ? 'file-text' : 'alert-circle' }}" class="w-5 h-5"></i>
+ <i data-lucide="{{ $notice->type === 'Salary Slip' ? 'file-text' : 'alert-circle' }}" class="size-5"></i>
  </div>
  <div>
  <span class="px-2 py-0.5 text-[9px] rounded-full font-bold bg-card text-muted-foreground border border-border">
@@ -309,7 +309,7 @@
  <div class="flex items-center gap-2 self-end md:self-center">
  @if($notice->attachment_path)
  <a href="{{ asset('storage/' . $notice->attachment_path) }}" target="_blank"  class="inline-flex items-center gap-1 text-xs font-bold bg-primary text-primary-foreground hover:bg-primary/90 hover:text-primary-foreground px-3 py-1.5 rounded-lg transition-all ">
- <i data-lucide="download" class="w-3.5 h-3.5"></i>
+ <i data-lucide="download" class="size-3.5"></i>
  <span>View Attachment</span>
  </a>
  @endif
@@ -318,7 +318,7 @@
  @empty
  <div class="px-6 py-12 text-center border border-border rounded-xl bg-muted">
  <div class="w-10 h-10 bg-muted rounded-xl flex items-center justify-center text-muted-foreground mx-auto mb-2 border border-border">
- <i data-lucide="mail-search" class="w-5 h-5"></i>
+ <i data-lucide="mail-search" class="size-5"></i>
  </div>
  <h4 class="text-xs font-bold text-foreground">No Communications Records</h4>
  <p class="text-[11px] text-muted-foreground mt-0.5">No formal warnings, notices, or slips dispatched yet.</p>
@@ -346,7 +346,7 @@
  @empty
  <div class="px-6 py-12 text-center border border-border rounded-xl bg-muted -ml-6">
  <div class="w-10 h-10 bg-muted rounded-xl flex items-center justify-center text-muted-foreground mx-auto mb-2 border border-border">
- <i data-lucide="shield-alert" class="w-5 h-5"></i>
+ <i data-lucide="shield-alert" class="size-5"></i>
  </div>
  <h4 class="text-xs font-bold text-foreground">No Actions Logged</h4>
  <p class="text-[11px] text-muted-foreground mt-0.5">This staff account has not recorded any operations yet.</p>
