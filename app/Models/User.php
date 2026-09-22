@@ -105,6 +105,11 @@ class User extends Authenticatable
         return $this->hasMany(Wishlist::class);
     }
 
+    public function hasFavorited($listingId): bool
+    {
+        return $this->wishlists()->where('listing_id', $listingId)->exists();
+    }
+
     // Accessors
     public function getBuyerBadgeLabelAttribute()
     {

@@ -38,21 +38,30 @@
 </head>
 <body class="min-h-screen flex flex-col bg-white text-zinc-900 selection:bg-yellow-200">
 
- <!-- Global Header -->
- @include('layouts.partials.header')
+    <!-- Global Header -->
+    @include('layouts.partials.header')
 
- <!-- Main Content -->
- <main class="flex-1">
- @yield('content')
- </main>
+    <!-- Slide-out Cart Drawer -->
+    @include('components.frontend.cart-drawer')
 
- <!-- Global Footer -->
- @include('layouts.partials.footer')
+    <!-- Main Content -->
+    <main class="flex-1 pb-16 lg:pb-0">
+        @yield('content')
+    </main>
 
+    <!-- Global Footer -->
+    @include('layouts.partials.footer')
 
- <!-- Initialize Lucide Icons -->
- <script>
- lucide.createIcons();
- </script>
+    <!-- Mercari-Style Mobile Bottom Dock (< 1024px) -->
+    @include('layouts.partials.mobile-dock')
+
+    <!-- Initialize Lucide Icons -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            if (window.lucide) {
+                lucide.createIcons();
+            }
+        });
+    </script>
 </body>
 </html>

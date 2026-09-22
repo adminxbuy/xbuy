@@ -1024,10 +1024,15 @@ class UserDashboardController extends Controller
     public function showOrders(Request $request)
     {
         $user = Auth::user();
-        $type = $request->get('order_type', 'sold'); // Default to sold as per user's screenshot context
+        $type = 'bought';
+        if ($request->get('tab') === 'selling' || $request->get('order_type') === 'sold') {
+            $type = 'sold';
+        } elseif ($request->get('tab') === 'buying' || $request->get('order_type') === 'bought') {
+            $type = 'bought';
+        }
         $status = $request->get('status', 'all');
 
-        $query = \App\Models\Order::with(['listing.images', 'buyer', 'seller.user']);
+        $query = \App\Models\Order::with(['listing.images', 'buyer', 'seller.user', 'escrow', 'shipment', 'dispute', 'rating']);
 
         if ($type === 'sold') {
             $sellerProfile = $user->sellerProfile;

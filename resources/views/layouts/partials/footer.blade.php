@@ -1,136 +1,141 @@
-<!-- Global Footer Component (Mercari Style, X-Buy Yellow Color) -->
-<footer class="bg-[#f4f4f4] text-zinc-900 mt-auto border-none" style="background-color: #f4f4f4 !important; padding-top: 64px !important; padding-bottom: 2px !important; border: none !important;">
+<!-- Mercari-Standard Global Master Footer -->
+<footer class="bg-[#F4F4F4] text-zinc-900 border-t border-zinc-200/80 pt-12 pb-8 select-none">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        <!-- Top Section: Links & Accents -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 pb-8">
+        <!-- Brand intro strip -->
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-8 border-b border-zinc-200">
+            <div class="flex items-center space-x-3">
+                @if($logo = \App\Models\SiteSetting::getVal('website_logo'))
+                    <img src="{{ $logo }}" class="h-9 w-auto object-contain" alt="{{ \App\Models\SiteSetting::getVal('platform_name', 'X-Buy') }}">
+                @else
+                    <div class="flex items-center gap-1.5">
+                        <span class="bg-[#FDD835] text-black font-black text-xl px-2 py-0.5 rounded-md">X</span>
+                        <span class="font-black text-2xl text-zinc-950 tracking-tight">BUY</span>
+                    </div>
+                @endif
+                <div class="h-5 w-px bg-zinc-300 hidden sm:block"></div>
+                <span class="text-xs font-semibold text-zinc-600">
+                    The safest community marketplace for electronics, PC components & verified gear.
+                </span>
+            </div>
+
+            <!-- Escrow guarantee seal -->
+            <div class="flex items-center gap-2 px-3 py-1.5 bg-white border border-zinc-200 rounded-full text-xs font-bold text-zinc-800 self-start md:self-auto">
+                <svg class="w-4 h-4 text-emerald-600" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M10 1.944A11.954 11.954 0 0 1 2.166 5C2.056 5.649 2 6.319 2 7c0 5.225 3.34 9.67 8 11.317C14.66 16.67 18 12.225 18 7c0-.682-.057-1.35-.166-2.001A11.954 11.954 0 0 1 10 1.944ZM11 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0Zm0-7a1 1 0 1 0-2 0v3a1 1 0 1 0 2 0V7Z" clip-rule="evenodd"/>
+                </svg>
+                <span>100% Escrow Secured • 7-Day Testing Window</span>
+            </div>
+        </div>
+
+        <!-- 4-Column Directory -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-8 py-10 text-xs">
             
-            <!-- Column 1: Shop (lg:col-span-2) -->
-            <div class="lg:col-span-2 space-y-4">
-                <h4 class="text-zinc-950 text-xs font-bold uppercase tracking-widest">Shop</h4>
-                <ul class="space-y-2.5 text-sm text-zinc-800">
-                    <li><a href="/listings" class="hover:text-black transition-colors">Trending</a></li>
-                    <li><a href="/listings" class="hover:text-black transition-colors">Brands</a></li>
-                    <li><a href="/listings" class="hover:text-black transition-colors">Categories</a></li>
-                    <li><a href="/p/deals" class="hover:text-black transition-colors">Deals</a></li>
-                    <li><a href="/p/how-it-works" class="hover:text-black transition-colors">How it works</a></li>
-                    <li><a href="/p/gift-card-exchange" class="hover:text-black transition-colors">Gift card exchange</a></li>
-                    <li><a href="/p/coupons-and-promotions" class="hover:text-black transition-colors">Coupons and Promotions</a></li>
-                    <li><a href="/register" class="hover:text-black transition-colors">Create an account</a></li>
+            <!-- Column 1: SHOP -->
+            <div class="space-y-3">
+                <h4 class="text-zinc-950 font-extrabold uppercase tracking-wider text-[11px]">Shop</h4>
+                <ul class="space-y-2 text-zinc-600 font-medium">
+                    <li><a href="/listings" class="hover:text-zinc-950 transition-colors">Trending PC Gear</a></li>
+                    <li><a href="/listings" class="hover:text-zinc-950 transition-colors">Brands Directory</a></li>
+                    <li><a href="/listings" class="hover:text-zinc-950 transition-colors">All Categories</a></li>
+                    <li><a href="/p/deals" class="hover:text-zinc-950 transition-colors flex items-center gap-1"><span>Hot Deals & Drops</span> <span class="text-amber-500">🔥</span></a></li>
+                    <li><a href="/p/how-it-works" class="hover:text-zinc-950 transition-colors">How X-Buy Works</a></li>
+                    <li><a href="/p/gift-card-exchange" class="hover:text-zinc-950 transition-colors">Gift Cards & Wallet</a></li>
+                    <li><a href="/p/coupons-and-promotions" class="hover:text-zinc-950 transition-colors">Coupons & Promo Codes</a></li>
                 </ul>
             </div>
 
-            <!-- Column 2: Sell (lg:col-span-2) -->
-            <div class="lg:col-span-2 space-y-4">
-                <h4 class="text-zinc-950 text-xs font-bold uppercase tracking-widest">Sell</h4>
-                <ul class="space-y-2.5 text-sm text-zinc-800">
-                    <li><a href="/dashboard/listings/create" class="hover:text-black transition-colors">How to sell</a></li>
-                    <li><a href="/p/packaging" class="hover:text-black transition-colors">Packaging</a></li>
-                    <li><a href="/p/shipping" class="hover:text-black transition-colors">Shipping</a></li>
-                    <li><a href="/p/getting-paid" class="hover:text-black transition-colors">Getting paid</a></li>
-                    <li><a href="/p/authenticate" class="hover:text-black transition-colors">Authenticate</a></li>
+            <!-- Column 2: SELL -->
+            <div class="space-y-3">
+                <h4 class="text-zinc-950 font-extrabold uppercase tracking-wider text-[11px]">Sell</h4>
+                <ul class="space-y-2 text-zinc-600 font-medium">
+                    <li><a href="/dashboard/listings/create" class="hover:text-zinc-950 transition-colors font-bold text-amber-700">Sell on X-Buy (0% Fees)</a></li>
+                    <li><a href="/p/packaging" class="hover:text-zinc-950 transition-colors">Packaging Best Practices</a></li>
+                    <li><a href="/p/shipping" class="hover:text-zinc-950 transition-colors">Shipping Made Easy</a></li>
+                    <li><a href="/p/getting-paid" class="hover:text-zinc-950 transition-colors">How Payouts Work</a></li>
+                    <li><a href="/p/authenticate" class="hover:text-zinc-950 transition-colors">Hardware Authentication</a></li>
+                    <li><a href="/p/seller-guidelines" class="hover:text-zinc-950 transition-colors">Seller Protection Policy</a></li>
                 </ul>
             </div>
 
-            <!-- Column 3: Support (lg:col-span-2) -->
-            <div class="lg:col-span-2 space-y-4">
-                <h4 class="text-zinc-950 text-xs font-bold uppercase tracking-widest">Support</h4>
-                <ul class="space-y-2.5 text-sm text-zinc-800">
-                    <li><a href="/p/contact-us" class="hover:text-black transition-colors">Contact Us</a></li>
-                    <li><a href="/p/faqs" class="hover:text-black transition-colors">Help Center</a></li>
-                    <li><a href="/p/service-status" class="hover:text-black transition-colors">Service Status</a></li>
-                    <li><a href="/p/seller-guidelines" class="hover:text-black transition-colors">Marketplace Guidelines</a></li>
-                    <li><a href="/p/safety-guidelines" class="hover:text-black transition-colors">Safety Guidelines</a></li>
-                    <li><a href="/p/buyer-protection" class="hover:text-black transition-colors">Buyer Protection</a></li>
-                    <li><a href="/p/seller-guidelines" class="hover:text-black transition-colors">Seller Protection</a></li>
-                    <li><a href="/p/refund-policy" class="hover:text-black transition-colors">Refunds and Returns</a></li>
+            <!-- Column 3: SUPPORT -->
+            <div class="space-y-3">
+                <h4 class="text-zinc-950 font-extrabold uppercase tracking-wider text-[11px]">Support</h4>
+                <ul class="space-y-2 text-zinc-600 font-medium">
+                    <li><a href="/p/faqs" class="hover:text-zinc-950 transition-colors">Help Center & FAQs</a></li>
+                    <li><a href="/p/contact-us" class="hover:text-zinc-950 transition-colors">Contact Support Desk</a></li>
+                    <li><a href="/p/buyer-protection" class="hover:text-zinc-950 transition-colors">Buyer Protection Guarantee</a></li>
+                    <li><a href="/p/refund-policy" class="hover:text-zinc-950 transition-colors">Refunds & Returns Policy</a></li>
+                    <li><a href="/p/safety-guidelines" class="hover:text-zinc-950 transition-colors">Prohibited Items & Safety</a></li>
+                    <li><a href="/p/service-status" class="hover:text-zinc-950 transition-colors">Platform Status & Uptime</a></li>
                 </ul>
             </div>
 
-            <!-- Column 4: Company & Policies (lg:col-span-2) -->
-            <div class="lg:col-span-2 space-y-4">
-                <h4 class="text-zinc-950 text-xs font-bold uppercase tracking-widest">Company & Policies</h4>
-                <ul class="space-y-2.5 text-sm text-zinc-800">
-                    <li><a href="/p/about-us" class="hover:text-black transition-colors">About Us</a></li>
-                    <li><a href="/p/careers" class="hover:text-black transition-colors">Careers</a></li>
-                    <li><a href="/p/escrow-policy" class="hover:text-black transition-colors">Policy Center</a></li>
+            <!-- Column 4: COMPANY & LEGAL -->
+            <div class="space-y-3">
+                <h4 class="text-zinc-950 font-extrabold uppercase tracking-wider text-[11px]">Company & Legal</h4>
+                <ul class="space-y-2 text-zinc-600 font-medium">
+                    <li><a href="/p/about-us" class="hover:text-zinc-950 transition-colors">About X-Buy Marketplace</a></li>
+                    <li><a href="/p/careers" class="hover:text-zinc-950 transition-colors">Careers at X-Buy</a></li>
+                    <li><a href="/p/terms-of-service" class="hover:text-zinc-950 transition-colors">Terms of Service</a></li>
+                    <li><a href="/p/privacy-policy" class="hover:text-zinc-950 transition-colors">Privacy Policy</a></li>
+                    <li><a href="/p/escrow-policy" class="hover:text-zinc-950 transition-colors">Escrow Financial Policy</a></li>
+                    <li><a href="/p/cookie-preferences" class="hover:text-zinc-950 transition-colors">Cookie Preferences</a></li>
+                    <li><a href="/p/licenses-and-disclosures" class="hover:text-zinc-950 transition-colors">Licenses & Disclosures</a></li>
                 </ul>
             </div>
 
-            <!-- Column 5: Right Side Integrations (lg:col-span-4) -->
-            <div class="lg:col-span-4 space-y-6">
-                <!-- We Accept -->
-                <div class="space-y-3">
-                    <h4 class="text-zinc-950 text-xs font-bold uppercase tracking-widest">We Accept</h4>
-                    <div class="flex flex-wrap gap-2">
-                        <div class="h-7 w-14 bg-white border border-zinc-200 rounded flex items-center justify-center p-1">
-                            <img src="/website_assets/images/visa_1786947202.svg" class="max-h-full max-w-full object-contain">
-                        </div>
-                        <div class="h-7 w-14 bg-white border border-zinc-200 rounded flex items-center justify-center p-1">
-                            <img src="/website_assets/images/mastercard_1786947202.svg" class="max-h-full max-w-full object-contain">
-                        </div>
-                        <div class="h-7 w-14 bg-white border border-zinc-200 rounded flex items-center justify-center p-1">
-                            <img src="/website_assets/images/american-express_1786947202.svg" class="max-h-full max-w-full object-contain">
-                        </div>
-                        <div class="h-7 w-14 bg-white border border-zinc-200 rounded flex items-center justify-center p-1">
-                            <img src="/website_assets/images/razorpay.png" class="max-h-full max-w-full object-contain">
-                        </div>
-                        <div class="h-7 w-14 bg-white border border-zinc-200 rounded flex items-center justify-center p-1">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/e/e1/UPI-Logo-vector.svg" class="max-h-full max-w-full object-contain">
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Find Us On -->
-                <div class="space-y-3">
-                    <h4 class="text-zinc-950 text-xs font-bold uppercase tracking-widest">Find Us On</h4>
-                    <div class="flex items-center gap-3.5">
-                        <a href="#" class="hover:opacity-85 transition-opacity">
-                            <img src="/website_assets/images/Facebook.png" class="w-5 h-5 object-contain rounded-full">
-                        </a>
-                        <a href="#" class="hover:opacity-85 transition-opacity">
-                            <img src="/website_assets/images/X_logo.jpg" class="w-5 h-5 object-contain rounded-xs">
-                        </a>
-                        <a href="#" class="hover:opacity-85 transition-opacity">
-                            <img src="/website_assets/images/Instagram.png" class="w-5 h-5 object-contain rounded-xs">
-                        </a>
-                        <a href="#" class="hover:opacity-85 transition-opacity">
-                            <img src="/website_assets/images/YouTube.png" class="w-5 h-5 object-contain">
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Get The App -->
-                <div class="space-y-3">
-                    <h4 class="text-zinc-950 text-xs font-bold uppercase tracking-widest">Get The App</h4>
-                    <div class="flex flex-col gap-2">
-                        <a href="#" class="inline-block"><img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" class="h-[38px] w-auto"></a>
-                    </div>
-                </div>
-            </div>
         </div>
 
-        <!-- Middle Section: Brand Logo (With margins and spacing) -->
-        <div class="mt-8 pt-8 pb-4 flex flex-col sm:flex-row items-center justify-between gap-4">
-            <div class="flex items-center space-x-2">
-                <img src="/website_assets/images/logo_1780233010.png" class="h-14 w-auto object-contain" alt="X-Buy" style="height: 56px !important;">
+        <!-- Payment & Logistics Badges Strip -->
+        <div class="pt-8 border-t border-zinc-200 grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+            
+            <!-- Payment methods -->
+            <div class="space-y-2">
+                <span class="text-[11px] font-bold uppercase tracking-wider text-zinc-500 block">
+                    Secure Payment Gateway Partners
+                </span>
+                <div class="flex flex-wrap items-center gap-2">
+                    <div class="h-7 px-2.5 bg-white border border-zinc-200 rounded flex items-center justify-center font-bold text-xs text-blue-700 shadow-2xs">
+                        Razorpay
+                    </div>
+                    <div class="h-7 px-2.5 bg-white border border-zinc-200 rounded flex items-center justify-center font-bold text-xs text-emerald-700 shadow-2xs">
+                        UPI • GPay • PhonePe
+                    </div>
+                    <div class="h-7 px-2.5 bg-white border border-zinc-200 rounded flex items-center justify-center font-bold text-xs text-indigo-900 shadow-2xs">
+                        VISA
+                    </div>
+                    <div class="h-7 px-2.5 bg-white border border-zinc-200 rounded flex items-center justify-center font-bold text-xs text-red-600 shadow-2xs">
+                        Mastercard
+                    </div>
+                    <div class="h-7 px-2.5 bg-white border border-zinc-200 rounded flex items-center justify-center font-bold text-xs text-zinc-800 shadow-2xs">
+                        NetBanking
+                    </div>
+                </div>
             </div>
-            <div class="text-xs text-zinc-800 font-medium">
-                Your Premium Electronics & Components Marketplace
+
+            <!-- Logistics partner -->
+            <div class="space-y-2 md:text-right">
+                <span class="text-[11px] font-bold uppercase tracking-wider text-zinc-500 block">
+                    Insured Express Logistics
+                </span>
+                <div class="flex items-center md:justify-end gap-2 text-xs font-semibold text-zinc-800">
+                    <span class="px-3 py-1 bg-white border border-zinc-200 rounded-md shadow-2xs">
+                        🚚 Shiprocket Insured Network (Bluedart, Delhivery, DTDC)
+                    </span>
+                </div>
             </div>
+
         </div>
 
-        <!-- Bottom Section: Sub-footer Copyright & Policies -->
-        <div class="pt-4 pb-0 flex flex-col md:flex-row items-center justify-between gap-4 text-[11px] text-zinc-800">
-            <div class="flex flex-wrap items-center justify-center md:justify-start gap-x-6 gap-y-2">
-                <span>Copyright &copy; {{ date('Y') }} {{ \App\Models\SiteSetting::getVal('platform_name', 'X-Buy') }} Inc.</span>
-                <a href="/p/privacy-policy" class="hover:text-black transition-colors">Privacy Policy</a>
-                <a href="/p/terms-of-service" class="hover:text-black transition-colors">Terms of Service</a>
-                <a href="/p/licenses-and-disclosures" class="hover:text-black transition-colors">Licenses / Disclosures</a>
-                <a href="/p/cookie-preferences" class="hover:text-black transition-colors">Cookie Preferences</a>
-            </div>
-            <div class="text-center md:text-right">
-                <span>Made by <a href="https://code4sh.com/" target="_blank" class="relative z-10 font-bold text-zinc-950 hover:underline inline-block cursor-pointer">code4sh</a></span>
+        <!-- Sub-footer copyright & metadata -->
+        <div class="mt-8 pt-6 border-t border-zinc-200 flex flex-col sm:flex-row items-center justify-between gap-3 text-[11px] text-zinc-500 font-medium">
+            <p>&copy; {{ date('Y') }} {{ \App\Models\SiteSetting::getVal('platform_name', 'X-Buy') }} Technologies Pvt. Ltd. All rights reserved.</p>
+            <div class="flex items-center gap-4">
+                <a href="/p/privacy-policy" class="hover:text-zinc-950 transition-colors">Privacy</a>
+                <a href="/p/terms-of-service" class="hover:text-zinc-950 transition-colors">Terms</a>
+                <a href="/p/escrow-policy" class="hover:text-zinc-950 transition-colors">Escrow</a>
+                <a href="/p/contact-us" class="hover:text-zinc-950 transition-colors">Help</a>
             </div>
         </div>
 

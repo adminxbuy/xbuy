@@ -336,23 +336,92 @@ Route::middleware('auth')->group(function () {
 
 Route::get('/listings', function (\Illuminate\Http\Request $request) {
     try {
-        $query = \App\Models\Listing::active()->with(['images', 'seller']);
+        $status = $request->input('status', 'active');
+        $query = \App\Models\Listing::with(['images', 'seller', 'brand']);
+
+        if ($status === 'sold') {
+            $query->where('listing_status', 'sold');
+        } elseif ($status === 'all') {
+            $query->whereIn('listing_status', ['active', 'sold']);
+        } else {
+            $query->where('listing_status', 'active');
+        }
         
-        if ($request->has('search') && !empty($request->input('search'))) {
+        if ($request->filled('search')) {
             $search = $request->input('search');
             $query->where(function($q) use ($search) {
                 $q->where('title', 'like', "%{$search}%")
                   ->orWhere('description', 'like', "%{$search}%")
-                  ->orWhere('brand', 'like', "%{$search}%");
+                  ->orWhere('brand', 'like', "%{$search}%")
+                  ->orWhere('model_name', 'like', "%{$search}%");
             });
         }
 
-        if ($request->has('category') && !empty($request->input('category'))) {
-            $query->where('category', $request->input('category'));
+        if ($request->filled('category')) {
+            $categorySlug = $request->input('category');
+            $category = \App\Models\Category::where('slug', $categorySlug)->first();
+            if ($category) {
+                $childIds = $category->children()->pluck('id')->toArray();
+                $catIds = array_merge([$category->id], $childIds);
+                $query->where(function($q) use ($categorySlug, $catIds) {
+                    $q->where('category', $categorySlug)
+                      ->orWhereIn('category_id', $catIds);
+                });
+            } else {
+                $query->where('category', $categorySlug);
+            }
         }
 
-        $listings = $query->latest()->paginate(12);
-        return view('listings.index', compact('listings'));
+        if ($request->filled('brand')) {
+            $brands = is_array($request->input('brand')) ? $request->input('brand') : explode(',', $request->input('brand'));
+            $query->where(function($q) use ($brands) {
+                $q->whereIn('brand', $brands)
+                  ->orWhereHas('brand', function($bq) use ($brands) {
+                      $bq->whereIn('name', $brands)->orWhereIn('slug', $brands);
+                  });
+            });
+        }
+
+        if ($request->filled('min_price')) {
+            $query->where('price', '>=', (float) $request->input('min_price'));
+        }
+
+        if ($request->filled('max_price')) {
+            $query->where('price', '<=', (float) $request->input('max_price'));
+        }
+
+        if ($request->filled('condition')) {
+            $conditions = is_array($request->input('condition')) ? $request->input('condition') : [$request->input('condition')];
+            $query->where(function($q) use ($conditions) {
+                $q->whereIn('condition', $conditions)
+                  ->orWhereIn('grade', $conditions);
+            });
+        }
+
+        if ($request->boolean('free_shipping') || $request->input('free_shipping') == '1') {
+            $query->where(function($q) {
+                $q->where('shipping_charges', 0)
+                  ->orWhere('shipping_type', 'free');
+            });
+        }
+
+        // Sorting
+        $sort = $request->input('sort', 'newest');
+        if ($sort === 'price_asc') {
+            $query->orderBy('price', 'asc');
+        } elseif ($sort === 'price_desc') {
+            $query->orderBy('price', 'desc');
+        } elseif ($sort === 'popular') {
+            $query->orderBy('views_count', 'desc');
+        } else {
+            $query->latest();
+        }
+
+        $listings = $query->paginate(20)->withQueryString();
+        $categories = \App\Models\Category::active()->parentOnly()->withCount('listings')->orderBy('sort_order')->get();
+        $allBrands = \App\Models\Brand::orderBy('name')->get();
+
+        return view('listings.index', compact('listings', 'categories', 'allBrands'));
     } catch (\Throwable $e) {
         return response()->json([
             'error' => $e->getMessage(),
@@ -403,8 +472,180 @@ Route::get('/clear', function () {
     }
 });
 
+Route::get('/categories/{slug}', function (string $slug) {
+    $category = \App\Models\Category::with('children')->where('slug', $slug)->firstOrFail();
+    $subcategories = $category->children;
+    $listings = \App\Models\Listing::active()
+        ->with(['images', 'seller', 'brand'])
+        ->where(function ($q) use ($category, $subcategories) {
+            $q->where('category_id', $category->id)
+              ->orWhere('category', $category->slug);
+            if ($subcategories && $subcategories->count() > 0) {
+                $q->orWhereIn('category_id', $subcategories->pluck('id'));
+            }
+        })
+        ->latest()
+        ->paginate(20);
+    $popularBrands = \App\Models\Brand::orderBy('name')->take(8)->get();
+    return view('categories.show', compact('category', 'listings', 'subcategories', 'popularBrands'));
+})->name('categories.show');
+
+Route::get('/brands/{slug}', function (string $slug) {
+    $brand = \App\Models\Brand::where('slug', $slug)->firstOrFail();
+    $listings = \App\Models\Listing::active()
+        ->with(['images', 'seller', 'brand'])
+        ->where(function ($q) use ($brand) {
+            $q->where('brand_id', $brand->id)
+              ->orWhere('brand', $brand->name);
+        })
+        ->latest()
+        ->paginate(20);
+    $categories = \App\Models\Category::active()->parentOnly()->orderBy('sort_order')->take(8)->get();
+    return view('brands.show', compact('brand', 'listings', 'categories'));
+})->name('brands.show');
+
+// Direct Checkout Flow
+Route::get('/checkout', function (\Illuminate\Http\Request $request) {
+    if (!auth()->check()) {
+        return redirect()->route('login', ['redirect' => $request->fullUrl()]);
+    }
+    $listingId = $request->query('listing_id');
+    $listing = null;
+    if ($listingId) {
+        $listing = \App\Models\Listing::with(['images', 'seller.user'])->find($listingId);
+    }
+    if (!$listing) {
+        $listing = \App\Models\Listing::active()->with(['images', 'seller.user'])->latest()->first();
+    }
+    if (!$listing) {
+        return redirect()->route('listings.index')->with('error', 'No active listing available for checkout.');
+    }
+    return view('checkout.index', compact('listing'));
+})->name('checkout.index');
+
+Route::post('/checkout', function (\Illuminate\Http\Request $request) {
+    if (!auth()->check()) {
+        return response()->json(['error' => 'Please login to complete checkout.'], 401);
+    }
+    return app(\App\Http\Controllers\Api\BuyerController::class)->checkout($request);
+})->middleware('auth')->name('checkout.store');
+
+Route::get('/checkout/success/{id}', function ($id) {
+    $order = \App\Models\Order::with(['listing.images', 'seller', 'escrow'])->find($id);
+    if (!$order) {
+        return redirect()->route('dashboard.orders');
+    }
+    return view('checkout.success', compact('order'));
+})->name('checkout.success');
+
+// 3-Minute Sell Listing Creation Wizard
+Route::get('/dashboard/listings/create', function () {
+    if (!auth()->check()) {
+        return redirect()->route('login', ['redirect' => '/dashboard/listings/create']);
+    }
+    return view('dashboard.listings.create');
+})->middleware('auth')->name('dashboard.listings.create');
+
+Route::post('/dashboard/listings', function (\Illuminate\Http\Request $request) {
+    $user = auth()->user();
+    if (!$user) {
+        return response()->json(['error' => 'Authentication required.'], 401);
+    }
+
+    $request->validate([
+        'title' => 'required|string|max:255',
+        'price' => 'required|numeric|min:1',
+    ]);
+
+    // Ensure SellerProfile exists
+    $seller = $user->sellerProfile;
+    if (!$seller) {
+        $seller = \App\Models\SellerProfile::create([
+            'user_id' => $user->id,
+            'business_name' => $user->name . ' Hardware',
+            'status' => 'active',
+            'phone' => $user->phone ?? '9999999999',
+            'city' => $request->input('pickup_city', $user->city ?? 'Bangalore'),
+            'state' => $request->input('pickup_state', $user->state ?? 'Karnataka'),
+            'pincode' => $request->input('pickup_pincode', $user->pincode ?? '560001'),
+        ]);
+    }
+
+    $categorySlug = $request->input('category');
+    $category = \App\Models\Category::where('slug', $categorySlug)->first();
+    $brandName = $request->input('brand', 'Other');
+    $brand = \App\Models\Brand::where('name', $brandName)->orWhere('slug', \Illuminate\Support\Str::slug($brandName))->first();
+
+    $slug = \Illuminate\Support\Str::slug($request->input('title')) . '-' . \Illuminate\Support\Str::lower(\Illuminate\Support\Str::random(6));
+
+    $listing = \App\Models\Listing::create([
+        'seller_id' => $seller->id,
+        'category_id' => $category?->id,
+        'brand_id' => $brand?->id,
+        'title' => $request->input('title'),
+        'slug' => $slug,
+        'description' => $request->input('description') ?? $request->input('title'),
+        'category' => $category?->slug ?? ($categorySlug ?: 'components'),
+        'grade' => $request->input('condition', 'good'),
+        'price' => (float) $request->input('price'),
+        'original_price' => $request->input('original_price') ? (float) $request->input('original_price') : null,
+        'brand' => $brand?->name ?? $brandName,
+        'shipping_type' => 'prepaid',
+        'shipping_charges' => (float) $request->input('shipping_charges', 0),
+        'pickup_city' => $request->input('pickup_city', $user->city ?? 'Bangalore'),
+        'pickup_state' => $request->input('pickup_state', $user->state ?? 'Karnataka'),
+        'pickup_pincode' => $request->input('pickup_pincode', $user->pincode ?? '560001'),
+        'listing_status' => 'active',
+        'approved_at' => now(),
+    ]);
+
+    $images = $request->input('images', []);
+    if (is_array($images) && count($images) > 0) {
+        foreach ($images as $index => $imageUrl) {
+            if ($imageUrl) {
+                \App\Models\ListingImage::create([
+                    'listing_id' => $listing->id,
+                    'image_url' => $imageUrl,
+                    'is_primary' => $index === 0,
+                    'sort_order' => $index,
+                ]);
+            }
+        }
+    } else {
+        \App\Models\ListingImage::create([
+            'listing_id' => $listing->id,
+            'image_url' => 'https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?w=800&auto=format&fit=crop&q=80',
+            'is_primary' => true,
+            'sort_order' => 0,
+        ]);
+    }
+
+    return response()->json([
+        'success' => true,
+        'redirect' => route('listings.show', $listing->slug),
+        'listing' => $listing,
+    ]);
+})->middleware('auth')->name('dashboard.listings.store');
+
+// Web session API bridge for authenticated frontend interactions
+Route::middleware('auth')->prefix('api/buyer')->group(function () {
+    Route::post('/wishlist/toggle', [\App\Http\Controllers\Api\BuyerController::class, 'toggleWishlist']);
+    Route::post('/orders/{id}/confirm-delivery', [\App\Http\Controllers\Api\BuyerController::class, 'confirmDelivery']);
+    Route::post('/orders/{id}/dispute', [\App\Http\Controllers\Api\BuyerController::class, 'raiseDispute']);
+    Route::post('/orders/{id}/rate', [\App\Http\Controllers\Api\BuyerController::class, 'rateSeller']);
+    Route::post('/tickets', [\App\Http\Controllers\Api\BuyerController::class, 'createTicket']);
+});
+
+// Contact page standalone route
+Route::get('/contact', function () {
+    return view('pages.contact');
+})->name('contact');
+
 Route::get('/p/{slug}', function (string $slug) {
     try {
+        if ($slug === 'contact' || $slug === 'contact-us') {
+            return view('pages.contact');
+        }
         $page = \App\Models\Page::where('slug', $slug)->first();
         if (!$page || !$page->is_active) {
             $title = ucwords(str_replace('-', ' ', $slug));
