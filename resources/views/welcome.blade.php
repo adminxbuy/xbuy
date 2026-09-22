@@ -280,7 +280,7 @@
         </div>
     </div>
 
-    <!-- Section 5: 🔥 Recently Listed (Live 5-Column Grid with <x-frontend.product-card>) -->
+    {{-- Section 5: Recently Listed (Live 5-Column Grid with Product Card) --}}
     <div>
         <div class="flex items-center justify-between mb-5">
             <div>
