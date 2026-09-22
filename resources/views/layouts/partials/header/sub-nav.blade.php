@@ -2,7 +2,7 @@
     $navCategories = \App\Models\Category::active()->parentOnly()->with(['children' => function($q) {
         $q->active()->orderBy('sort_order');
     }])->orderBy('sort_order')->take(8)->get();
-    $featuredBrands = \App\Models\Brand::where('is_featured', true)->take(6)->get();
+    $featuredBrands = \App\Models\Brand::where('is_active', true)->orderBy('sort_order')->take(6)->get();
     if ($featuredBrands->isEmpty()) {
         $featuredBrands = \App\Models\Brand::take(6)->get();
     }
